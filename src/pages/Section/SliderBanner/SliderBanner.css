@@ -1,0 +1,33 @@
+.container .slick-slide {
+  padding: 0;
+}
+.slider-dots {
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto;
+  padding-top: 20px;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.slider-dots li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 0;
+}
+
+.slider-dots li button {
+  border: none;
+  color: transparent;
+  cursor: pointer;
+  height: 8px;
+  width: 8px;
+  border-radius: 7.5px;
+  background: #D8D8D8;
+}
+
+.slider-dots li.slick-active button {
+  background-color: #979797;
+}

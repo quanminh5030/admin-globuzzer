@@ -1,0 +1,12 @@
+.button_submit {
+    background: #f24b6a;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    border-radius: 10px;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+}

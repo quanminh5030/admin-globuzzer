@@ -1,0 +1,42 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 3rem;
+    gap: 50px;
+}
+
+.navLink{
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+    padding-left: 10px;
+    width: 255px;
+}
+.navLink a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dashboardLink {
+    color: #808080;
+}
+
+.landingLink {
+    color: #F26678;
+}
+
+.editBtn {
+    padding: 0.5rem 4rem;
+    background: #898787;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.main {
+    justify-self: center;
+}

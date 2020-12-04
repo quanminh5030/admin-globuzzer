@@ -1,0 +1,18 @@
+.wrapper {
+  margin: 20px 0;
+  display: grid;
+}
+
+.more {
+  width: 106px;
+  background-color: #f24b6a;
+  border-radius: 6px;
+  height: 32px;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  justify-self: center;
+  margin-top: 10px;
+}

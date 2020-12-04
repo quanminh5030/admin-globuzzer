@@ -1,0 +1,56 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 310px);
+  grid-gap: 10px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.container p {
+  width: 309px;
+  height: 198px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 36px;
+  text-align: center;
+  display: grid;
+  align-items: center;
+}
+
+.landing {
+  background: #f34c6a;
+}
+
+.section {
+  background: #ec5b5b;
+}
+
+.service {
+  background: #ecb85b;
+}
+
+.topic {
+  background: #4bc4be;
+}
+
+.other {
+  background: #3d96bf;
+}
+
+.bottom {
+  background: #5b6aec;
+}
+
+.request {
+  background: #ec5ba1;
+}

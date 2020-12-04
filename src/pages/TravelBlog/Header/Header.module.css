@@ -1,0 +1,204 @@
+.container {
+  background: url("../../../assets/TravelBlog/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 85vh;
+  position: relative;
+}
+
+.left {
+  width: 85%;
+  max-width: 600px;
+}
+
+.left header {
+  text-transform: uppercase;
+  color: #535151;
+  font-weight: 600;
+  font-size: 36px;
+  margin: 20px 0;
+}
+
+.body {
+  color: #7b7b7b;
+  font-size: 18px;
+  margin: 20px 0;
+  text-align: left;
+  line-height: 36px;
+}
+
+.items div {
+  display: inline;
+}
+
+.itemsRight {
+  color: #f24b6a;
+  margin-left: 35px;
+}
+
+.icon {
+  vertical-align: middle;
+  width: 27px;
+  height: 27px;
+}
+
+.itemsRight span {
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.left button {
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 136px;
+  height: 52px;
+  background: #f24b6a;
+  margin: 15px 0;
+}
+
+.right {
+  width: 25%;
+  max-width: 222px;
+  text-align: center;
+  margin-left: 150px;
+  flex-shrink: 0.5;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 4px 8px 4px;
+}
+
+.right video {
+  width: 95%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 919px) {
+  .left header {
+    font-size: 28px;
+  }
+
+  .body {
+    font-size: 14px;
+    line-height: 26px;
+  }
+
+  .left button {
+    width: 120px;
+    height: 47px;
+  }
+  .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .itemsRight span {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 782px) {
+  .left header {
+    font-size: 24px;
+  }
+
+  .body {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .left button {
+    width: 115px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .right {
+    margin-left: 80px;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  .left header {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .body {
+    font-size: 11px;
+    line-height: 20px;
+  }
+
+  .left button {
+    width: 105px;
+    height: 45px;
+    margin: 0;
+  }
+
+  .itemsRight {
+    margin-left: 15px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .right {
+    flex-shrink: 0.3;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    height: 100vh;
+  }
+
+  .left {
+    width: 100%;
+    text-align: center;
+  }
+
+  .left header {
+    font-size: 24px;
+    width: 90%;
+    max-width: 309px;
+    margin: 55px auto 20px auto;
+  }
+
+  .body {
+    width: 90%;
+    max-width: 309px;
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+    margin: 20px auto 30px auto;
+  }
+
+  .right {
+    width: 147px;
+    margin: 0 auto;
+  }
+
+  .btnSmall {
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .btnSmall button {
+    color: #fff;
+    border: none;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 112px;
+    height: 37px;
+    background: #f24b6a;
+  }
+}

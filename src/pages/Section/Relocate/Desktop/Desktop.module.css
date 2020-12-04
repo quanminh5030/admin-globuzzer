@@ -1,0 +1,52 @@
+.wrapper {
+    display: flex;
+    margin-top: 50px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    width: 100%;
+}
+
+.guide {
+    width: 289px;
+    height: 410px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    background-color: #f24b6a;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.guide:hover {
+    filter: brightness(110%);
+    cursor: pointer;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    color: #ffffff;
+    line-height: 36px;
+    width: 186px;
+}
+
+.moreDesk {
+    border-bottom: 2px solid #f24b6a;
+    width: fit-content;
+    align-self: center;
+    margin-top: 50px;
+}
+
+.moreLink {
+    color: #f24b6a;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-right: 10px;
+    font-size: 18px;
+}

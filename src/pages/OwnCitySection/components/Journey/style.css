@@ -1,0 +1,9 @@
+.journey_slide_container {
+  width: 340px;
+  height: 580px;
+  margin: auto;
+}
+
+.indicator.active {
+  background: #e1586d;
+}

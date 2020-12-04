@@ -1,0 +1,71 @@
+.search_result_containter {
+    background-color: #ffffff;
+    width: 300px;
+    max-height: 150px;
+    color: black;
+    position: absolute;
+    top: 40px;
+    overflow: scroll;
+}
+
+.search_city_container {
+    position: relative;
+}
+
+.header_search {
+    display: flex;
+    flex-direction: column;
+}
+
+.result_item {
+    width: 300px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    padding-left: 27px;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    font-size: 14px;
+    border-bottom: 1px solid #d4d4d4;
+    background-color: #ffffff;
+}
+
+@media (min-width: 1100px) {
+    .result_item {
+        width: 125px;
+        height: 40px;
+        padding: 0;
+        display: flex;
+        padding-left: 20px;
+        justify-content: flex-start;
+        align-items: center;
+        border: none;
+        font-size: 12px;
+        line-height: 19px;
+    }
+    .search_result_containter {
+        display: grid;
+        grid-template-columns: repeat(4, 125px);
+        grid-auto-rows: 40px;
+        background-color: #ffffff;
+        justify-content: center;
+    }
+    .header_search {
+        flex-direction: row;
+    }
+    .search_result_containter {
+        max-height: 120px;
+        width: 500px;
+        top: 70px;
+    }
+}
+
+.result_item:hover {
+    background-color: #f24b6a;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    filter: brightness(100%);
+}

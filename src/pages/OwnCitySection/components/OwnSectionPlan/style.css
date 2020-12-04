@@ -1,0 +1,176 @@
+#card_back {
+    height: 276.72px;
+    width: 90.17px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    position: absolute;
+    z-index: -1;
+}
+.card_container {
+    width: 133.7px;
+    height: 261.18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(85, 85, 85, 0.25);
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+#card_type {
+    width: 133.7px;
+    height: 20.52px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #888888;
+    margin-bottom: 58px;
+}
+.card_feature_icon {
+    width: 11.19px;
+    height: 11.19px;
+    padding-right: 6px;
+    color: rgb(214, 87, 69);
+}
+.checked {
+    color: rgb(107, 203, 129);
+}
+.own_pricing_plan_feature {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 18px;
+    width: 123px;
+    margin-bottom: 2.77px;
+}
+.own_pricing_plan_feature p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 10px;
+    color: #909090;
+    text-align: start;
+}
+.card_get {
+    width: 54px;
+    height: 21px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 12px;
+    color: #ffffff;
+    margin-top: 11px;
+    outline: none;
+    border: none;
+    border: 1px solid #a7a7a7;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 10px;
+    color: #a7a7a7;
+}
+#own_card_banner {
+    width: 123.7px;
+    height: 36.07px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    top: 40px;
+    left: -1px;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+}
+#card_handle {
+    width: 0px;
+    height: 0px;
+    border-left: 14.92px solid transparent;
+    position: absolute;
+    top: 19.28px;
+    left: -14.92px;
+}
+#price {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 11px;
+}
+#bold {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+}
+@media (min-width: 1100px) {
+    #bold {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    #price {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    #card_handle {
+        border-left: 30.86px solid transparent;
+        top: 31px;
+        left: -31px;
+    }
+    #own_card_banner {
+        width: 205px;
+        height: 58px;
+        font-size: 18px;
+        line-height: 22px;
+        left: -2px;
+        top: 65px;
+    }
+    .card_get {
+        width: 90px;
+        height: 35px;
+        margin-top: 17px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .own_pricing_plan_feature p {
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .own_pricing_plan_feature {
+        width: 180px;
+        height: 30px;
+        margin-bottom: 4px;
+    }
+    .card_feature_icon {
+        width: 18px;
+        height: 18px;
+        padding-right: 10x;
+    }
+    #card_type {
+        width: 215px;
+        height: 33px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        margin-bottom: 93px;
+    }
+    #card_back {
+        height: 445px;
+        width: 145px;
+    }
+    .card_container {
+        width: 215px;
+        height: 420px;
+    }
+}

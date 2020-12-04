@@ -1,0 +1,162 @@
+.container {
+    background: #2a293a;
+    height: 100vh;
+    position: relative;
+    color: #fff;
+}
+
+.goBack {
+    position: absolute;
+    color: #fff;
+    top: 20px;
+    left: 35px;
+    cursor: pointer;
+}
+
+.goBack span {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+
+.backIcon {
+    font-size: 30px;
+    vertical-align: middle;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    max-width: 1200px;
+}
+
+.content header {
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 600;
+}
+  
+.content span:first-child {
+    font-size: 36px;
+}
+  
+.content span:last-child {
+    font-size: 48px;
+    color: #f24b6a;
+}
+
+.city {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    grid-auto-rows: minmax(150px, auto);
+    gap: 15px;
+    margin: 30px 0 50px 0;
+    padding: 25px 0;
+}
+
+.cityCard {
+    position: relative;
+    cursor: pointer;
+}
+
+.cityCard:hover {
+    filter: brightness(120%);
+}
+  
+.cityCard p {
+    font-size: 14px;
+    text-align: center;
+}
+  
+.cityCard img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.cityCenter {
+    margin-top: 12px;
+}
+
+.cityBtn {
+    text-align: center;
+}
+  
+.cityBtn button {
+    border: none;
+    background: #f24b6a;
+    border-radius: 10px;
+    width: 138px;
+    height: 46px;
+    color: #fff;
+}
+
+@media screen and (min-width:731px) and (max-width:1129px) {
+    .content {
+        width: 90%;
+    }
+
+    .city {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        margin: 15px 0;
+    }
+}
+
+@media screen and (max-width:730px) {
+    .content {
+        width: 90%;
+    }
+
+    .content header span {
+        display: block;
+        margin: 5px 0;
+    }
+    
+    .content header span:first-child {
+        font-size: 24px;
+      }
+    
+    .content span:last-child {
+        font-size: 36px;
+    }
+
+    .city {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        grid-auto-rows: minmax(120px, auto);
+        margin: 5px 0;
+    }
+}
+
+@media screen and  (min-width:0) and (max-width:380px) {
+    .container {
+        position: static;
+        height: auto;
+    }
+
+    .goBack {
+        position: static;
+        padding: 10px 0 20px 10px;
+    }
+
+    .content {
+        position: static;
+        transform: translate(0, 0);
+        margin: 0 auto;
+    }
+    
+    .content header {
+        margin-top: 40px;
+    }
+    
+    .content span {
+        display: block;
+    }
+
+    .cityBtn {
+        text-align: center;
+        padding-bottom: 20px;
+    }
+}

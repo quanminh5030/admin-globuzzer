@@ -1,0 +1,136 @@
+.own_header {
+    background-image: url("../../../../assets/OwnCitySection/Header.jpg");
+    height: 726px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(245, 245, 243, 0.6);
+    background-blend-mode: color;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.own_video_container,
+.own_video {
+    width: 147px;
+    height: 284px;
+}
+.own_video_container {
+    background-color: #ffffff;
+    padding: 5px 0px 5px 0px;
+    box-shadow: 10px 10px 20px rgba(38, 20, 71, 0.4);
+    border-radius: 20px;
+}
+.own_video {
+    border-radius: 20px;
+}
+
+#own_header_title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: center;
+    color: #535151;
+    margin-bottom: 22px;
+}
+
+#own_header_description {
+    width: 309px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #7b7b7b;
+    margin-bottom: 33px;
+}
+.own_button_start {
+    width: 112px;
+    height: 37px;
+    background: #f24b6a;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0 auto;
+    display: table;
+    margin-top: 33px;
+}
+
+@media (min-width: 1100px) {
+    .own_button_start {
+        margin: 0;
+        width: 136px;
+        height: 52px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-right: 39px;
+    }
+    #own_header_description {
+        width: 570px;
+        height: 68px;
+        font-size: 18px;
+        line-height: 36px;
+        margin-bottom: 40px;
+        text-align: start;
+    }
+    #own_header_title {
+        width: 514px;
+        height: 83px;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 48px;
+        margin-bottom: 42px;
+        text-align: start;
+    }
+    .own_video {
+        border-radius: 30px;
+    }
+    .own_video_container {
+        background-color: #ffffff;
+        padding: 7px 0px 7px 0px;
+        box-shadow: 10px 10px 20px rgba(38, 20, 71, 0.4);
+        border-radius: 30px;
+    }
+    .own_video_container,
+    .own_video {
+        width: 212px;
+        height: 409px;
+    }
+    .own_header {
+        height: 726px;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+.own_header_buttons_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 40px;
+}
+.own_header_text_container {
+    display: flex;
+    flex-direction: column;
+}
+#own_watch_demo_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#own_watch_demo_icon {
+    width: 27px;
+    height: 27px;
+    color: #f24b6a;
+}
+#own_watch_demo_button p {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #f24b6a;
+    margin-left: 7px;
+}

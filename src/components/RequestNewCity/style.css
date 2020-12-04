@@ -1,0 +1,82 @@
+.joincity_request_city_button {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: auto;
+}
+
+.joincity_request_city_button:hover {
+    filter: brightness(110%);
+}
+
+.joincity_requested_container {
+    width: 185px;
+    height: 128px;
+    background-color: #f24b6a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.joincity_requested_icon {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+}
+
+#requested {
+    width: 107px;
+    height: 17px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.joincity_requested_icon_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+#wewould {
+    width: 131px;
+    height: 33px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 16px;
+    color: #ffffff;
+}
+
+@media (min-width: 1100px) {
+    #wewould {
+        width: 224px;
+        height: 40px;
+        font-size: 12px;
+        line-height: 21px;
+    }
+    #requested {
+        width: 155px;
+        height: 17px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .joincity_requested_icon {
+        width: 32px;
+        height: 32px;
+    }
+    .joincity_requested_container {
+        width: 280px;
+        height: 194px;
+        background-color: #f24b6a;
+    }
+}

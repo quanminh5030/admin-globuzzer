@@ -1,0 +1,520 @@
+.container {
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+Input .formContainer {
+  width: 80%;
+  max-width: 1200px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* For top (red part) */
+.top {
+  background: linear-gradient(180deg, #de3857 0%, #f24b6a 100%);
+  color: #fff;
+  position: relative;
+}
+
+.closeBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 7px;
+  right: 8px;
+}
+
+.closeBtn img {
+  width: 37px;
+  height: 37px;
+}
+
+.top header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 30px 0;
+  line-height: 22px;
+}
+
+.circleContainer {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.circleWrapper {
+  position: relative;
+}
+
+.circleLine {
+  border-bottom: 2px solid #fff;
+  width: 95%;
+  position: absolute;
+  left: 61%;
+  top: 12%;
+}
+
+.circle {
+  border: 1px solid #fff;
+  width: 23px;
+  padding: 2px 0;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.circleWrapper p {
+  width: 100px;
+  font-size: 13px;
+  margin: 0 auto;
+  line-height: 22px;
+  padding: 12px 0;
+}
+
+/*For bottom (grey part) */
+
+.bottom {
+  background: #f9f9f9;
+  padding: 35px;
+}
+
+.pageContainer {
+  width: 65%;
+  max-width: 600px;
+  min-width: 380px;
+  margin: 0 auto;
+  color: #888888;
+}
+
+.reminder {
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.pageHeader {
+  color: #555555;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 15px 0;
+}
+
+.option {
+  border-bottom: 1px solid #e4e4e4;
+  padding: 12px 0;
+}
+
+.otherOption {
+  border: none;
+}
+
+.choice {
+  display: grid;
+  grid-template-columns: repeat(1, 20px 1fr);
+  grid-gap: 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100vw;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.term {
+  font-size: 14px;
+  font-weight: 500;
+  width: 100vw;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.term p {
+  margin-left: 3rem;
+}
+label input {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark,
+.check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #ffffff;
+  border: 1px solid #c4c4c4;
+  border-radius: 50%;
+}
+
+.check {
+  border-radius: 0%;
+}
+
+label:hover input ~ .checkmark {
+  filter: brightness(110%);
+}
+
+.checkmark:after,
+.check:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+label input:checked ~ .checkmark:after,
+label input:checked ~ .check:after {
+  display: block;
+}
+
+label .checkmark:after {
+  top: 2px;
+  left: 2px;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: #f24b6a;
+}
+
+label .check:after {
+  left: 5px;
+  top: 0;
+  width: 5px;
+  height: 10px;
+  border: solid #f24b6a;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.textarea {
+  padding: 8px 0;
+}
+
+.textarea textarea {
+  width: 100%;
+  height: 90px;
+  resize: none;
+  border: 1px solid #e4e4e4;
+  border-radius: 7px;
+}
+
+.continue {
+  padding: 5px 0 20px 0;
+}
+
+.btn {
+  width: 90px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+}
+
+.danger {
+  background: linear-gradient(180deg, #f24b6a 0%, #ca3f59 100%);
+}
+
+/* Form 2 */
+.formInput {
+  margin: 20px 0;
+}
+
+.formInput input[type="text"] {
+  padding: 8px;
+  width: 380px;
+  border: 1px solid #c4c4c4;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.formInput input[type="checkbox"] {
+  -webkit-user-select: none;
+}
+.formInput input::placeholder {
+  color: #888888;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.continue span {
+  margin-left: 15px;
+  color: #f24b6a;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f24b6a;
+}
+
+/* Form 3 */
+.form3Container {
+  width: 50%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.send {
+  text-align: center;
+  padding: 40px 0 30px 0;
+}
+
+.send button {
+  background: #f24b6a;
+  color: #fff;
+  font-weight: 600;
+}
+
+.send span {
+  margin-left: 15px;
+  color: #f24b6a;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f24b6a;
+}
+
+.freeUnderline {
+  border-top: 2px solid #5ebfbf;
+}
+
+.premiumUnderline {
+  border-top: 2px solid #f24b6a;
+}
+
+.freeLi:nth-child(1),
+.freeLi:nth-child(2) {
+  color: #53bfbf !important;
+}
+
+.premiumLi:nth-child(1),
+.premiumLi:nth-child(2) {
+  color: #f24b6a !important;
+}
+
+/* Form 4 */
+.gratitude {
+  text-align: center;
+  font-size: 30px;
+  padding: 65px 0;
+}
+
+.gratitudeBody {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.end {
+  padding: 50px 0 15px 0;
+  text-align: center;
+}
+
+.end button {
+  width: 90px;
+  height: 40px;
+  background: linear-gradient(180deg, #f24b6a 0%, #ca3f59 100%);
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .form3Container {
+    width: 70%;
+  }
+  label {
+    display: block;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1000px) {
+  .form3Container {
+    width: 80%;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .form3Container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 700px) {
+  .top header {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 30px 0;
+    line-height: 22px;
+  }
+  .formContainer {
+    width: 100%;
+    height: 100%;
+  }
+
+  .closeBtn img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mainHeader {
+    text-transform: uppercase;
+    font-size: 20px;
+  }
+
+  .circleWrapper p {
+    font-size: 12px;
+  }
+
+  .bottom {
+    padding: 20px;
+    height: 70vh;
+  }
+
+  .pageContainer {
+    width: 100%;
+    min-width: 100px;
+  }
+
+  .pageHeader {
+    font-size: 16px;
+  }
+
+  .btn {
+    height: 36px;
+  }
+
+  /* Form 1 */
+  label {
+    font-size: 13px;
+  }
+
+  .textarea textarea {
+    width: 100%;
+    border: 1px solid #e4e4e4;
+    border-radius: 7px;
+  }
+
+  .continue {
+    padding: 5px 0;
+  }
+
+  /* Form 2 */
+  .continue button {
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .formInput input[type="text"] {
+    width: 90%;
+    height: 25px;
+  }
+
+  /* Form 3 */
+  .form3Container {
+    width: 95%;
+  }
+
+  .send {
+    text-align: left;
+    padding: 40px 0 10px 0;
+  }
+
+  /* Form 4 */
+  .smallPara {
+    text-align: center;
+    color: #555555;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px 0 40px 0;
+  }
+
+  .gratitudeBody {
+    font-size: 13px;
+    width: 95%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1100px) {
+  .circleLine {
+    width: 106%;
+  }
+
+  .formInput input[type="checkbox"] {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  .flex {
+    justify-content: space-between;
+  }
+
+  .formContainer {
+    position: absolute;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    outline: none;
+    position: relative;
+    z-index: 11;
+    width: 900px;
+    height: 700px;
+  }
+
+  .top {
+    width: 100%;
+  }
+
+  .bottom {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: 23px;
+    right: 31px;
+  }
+}

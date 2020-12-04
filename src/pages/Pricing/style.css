@@ -1,0 +1,319 @@
+a {
+  text-decoration: none;
+  color: #f9f9f9;
+}
+
+.know-service-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.know-service-block-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.know-service-block-container p {
+  text-align: start;
+}
+
+.know-service-block-icon {
+  width: 18px;
+  height: 18px;
+  color: #9b9b9b;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.know-service-block-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #909090;
+}
+
+#know-service-title {
+  width: 337px;
+  height: 75px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #555555;
+  margin-top: 52px;
+}
+
+.section-know-service {
+  margin-bottom: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-container {
+  width: 263.19px;
+  height: 173.63px;
+  margin: auto;
+  margin-top: 35px;
+}
+
+.slide-img {
+  width: 263.19px;
+  height: 173.63px;
+}
+
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  width: 263.19px;
+  height: 173.63px;
+  background-position: center;
+}
+
+#pricing-plans-des {
+  width: 273px;
+  height: 29px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #909090;
+  padding: 10px 0;
+}
+
+.section-pricing-plans {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+  background-color: #f9f9f9;
+  padding: 65px 0;
+}
+
+.pricing-plans-grid {
+  display: grid;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  margin-left: 10px;
+}
+
+.pricing-why-globe {
+  width: 207px;
+  height: 121.71px;
+  margin-right: 25px;
+}
+
+.pricing-why-text {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: start;
+}
+
+#text-globe {
+  width: 65px;
+  height: 74px;
+}
+
+.pricing-why-text-em {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 44px;
+  color: #e1586d;
+}
+
+.pricing-why-reason {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.pricing-why-reason-member-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(2, 50px);
+  width: 207px;
+}
+
+#text-member {
+  width: 59px;
+  height: 69px;
+}
+
+.pricing-why {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.temp-pricing-content {
+  display: flex;
+  justify-content: flex-start;
+  width: 207px;
+}
+
+.pricing-extra-service-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.section-extra-service {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.section-pricing-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-slide-container {
+  width: 330px;
+  height: 200px;
+  z-index: -1;
+}
+@media (min-width: 1100px) {
+  .know-service-block-container {
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .section-extra-service {
+    margin-bottom: 113px;
+    margin-top: 50px;
+  }
+  .review-slide-container {
+    width: 837px;
+    height: 250px;
+  }
+  .pricing-extra-service-grid {
+    gap: 31px;
+    grid-template-columns: repeat(4, 275px);
+    grid-template-rows: repeat(1, 348px);
+    margin-top: 40px;
+  }
+  .pricing-why {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-end;
+  }
+  .pricing-why-reason-member-grid {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(2, 100px);
+    width: auto;
+  }
+  #text-globe {
+    width: 313px;
+    height: 56px;
+  }
+  #text-member {
+    width: 290px;
+    height: 56px;
+    margin-top: 60px;
+  }
+  .pricing-why-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .pricing-why-text-em {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .pricing_why_globe {
+    width: 376.03px;
+    height: 221.09px;
+    margin-right: 0px;
+    margin-bottom: 32px;
+  }
+  .pricing-why-reason {
+    flex-direction: column;
+  }
+  .pricing-plans-grid {
+    margin-top: 20px;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(4, 215px);
+    grid-template-rows: repeat(1, 460px);
+  }
+  #pricing-plans-des {
+    width: 780px;
+    height: 50px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 31px;
+  }
+  .slide-container {
+    width: 658px;
+    height: 419px;
+    margin: 0;
+    margin-top: 35px;
+  }
+  .slide-img {
+    width: 658px;
+    height: 419px;
+  }
+  .each-slide > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    width: 658px;
+    height: 419px;
+    background-position: center;
+  }
+  .section-know-service {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .know-service-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 56px;
+  }
+  .know-service-block-text {
+    font-size: 24px;
+  }
+  #know-service-title {
+    width: 492px;
+    height: 74px;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 44px;
+    margin-bottom: 51px;
+    text-align: start;
+    color: #555555;
+  }
+}

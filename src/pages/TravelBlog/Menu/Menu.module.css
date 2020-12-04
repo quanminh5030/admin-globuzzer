@@ -1,0 +1,136 @@
+.mainMenu {
+  border-bottom: 1px solid rgba(136, 136, 136, 0.3);
+  width: 95%;
+  margin: 0 auto;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.mainMenu,
+.menuRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuItems {
+  list-style-type: none;
+  padding: 16px 20px;
+}
+
+.menuList {
+  padding: 5px 8px;
+  font-size: 14px;
+  color: #888888;
+  cursor: pointer;
+}
+
+.menuLeft .menuList:first-child {
+  padding-left: 0;
+}
+
+.menuRight .menuList:last-child {
+  margin-left: 30px;
+  border: 1px solid #f24b6a;
+  border-radius: 15px;
+  padding: 3px 25px;
+  color: #f24b6a;
+  filter: brightness(110%);
+}
+
+.menuRight .menuList:last-child:hover {
+  background: #f24b6a;
+  color: #fff;
+}
+
+.sideMenu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background: #2a293a;
+  color: #fff;
+  width: 213px;
+  height: 345px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+
+.bars {
+  width: 35px;
+  height: 35px;
+}
+
+.close {
+  width: 25px;
+  height: 25px;
+}
+
+@media screen and (max-width: 755px) {
+  .mainMenu {
+    width: 100%;
+  }
+
+  .menuList {
+    padding: 0;
+  }
+
+  .menuCenter .menuList {
+    margin-left: 55px;
+  }
+
+  .menuRight .menuList:last-child {
+    margin-left: 0px;
+    padding: 6px 15px;
+    font-size: 9px;
+  }
+
+  .sideItems {
+    list-style-type: none;
+    padding: 5px 13px;
+  }
+
+  .sideLeft {
+    flex-basis: 70%;
+    border-bottom: 1px solid #5f5d73;
+  }
+
+  .sideLeft .sideList:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+  }
+
+  .sideLeft .sideList:nth-child(2) {
+    margin-top: 15px;
+  }
+
+  .sideLeft .sideList span:last-child {
+    margin-left: 10px;
+  }
+
+  .sideList {
+    padding: 8px 0;
+    cursor: pointer;
+  }
+
+  .sideRight {
+    flex-basis: 30%;
+    position: relative;
+  }
+
+  .sideRight .sideList {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #f24b6a;
+    border-radius: 10px;
+    color: #fff;
+    width: 137px;
+    text-align: center;
+  }
+}

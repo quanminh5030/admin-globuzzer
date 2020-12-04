@@ -1,0 +1,167 @@
+.pricing_header {
+  background-image: url("../../../../assets/Pricing/Pricing_header.png");
+  height: 540px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-blend-mode: color;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding-bottom: 20px;
+}
+
+.contact_btn {
+  margin-top: 15px;
+}
+
+.pricing_header_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pricing_header_art_0 {
+  width: 472.53px;
+  height: 333.6px;
+}
+
+.pricing_header_url {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pricing_header_url a:hover {
+  color: #dfdddd;
+}
+
+#pricing_our_number {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  margin-bottom: 11px;
+}
+
+#pricing_your_brand {
+  width: 282px;
+  height: 53px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#pricing_header_start_button {
+  width: 93px;
+  height: 25px;
+  background: #76bdbe;
+  color: #ffffff;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  outline: none;
+  border: none;
+}
+
+#pricing_header_start_button a:visited {
+  color: white;
+}
+
+#fix:visited {
+  color: white;
+}
+
+#pricing_header_contact_button {
+  width: 93px;
+  height: 25px;
+  font-size: 12px;
+  line-height: 15px;
+  outline: none;
+  border: none;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-weight: 600;
+  margin-left: 25px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+@media (min-width: 1100px) {
+  #pricing_header_contact_button {
+    width: 183px;
+    height: 48px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  #pricing_header_start_button {
+    width: 152px;
+    height: 48px;
+    font-size: 18px;
+    line-height: 22px;
+    border-radius: 10px;
+    margin-right: 24px;
+  }
+  #pricing_your_brand {
+    width: 624px;
+    height: 39px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: start;
+    margin-bottom: 42px;
+  }
+  #pricing_our_number {
+    left: 91px;
+    top: 238px;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: start;
+    margin-bottom: 17px;
+  }
+  .pricing_header_url {
+    margin-bottom: 76px;
+  }
+  .pricing_header {
+    flex-direction: row;
+    padding-top: 80px;
+  }
+  .pricing_header_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 20px;
+  }
+}
+
+.pricing_header_url_icon {
+  width: 16px;
+  height: 16px;
+  color: #f24b6a;
+  padding: 6px;
+}
+
+.pricing_header_url p {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.pricing_header_art_1 {
+  margin-top: 90px;
+  margin-bottom: 36px;
+  width: 284.24px;
+  height: 200px;
+}

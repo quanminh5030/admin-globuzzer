@@ -1,0 +1,28 @@
+.divider {
+  width: 35px;
+  height: 0px;
+  border: 2px solid #f24b6a;
+  margin: 10px auto;
+}
+
+.header_text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
+  color: #888888;
+  margin: 30px 10px 0 10px;
+  text-transform: uppercase;
+}
+
+@media (min-with: 1100px) {
+  .header_text {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+    margin-bottom: 26px;
+    margin-top: 40px;
+  }
+}

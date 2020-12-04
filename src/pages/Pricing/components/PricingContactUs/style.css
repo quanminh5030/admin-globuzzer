@@ -1,0 +1,193 @@
+.pricing_contact_modal_overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.pricing_contact_modal {
+  position: absolute;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  outline: none;
+  position: relative;
+  z-index: 11;
+  width: 350px;
+  height: 592px;
+}
+
+.pricing_input_grid {
+  display: grid;
+  gap: 11px;
+  grid-template-columns: repeat(2, 151px);
+  grid-template-rows: repeat(3, 26px);
+  justify-content: center;
+}
+
+#message {
+  margin-top: 11px;
+  width: 310px;
+  height: 118px;
+  padding: 12px;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+#modal_header_1 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal_header_2 {
+  font-size: 12px;
+  line-height: 22px;
+  color: #ffffff;
+  width: 319px;
+  height: 51px;
+  text-align: center;
+}
+
+#modal_body_1 {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 18px;
+  color: #888888;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.pricing_input {
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  padding-left: 12px;
+}
+
+.pricing_contact_modal_submit {
+  width: 89px;
+  height: 43px;
+  background: linear-gradient(180deg, #f24b6a 0%, #ca3f59 100%);
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  border: none;
+  outline: none;
+}
+
+.pricing_contact_modal_close {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #e33d5c;
+  color: #f24b6a;
+  width: 40px;
+  margin-left: 40px;
+}
+
+.button_container {
+  margin-bottom: 20px;
+  width: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#modal_body_2 {
+  margin-top: 53px;
+  font-size: 18px;
+  line-height: 31px;
+  color: #888888;
+  text-align: center;
+}
+
+.modal_icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+@media (min-width: 1100px) {
+  .modal_icon {
+    width: 59px;
+    height: 59px;
+    margin-right: 32px;
+  }
+  .button_container {
+    width: 626px;
+  }
+  #modal_body_2 {
+    margin-top: 102px;
+    margin-bottom: 120px;
+    width: 516px;
+    height: 60px;
+    font-size: 24px;
+    line-height: 42px;
+    color: #888888;
+  }
+  #modal_body_1 {
+    font-size: 11px;
+    line-height: 18px;
+  }
+  .pricing_contact_modal {
+    width: 900px;
+    height: 700px;
+  }
+  .pricing_input_grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 300px);
+    grid-template-rows: repeat(3, 43px);
+    justify-content: center;
+  }
+  #message {
+    margin-top: 16px;
+    width: 626px;
+    height: 249px;
+  }
+  #modal_header_1 {
+    font-size: 35px;
+    line-height: 22px;
+    font-weight: 500;
+  }
+  #modal_header_2 {
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    width: 431px;
+    height: 32px;
+    text-align: center;
+  }
+}

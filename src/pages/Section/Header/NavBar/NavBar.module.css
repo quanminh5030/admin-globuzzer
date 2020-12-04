@@ -1,0 +1,178 @@
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    border-bottom: 1px solid white;
+    z-index: 10;
+    padding: 20px 0;
+    transition: 0.3s ease;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+ul,
+li {
+  list-style: none;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  cursor: pointer;
+  color: white;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+}
+
+.ownCityBtn {
+    background-color: #f24b6a;
+    border-radius: 10px;
+    border: none;
+    height: 37px;
+    width: 221px;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+}
+
+.optionItems {
+    display: flex;
+    align-items: center;
+}
+
+.weatherIcon {
+    padding-right: 10px;
+}
+
+.weatherText {
+    display: flex;
+    color: #ffffff;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loginBtn {
+    margin: 0 15px;
+    font-size: 13px;
+}
+
+.signUpBtn {
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    width: 97px;
+    height: 25px;
+    font-size: 13px;
+    background-color: transparent;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+}
+
+.right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.dest, .topic, .service {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    position: relative;
+    /* padding: 0 20px;
+    display: flex; */
+}
+
+.right li {
+    padding: 20px 12px;
+    margin: 0 5px;
+}
+
+.topic .destination {
+    left: -482px;
+}
+.dest:hover, .topic:hover, .service:hover{
+    background: #373c47;
+}
+
+.dest:hover .destination, .topic:hover .destination, .service:hover .destination{
+    display: flex;
+}
+
+.destination {
+    display: none;
+    position: absolute;
+    justify-content: space-between;
+    z-index: 1;
+    color: #ecf0f1;
+    top: 60px;
+    left: -150px;
+    background: #373c47;
+}
+
+.destination ul {
+    padding: 20px 15px;
+}
+
+.destination ul:first-child {
+    padding-right: 80px;
+}
+
+.destination li{
+    padding: 10px 0;
+    width: 110px;
+}
+
+.destination ul li:hover, .active {
+      border-bottom: 1px solid #f24b6a;
+}
+
+.search {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+}
+
+.destination p{
+    width: 100px;
+}
+
+.destination .recently {
+    padding-top: 12px;
+}
+
+.destination div{
+    position: relative;
+    width: 200px;
+}
+
+.destination div input {
+    padding: 5px 30px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background: #c4c4c4;
+    color: #888888;
+    font-size: 11px;
+}
+
+.destination div .search{
+    color: #8888;
+}
+
+.destination p {
+    width: 120px;
+}
+

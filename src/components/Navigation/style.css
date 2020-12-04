@@ -1,0 +1,246 @@
+.section_navigation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 90px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid white;
+  z-index: 10;
+  background-color: rgba(128, 128, 128, 0.6);
+}
+
+@media (min-width: 1100px) {
+  .section_navigation {
+    justify-content: space-around;
+  }
+}
+
+#link_destination {
+  min-width: 107px;
+}
+
+#link_services {
+  min-width: 70px;
+}
+
+#link_advertise {
+  min-width: 78px;
+}
+
+#link_career {
+  min-width: 54px;
+}
+
+#link_aboutus {
+  min-width: 75px;
+}
+
+#link_own {
+  width: 221px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+button {
+  width: 97px;
+  height: 25.94px;
+}
+
+.navigation_center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation_link {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+}
+
+.navigation_link:visited {
+  color: #ffffff;
+}
+
+#link_own {
+  background: #f24b6a;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+
+.navigation_button {
+  background: transparent;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 17px;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+#button_login {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+#button_signup {
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+}
+
+#button_signup .navigation_link {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.mobile_hamburger_menu {
+  margin-right: 25px;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 0px;
+}
+
+.mobile_hamburger_menu:hover {
+  color: #c4c4c4;
+  cursor: pointer;
+}
+
+.navigation_mobile_menu {
+  height: 50vh;
+}
+
+.navigation_mobile_menu_sub_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile_hamburger_close {
+  height: 34px;
+  width: 34px;
+}
+
+.menu_title {
+  height: 36px;
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 14px;
+  font-size: 14px;
+  color: #f24b6a;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.mobile_hamburger_close:hover, .mobile_hamburger_close:visited {
+  background-color: #f24b6a;
+}
+
+.nav_item {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav_item:visited {
+  color: #ffffff;
+}
+
+.nav_icon {
+  color: #ffffff;
+  width: 15px;
+  height: 15px;
+  margin: 15px;
+}
+
+.nav_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  border-bottom: 1px solid #5f5d73;
+}
+
+.nav_bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.nav_mobile_own {
+  width: 181px;
+  height: 50px;
+  background: #f24b6a;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.nav_mobile_own:visited {
+  color: #ffffff;
+}
+
+.nav_mob_link {
+  width: 81px;
+  height: 32px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_bottom_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+#mob_sign {
+  border: 1px solid #f24b6a;
+  border-radius: 5px;
+}

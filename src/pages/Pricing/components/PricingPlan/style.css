@@ -1,0 +1,189 @@
+#pricing_card_back {
+    height: 276.72px;
+    width: 90.17px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    position: absolute;
+    z-index: -1;
+}
+
+.pricing_card_container {
+    width: 207px;
+    height: 357px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(85, 85, 85, 0.25);
+    border-radius: 10px;
+    transition: all .1s ease-in-out;
+}
+
+.pricing_card_container:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .2);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+#pricing_card_type {
+    width: 133.7px;
+    height: 20.52px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #888888;
+    margin-bottom: 58px;
+    padding-top: 16px;
+}
+
+.pricing_card_feature_icon {
+    width: 16.19px;
+    height: 16.19px;
+    padding-right: 6px;
+    color: rgb(214, 87, 69);
+}
+
+.pricing_checked {
+    color: rgb(107, 203, 129);
+}
+
+.pricing_plan_feature {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 20px;
+    width: 145px;
+    margin-bottom: 5px;
+    padding: 6px 0;
+}
+
+.pricing_plan_feature p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #909090;
+    text-align: start;
+}
+
+.pricing_card_get {
+    width: 72px;
+    height: 26px;
+    border-radius: 25px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 12px;
+    color: #ffffff;
+    margin: 12px auto;
+    outline: none;
+    border: none;
+}
+
+#pricing_card_banner {
+    width: 222.92px;
+    height: 37.07px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    position: absolute;
+    top: 44px;
+    right: -3px;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+#pricing_card_handle {
+    width: 0px;
+    height: 0px;
+    border-left: 14.92px solid transparent;
+    position: absolute;
+    top: 23.28px;
+    left: -14.92px;
+}
+
+#pricing_price {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 11px;
+}
+
+#pricing_bold {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+@media (min-width: 1100px) {
+    #pricing_bold {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    #pricing_price {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    #pricing_card_handle {
+        border-left: 30.86px solid transparent;
+        top: 31px;
+        left: -31px;
+    }
+    #pricing_card_banner {
+        width: 225px;
+        height: 58px;
+        font-size: 18px;
+        line-height: 22px;
+        top: 65px;
+        right: 19px;
+    }
+    .pricing_card_get {
+        width: 90px;
+        height: 35px;
+        margin-top: 17px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .pricing_plan_feature p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .pricing_plan_feature {
+        width: 190px;
+        height: 30px;
+        margin-bottom: 4px;
+    }
+    .pricing_card_feature_icon {
+        width: 18px;
+        height: 18px;
+        padding-right: 10x;
+    }
+    #pricing_card_type {
+        width: 215px;
+        height: 33px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        margin-bottom: 93px;
+    }
+    #pricing_card_back {
+        height: 445px;
+        width: 145px;
+    }
+    .pricing_card_container {
+        width: 215px;
+        height: 420px;
+    }
+}

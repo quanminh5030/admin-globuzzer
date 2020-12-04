@@ -1,0 +1,18 @@
+.mainHeader {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 300px;
+  color: #555555;
+}
+
+.underline {
+  border: 2px solid #f24b6a;
+  width: 36px;
+  margin: 25px auto;
+}
+
+@media screen and (max-width: 650px) {
+  .mainHeader {
+    font-size: 24px;
+  }
+}

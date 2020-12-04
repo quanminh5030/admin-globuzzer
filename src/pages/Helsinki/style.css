@@ -1,0 +1,99 @@
+.helsinki_header {
+    background-image: url("../../assets//Helsinki/Header.png");
+    height: 597px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+    background-blend-mode: color;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    position: relative;
+}
+.helsinki_header_url {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 67px;
+    top: 100px;
+}
+.helsinki_header_url_icon {
+    width: 16px;
+    height: 16px;
+    color: #f24b6a;
+    padding: 6px;
+}
+.helsinki_header_url p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+}
+.helsinki_header a {
+    text-decoration: none;
+    color: #f24b6a;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
+.helsinki_header a:visited {
+    text-decoration: none;
+    color: #f24b6a;
+}
+#helsinki_header_2 {
+    margin-top: 30px;
+    margin-bottom: 33px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+}
+.single_service_icon {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 10px;
+}
+.helsinki_services_container {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(2, 100px);
+    justify-content: center;
+    margin-bottom: 20px;
+}
+@media (min-width: 1100px) {
+    .helsinki_services_container {
+        display: grid;
+        gap: 55px;
+        grid-template-columns: repeat(5, 100px);
+        grid-template-rows: repeat(1, 100px);
+        justify-content: center;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+    .single_service_icon {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 10px;
+    }
+    #helsinki_header_2 {
+        margin-top: 6px;
+        margin-bottom: 27px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 36px;
+        line-height: 48px;
+    }
+}
+
+.single_service_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

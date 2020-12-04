@@ -1,0 +1,60 @@
+.auxservice-container {
+  height: 309px;
+  width: 215px;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  box-sizing: border-box;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+  -webkit-transition: 0.1s ease-in-out all;
+  -o-transition: 0.1s ease-in-out all;
+  transition: 0.1s ease-in-out all;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.auxservice-container:hover {
+  -webkit-box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.aux-logo-container {
+  width: 215px;
+  height: 73px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#find-jobs {
+  width: 194px;
+  margin-bottom: 15px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #878585;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.aux-des {
+  width: 194px;
+  height: 40px;
+  color: #717171;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.auxservice-bottom-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

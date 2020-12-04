@@ -1,0 +1,30 @@
+import React from 'react';
+import Home from '../../Home';
+import SideNav from '../SideNav/SideNav';
+import styles from './AdminLanding.module.css';
+import {IoMdArrowDropright} from 'react-icons/io';
+import {Link} from 'react-router-dom';
+import TopNav from '../TopNav/TopNav';
+const AdminLanding = () => {
+    return (
+        <div className={styles.wrapper}>
+            <TopNav/>
+            <div className={styles.container}>
+            <section className={styles.sidenav}>
+                <div className={styles.navLink}>
+                    <Link to="/dashboard" className={styles.dashboardLink}>Dashboard</Link>
+                    <IoMdArrowDropright color="#F26678" size="25px"/>
+                    <Link to="/landing" className={styles.landingLink}>Landing Page</Link>
+                </div>
+                <SideNav/>
+            </section>
+            <section className={styles.main}>
+                <button className={styles.editBtn}>Edit it</button>
+                <Home/>
+            </section>
+            </div>
+        </div>
+    );
+}
+
+export default AdminLanding;
