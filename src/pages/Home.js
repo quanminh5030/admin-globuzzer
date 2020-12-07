@@ -18,11 +18,20 @@ import { RequestNewCity } from "../components/RequestNewCity/RequestNewCity";
 import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
-const Home = () => {
+const Home = ({ contentEditable, editMode }) => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [articles, setArticles] = useState([]);
+
+  const editStyle =
+    editMode ? {
+    border: "2px solid #F26678",
+    boxSizing: "border-box",
+    borderRadius: "5px",
+    padding: "8px" } : {}
+
+
   useEffect(() => {
     firestore
       .collection("cities")
@@ -34,28 +43,30 @@ const Home = () => {
           ...doc.data(),
         }));
         setJoinCity(newCity);
-        console.log(newCity);
+        // console.log(newCity);
       });
   }, []);
 
-  const one = `Globuzzer is a global network that provides the full relocating experience. 
+  const one = `Globuzzer is a global network that provides the full relocating experience.
 Find topics, join communities, attend events, book flights, and much more. `;
-  const two = `Reliable information shared by expats and locals. 
+  const two = `Reliable information shared by expats and locals.
 Everything from visa requirements and local documentation to valuable tips.`;
-  const three = `We are locals. We are expats. 
-We are travelers. We are students. 
+  const three = `We are locals. We are expats.
+We are travelers. We are students.
 Most importantly, we have been in the same spot, and we can support you. `;
 
   return (
     <div className="home-page">
       <LazyLoad>
         <section className="section_header" id="section_header">
-          <p id="header_1">The global community of locals and expats</p>
-          <p id="header_2">Commplete guidance when relocating to a new city</p>
+        <div style={editStyle}>
+          <p id="header_1" contentEditable={contentEditable} >The global community of locals and expats</p>
+          <p id="header_2" contentEditable={contentEditable} >Commplete guidance when relocating to a new city</p>
+        </div>
           <SearchCity />
           <p id="header_suggestion">
             Maybe{" "}
-            <a href="https://globuzzer.mn.co/groups/195831/feed">Stockholm</a>,
+            <a href="https://globuzzer.mn.co/groups/195831/feed" contentEditable={contentEditable} style={editStyle} id="town">Stockholm</a>,
             <Link to="/section">Helsinki</Link> or{" "}
             <a href="https://globuzzer.mn.co/groups/195834/feed">Paris</a>?
           </p>

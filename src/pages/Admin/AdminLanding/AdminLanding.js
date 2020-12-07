@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Home from '../../Home';
 import SideNav from '../SideNav/SideNav';
 import styles from './AdminLanding.module.css';
@@ -6,6 +6,8 @@ import {IoMdArrowDropright} from 'react-icons/io';
 import {Link} from 'react-router-dom';
 import TopNav from '../TopNav/TopNav';
 const AdminLanding = () => {
+  const [editMode, setEditMode] = useState(false);
+
     return (
         <div className={styles.wrapper}>
             <TopNav/>
@@ -19,8 +21,16 @@ const AdminLanding = () => {
                 <SideNav/>
             </section>
             <section className={styles.main}>
-                <button className={styles.editBtn}>Edit it</button>
-                <Home/>
+            {!editMode ?
+                (<button className={styles.editBtn} onClick={() => setEditMode(!editMode)}>Edit it</button>) :
+                (<div>
+                  <button className={styles.svrBtn} >Save it</button>
+                  <button className={styles.svrBtn} >View it</button>
+                  <button className={styles.svrBtn} >Release it</button>
+                 </div>
+                )
+                }
+                { editMode ? <Home contentEditable={true} editMode={editMode}/> : <Home contentEditable={false} editMode={editMode}/> }
             </section>
             </div>
         </div>

@@ -24,7 +24,7 @@
     "react-responsive-carousel": "^3.2.10",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.2.2",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^4.0.1",
     "react-slick": "^0.27.13",
     "react-slideshow-image": "^3.4.2",
     "react-spring": "^8.0.27",
