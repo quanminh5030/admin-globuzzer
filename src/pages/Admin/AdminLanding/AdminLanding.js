@@ -5,7 +5,16 @@ import styles from './AdminLanding.module.css';
 import {IoMdArrowDropright} from 'react-icons/io';
 import {Link} from 'react-router-dom';
 import TopNav from '../TopNav/TopNav';
+import './AdminLanding.css';
 const AdminLanding = () => {
+    const editContent = () => {
+        document.querySelector('.editBtn').hidden = true;
+       [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
+           element.setAttribute('contenteditable', true);
+           element.classList.add('edit-mode');
+       })
+
+    }
     return (
         <div className={styles.wrapper}>
             <TopNav/>
@@ -19,7 +28,7 @@ const AdminLanding = () => {
                 <SideNav/>
             </section>
             <section className={styles.main}>
-                <button className={styles.editBtn}>Edit it</button>
+                <button className="editBtn" onClick={()=>editContent()}>Edit it</button>
                 <Home/>
             </section>
             </div>

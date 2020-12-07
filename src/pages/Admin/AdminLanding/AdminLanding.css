@@ -1,0 +1,16 @@
+.editBtn {
+    padding: 0.5rem 4rem;
+    background: #898787;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.edit-mode {
+    border: 5px solid #f3a6b0;
+    background-blend-mode: #f3a6b0;
+    outline: none;
+}

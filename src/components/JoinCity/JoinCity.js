@@ -16,7 +16,7 @@ export const JoinCity = (props) => {
     return (
         <LazyLoad placeholder={<Loading />}>
             <div
-                className="joincity_container"
+                className="joincity_container content-editable"
                 style={{
                     backgroundImage: `url(${img})`,
                     backgroundColor: isViewMore ? "#F24B6A" : null,
