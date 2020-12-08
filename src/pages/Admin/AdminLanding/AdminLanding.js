@@ -13,7 +13,6 @@ const AdminLanding = () => {
            element.setAttribute('contenteditable', true);
            element.classList.add('edit-mode');
        })
-
     }
     return (
         <div className={styles.wrapper}>

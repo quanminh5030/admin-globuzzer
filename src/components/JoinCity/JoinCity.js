@@ -1,8 +1,7 @@
-import React from "react";
+import React,{useState} from "react";
 import LazyLoad from "react-lazyload";
 import "./style.css";
 import { Link } from "react-router-dom";
-
 const Loading = () => (
     <div>
         <h5>Loading</h5>
@@ -14,13 +13,13 @@ export const JoinCity = (props) => {
     const {name, img, members} = cityData;
 
     return (
-        <LazyLoad placeholder={<Loading />}>
-            <div
+        <LazyLoad placeholder={<Loading />}> 
+        <div
                 className="joincity_container content-editable"
                 style={{
                     backgroundImage: `url(${img})`,
                     backgroundColor: isViewMore ? "#F24B6A" : null,
-                }}
+                }} onClick={props.openForm}
             >
                 <p
                     id="joincity_name"
@@ -48,6 +47,7 @@ export const JoinCity = (props) => {
 
                 {!isViewMore && <p id="joincity_members">{members} members</p>}
             </div>
+           
         </LazyLoad>
     );
 };

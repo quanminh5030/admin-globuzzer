@@ -18,11 +18,12 @@ import { RequestNewCity } from "../components/RequestNewCity/RequestNewCity";
 import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
+import CityForm from '../pages/Admin/CityForm/CityForm';
 const Home = () => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
-  const [articles, setArticles] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     firestore
       .collection("cities")
@@ -37,6 +38,7 @@ const Home = () => {
         console.log(newCity);
       });
   }, []);
+
 
   const one = `Globuzzer is a global network that provides the full relocating experience. 
 Find topics, join communities, attend events, book flights, and much more. `;
@@ -95,9 +97,12 @@ Most importantly, we have been in the same spot, and we can support you. `;
             onChange={(event) => setQuery(event.target.value)}
           />
         </div>
-        <div className="joincity_grid">
+        {isVisible && <div>
+          <CityForm/>
+        </div>}  
+          <div className="joincity_grid">
           {joinCity.map((cityData, index) => (
-            <JoinCity cityData={cityData} key={index} />
+            <JoinCity cityData={cityData} key={index} openForm={()=>{setIsVisible(true)}}/>
           ))}
           {!moreJoinCity && joinCity.length > 0 && (
             <JoinCity
@@ -107,7 +112,8 @@ Most importantly, we have been in the same spot, and we can support you. `;
             />
           )}
           {moreJoinCity && joinCity.length > 0 && <RequestNewCity />}
-        </div>
+        </div> 
+       
         <div className="no_item">
           {joinCity.length === 0 && <RequestNewCity />}
         </div>
