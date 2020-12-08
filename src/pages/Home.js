@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "../css/Home.css";
 import { FiSearch } from "react-icons/fi";
 import LazyLoad from "react-lazyload";
@@ -18,6 +18,7 @@ import { RequestNewCity } from "../components/RequestNewCity/RequestNewCity";
 import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
+import FeatureBox from "../components/FeatureBox/FeatureBox";
 const Home = () => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
@@ -28,8 +29,9 @@ const Home = () => {
   const [value, setValue] = useState(
     "Complete guidance when relocating to a new city"
   );
- 
+  const [showFeature, setShowFeature] = useState(false);
 
+  
   useEffect(() => {
     firestore
       .collection("cities")
@@ -66,7 +68,12 @@ Most importantly, we have been in the same spot, and we can support you. `;
     setInput(target.value);
   };
 
-  console.log(input);
+  const handleShowFeature = () => {
+    setShowFeature(!showFeature);
+    console.log("Show");
+  };
+
+  //console.log(input);
 
   return (
     <div className="home-page">
@@ -95,12 +102,26 @@ Most importantly, we have been in the same spot, and we can support you. `;
       </LazyLoad>
 
       <section className="section_value">
-        <HomeValue
-          src={community}
-          imgCaption="All-in-one platform"
-          alt="value"
-          imgDescription={one}
-        />
+        {showFeature && (
+          <Fragment>
+            <FeatureBox
+              ftitle="Feature"
+              Icon="Icon (Image has to be below 200 KB and PNG/JPG format.)"
+              Upload="Upload image"
+              subtitle1="Title"
+              subtitle2="Text"
+            />
+          </Fragment>
+        )}
+        <div onClick={handleShowFeature}>
+          <HomeValue
+            src={community}
+            imgCaption="All-in-one platform"
+            alt="value"
+            imgDescription={one}
+          />
+        </div>
+
         <HomeValue
           src={expert}
           imgCaption="Trustworthy content"

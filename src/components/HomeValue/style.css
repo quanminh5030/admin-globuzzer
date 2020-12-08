@@ -5,6 +5,10 @@
     align-items: center;
     margin-bottom: 47px;
     width: 250px;
+   
+}
+.home_value:hover{
+ border: 1px solid red;
 }
 
 .value_img {
@@ -25,7 +29,7 @@
 
 .value_description {
     width: 205px;
-    height: 29px;
+    height: 39px;
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
