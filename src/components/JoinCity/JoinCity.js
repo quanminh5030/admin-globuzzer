@@ -10,7 +10,7 @@ const Loading = () => (
 
 export const JoinCity = (props) => {
     const {cityData, isViewMore, setMoreJoinCity} = props;
-    const {name, img, members} = cityData;
+    const {name, img, members,id} = cityData;
 
     return (
         <LazyLoad placeholder={<Loading />}> 
@@ -19,7 +19,7 @@ export const JoinCity = (props) => {
                 style={{
                     backgroundImage: `url(${img})`,
                     backgroundColor: isViewMore ? "#F24B6A" : null,
-                }} onClick={props.openForm}
+                }} onClick={props.openForm} key={id}
             >
                 <p
                     id="joincity_name"

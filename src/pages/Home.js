@@ -39,6 +39,8 @@ const Home = () => {
       });
   }, []);
 
+ 
+
 
   const one = `Globuzzer is a global network that provides the full relocating experience. 
 Find topics, join communities, attend events, book flights, and much more. `;
@@ -98,11 +100,11 @@ Most importantly, we have been in the same spot, and we can support you. `;
           />
         </div>
         {isVisible && <div>
-          <CityForm/>
+          {joinCity.map((cityData, id)=>(<CityForm cityData={cityData} key={id}/>))}
         </div>}  
           <div className="joincity_grid">
           {joinCity.map((cityData, index) => (
-            <JoinCity cityData={cityData} key={index} openForm={()=>{setIsVisible(true)}}/>
+            <JoinCity cityData={cityData} key={cityData} openForm={()=>{setIsVisible(true)}}/>
           ))}
           {!moreJoinCity && joinCity.length > 0 && (
             <JoinCity
