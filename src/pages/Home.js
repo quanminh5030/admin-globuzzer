@@ -68,9 +68,10 @@ Most importantly, we have been in the same spot, and we can support you. `;
     setInput(target.value);
   };
 
+  //toggle feature box function
   const handleShowFeature = () => {
     setShowFeature(!showFeature);
-    console.log("Show");
+    //console.log("Show");
   };
 
   //console.log(input);
@@ -107,7 +108,6 @@ Most importantly, we have been in the same spot, and we can support you. `;
             <FeatureBox
               ftitle="Feature"
               Icon="Icon (Image has to be below 200 KB and PNG/JPG format.)"
-              Upload="Upload image"
               subtitle1="Title"
               subtitle2="Text"
             />
