@@ -54,8 +54,12 @@ Most importantly, we have been in the same spot, and we can support you. `;
     <div className="home-page">
       <LazyLoad>
         <section className="section_header" id="section_header">
-          <p id="header_1" className="content-editable">The global community of locals and expats</p>
-          <p id="header_2">Commplete guidance when relocating to a new city</p>
+          <p id="header_1" className="content-editable">
+            The global community of locals and expats
+          </p>
+          <p id="header_2" className="content-editable">
+            Commplete guidance when relocating to a new city
+          </p>
           <SearchCity />
           <p id="header_suggestion">
             Maybe{" "}

@@ -3,9 +3,9 @@ import LazyLoad from "react-lazyload";
 import "./style.css";
 import { Link } from "react-router-dom";
 const Loading = () => (
-    <div>
-        <h5>Loading</h5>
-    </div>
+  <div>
+    <h5>Loading</h5>
+  </div>
 );
 
 export const JoinCity = (props) => {

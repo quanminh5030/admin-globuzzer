@@ -1,11 +1,11 @@
-import React from 'react';
-import Home from '../../Home';
-import SideNav from '../SideNav/SideNav';
-import styles from './AdminLanding.module.css';
-import {IoMdArrowDropright} from 'react-icons/io';
-import {Link} from 'react-router-dom';
-import TopNav from '../TopNav/TopNav';
-import './AdminLanding.css';
+import React, { useState } from "react";
+import Home from "../../Home";
+import SideNav from "../SideNav/SideNav";
+import styles from "./AdminLanding.module.css";
+import { IoMdArrowDropright } from "react-icons/io";
+import { Link } from "react-router-dom";
+import TopNav from "../TopNav/TopNav";
+import "./AdminLanding.css";
 const AdminLanding = () => {
     const editContent = () => {
         document.querySelector('.editBtn').hidden = true;
@@ -31,8 +31,15 @@ const AdminLanding = () => {
                 <Home/>
             </section>
             </div>
-        </div>
-    );
-}
+            <SideNav />
+          <section className={styles.main}>
+            <button className="editBtn" onClick={() => editContent()}>
+              Edit it
+            </button>
+            <Home />
+          </section>
+          </div>
+  );
+};
 
 export default AdminLanding;
