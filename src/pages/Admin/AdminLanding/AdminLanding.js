@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Home from '../../Home';
 import SideNav from '../SideNav/SideNav';
 import styles from './AdminLanding.module.css';
 import {IoMdArrowDropright} from 'react-icons/io';
 import {Link} from 'react-router-dom';
 import TopNav from '../TopNav/TopNav';
+import { EditContext } from '../../../contexts/editContext';
 const AdminLanding = () => {
-  const [editMode, setEditMode] = useState(false);
-
+  const { editMode, handleEditMode, saveIt, viewIt, releaseIt } = useContext(EditContext);
     return (
         <div className={styles.wrapper}>
             <TopNav/>
@@ -22,15 +22,15 @@ const AdminLanding = () => {
             </section>
             <section className={styles.main}>
             {!editMode ?
-                (<button className={styles.editBtn} onClick={() => setEditMode(!editMode)}>Edit it</button>) :
+                (<button className={styles.editBtn} onClick={handleEditMode}>Edit it</button>) :
                 (<div>
-                  <button className={styles.svrBtn} >Save it</button>
-                  <button className={styles.svrBtn} >View it</button>
-                  <button className={styles.svrBtn} >Release it</button>
+                  <button className={styles.svrBtn} onClick={saveIt}>Save it</button>
+                  <button className={styles.svrBtn} onClick={viewIt}>View it</button>
+                  <button className={styles.svrBtn} onClick={releaseIt}>Release it</button>
                  </div>
                 )
                 }
-                { editMode ? <Home contentEditable={true} editMode={editMode}/> : <Home contentEditable={false} editMode={editMode}/> }
+                {  <Home contentEditable={editMode ? true : false} editMode={editMode}/> }
             </section>
             </div>
         </div>
