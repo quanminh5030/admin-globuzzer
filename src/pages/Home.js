@@ -20,14 +20,13 @@ import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import { EditContext } from '../contexts/editContext';
-import useLocalStorage from '../utils/useLocalStorage';
+
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [articles, setArticles] = useState([]);
-  // const [name, setName] = useLocalStorage('headerOne', 'Bob');
 
   const {
     texts, handleForm, handleSubmit,
@@ -47,11 +46,6 @@ const Home = ({ contentEditable }) => {
    let [newHeaderOne, setHeaderOne] = useState(texts[0].textOne.content);
    let [newHeaderTwo, setHeaderTwo] = useState(texts[0].textTwo.content);
    let [newPlace, setPlace] = useState(details.text);
-
-  //tials with local storage
-  // let [newHeaderOne, setHeaderOne] = useLocalStorage('newHeaderOne', '');
-  // let [newHeaderTwo, setHeaderTwo] = useLocalStorage('newHeaderTwo', '');
-  // let [newPlace, setPlace] = useLocalStorage('newPlace',texts.newPlace);
 
    // console.log(newHeaderOne, newHeaderTwo, newPlace)
 
