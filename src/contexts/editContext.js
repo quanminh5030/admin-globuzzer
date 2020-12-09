@@ -3,19 +3,30 @@ import React, { createContext, useState } from 'react';
 export const EditContext = createContext();
 
 const EditContextProvider = (props) => {
-  const [texts, setTexts] = useState({
-    textOne: 'The global community of locals and expats',
-    textTwo: 'Commplete guidance when relocating to a new city',
-    newPlace: 'Stockholm'
-  });
-
   const rawDetails = {
     color: '',
     text: '',
     link: '',
   }
-  const [details, setDetails] = useState(rawDetails);
+  const [details, setDetails] = useState({
+    color: '#f24b6a',
+    text: 'Stockholm',
+    link: 'https://globuzzer.mn.co/groups/195831/feed',
+  });
   const [editMode, setEditMode] = useState(false);
+  const [texts, setTexts] = useState([{
+    textOne: {
+      content: 'The global community of locals and expats',
+      style: {}
+    },
+    textTwo: {
+      content: 'Commplete guidance when relocating to a new city',
+      style: {}
+    }
+  }]);
+
+  // console.log(texts)
+
 
   const handleForm = (e) => {
     const value = e.target.value;
@@ -25,28 +36,29 @@ const EditContextProvider = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(details);
+
     setDetails(rawDetails);
   }
 
   const handleCancel = () => {
     setDetails(rawDetails);
+    setEditMode(false);
   }
 
   const handleEditMode = () => {
-    setEditMode(!editMode)
+    setEditMode(!editMode);
   }
 
   const saveIt = () => {
-    alert("details saved");
+
   }
 
   const viewIt = () => {
-    alert("view it");
+
   }
 
   const releaseIt = () => {
-    alert("release it");
+
   }
 
   return (
