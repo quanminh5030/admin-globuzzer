@@ -26,12 +26,11 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [input, setInput] = useState("");
-  const [value, setValue] = useState(
-    "Complete guidance when relocating to a new city"
-  );
+  // const [value, setValue] = useState(
+  //   "Complete guidance when relocating to a new city"
+  // );
   const [showFeature, setShowFeature] = useState(false);
 
-  
   useEffect(() => {
     firestore
       .collection("cities")
@@ -55,23 +54,22 @@ Everything from visa requirements and local documentation to valuable tips.`;
 We are travelers. We are students. 
 Most importantly, we have been in the same spot, and we can support you. `;
 
-  const changeEditMode = () => {
-    console.log("Changing mode");
-    setIsInEditMode(!isInEditMode);
-  };
+  // const changeEditMode = () => {
+  //   console.log("Changing mode");
+  //   setIsInEditMode(!isInEditMode);
+  // };
 
-  const updateComponentValue = () => {
-    setValue(input);
-  };
+  // const updateComponentValue = () => {
+  //   setValue(input);
+  // };
 
-  const handleChange = ({ target }) => {
-    setInput(target.value);
-  };
+  // const handleChange = ({ target }) => {
+  //   setInput(target.value);
+  // };
 
   //toggle feature box function
   const handleShowFeature = () => {
     setShowFeature(!showFeature);
-    //console.log("Show");
   };
 
   //console.log(input);
@@ -80,18 +78,10 @@ Most importantly, we have been in the same spot, and we can support you. `;
     <div className="home-page">
       <LazyLoad>
         <section className="section_header" id="section_header">
-          <p id="header_1">The global community of locals and expats</p>
-          {isInEditMode ? (
-            <div>
-              <input type="text" defaultValue={value} onChange={handleChange} />
-              <button onClick={updateComponentValue}>OK</button>
-              <button onClick={changeEditMode}>X</button>
-            </div>
-          ) : (
-            <div onClick={changeEditMode}>
-              <p id="header_2">{value}</p>
-            </div>
-          )}
+          <p id="header_1" className="content-editable">
+            The global community of locals and expats
+          </p>
+          <p id="header_2">Commplete guidance when relocating to a new city</p>
           <SearchCity />
           <p id="header_suggestion">
             Maybe{" "}
@@ -105,12 +95,7 @@ Most importantly, we have been in the same spot, and we can support you. `;
       <section className="section_value">
         {showFeature && (
           <Fragment>
-            <FeatureBox
-              ftitle="Feature"
-              Icon="Icon (Image has to be below 200 KB and PNG/JPG format.)"
-              subtitle1="Title"
-              subtitle2="Text"
-            />
+            <FeatureBox />
           </Fragment>
         )}
         <div onClick={handleShowFeature}>
