@@ -1,17 +1,28 @@
-import React from "react";
+import React, { Fragment} from "react";
 import "./style.css";
 
-export const HomeValue = (props) => {
-    const {
-        src, alt, imgCaption, imgDescription
-    } = props;
-    return (
-        <div className="home_value">
-            <img src={src} alt={alt} className="value_img" type="image/svg+xml" />
+import HomeValueData from "./HomeValueData";
+
+export const HomeValue = () => {
+  return (
+    <Fragment>
+      <div className="home_value_container">
+        {HomeValueData.map(({ icon, iconTitle, iconCaption }) => (
+          <div className="home_value">
+            <img
+              src={icon}
+              alt="icons"
+              className="value_img"
+              type="image/svg+xml"
+            />
+
             <div>
-                <p className="value_caption">{imgCaption}</p>
-                <p className="value_description">{imgDescription}</p>
+              <p className="value_caption">{iconTitle}</p>
+              <p className="value_description">{iconCaption}</p>
             </div>
-        </div>
-    );
+          </div>
+        ))}
+      </div>
+    </Fragment>
+  );
 };

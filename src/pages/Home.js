@@ -5,9 +5,7 @@ import LazyLoad from "react-lazyload";
 import { HomeValue } from "../components/HomeValue/HomeValue";
 import { SectionHeader } from "../components/SectionHeader/SectionHeader";
 import { JoinCity } from "../components/JoinCity/JoinCity";
-import community from "../assets/Value_community.svg";
-import expert from "../assets/Value_expert.svg";
-import journey from "../assets/Value_journey.svg";
+
 import AuxServicesData from "../Data/AuxServicesData";
 import AuxService from "../components/AuxService/AuxService";
 import { OwnSection } from "../components/OwnSection/OwnSection";
@@ -45,14 +43,6 @@ const Home = () => {
         console.log(newCity);
       });
   }, []);
-
-  const one = `Globuzzer is a global network that provides the full relocating experience. 
-Find topics, join communities, attend events, book flights, and much more. `;
-  const two = `Reliable information shared by expats and locals. 
-Everything from visa requirements and local documentation to valuable tips.`;
-  const three = `We are locals. We are expats. 
-We are travelers. We are students. 
-Most importantly, we have been in the same spot, and we can support you. `;
 
   // const changeEditMode = () => {
   //   console.log("Changing mode");
@@ -99,26 +89,8 @@ Most importantly, we have been in the same spot, and we can support you. `;
           </Fragment>
         )}
         <div onClick={handleShowFeature}>
-          <HomeValue
-            src={community}
-            imgCaption="All-in-one platform"
-            alt="value"
-            imgDescription={one}
-          />
+          <HomeValue />
         </div>
-
-        <HomeValue
-          src={expert}
-          imgCaption="Trustworthy content"
-          alt="value"
-          imgDescription={two}
-        />
-        <HomeValue
-          src={journey}
-          imgCaption="Local communities"
-          alt="value"
-          imgDescription={three}
-        />
       </section>
       <section className="section_newcity" id="section_newcity">
         {/* <p id="newcity_p">Move to a new city? </p> */}

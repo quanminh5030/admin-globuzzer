@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { HomeValue } from "../HomeValue/HomeValue";
 import { app } from "./../../utils/firebase.utils";
 import "./FeatureBox.css";
 
@@ -25,7 +26,7 @@ const FeatureBox = () => {
     if (!information || !textinfo) {
       return;
     }
-    console.log(information);
+
     db.collection("features").doc(information, textinfo).set({
       image: fileUrl,
       title: information,
@@ -44,39 +45,59 @@ const FeatureBox = () => {
     };
     fetchInfo();
   }, []);
+
+  const ReplaceData = () => (
+    <div className="home_value">
+      {info.map((inf) => {
+        return (
+          <div key={inf.title}>
+            <img width="100" height="100" src={inf.image} alt={inf.name} />
+            <div>
+              <p className="value_caption">{inf.title}</p>
+              <p className="value_description">{inf.text}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
   return (
     <Fragment>
       <div className="feature-card">
-        <p>Feature</p>
+        <h4>Feature</h4>
         <hr />
-        <p>Icon (Image has to be below 200 KB and PNG/JPG format.)</p>
-        <form onSubmit={onSubmit}>
-          <input type="file" onChange={onFileChange} />
+        <div className="icon-text">
+          Icon
+          <span>
+            (Image has to be below 200 KB and PNG/JPG format.)
+          </span>
+        </div>
+
+        <form onSubmit={onSubmit} className="form-wrapper">
+          {/* <input type="file" onChange={onFileChange} /> */}
+
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload a file</button>
+            <input type="file" onChange={onFileChange} />
+          </div>
+
           <div>
             <p>Title</p>
-            <input type="text" name="information" />
+            <input type="text" name="information" className="title-input" />
           </div>
+
           <div>
             <p>Text</p>
-            <textarea name="textinfo" />
+            <textarea name="textinfo" className="textarea-input" />
           </div>
-          <span>Apply</span>
-          <span>Cancel</span>
-          <button>Upload Image</button>
+
+          <span>
+            <button>Apply</button>
+          </span>
+          <button>Cancel</button>
         </form>
       </div>
-
-      <ul>
-        {info.map((inf) => {
-          return (
-            <li key={inf.title}>
-              <img width="100" height="100" src={inf.image} alt={inf.name} />
-              <p>{inf.title}</p>
-              <p>{inf.text}</p>
-            </li>
-          );
-        })}
-      </ul>
+      {onSubmit ? <ReplaceData /> : null}
     </Fragment>
   );
 };

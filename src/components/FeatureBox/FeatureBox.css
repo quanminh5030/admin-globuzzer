@@ -1,4 +1,68 @@
-.feature-card{
-    background-color: gray;
-   
+.feature-card {
+  width: 600px;
+  height: 421px;
+  background: #f8f8f8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+.feature-card h4 {
+  text-align: center;
+  color: #727272;
+  font-family: Montserrat;
+  font-size: 18px;
+  padding: 1rem;
+}
+.icon-text {
+  text-align: center;
+  padding: 0.5rem;
+}
+.icon-text span {
+  color: #727272;
+  font-size: 12px;
+}
+
+.form-wrapper {
+  padding: 25px;
+}
+.form-wrapper div {
+  padding: 0.5rem;
+}
+
+.title-input {
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  padding: 0.5rem 5rem;
+}
+.textarea-input {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  padding: 1.5rem 5rem;
+}
+
+/* Upload file button */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  color: gray;
+  background-color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
