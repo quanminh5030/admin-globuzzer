@@ -1,31 +1,28 @@
-import React, {useState} from 'react';
-import styles from './CityForm.module.css';
+import React from 'react';
 
-const CityForm = ({setIsVisible, cityData}) => {
-
-    const {name, img, members, id} = cityData;
+const CityForm = ({setIsVisible, name, img, members, setImg, setName,setMembers, updateForm}) => {
 
     return (
-        <div className={styles.wrapper} key={id}>                
-                <form className={styles.cityForm}>
-                <p className={styles.title}>City Section</p>
-                    <div className={styles.formContainer}>
-                    <label className={styles.fields}>
+        <div>
+            <form >
+                <p>City Section</p>
+                    <div >
+                    <label>
                         Cover Image
-                        <input type="text" name="img" value={img}/>
+                        <input type="text" name="img" value={img} onChange={(e)=>setImg(e.target.value)} />
                     </label>
-                    <label className={styles.fields}>
+                    <label>
                         City section
-                        <input type="text" name="name" value={name}/>
+                        <input type="text" name="name" value={name} onChange={(e)=>setName(e.target.value)}/>
                     </label>
-                    <label className={styles.fields}>
+                    <label>
                         Members
-                        <input type="number" name="members" value={members}/>
+                        <input type="text" name="members" value={members} onChange={(e)=>setMembers(e.target.value)}/>
                     </label>
                     </div>
-                    <button className={styles.goEdit}>Go to edit this page</button>
-                    <div className={styles.mainBtn}>
-                        <button type="submit">Apply</button>
+                    <button >Go to edit this page</button>
+                    <div >
+                        <button type="submit" onClick={updateForm}>Apply</button>
                         <button onClick={()=>setIsVisible(false)}>Cancel</button>
                     </div>
                 </form>

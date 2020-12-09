@@ -17,13 +17,16 @@ import { JoinCommunity } from "../components/JoinCommunity/JoinCommunity";
 import { RequestNewCity } from "../components/RequestNewCity/RequestNewCity";
 import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
+import CityForm from './Admin/CityForm/CityForm';
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
-import CityForm from '../pages/Admin/CityForm/CityForm';
 const Home = () => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [img, setImg] = useState();
+  const [name, setName] = useState();
+  const [members, setMembers] = useState();
   useEffect(() => {
     firestore
       .collection("cities")
@@ -40,8 +43,17 @@ const Home = () => {
   }, []);
 
  
+const formHandler = (cityData) => {
+  setIsVisible(true);
+  setImg(cityData.img);
+  setName(cityData.name);
+  setMembers(cityData.members);
+}
 
-
+const saveCity = (e) => {
+  e.preventDefault();
+  firestore.collection('cities').doc(doc.id).update();
+}
   const one = `Globuzzer is a global network that provides the full relocating experience. 
 Find topics, join communities, attend events, book flights, and much more. `;
   const two = `Reliable information shared by expats and locals. 
@@ -103,12 +115,12 @@ Most importantly, we have been in the same spot, and we can support you. `;
             onChange={(event) => setQuery(event.target.value)}
           />
         </div>
-        {isVisible && <div>
-          {joinCity.map((cityData, id)=>(<CityForm cityData={cityData} key={id}/>))}
+        {isVisible &&  <div>
+          <CityForm name={name} img={img} members={members} updateForm={saveCity}/>                
         </div>}  
           <div className="joincity_grid">
           {joinCity.map((cityData, index) => (
-            <JoinCity cityData={cityData} key={cityData} openForm={()=>{setIsVisible(true)}}/>
+            <JoinCity cityData={cityData} key={index} openForm={()=>formHandler(cityData)}/>
           ))}
           {!moreJoinCity && joinCity.length > 0 && (
             <JoinCity
