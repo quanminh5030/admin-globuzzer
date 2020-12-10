@@ -14,11 +14,11 @@
   align-items: center;
   margin-bottom: 47px;
 }
-.value_img {
+/* .value_img {
   width: 50px;
   height: 50px;
   margin-right: 45px;
-}
+} */
 
 .value_caption {
   font-style: normal;
@@ -28,6 +28,8 @@
   color: #555555;
   text-align: center;
   padding: 5px;
+  border: none;
+  outline: none;
 }
 
 .value_description {
@@ -39,6 +41,7 @@
   line-height: 17px;
   color: #909090;
   text-align: start;
+  
 }
 
 @media (min-width: 1100px) {

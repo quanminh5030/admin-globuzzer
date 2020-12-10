@@ -17,16 +17,12 @@ import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
+
 const Home = () => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [articles, setArticles] = useState([]);
-  const [isInEditMode, setIsInEditMode] = useState(false);
-  const [input, setInput] = useState("");
-  // const [value, setValue] = useState(
-  //   "Complete guidance when relocating to a new city"
-  // );
   const [showFeature, setShowFeature] = useState(false);
 
   useEffect(() => {
@@ -44,18 +40,8 @@ const Home = () => {
       });
   }, []);
 
-  // const changeEditMode = () => {
-  //   console.log("Changing mode");
-  //   setIsInEditMode(!isInEditMode);
-  // };
 
-  // const updateComponentValue = () => {
-  //   setValue(input);
-  // };
-
-  // const handleChange = ({ target }) => {
-  //   setInput(target.value);
-  // };
+  
 
   //toggle feature box function
   const handleShowFeature = () => {
