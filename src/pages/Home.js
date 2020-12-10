@@ -24,11 +24,13 @@ const Home = () => {
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [img, setImg] = useState();
-  const [name, setName] = useState();
-  const [members, setMembers] = useState();
+  const initialItemState = [
+    { id: null, name: "", img: "", members: ""},
+  ];
+
+  const [currentItem, setCurrentItem] = useState(initialItemState);
   useEffect(() => {
-    firestore
+    const unsubscribe=firestore
       .collection("cities")
       .orderBy("name")
       .limit(11)
@@ -40,20 +42,26 @@ const Home = () => {
         setJoinCity(newCity);
         console.log(newCity);
       });
+      return () => unsubscribe();
   }, []);
 
  
 const formHandler = (cityData) => {
   setIsVisible(true);
-  setImg(cityData.img);
-  setName(cityData.name);
-  setMembers(cityData.members);
-}
+  setCurrentItem({
+   id: cityData.id,
+   name:cityData.name,
+   members: cityData.members,
+   img:cityData.img
+ })
+};
 
-const saveCity = (e) => {
-  e.preventDefault();
-  firestore.collection('cities').doc(doc.id).update();
-}
+const updateItem = (({currentItem}, updatedItem)=> {
+  console.log("it sends item to the updated item function", updatedItem, currentItem.id);
+  setIsVisible(false);
+  firestore.collection('cities').doc(currentItem.id).update(updatedItem);
+})
+
   const one = `Globuzzer is a global network that provides the full relocating experience. 
 Find topics, join communities, attend events, book flights, and much more. `;
   const two = `Reliable information shared by expats and locals. 
@@ -116,11 +124,11 @@ Most importantly, we have been in the same spot, and we can support you. `;
           />
         </div>
         {isVisible &&  <div>
-          <CityForm name={name} img={img} members={members} updateForm={saveCity}/>                
+          <CityForm currentItem={currentItem} updateItem={updateItem}/>                
         </div>}  
           <div className="joincity_grid">
-          {joinCity.map((cityData, index) => (
-            <JoinCity cityData={cityData} key={index} openForm={()=>formHandler(cityData)}/>
+          {joinCity.map((cityData) => (
+            <JoinCity cityData={cityData} key={cityData.id} openForm={()=>formHandler(cityData)}/>
           ))}
           {!moreJoinCity && joinCity.length > 0 && (
             <JoinCity
