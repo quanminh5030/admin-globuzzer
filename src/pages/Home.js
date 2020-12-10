@@ -123,9 +123,6 @@ Most importantly, we have been in the same spot, and we can support you. `;
             onChange={(event) => setQuery(event.target.value)}
           />
         </div>
-        {isVisible &&  <div>
-          <CityForm currentItem={currentItem} updateItem={updateItem}/>                
-        </div>}  
           <div className="joincity_grid">
           {joinCity.map((cityData) => (
             <JoinCity cityData={cityData} key={cityData.id} openForm={()=>formHandler(cityData)}/>
@@ -138,6 +135,9 @@ Most importantly, we have been in the same spot, and we can support you. `;
             />
           )}
           {moreJoinCity && joinCity.length > 0 && <RequestNewCity />}
+          {isVisible &&  <div>
+          <CityForm setIsVisible={setIsVisible} currentItem={currentItem} updateItem={updateItem}/>                
+        </div>}  
         </div> 
        
         <div className="no_item">

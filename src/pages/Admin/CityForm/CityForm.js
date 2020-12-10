@@ -1,4 +1,5 @@
 import React, { useEffect , useState} from 'react';
+import styles from './CityForm.module.css';
 
 const CityForm = ({setIsVisible, currentItem, updateItem}) => {
     const [item, setItem] = useState(currentItem);
@@ -19,10 +20,10 @@ const CityForm = ({setIsVisible, currentItem, updateItem}) => {
         updateItem({currentItem}, item);
     }; 
     return (
-        <div>
-            <form >
-                <p>City Section</p>
-                    <div >
+        <div className={styles.wrapper}>
+            <form className={styles.container} >
+                <p className={styles.header}>City Section</p>
+                    <div className={styles.fields} >
                     <label>
                         Cover Image
                         <input type="text" name="img" value={item.img} onChange={onChange} />
@@ -36,12 +37,12 @@ const CityForm = ({setIsVisible, currentItem, updateItem}) => {
                         <input type="text" name="members" value={item.members} onChange={onChange}/>
                     </label>
                     </div>
-                    <button >Go to edit this page</button>
-                    <div >
+                    <button className={styles.editBtn}>Go to edit this page</button>  
+                </form>
+                <div className={styles.buttons}>
                         <button type="submit" onClick={submitForm}>Apply</button>
                         <button onClick={()=>setIsVisible(false)}>Cancel</button>
-                    </div>
-                </form>
+                </div>
         </div>
     );
 }
