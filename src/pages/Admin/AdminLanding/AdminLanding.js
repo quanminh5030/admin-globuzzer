@@ -31,13 +31,6 @@ const AdminLanding = () => {
                 <Home/>
             </section>
             </div>
-            <SideNav />
-          <section className={styles.main}>
-            <button className="editBtn" onClick={() => editContent()}>
-              Edit it
-            </button>
-            <Home />
-          </section>
           </div>
   );
 };
