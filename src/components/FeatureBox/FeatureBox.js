@@ -33,6 +33,12 @@ const FeatureBox = ({
     // fetchInfo();
   }, []);
 
+  //Change value as user changes
+ const handleChange = ({ target: input }) => {
+   const newData = { ...data };
+   newData[input.name] = input.value;
+   setData(newData);
+ };
   //uploading images on firestore
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -68,13 +74,13 @@ const FeatureBox = ({
   //   });
   // };
 
-  const updateHomeValue = (e) => {
-    e.preventDefault();
+  //update information when user clicks Apply
+  const updateHomeValue = () => {
     const newData = [...homeData];
-    console.log("submit passed the id and item", homeData);
     newData[showFeature - 1].iconTitle = data.title;
     newData[showFeature - 1].icon = data.images;
     newData[showFeature - 1].iconCaption = data.body;
+    //these are the updated values when user clicks apply
     setHomeData(newData);
     setShowFeature(false);
 
@@ -93,11 +99,7 @@ const FeatureBox = ({
   const cancelUpdate = () => {
     setShowFeature(false);
   };
-  const handleChange = ({ target: input }) => {
-    const newData = { ...data };
-    newData[input.name] = input.value;
-    setData(newData);
-  };
+ 
   return (
     <Fragment>
       <div className="feature-card">

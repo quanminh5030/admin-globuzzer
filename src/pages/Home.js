@@ -18,7 +18,7 @@ import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePa
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import homeValueData from "../components/HomeValue/HomeValueData";
 
-const Home = ({ updatedValues }) => {
+const Home = () => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment} from "react";
 import "./style.css";
 
 export const HomeValue = ({ homeData, handleShowFeature }) => {
@@ -14,8 +14,6 @@ export const HomeValue = ({ homeData, handleShowFeature }) => {
               className="value_img"
               width="48"
               height="48"
-              //   value={fileUrl}
-              //   onChange={(e) => setImages(e.target.value)}
             />
             <div>
               <p type="text" className="value_caption">
