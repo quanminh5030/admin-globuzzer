@@ -5,7 +5,6 @@ import LazyLoad from "react-lazyload";
 import { HomeValue } from "../components/HomeValue/HomeValue";
 import { SectionHeader } from "../components/SectionHeader/SectionHeader";
 import { JoinCity } from "../components/JoinCity/JoinCity";
-
 import AuxServicesData from "../Data/AuxServicesData";
 import AuxService from "../components/AuxService/AuxService";
 import { OwnSection } from "../components/OwnSection/OwnSection";
@@ -17,13 +16,18 @@ import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
-
+import homeValueData from "../components/HomeValue/HomeValueData";
 const Home = () => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [articles, setArticles] = useState([]);
-  const [showFeature, setShowFeature] = useState(false);
+  const [showFeature, setShowFeature] = useState("");
+  //states for FeatureBox
+  const [images, setImages] = useState(null); //state for images
+  const [info, setInfo] = useState([]); //state for extracting dataInfo
+  //state for homeValue
+  const [homeData, setHomeData] = useState(homeValueData);
 
   useEffect(() => {
     firestore
@@ -40,16 +44,13 @@ const Home = () => {
       });
   }, []);
 
-
-  
-
   //toggle feature box function
-  const handleShowFeature = () => {
-    setShowFeature(!showFeature);
+  const handleShowFeature = (index) => {
+    setShowFeature(index + 1);
   };
 
-  //console.log(input);
 
+  //console.log(input);
   return (
     <div className="home-page">
       <LazyLoad>
@@ -67,15 +68,28 @@ const Home = () => {
           </p>
         </section>
       </LazyLoad>
-
       <section className="section_value">
         {showFeature && (
           <Fragment>
-            <FeatureBox />
+            <FeatureBox
+              images={images}
+              setImages={setImages}
+              info={info}
+              setInfo={setInfo}
+              homeData={homeData}
+              setHomeData={setHomeData}
+              showFeature={showFeature}
+              setShowFeature={setShowFeature}
+            />
           </Fragment>
         )}
-        <div onClick={handleShowFeature}>
-          <HomeValue />
+        <div>
+          <HomeValue
+            info={info}
+            images={images}
+            homeData={homeData}
+            handleShowFeature={handleShowFeature}
+          />
         </div>
       </section>
       <section className="section_newcity" id="section_newcity">
@@ -109,7 +123,6 @@ const Home = () => {
         </div>
       </section>
       <JoinCommunity />
-
       <section className="featured_articles" id="featured_articles">
         <SectionHeader header="Featured articles" />
         <FeaturedArticlePage />
@@ -127,5 +140,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;

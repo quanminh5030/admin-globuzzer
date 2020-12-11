@@ -1,112 +1,170 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { app } from "./../../utils/firebase.utils";
 import "./FeatureBox.css";
-
 const db = app.firestore();
+const FeatureBox = ({
+  info,
+  setInfo,
+  showFeature,
+  setShowFeature,
+  homeData,
+  setHomeData,
+}) => {
+  //state for form details
+  const [data, setData] = useState({
+    title: "",
+    body: "",
+  });
 
-const FeatureBox = () => {
-  //state for images
-  const [fileUrl, setFileUrl] = useState(null);
-  //state for extracting dataInfo
-  const [info, setInfo] = useState([]);
+  //state for image
+  const [images, setImages] = useState(null);
 
   useEffect(() => {
-    const fetchInfo = async () => {
-      const dataInfo = db.collection("features").get();
-      setInfo(
-        (await dataInfo).docs.map((doc) => {
-          return doc.data();
-        })
-      );
-    };
-    fetchInfo();
+    setHomeData(homeData);
+    console.log("useEffect passes current item", homeData);
+    // const fetchInfo = async () => {
+    //   const dataInfo = await db.collection("features").get();
+    //   setInfo(
+    //     dataInfo.docs.map((doc) => {
+    //       return doc.data();
+    //     })
+    //   );
+    // };
+    // fetchInfo();
   }, []);
 
-  //uploading and extracting image files
+  //uploading images on firestore
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
-    setFileUrl(await fileRef.getDownloadURL());
-  };
-  //submitting form
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const information = e.target.information.value;
-    const textinfo = e.target.textinfo.value;
-    if (!information || !textinfo) {
-      return;
-    }
-
-    db.collection("features").doc(information, textinfo).set({
-      image: fileUrl,
-      title: information,
-      text: textinfo,
-    });
+    setImages(await fileRef.getDownloadURL());
   };
 
-  //updating form
-  // const updateHomeValues = () => {
-  //   setHomeValues(updatesHomeValue);
+  // const imageHandler = (e) => {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setData(reader.result);
+  //     }
+  //   };
+  //   reader.readAsDataURL(e.target.files[0])
   // };
 
+  //submitting form
+  // const onSubmitData = (e) => {
+  //   e.preventDefault();
+  //   const title = e.target.title.value;
+  //   console.log(title);
+  //   const body = e.target.body.value;
+  //   if (!title || !body) {
+  //     return;
+  //   }
+  //   db.collection("features").doc(title, body).set({
+  //     image: images,
+  //     title: title,
+  //     text: body,
+  //   });
+  // };
+
+  const updateHomeValue = (e) => {
+    e.preventDefault();
+    const newData = [...homeData];
+    console.log("submit passed the id and item", homeData);
+    newData[showFeature - 1].iconTitle = data.title;
+    newData[showFeature - 1].icon = data.images;
+    newData[showFeature - 1].iconCaption = data.body;
+    setHomeData(newData);
+    setShowFeature("");
+
+    const title = e.target.title;
+    console.log(title);
+    const body = e.target.body;
+    if (!title || !body) {
+      return;
+    }
+    db.collection("features").doc(newData.id).update({
+      image: images,
+      title: data.title,
+      text: data.body,
+    });
+  };
+  const cancelUpdate = () => {
+    setShowFeature("");
+  };
+  const handleChange = ({ target: input }) => {
+    const newData = { ...data };
+    newData[input.name] = input.value;
+    setData(newData);
+  };
   return (
     <Fragment>
-      <div className="feature-card">
+      <form className="feature-card">
         <h4>Feature</h4>
         <hr />
         <div className="icon-text">
           Icon
-          <span>(Image has to be below 200 KB and PNG/JPG format.)</span>
+          <span>(Image has to be below 200 KB and PNG/JPG format)</span>
         </div>
-
-        <form onSubmit={onSubmit} className="form-wrapper">
-          {/* <input type="file" onChange={onFileChange} /> */}
-          <div className="upload-btn-wrapper">
-            <button className="btn">Upload a file</button>
-            <input type="file" onChange={onFileChange} name="images" />
-          </div>
-
+        <div className="form-wrapper">
+          {/* <div className="upload-btn-wrapper"> */}
+          <input
+            type="file"
+            onChange={onFileChange}
+            name="icons"
+            // value={images}
+            //onChange={imageHandler}
+          />
+          <button className="btn">Upload a file</button>
+          {/* </div> */}
           <div>
             <p>Title</p>
-            <input type="text" name="information" className="title-input" />
+            <input
+              type="text"
+              name="title"
+              className="title-input"
+              //value={data.title}
+              onChange={handleChange}
+            />
           </div>
-
           <div>
             <p>Text</p>
-            <textarea name="textinfo" className="textarea-input" />
+            <textarea
+              name="body"
+              //value={data.body}
+              onChange={handleChange}
+              className="textarea-input"
+            />
           </div>
-          <div className="btn-container">
-            <span>
-              <button
-                className="btn-apply"
-                //onClick={updateHomeValues}
-              >
-                Apply
-              </button>
-            </span>
-            <span>
-              <button className="btn-cancel">Cancel</button>
-            </span>
-          </div>
-        </form>
+        </div>
+      </form>
+      <div className="btn-container">
+        <span>
+          <button className="btn-apply" onClick={updateHomeValue}>
+            Apply
+          </button>
+        </span>
+        <span>
+          <button className="btn-cancel" onClick={cancelUpdate}>
+            Cancel
+          </button>
+        </span>
       </div>
-      <div>
+      {/* <div>
         {info.map((inf) => {
           return (
             <div key={inf.title}>
-              <img width="100" height="100" src={inf.image} alt={inf.name} />
+              <img width="100" height="100" src={inf.images} alt={inf.name} />
               <div>
                 <p className="value_caption">{inf.title}</p>
-                <p className="value_description">{inf.text}</p>
+                <p className="value_description">{inf.body}</p>
               </div>
             </div>
           );
         })}
-      </div>
+      </div> */}
     </Fragment>
   );
 };
-
 export default FeatureBox;
