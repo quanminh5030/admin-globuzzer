@@ -9,7 +9,7 @@ import community from "../assets/Value_community.svg";
 import expert from "../assets/Value_expert.svg";
 import journey from "../assets/Value_journey.svg";
 import AuxServicesData from "../Data/AuxServicesData";
-import AuxService from "../components/AuxService/AuxService";
+import AuxServiceSection from "../components/AuxService/AuxServiceSection";
 import { OwnSection } from "../components/OwnSection/OwnSection";
 import { Footer } from "../components/Footer/Footer";
 import { SearchCity } from "../components/SearchCity/SearchCity";
@@ -152,11 +152,7 @@ Most importantly, we have been in the same spot, and we can support you. `;
       </section>
       <section className="aux_services" id="aux_services">
         <SectionHeader header="Helpful services" />
-        <div className="aux_list">
-          {AuxServicesData.map(({ name, ...otherProps }) => (
-            <AuxService name={name} key={name} {...otherProps} />
-          ))}
-        </div>
+          <AuxServiceSection/>
       </section>
       <OwnSection />
       <Footer />
