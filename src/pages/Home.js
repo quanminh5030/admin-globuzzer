@@ -17,12 +17,13 @@ import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import homeValueData from "../components/HomeValue/HomeValueData";
-const Home = () => {
+
+const Home = ({ updatedValues }) => {
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [articles, setArticles] = useState([]);
-  const [showFeature, setShowFeature] = useState("");
+  const [showFeature, setShowFeature] = useState(false);
   //states for FeatureBox
   const [images, setImages] = useState(null); //state for images
   const [info, setInfo] = useState([]); //state for extracting dataInfo
@@ -49,7 +50,6 @@ const Home = () => {
     setShowFeature(index + 1);
   };
 
-
   //console.log(input);
   return (
     <div className="home-page">
@@ -69,20 +69,6 @@ const Home = () => {
         </section>
       </LazyLoad>
       <section className="section_value">
-        {showFeature && (
-          <Fragment>
-            <FeatureBox
-              images={images}
-              setImages={setImages}
-              info={info}
-              setInfo={setInfo}
-              homeData={homeData}
-              setHomeData={setHomeData}
-              showFeature={showFeature}
-              setShowFeature={setShowFeature}
-            />
-          </Fragment>
-        )}
         <div>
           <HomeValue
             info={info}
@@ -92,6 +78,16 @@ const Home = () => {
           />
         </div>
       </section>
+      {showFeature && (
+        <div>
+          <FeatureBox
+            homeData={homeData}
+            setHomeData={setHomeData}
+            showFeature={showFeature}
+            setShowFeature={setShowFeature}
+          />
+        </div>
+      )}
       <section className="section_newcity" id="section_newcity">
         {/* <p id="newcity_p">Move to a new city? </p> */}
         <SectionHeader header="What is your next destination? " />

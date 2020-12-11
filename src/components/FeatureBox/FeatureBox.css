@@ -1,9 +1,13 @@
 .feature-card {
-  width: 550px;
-  height: 421px;
+  width: 400px;
+  height: 430px;
   background: #f8f8f8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  z-index: 100;
+}
+.feature-card-container h4{
+  border-bottom:1px solid #e4e4e4 ;
 }
 .feature-card h4 {
   text-align: center;
@@ -47,14 +51,22 @@
   outline: none;
   border: none;
   background-color: transparent;
-  padding-top: 10px;
+  padding: 15px;
+  color: #727272;
+
 }
 
 .btn-container {
   display: flex;
   justify-content: space-around;
-  border-top: 1px solid gray;
+  border-top: 1px solid #e4e4e4;
   width: 100%;
+}
+.vertical {
+  border-left: 1px solid #e4e4e4;
+  height: 54px;
+  left: 50%;
+  /* border: 1px solid red; */
 }
 
 /* Upload file button */

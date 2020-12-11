@@ -1,10 +1,13 @@
 import React, { Fragment, useState } from "react";
 import "./style.css";
 
-export const HomeValue = ({ homeData, handleShowFeature }) => {
+export const HomeValue = ({ fileUrl, info, homeData, handleShowFeature }) => {
+  const [images, setImages] = useState();
+  const [title, setTitle] = useState();
+  const [texts, setTexts] = useState();
   return (
     <Fragment>
-      <div className="home_value_container content-editable">
+      <div className="home_value_container" >
         {homeData.map(({ icon, iconTitle, iconCaption }, index) => (
           <div className="home_value" onClick={() => handleShowFeature(index)}>
             <input

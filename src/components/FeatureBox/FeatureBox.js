@@ -76,22 +76,22 @@ const FeatureBox = ({
     newData[showFeature - 1].icon = data.images;
     newData[showFeature - 1].iconCaption = data.body;
     setHomeData(newData);
-    setShowFeature("");
+    setShowFeature(false);
 
-    const title = e.target.title;
-    console.log(title);
-    const body = e.target.body;
-    if (!title || !body) {
-      return;
-    }
-    db.collection("features").doc(newData.id).update({
-      image: images,
-      title: data.title,
-      text: data.body,
-    });
+    // const title = e.target.title;
+    // console.log(title);
+    // const body = e.target.body;
+    // if (!title || !body) {
+    //   return;
+    // }
+    // db.collection("features").doc(newData.id).update({
+    //   image: images,
+    //   title: data.title,
+    //   text: data.body,
+    // });
   };
   const cancelUpdate = () => {
-    setShowFeature("");
+    setShowFeature(false);
   };
   const handleChange = ({ target: input }) => {
     const newData = { ...data };
@@ -100,58 +100,59 @@ const FeatureBox = ({
   };
   return (
     <Fragment>
-      <form className="feature-card">
-        <h4>Feature</h4>
-        <hr />
-        <div className="icon-text">
-          Icon
-          <span>(Image has to be below 200 KB and PNG/JPG format)</span>
-        </div>
-        <div className="form-wrapper">
-          {/* <div className="upload-btn-wrapper"> */}
-          <input
-            type="file"
-            onChange={onFileChange}
-            name="icons"
-            // value={images}
-            //onChange={imageHandler}
-          />
-          <button className="btn">Upload a file</button>
-          {/* </div> */}
-          <div>
-            <p>Title</p>
+      <div className="feature-card">
+        <form className="feature-card-container">
+          <h4>Feature</h4>
+          <div className="icon-text">
+            Icon
+            <span>(Image has to be below 200 KB and PNG/JPG format)</span>
+          </div>
+          <div className="form-wrapper">
+            <div className="upload-btn-wrapper">
             <input
-              type="text"
-              name="title"
-              className="title-input"
-              //value={data.title}
-              onChange={handleChange}
+              type="file"
+              onChange={onFileChange}
+              name="icons"
+              // value={images}
+              //onChange={imageHandler}
             />
+            <button className="btn">Upload a file</button>
+            </div>
+            <div>
+              <p>Title</p>
+              <input
+                type="text"
+                name="title"
+                className="title-input"
+                //value={data.title}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <p>Text</p>
+              <textarea
+                name="body"
+                //value={data.body}
+                onChange={handleChange}
+                className="textarea-input"
+              />
+            </div>
           </div>
-          <div>
-            <p>Text</p>
-            <textarea
-              name="body"
-              //value={data.body}
-              onChange={handleChange}
-              className="textarea-input"
-            />
-          </div>
+        </form>
+        <div className="btn-container">
+          <span>
+            <button className="btn-apply" onClick={updateHomeValue}>
+              Apply
+            </button>
+          </span>
+          <div className="vertical" />
+          <span>
+            <button className="btn-cancel" onClick={cancelUpdate}>
+              Cancel
+            </button>
+          </span>
         </div>
-      </form>
-      <div className="btn-container">
-        <span>
-          <button className="btn-apply" onClick={updateHomeValue}>
-            Apply
-          </button>
-        </span>
-        <span>
-          <button className="btn-cancel" onClick={cancelUpdate}>
-            Cancel
-          </button>
-        </span>
-      </div>
-      {/* <div>
+        {/* <div>
         {info.map((inf) => {
           return (
             <div key={inf.title}>
@@ -164,6 +165,7 @@ const FeatureBox = ({
           );
         })}
       </div> */}
+      </div>
     </Fragment>
   );
 };
