@@ -16,7 +16,6 @@ import { Link } from "react-router-dom";
 import { firestore } from "../utils/firebase.utils";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
-import homeValueData from "../components/HomeValue/HomeValueData";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -24,11 +23,28 @@ const Home = () => {
   const [joinCity, setJoinCity] = useState([]);
   const [articles, setArticles] = useState([]);
   const [showFeature, setShowFeature] = useState(false);
-  //states for FeatureBox
-  const [images, setImages] = useState(null); //state for images
-  const [info, setInfo] = useState([]); //state for extracting dataInfo
+
   //state for homeValue
-  const [homeData, setHomeData] = useState(homeValueData);
+  const [homeData, setHomeData] = useState([]);
+
+  //fetching data from firebase firestore
+  useEffect(() => {
+    const getData = async () => {
+      const getFeatures = await firestore.collection("features").get();
+      const snapShot = [];
+      getFeatures.forEach((feature) => {
+        // console.log({ ...feature.data() });
+        snapShot.push({
+          id: feature.id,
+          ...feature.data(),
+        });
+      });
+
+      setHomeData(snapShot);
+    };
+    getData();
+  }, []);
+  console.log(homeData);
 
   useEffect(() => {
     firestore
@@ -41,7 +57,7 @@ const Home = () => {
           ...doc.data(),
         }));
         setJoinCity(newCity);
-        console.log(newCity);
+        // console.log(newCity);
       });
   }, []);
 
@@ -50,7 +66,6 @@ const Home = () => {
     setShowFeature(index + 1);
   };
 
-  //console.log(input);
   return (
     <div className="home-page">
       <LazyLoad>
@@ -71,8 +86,6 @@ const Home = () => {
       <section className="section_value">
         <div>
           <HomeValue
-            info={info}
-            images={images}
             homeData={homeData}
             handleShowFeature={handleShowFeature}
           />

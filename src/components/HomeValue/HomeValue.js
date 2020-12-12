@@ -1,15 +1,18 @@
-import React, { Fragment} from "react";
+import React, { Fragment } from "react";
 import "./style.css";
 
 export const HomeValue = ({ homeData, handleShowFeature }) => {
   return (
     <Fragment>
       <div className="home_value_container content-editable">
-        {homeData.map(({ icon, iconTitle, iconCaption }, index) => (
-          <div className="home_value" onClick={() => handleShowFeature(index)}>
-            <input
-              type="image"
-              src={icon}
+        {homeData.map(({ image, title, text, id }, index) => (
+          <div
+            className="home_value"
+            onClick={() => handleShowFeature(index)}
+            key={id}
+          >
+            <img
+              src={image}
               alt="iconic"
               className="value_img"
               width="48"
@@ -17,9 +20,9 @@ export const HomeValue = ({ homeData, handleShowFeature }) => {
             />
             <div>
               <p type="text" className="value_caption">
-                {iconTitle}
+                {title}
               </p>
-              <p className="value_description">{iconCaption}</p>
+              <p className="value_description">{text}</p>
             </div>
           </div>
         ))}

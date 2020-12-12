@@ -1,4 +1,5 @@
 .feature-card {
+  position: absolute;
   width: 400px;
   height: 430px;
   background: #f8f8f8;

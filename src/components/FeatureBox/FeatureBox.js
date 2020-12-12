@@ -1,45 +1,23 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { app } from "./../../utils/firebase.utils";
+import { app, firestore } from "../../utils/firebase.utils";
 import "./FeatureBox.css";
-const db = app.firestore();
-const FeatureBox = ({
-  info,
-  setInfo,
-  showFeature,
-  setShowFeature,
-  homeData,
-  setHomeData,
-}) => {
-  //state for form details
+
+const FeatureBox = ({ showFeature, setShowFeature, homeData, setHomeData }) => {
+  //state for form updating data
   const [data, setData] = useState({
     title: "",
     body: "",
   });
-
-  //state for image
+  //state for image icons
   const [images, setImages] = useState(null);
 
-  useEffect(() => {
-    setHomeData(homeData);
-    console.log("useEffect passes current item", homeData);
-    // const fetchInfo = async () => {
-    //   const dataInfo = await db.collection("features").get();
-    //   setInfo(
-    //     dataInfo.docs.map((doc) => {
-    //       return doc.data();
-    //     })
-    //   );
-    // };
-    // fetchInfo();
-  }, []);
-
   //Change value as user changes
- const handleChange = ({ target: input }) => {
-   const newData = { ...data };
-   newData[input.name] = input.value;
-   setData(newData);
- };
-  //uploading images on firestore
+  const handleChange = ({ target: input }) => {
+    const newData = { ...data };
+    newData[input.name] = input.value;
+    setData(newData);
+  };
+  //uploading images files on firestore
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
@@ -48,62 +26,40 @@ const FeatureBox = ({
     setImages(await fileRef.getDownloadURL());
   };
 
-  // const imageHandler = (e) => {
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       setData(reader.result);
-  //     }
-  //   };
-  //   reader.readAsDataURL(e.target.files[0])
-  // };
-
-  //submitting form
-  // const onSubmitData = (e) => {
-  //   e.preventDefault();
-  //   const title = e.target.title.value;
-  //   console.log(title);
-  //   const body = e.target.body.value;
-  //   if (!title || !body) {
-  //     return;
-  //   }
-  //   db.collection("features").doc(title, body).set({
-  //     image: images,
-  //     title: title,
-  //     text: body,
-  //   });
-  // };
+  //updating the items in firestore
+  const updateItem = (id) => {
+    // db.doc(`features/${id}`).update({
+    firestore.collection("features").doc(id).update({
+      image: images,
+      title: data.title,
+      text: data.body,
+    });
+  };
 
   //update information when user clicks Apply
   const updateHomeValue = () => {
     const newData = [...homeData];
-    newData[showFeature - 1].iconTitle = data.title;
-    newData[showFeature - 1].icon = data.images;
-    newData[showFeature - 1].iconCaption = data.body;
+    const id = newData[showFeature - 1].id;
+    newData[showFeature - 1].title = data.title;
+    newData[showFeature - 1].image = images;
+    newData[showFeature - 1].text = data.body;
     //these are the updated values when user clicks apply
     setHomeData(newData);
+    console.log("Check", newData);
     setShowFeature(false);
-
-    // const title = e.target.title;
-    // console.log(title);
-    // const body = e.target.body;
-    // if (!title || !body) {
-    //   return;
-    // }
-    // db.collection("features").doc(newData.id).update({
-    //   image: images,
-    //   title: data.title,
-    //   text: data.body,
-    // });
+    //updating the id in firestore
+    updateItem(id);
   };
+
+  //cancel information when user clicks Cancel
   const cancelUpdate = () => {
     setShowFeature(false);
   };
- 
+
   return (
     <Fragment>
       <div className="feature-card">
-        <form className="feature-card-container">
+        <div className="feature-card-container">
           <h4>Feature</h4>
           <div className="icon-text">
             Icon
@@ -111,14 +67,8 @@ const FeatureBox = ({
           </div>
           <div className="form-wrapper">
             <div className="upload-btn-wrapper">
-            <input
-              type="file"
-              onChange={onFileChange}
-              name="icons"
-              // value={images}
-              //onChange={imageHandler}
-            />
-            <button className="btn">Upload a file</button>
+              <input type="file" onChange={onFileChange} name="images" />
+              <button className="btn">Upload a file</button>
             </div>
             <div>
               <p>Title</p>
@@ -126,7 +76,6 @@ const FeatureBox = ({
                 type="text"
                 name="title"
                 className="title-input"
-                //value={data.title}
                 onChange={handleChange}
               />
             </div>
@@ -134,13 +83,12 @@ const FeatureBox = ({
               <p>Text</p>
               <textarea
                 name="body"
-                //value={data.body}
                 onChange={handleChange}
                 className="textarea-input"
               />
             </div>
           </div>
-        </form>
+        </div>
         <div className="btn-container">
           <span>
             <button className="btn-apply" onClick={updateHomeValue}>
@@ -154,19 +102,6 @@ const FeatureBox = ({
             </button>
           </span>
         </div>
-        {/* <div>
-        {info.map((inf) => {
-          return (
-            <div key={inf.title}>
-              <img width="100" height="100" src={inf.images} alt={inf.name} />
-              <div>
-                <p className="value_caption">{inf.title}</p>
-                <p className="value_description">{inf.body}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
       </div>
     </Fragment>
   );
