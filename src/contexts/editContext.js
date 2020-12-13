@@ -6,6 +6,7 @@ const EditContextProvider = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
+  const [pos, setPos] = useState({X: 0, Y: 0});
 
   const rawPlace = {
     text: '',
@@ -70,11 +71,15 @@ const EditContextProvider = (props) => {
   }
 
   const handleShowForm = (e) => {
-      if (e.target.name === currentPlace.id) {
-        editMode && setShowForm(true)
-      } else if (e.target.id === "header_1" || e.target.id === "header_2") {
-        editMode && setShowTextForm(true)
+    if (editMode) {
+      if (e.target.id === "header_1" || e.target.id === "header_2") {
+        setPos({X: e.clientX,Y: e.clientY})
+        setShowTextForm(true)
+      } else if (currentPlace.id === e.target.name) {
+        setShowForm(true);
       }
+    }
+    console.log("form:",showForm, "text:", showTextForm)
   }
 
   const saveIt = () => {
@@ -99,7 +104,7 @@ const EditContextProvider = (props) => {
       text, fetchedTexts, handleChange, handleSubmit,
       handleEditMode, editMode, saveIt, viewIt,
       releaseIt, editStyle, places, showForm, setShowForm,showTextForm, setShowTextForm, handleShowForm,
-      currentPlace, setCurrentPlace
+      currentPlace, setCurrentPlace, pos
        }}
     >
       {props.children}

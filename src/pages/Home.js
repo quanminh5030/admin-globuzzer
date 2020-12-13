@@ -97,33 +97,32 @@ Most importantly, we have been in the same spot, and we can support you. `;
              ref={header_2}
              onChange={handleRefChange}
              onBlur={() => setHeaderTwo(header_2.current.innerText)}
-
-
              onClick={handleShowForm}
           >
              Commplete guidance when relocating to a new city
           </p>
         </div>
           <SearchCity />
-
+          <div >
           <p id="header_suggestion" onClick={handleShowForm}>
           Maybe {" "}
             {places.map((p) => (
               <a href={p.link}
                key={p.id}
                name={p.id}
-               contentEditable={contentEditable}
-               suppressContentEditableWarning="true"
+                contentEditable={contentEditable}
+                suppressContentEditableWarning="true"
                style={{...editStyle, color:p.color}}
-               ref={place}
-               onChange={handleRefChange}
-               onBlur={(e) => setPlace(e.target.innerText)}
-               onClick={handleClick}
+                ref={place}
+               // onChange={handleRefChange}
+               // onBlur={(e) => setPlace(e.target.innerText)}
+               onFocus={handleClick}
             >
                {p.text}
             </a>
               ))}
           </p>
+          </div>
         </section>
       </LazyLoad>
 

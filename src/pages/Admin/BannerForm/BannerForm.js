@@ -6,21 +6,33 @@ const BannerForm = ({ newPlace }) => {
 
   const {
     handleChange, handleSubmit, showForm, setShowForm,
-    currentPlace, showTextForm,
+    currentPlace, showTextForm, setShowTextForm, pos
         } = useContext(EditContext);
 
-  const formStyle = !showForm ? {display: "none"} : {};
-  const formTextStyle = !showTextForm ? {display: "none"} : {};
+  const formStyle = !showForm
+            ? {
+                display: "none"
+              }
+            : {};
+  const formTextStyle = !showTextForm
+            ? {
+                display: "none",
+              }
+            : {
+                position:'',
+                top: `${pos.Y + 100}px`,
+                left: `${pos.X - 50}px`
+              };
 
   return (
     <div>
       {/*Start form for text headers edit on the banner*/}
-    <div className={edit.title} style={formTextStyle}>
+    <div className={edit.title} style={formTextStyle} onDoubleClick={() => setShowTextForm(false)}>
     <div className={edit.arrowDown}></div>
     <p>14</p>
     <p>B</p>
     <form>
-      <input type="color" />
+      <input type="color" defaultValue="#C4C4C4" />
     </form>
     <img src="/images/sizer.png" alt="" />
     </div>
