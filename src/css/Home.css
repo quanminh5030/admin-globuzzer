@@ -38,6 +38,33 @@
     line-height: 24px;
 }
 
+#header_suggestion a:first-child:after {
+  content: ", ";
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+#header_suggestion a:last-child:before {
+  content: " or ";
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+#header_suggestion a:last-child:after {
+  content: "?";
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
 .search_input {
     background-color: #ffffff;
     display: flex;
