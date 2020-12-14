@@ -4,7 +4,7 @@ import "./style.css";
 export const HomeValue = ({ homeData, handleShowFeature }) => {
   const [showEditMode, setShowEditMode] = useState(true);
 
-  const onChangeColour = () => {
+  const onEditMode = () => {
     setShowEditMode(!showEditMode);
   };
 
@@ -13,9 +13,8 @@ export const HomeValue = ({ homeData, handleShowFeature }) => {
       <div className="home_value_container">
         {homeData.map(({ image, title, text, id }, index) => (
           <div
-            className={showEditMode ? "edit-mode-true":"edit-mode-false"}
-            onClick={onChangeColour}
-           
+            className={showEditMode ? "edit-mode-true" : "edit-mode-false"}
+            onClick={onEditMode}
           >
             <div
               className="home_value "
