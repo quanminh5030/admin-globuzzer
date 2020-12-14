@@ -27,7 +27,7 @@ const Home = () => {
   //state for homeValue
   const [homeData, setHomeData] = useState([]);
 
-  //fetching data from firebase firestore
+  //fetching features data from firebase firestore
   useEffect(() => {
     const getData = async () => {
       const getFeatures = await firestore.collection("features").get();

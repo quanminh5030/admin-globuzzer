@@ -13,6 +13,15 @@
   align-items: center;
   margin-bottom: 47px;
 }
+.edit-mode-true {
+ background: transparent;
+}
+.edit-mode-false {
+ background: #f4798933;
+  border-radius: 10px;
+  border: 2px solid #f4798933;
+  width: 250px;
+}
 /* .value_img {
   width: 50px;
   height: 50px;
@@ -40,7 +49,6 @@
   line-height: 17px;
   color: #909090;
   text-align: start;
-  
 }
 
 @media (min-width: 1100px) {
