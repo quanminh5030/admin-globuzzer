@@ -17,7 +17,26 @@
     color: white;
 }
 
-#header_1 {
+.headers p:first-child {
+  margin-top: 65px;
+    width: 1084px;
+    height: 92px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 70px;
+}
+
+.headers p:nth-child(2) {
+  margin-top: 6px;
+    margin-bottom: 27px;
+    height: 57px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 48px;
+}
+
+/*#header_1 {
     width: 333px;
     height: 48px;
     font-style: normal;
@@ -35,8 +54,9 @@
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
+    text-align: center;
     line-height: 24px;
-}
+}*/
 
 #header_suggestion a:first-child:after {
   content: ", ";

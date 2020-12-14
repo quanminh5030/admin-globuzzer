@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
 
-const BannerForm = ({ newPlace }) => {
+const BannerForm = () => {
 
   const {
     handleChange, handleSubmit, showForm, setShowForm,
-    currentPlace, showTextForm, setShowTextForm, pos
+    currentPlace, showTextForm, setShowTextForm, headerID, handleSubmitText
         } = useContext(EditContext);
 
   const formStyle = !showForm
@@ -20,21 +20,23 @@ const BannerForm = ({ newPlace }) => {
               }
             : {
                 position:'',
-                top: `${pos.Y + 100}px`,
-                left: `${pos.X - 50}px`
+                top: headerID === 1 ? '300px' : '400px',
+                left: '750px'
               };
 
   return (
     <div>
       {/*Start form for text headers edit on the banner*/}
-    <div className={edit.title} style={formTextStyle} onDoubleClick={() => setShowTextForm(false)}>
+    <div className={edit.title} style={formTextStyle}
+    onDoubleClick={() => setShowTextForm(false)}
+    >
     <div className={edit.arrowDown}></div>
     <p>14</p>
     <p>B</p>
     <form>
-      <input type="color" defaultValue="#C4C4C4" />
+      <input type="color" defaultValue="#C4C4C4" name="style.color" />
     </form>
-    <img src="/images/sizer.png" alt="" />
+    <img src="/images/sizer.png" alt="" onClick={handleSubmitText}/>
     </div>
   {/*END form for text headers edit on the banner*/}
     {/*Start forms for city place edit on the banner*/}

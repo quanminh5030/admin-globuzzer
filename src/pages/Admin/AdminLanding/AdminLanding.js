@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import TopNav from '../TopNav/TopNav';
 import { EditContext } from '../../../contexts/editContext';
 const AdminLanding = () => {
-  const { editMode, handleEditMode, saveIt, viewIt, releaseIt } = useContext(EditContext);
+  const { editMode, handleEditMode} = useContext(EditContext);
     return (
         <div className={styles.wrapper}>
             <TopNav/>
@@ -24,9 +24,9 @@ const AdminLanding = () => {
             {!editMode ?
                 (<button className={styles.editBtn} onClick={handleEditMode}>Edit it</button>) :
                 (<div>
-                  <button className={styles.svrBtn} onClick={saveIt}>Save it</button>
-                  <button className={styles.svrBtn} onClick={viewIt}>View it</button>
-                  <button className={styles.svrBtn} onClick={releaseIt}>Release it</button>
+                  <button className={styles.svrBtn}>Save it</button>
+                  <button className={styles.svrBtn}>View it</button>
+                  <button className={styles.svrBtn}>Release it</button>
                  </div>
                 )
                 }

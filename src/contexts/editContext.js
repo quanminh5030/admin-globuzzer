@@ -6,18 +6,30 @@ const EditContextProvider = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
+  const [headerID, setHeaderID] = useState(null);
   const [pos, setPos] = useState({X: 0, Y: 0});
 
   const rawPlace = {
     text: '',
     color: '',
     link: ''
-  }
+  };
 
-  const [text, setText] = useState([]);
+  const rawText = {
+    content: '',
+    style: {
+      color: '',
+      fontSize: '',
+      fontWeight: '',
+      textAlign: ''
+    }
+  };
+
   const [fetchedTexts, setFetchedTexts] = useState([]);
+  const [currentText, setCurrentText] = useState(rawText);
+
   const [places, setPlaces] = useState([]);
-  const [currentPlace, setCurrentPlace] = useState(rawPlace)
+  const [currentPlace, setCurrentPlace] = useState(rawPlace);
 
   const editStyle =
     editMode ? {
@@ -61,9 +73,22 @@ const EditContextProvider = (props) => {
     setCurrentPlace({...currentPlace, [name]: value});
   }
 
+  const handleChangeText = (e) => {
+     // const { name, value } = e.target;
+      setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
+    console.log('crtext:', currentText)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
       firestore.collection('places').doc(currentPlace.id).update(currentPlace);
+  }
+
+  const handleSubmitText = (e) => {
+     e.preventDefault();
+        firestore.collection('texts').doc(currentText.id).update(currentText);
+       // console.log('updated:', currentText.id)
+    // console.log(e.target)
   }
 
   const handleEditMode = () => {
@@ -72,39 +97,30 @@ const EditContextProvider = (props) => {
 
   const handleShowForm = (e) => {
     if (editMode) {
-      if (e.target.id === "header_1" || e.target.id === "header_2") {
-        setPos({X: e.clientX,Y: e.clientY})
+      setPos({X: e.clientX, Y: e.clientY})
+      if (e.target.id === "K7I3zyv8v93zTKbBhYRA" || e.target.id === "ser7qi3yciM8HQLU6aDv") {
+        if (e.target.id === "K7I3zyv8v93zTKbBhYRA") {
+          setHeaderID(1)
+        } else if (e.target.id === "ser7qi3yciM8HQLU6aDv") {
+          setHeaderID(2)
+        } else {
+
+        }
         setShowTextForm(true)
       } else if (currentPlace.id === e.target.name) {
         setShowForm(true);
       }
     }
-    console.log("form:",showForm, "text:", showTextForm)
   }
-
-  const saveIt = () => {
-
-  }
-
-  const viewIt = () => {
-
-  }
-
-  const releaseIt = () => {
-
-  }
-
- // const gogu = firestore.collection("texts").doc();
- // console.log("firestore:", gogu)
-
 
   return (
     <EditContext.Provider
     value={{
-      text, fetchedTexts, handleChange, handleSubmit,
-      handleEditMode, editMode, saveIt, viewIt,
-      releaseIt, editStyle, places, showForm, setShowForm,showTextForm, setShowTextForm, handleShowForm,
-      currentPlace, setCurrentPlace, pos
+      fetchedTexts, handleChange, handleSubmit,
+      handleEditMode, editMode, editStyle, places,
+      showForm, setShowForm,showTextForm, setShowTextForm,
+      handleShowForm, currentPlace, setCurrentPlace, handleChangeText, headerID,
+      handleSubmitText
        }}
     >
       {props.children}

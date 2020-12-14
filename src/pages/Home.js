@@ -27,15 +27,12 @@ const Home = ({ contentEditable }) => {
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState([]);
   const [articles, setArticles] = useState([]);
-
-  const { editStyle, places, handleShowForm, setCurrentPlace } = useContext(EditContext);
-  let header_1 = useRef('');
-  let header_2 = useRef('');
   let place = useRef('');
 
-  const handleRefChange = (e) => {
-    e.target.id.current.innerText = e.target.value
-  }
+  const { editStyle, places, handleShowForm,
+          setCurrentPlace, handleChangeText,
+          fetchedTexts
+        } = useContext(EditContext);
 
   const handleClick = (e) => {
     const newPlace = places.filter((place) => {
@@ -43,13 +40,6 @@ const Home = ({ contentEditable }) => {
     })
     setCurrentPlace(newPlace[0]);
   }
-
-  const [newHeaderOne, setHeaderOne] = useState();
-  const [newHeaderTwo, setHeaderTwo] = useState();
-
-  const [newPlace, setPlace] = useState();
-
-
 
   useEffect(() => {
     firestore
@@ -66,6 +56,7 @@ const Home = ({ contentEditable }) => {
       });
   }, []);
 
+
   const one = `Globuzzer is a global network that provides the full relocating experience.
 Find topics, join communities, attend events, book flights, and much more. `;
   const two = `Reliable information shared by expats and locals.
@@ -75,32 +66,26 @@ We are travelers. We are students.
 Most importantly, we have been in the same spot, and we can support you. `;
   return (
     <div className="home-page">
-      <BannerForm newPlace={newPlace} />
+      <BannerForm  />
       <LazyLoad>
         <section className="section_header" id="section_header">
-        <div>
-          <p id="header_1"
+        <div onClick={handleShowForm} className="headers">
+        {fetchedTexts.map((t) => (
+              <p key={t.id}
+             id={t.id}
+             name={t.id}
              contentEditable={contentEditable}
              style={editStyle}
              suppressContentEditableWarning="true"
-             ref={header_1}
-             onChange={handleRefChange}
-             onBlur={() => setHeaderOne(header_1.current.innerText)}
+             onBlur={handleChangeText}
+             // ref={header_1}
+             // onBlur={() => setHeaderOne(t.id.current.innerText)}
              onClick={handleShowForm}
+
           >
-             The global community of locals and expats
+             {t.content}
           </p>
-          <p id="header_2"
-             contentEditable={contentEditable}
-             style={editStyle}
-             suppressContentEditableWarning="true"
-             ref={header_2}
-             onChange={handleRefChange}
-             onBlur={() => setHeaderTwo(header_2.current.innerText)}
-             onClick={handleShowForm}
-          >
-             Commplete guidance when relocating to a new city
-          </p>
+          ))}
         </div>
           <SearchCity />
           <div >
@@ -110,10 +95,10 @@ Most importantly, we have been in the same spot, and we can support you. `;
               <a href={p.link}
                key={p.id}
                name={p.id}
-                contentEditable={contentEditable}
-                suppressContentEditableWarning="true"
+               contentEditable={contentEditable}
+               suppressContentEditableWarning="true"
                style={{...editStyle, color:p.color}}
-                ref={place}
+               ref={place}
                // onChange={handleRefChange}
                // onBlur={(e) => setPlace(e.target.innerText)}
                onFocus={handleClick}
