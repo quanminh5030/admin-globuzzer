@@ -31,7 +31,7 @@ const Home = ({ contentEditable }) => {
 
   const { editStyle, places, handleShowForm,
           setCurrentPlace, handleChangeText,
-          fetchedTexts
+          fetchedTexts, setCurrentText, currentText
         } = useContext(EditContext);
 
   const handleClick = (e) => {
@@ -39,6 +39,13 @@ const Home = ({ contentEditable }) => {
       return place.id === e.target.name
     })
     setCurrentPlace(newPlace[0]);
+  }
+
+  const getCurrentText = (e) => {
+     const newText = fetchedTexts.filter((text) => {
+        return text.id === e.target.id
+     })
+     setCurrentText(newText[0]);
   }
 
   useEffect(() => {
@@ -75,13 +82,13 @@ Most importantly, we have been in the same spot, and we can support you. `;
              id={t.id}
              name={t.id}
              contentEditable={contentEditable}
-             style={editStyle}
+             style={{...editStyle, ...t.style}}
              suppressContentEditableWarning="true"
              onBlur={handleChangeText}
              // ref={header_1}
              // onBlur={() => setHeaderOne(t.id.current.innerText)}
              onClick={handleShowForm}
-
+             onFocus={getCurrentText}
           >
              {t.content}
           </p>

@@ -76,7 +76,6 @@ const EditContextProvider = (props) => {
   const handleChangeText = (e) => {
      // const { name, value } = e.target;
       setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
-    console.log('crtext:', currentText)
   }
 
   const handleSubmit = (e) => {
@@ -118,9 +117,9 @@ const EditContextProvider = (props) => {
     value={{
       fetchedTexts, handleChange, handleSubmit,
       handleEditMode, editMode, editStyle, places,
-      showForm, setShowForm,showTextForm, setShowTextForm,
+      showForm, setShowForm, showTextForm, setShowTextForm,
       handleShowForm, currentPlace, setCurrentPlace, handleChangeText, headerID,
-      handleSubmitText
+      handleSubmitText, currentText, setCurrentText
        }}
     >
       {props.children}

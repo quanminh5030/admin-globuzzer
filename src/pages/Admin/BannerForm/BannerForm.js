@@ -6,7 +6,8 @@ const BannerForm = () => {
 
   const {
     handleChange, handleSubmit, showForm, setShowForm,
-    currentPlace, showTextForm, setShowTextForm, headerID, handleSubmitText
+    currentPlace, showTextForm, setShowTextForm, headerID, handleSubmitText,
+    currentText
         } = useContext(EditContext);
 
   const formStyle = !showForm
@@ -24,6 +25,7 @@ const BannerForm = () => {
                 left: '750px'
               };
 
+
   return (
     <div>
       {/*Start form for text headers edit on the banner*/}
@@ -31,8 +33,8 @@ const BannerForm = () => {
     onDoubleClick={() => setShowTextForm(false)}
     >
     <div className={edit.arrowDown}></div>
-    <p>14</p>
-    <p>B</p>
+    <p>{currentText.style.fontSize.substring(0, 2, - 1)}</p>
+    <p>{currentText.style.fontWeight}</p>
     <form>
       <input type="color" defaultValue="#C4C4C4" name="style.color" />
     </form>
