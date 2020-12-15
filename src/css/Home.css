@@ -291,7 +291,7 @@
         grid-template-columns: repeat(4, 280px);
         grid-auto-rows: 190px;
         justify-content: center;
-        margin: 50px;
+        margin: 100px;
     }
     .newcity_input {
         width: 405px;

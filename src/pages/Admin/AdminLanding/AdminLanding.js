@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext } from 'react';
 import Home from '../../Home';
 import SideNav from '../SideNav/SideNav';
@@ -8,6 +9,24 @@ import TopNav from '../TopNav/TopNav';
 import { EditContext } from '../../../contexts/editContext';
 const AdminLanding = () => {
   const { editMode, handleEditMode} = useContext(EditContext);
+=======
+import React, { useState } from "react";
+import Home from "../../Home";
+import SideNav from "../SideNav/SideNav";
+import styles from "./AdminLanding.module.css";
+import { IoMdArrowDropright } from "react-icons/io";
+import { Link } from "react-router-dom";
+import TopNav from "../TopNav/TopNav";
+import "./AdminLanding.css";
+const AdminLanding = () => {
+    const editContent = () => {
+        document.querySelector('.editBtn').hidden = true;
+       [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
+           element.setAttribute('contenteditable', true);
+           element.classList.add('edit-mode');
+       })
+    }
+>>>>>>> master
     return (
         <div className={styles.wrapper}>
             <TopNav/>
@@ -21,6 +40,7 @@ const AdminLanding = () => {
                 <SideNav/>
             </section>
             <section className={styles.main}>
+<<<<<<< HEAD
             {!editMode ?
                 (<button className={styles.editBtn} onClick={handleEditMode}>Edit it</button>) :
                 (<div>
@@ -31,10 +51,14 @@ const AdminLanding = () => {
                 )
                 }
                 {  <Home contentEditable={editMode ? true : false} editMode={editMode}/> }
+=======
+                <button className="editBtn" onClick={()=>editContent()}>Edit it</button>
+                <Home/>
+>>>>>>> master
             </section>
             </div>
-        </div>
-    );
-}
+          </div>
+  );
+};
 
 export default AdminLanding;

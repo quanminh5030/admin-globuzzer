@@ -12,7 +12,6 @@ import SignUp from "./pages/Admin/SignUp/SignUp";
 import AdminLanding from './pages/Admin/AdminLanding/AdminLanding';
 class App extends React.Component {
   unsubscribeFromAuth = null;
-  unsubscribeFromSnapshot = null;
   componentDidMount() {
     const { setCurrentUser } = this.props;
     //storing user data
