@@ -68,7 +68,6 @@ const Home = ({ contentEditable }) => {
     };
     getData();
   }, []);
-  console.log(homeData);
 
   //toggle feature box function
   const handleShowFeature = (index) => {
