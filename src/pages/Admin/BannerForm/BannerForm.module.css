@@ -156,11 +156,8 @@ select {
    /*background-image: url("/images/down.png");*/
 }
 
-/*select:after {
-  content: '\25be';
-}*/
 
-
+/*reset the default style of dropdowns*/
 input[type="color"] {
   -webkit-appearance: none;
   border: none;
