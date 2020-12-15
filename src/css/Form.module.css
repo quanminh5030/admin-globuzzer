@@ -1,0 +1,136 @@
+.title {
+  position: absolute;
+  width: 187.6px;
+  height: 40px;
+  left: 950px;
+  top: 300px;
+  background: #FFFFFF;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title p:after {
+  content: '^';
+}
+
+.arrowDown {
+  position: absolute;
+  top: 100%;
+  right: 40%;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 26px solid #ffffff;
+}
+
+.place {
+  position: absolute;
+  width: 315px;
+  height: 281px;
+  left: 50%;
+  top: 700px;
+  background: #F8F8F8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.place .head {
+  font-family: Montserrat !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #727272;
+  padding: 16px;
+}
+
+.command {
+  position: absolute;
+  bottom: 0px;
+  height: 43px;
+  width: 100%;
+  display: flex;
+  text-align: center;
+}
+
+.command p:first-child {
+  border-right: 1px solid #E4E4E4;
+}
+
+.command p {
+  padding: 11px;
+  /*height: 100%;*/
+  width: 50%;
+  border-top: 1px solid #E4E4E4;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #727272;
+  cursor: pointer;
+}
+
+.formContainer {
+  display: flex;
+  justify-content:center;
+  padding: 20px;
+}
+
+.form {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: auto;
+  gap:10px;
+}
+
+.form input {
+  border: none;
+  background: #FFFFFF;
+  border-radius: 3px;
+  width: 80%;
+  height: 24.4px;
+}
+
+.form label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: left;
+  color: #5F5E5E;
+}
+
+.place {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  color: #A4A4A4;
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 17px;
+  height: 17px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+
+
