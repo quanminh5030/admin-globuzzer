@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import React, { useState, useEffect, useRef, useContext } from "react";
-=======
-import React, { useState } from "react";
->>>>>>> master
+import React, { useState, useRef, useContext } from "react";
 import "../css/Home.css";
-import edit from "../css/Form.module.css";
+// import edit from "../css/Form.module.css";
 import { FiSearch } from "react-icons/fi";
 import LazyLoad from "react-lazyload";
 import { HomeValue } from "../components/HomeValue/HomeValue";
@@ -17,7 +13,7 @@ import { OwnSection } from "../components/OwnSection/OwnSection";
 import { Footer } from "../components/Footer/Footer";
 import { SearchCity } from "../components/SearchCity/SearchCity";
 import { JoinCommunity } from "../components/JoinCommunity/JoinCommunity";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import JoinCitySection from '../components/JoinCity/JoinCitySection';
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import { EditContext } from '../contexts/editContext';
@@ -25,10 +21,6 @@ import BannerForm from './Admin/BannerForm/BannerForm';
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
-<<<<<<< HEAD
-  const [moreJoinCity, setMoreJoinCity] = useState(false);
-  const [joinCity, setJoinCity] = useState([]);
-  const [articles, setArticles] = useState([]);
   let place = useRef('');
 
   const { editStyle, places, handleShowForm,
@@ -52,26 +44,7 @@ const Home = ({ contentEditable }) => {
      setCurrentText(newText[0]);
   }
 
-  useEffect(() => {
-    firestore
-      .collection("cities")
-      .orderBy("name")
-      .limit(11)
-      .onSnapshot((snapshot) => {
-        const newCity = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setJoinCity(newCity);
-        // console.log(newCity);
-      });
-  }, []);
-
-
   const one = `Globuzzer is a global network that provides the full relocating experience.
-=======
-  const one = `Globuzzer is a global network that provides the full relocating experience. 
->>>>>>> master
 Find topics, join communities, attend events, book flights, and much more. `;
   const two = `Reliable information shared by expats and locals.
 Everything from visa requirements and local documentation to valuable tips.`;
@@ -83,7 +56,6 @@ Most importantly, we have been in the same spot, and we can support you. `;
       <BannerForm  />
       <LazyLoad>
         <section className="section_header" id="section_header">
-<<<<<<< HEAD
         <div onClick={handleShowForm} className="headers">
         {fetchedTexts.map((t) => (
               <p key={t.id}
@@ -100,14 +72,6 @@ Most importantly, we have been in the same spot, and we can support you. `;
           </p>
           ))}
         </div>
-=======
-          <p id="header_1" className="content-editable">
-            The global community of locals and expats
-          </p>
-          <p id="header_2" className="content-editable">
-            Commplete guidance when relocating to a new city
-          </p>
->>>>>>> master
           <SearchCity />
           <div >
           <p id="header_suggestion" onClick={handleShowForm}>
