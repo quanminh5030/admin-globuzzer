@@ -1,30 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
+import { sizes, weights } from './Data';
+import Dropdown from './Dropdown';
 
 const BannerForm = () => {
+  // values for drop-down lists
+  const[fontSizes] = useState(sizes);
+  const[fontWeights] = useState(weights);
 
   const {
     handleChange, handleSubmit, showForm, setShowForm,
     currentPlace, showTextForm, setShowTextForm, headerID, handleSubmitText,
     currentText
         } = useContext(EditContext);
-
-  const formStyle = !showForm
-            ? {
-                display: "none"
-              }
-            : {};
-  const formTextStyle = !showTextForm
-            ? {
-                display: "none",
-              }
+  // manage display and position of popping-up forms
+  const formStyle = !showForm ? { display: "none" } : {};
+  const formTextStyle = !showTextForm ? { display: "none" }
             : {
                 position:'',
                 top: headerID === 1 ? '300px' : '400px',
                 left: '750px'
               };
+  // set the default values for drop-down lists
+  const [defaultSize, setDefaultSize] = useState('');
+  const [defaultWeight, setDefaultWeight] = useState('');
 
+  useEffect(() => {
+    setDefaultSize(currentText.style.fontSize.substring(0, 2, - 1));
+    setDefaultWeight(currentText.style.fontWeight);
+  }, [currentText]);
 
   return (
     <div>
@@ -33,8 +38,8 @@ const BannerForm = () => {
     onDoubleClick={() => setShowTextForm(false)}
     >
     <div className={edit.arrowDown}></div>
-    <p>{currentText.style.fontSize.substring(0, 2, - 1)}</p>
-    <p>{currentText.style.fontWeight}</p>
+    <Dropdown items={fontSizes} defaultValue={defaultSize} />
+    <Dropdown items={fontWeights} defaultValue={defaultWeight} />
     <form>
       <input type="color" defaultValue="#C4C4C4" name="style.color" />
     </form>

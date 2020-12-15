@@ -10,7 +10,7 @@
   justify-content: space-around;
   align-items: center;
 }
-.title p {
+.title select {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -28,7 +28,7 @@
   transform: rotate(90deg);
   position: relative;
 }*/
-.title p:after {
+.title select::after {
   content: '\25be';
   /*display: inline-block;
   -webkit-transform: rotate(180deg);
@@ -88,6 +88,7 @@
 
 .command p:first-child {
   border-right: 1px solid #E4E4E4;
+  /*position: relative;*/
 }
 
 .command p {
@@ -146,6 +147,19 @@
   text-align: center;
   color: #A4A4A4;
 }
+
+select {
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+   appearance: none;
+   /*background-image: url("/images/down.png");*/
+}
+
+/*select:after {
+  content: '\25be';
+}*/
+
 
 input[type="color"] {
   -webkit-appearance: none;

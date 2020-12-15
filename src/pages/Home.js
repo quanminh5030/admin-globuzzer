@@ -34,6 +34,7 @@ const Home = ({ contentEditable }) => {
           fetchedTexts, setCurrentText, currentText
         } = useContext(EditContext);
 
+  // select the clicked 'place'
   const handleClick = (e) => {
     const newPlace = places.filter((place) => {
       return place.id === e.target.name
@@ -41,6 +42,7 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace(newPlace[0]);
   }
 
+  // select the clicked 'text'
   const getCurrentText = (e) => {
      const newText = fetchedTexts.filter((text) => {
         return text.id === e.target.id
@@ -85,8 +87,6 @@ Most importantly, we have been in the same spot, and we can support you. `;
              style={{...editStyle, ...t.style}}
              suppressContentEditableWarning="true"
              onBlur={handleChangeText}
-             // ref={header_1}
-             // onBlur={() => setHeaderOne(t.id.current.innerText)}
              onClick={handleShowForm}
              onFocus={getCurrentText}
           >
@@ -106,8 +106,6 @@ Most importantly, we have been in the same spot, and we can support you. `;
                suppressContentEditableWarning="true"
                style={{...editStyle, color:p.color}}
                ref={place}
-               // onChange={handleRefChange}
-               // onBlur={(e) => setPlace(e.target.innerText)}
                onFocus={handleClick}
             >
                {p.text}

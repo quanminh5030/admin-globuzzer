@@ -9,12 +9,7 @@ const EditContextProvider = (props) => {
   const [headerID, setHeaderID] = useState(null);
   const [pos, setPos] = useState({X: 0, Y: 0});
 
-  const rawPlace = {
-    text: '',
-    color: '',
-    link: ''
-  };
-
+  const rawPlace = {text: '', color: '', link: ''};
   const rawText = {
     content: '',
     style: {
@@ -31,6 +26,7 @@ const EditContextProvider = (props) => {
   const [places, setPlaces] = useState([]);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
 
+  // add red marks around editable content
   const editStyle =
     editMode ? {
     border: "2px solid #F26678",
@@ -39,6 +35,7 @@ const EditContextProvider = (props) => {
     padding: "8px"
     } : {};
 
+  // fetch 'texts' content from db
     useEffect(() => {
     const getTexts = firestore
       .collection("texts")
@@ -53,6 +50,7 @@ const EditContextProvider = (props) => {
       return () => getTexts();
   }, []);
 
+  // fetch 'places' content from db
     useEffect(() => {
     const getPlaces = firestore
       .collection("places")
@@ -67,12 +65,13 @@ const EditContextProvider = (props) => {
       return () => getPlaces();
   }, []);
 
-
+  // change handler for place
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCurrentPlace({...currentPlace, [name]: value});
   }
 
+  // change handler for text
   const handleChangeText = (e) => {
      // const { name, value } = e.target;
       setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
@@ -93,6 +92,7 @@ const EditContextProvider = (props) => {
   const handleEditMode = () => {
     setEditMode(!editMode);
   }
+
 
   const handleShowForm = (e) => {
     if (editMode) {
