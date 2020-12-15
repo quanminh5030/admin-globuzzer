@@ -7,7 +7,6 @@
 }
 
 .home_value {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,16 +15,11 @@
 .edit-mode-true {
  background: transparent;
 }
-.edit-mode-false {
+/* .edit-mode-false {
  background: #f4798933;
   border-radius: 10px;
   border: 2px solid #f4798933;
   width: 250px;
-}
-/* .value_img {
-  width: 50px;
-  height: 50px;
-  margin-right: 45px;
 } */
 
 .value_caption {

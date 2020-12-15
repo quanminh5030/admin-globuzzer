@@ -1,23 +1,47 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./style.css";
 
 export const HomeValue = ({ homeData, handleShowFeature }) => {
   const [showEditMode, setShowEditMode] = useState(true);
 
+  useEffect(() => {
+    document.body.addEventListener("click", onEditMode);
+    return () => {
+      window.removeEventListener("click", onEditMode);
+    };
+  }, []);
+
   const onEditMode = () => {
-    setShowEditMode(!showEditMode);
+    // "setShowEditMode(!showEditMode);"
+    showEditMode ? setShowEditMode(false) : setShowEditMode(true);
+  };
+
+  const editedMode = () => {
+    if (!showEditMode) {
+      return {
+        background: "#f4798933",
+        borderRadius: "10px",
+        border: "2px solid #f4798933",
+        width: "250px",
+      }
+    }
+    // if (!showEditMode) {
+    //   return {
+    //     background: "#f4798933",
+    //     borderRadius: "10px",
+    //     border: "2px solid #f4798933",
+    //     width: "250px",
+    //   };
+    // } 
   };
 
   return (
     <Fragment>
       <div className="home_value_container">
         {homeData.map(({ image, title, text, id }, index) => (
-          <div
-            className={showEditMode ? "edit-mode-true" : "edit-mode-false"}
-            onClick={onEditMode}
-          >
+          <div style={editedMode()}>
             <div
-              className="home_value "
+              className="home_value"
               onClick={() => handleShowFeature(index)}
               key={id}
             >
