@@ -10,13 +10,13 @@ import { EditContext } from '../../../contexts/editContext';
 const AdminLanding = () => {
   const { editMode, handleEditMode} = useContext(EditContext);
 
-  const editContent = () => {
-        document.querySelector('.editBtn').hidden = true;
-       [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
-           element.setAttribute('contenteditable', true);
-           element.classList.add('edit-mode');
-       })
-    }
+  // const editContent = () => {
+  //       document.querySelector('.editBtn').hidden = true;
+  //      [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
+  //          element.setAttribute('contenteditable', true);
+  //          element.classList.add('edit-mode');
+  //      })
+  //   }
 
     return (
         <div className={styles.wrapper}>
@@ -41,7 +41,6 @@ const AdminLanding = () => {
                 )
                 }
                 {  <Home contentEditable={editMode ? true : false} editMode={editMode}/> }
-                <Home/>
             </section>
             </div>
           </div>

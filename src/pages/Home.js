@@ -33,7 +33,6 @@ const Home = ({ contentEditable }) => {
     handleChangeText,
     fetchedTexts,
     setCurrentText,
-    currentText,
   } = useContext(EditContext);
 
   // select the clicked 'place'
