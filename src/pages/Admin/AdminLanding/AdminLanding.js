@@ -8,15 +8,15 @@ import TopNav from "../TopNav/TopNav";
 import "./AdminLanding.css";
 import { EditContext } from '../../../contexts/editContext';
 const AdminLanding = () => {
-  const { editMode, handleEditMode} = useContext(EditContext);
+  const { editMode, handleEditMode, handleSubmitText } = useContext(EditContext);
 
-  const editContent = () => {
-        document.querySelector('.editBtn').hidden = true;
-       [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
-           element.setAttribute('contenteditable', true);
-           element.classList.add('edit-mode');
-       })
-    }
+  // const editContent = () => {
+  //       document.querySelector('.editBtn').hidden = true;
+  //      [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
+  //          element.setAttribute('contenteditable', true);
+  //          element.classList.add('edit-mode');
+  //      })
+  //   }
 
     return (
         <div className={styles.wrapper}>
@@ -32,16 +32,15 @@ const AdminLanding = () => {
             </section>
             <section className={styles.main}>
             {!editMode ?
-                (<button className={styles.svrBtn} onClick={handleEditMode}>Edit it</button>) :
+                (<button className={styles.editBtn} onClick={handleEditMode}>Edit it</button>) :
                 (<div>
-                  <button className={styles.svrBtn}>Save it</button>
+                  <button className={styles.svrBtn} onClick={handleSubmitText}>Save it</button>
                   <button className={styles.svrBtn}>View it</button>
                   <button className={styles.svrBtn}>Release it</button>
                  </div>
                 )
                 }
                 {  <Home contentEditable={editMode ? true : false} editMode={editMode}/> }
-                <Home/>
             </section>
             </div>
           </div>

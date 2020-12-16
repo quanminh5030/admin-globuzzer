@@ -7,7 +7,6 @@ const EditContextProvider = (props) => {
   const [showForm, setShowForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
   const [headerID, setHeaderID] = useState(null);
-  const [pos, setPos] = useState({X: 0, Y: 0});
 
   const rawPlace = {text: '', color: '', link: ''};
   const rawText = {
@@ -95,18 +94,14 @@ const EditContextProvider = (props) => {
 
 
   const handleShowForm = (e) => {
+    const parent = e.target.parentElement;
+    const sibling = e.target.nextSibling;
+    
     if (editMode) {
-      setPos({X: e.clientX, Y: e.clientY})
-      if (e.target.id === "K7I3zyv8v93zTKbBhYRA" || e.target.id === "ser7qi3yciM8HQLU6aDv") {
-        if (e.target.id === "K7I3zyv8v93zTKbBhYRA") {
-          setHeaderID(1)
-        } else if (e.target.id === "ser7qi3yciM8HQLU6aDv") {
-          setHeaderID(2)
-        } else {
-
-        }
+      if (parent.classList.contains('headers')) {
+        sibling ? setHeaderID(1) : setHeaderID(2);
         setShowTextForm(true)
-      } else if (currentPlace.id === e.target.name) {
+      } else if (parent.nodeName === "P") {
         setShowForm(true);
       }
     }

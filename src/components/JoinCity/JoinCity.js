@@ -1,7 +1,9 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import LazyLoad from "react-lazyload";
 import "./style.css";
 import { Link } from "react-router-dom";
+import { EditContext } from "../../contexts/editContext";
+
 const Loading = () => (
   <div>
     <h5>Loading</h5>
@@ -9,14 +11,15 @@ const Loading = () => (
 );
 
 export const JoinCity = (props) => {
+    const { editStyle } = useContext(EditContext);
     const {cityData, isViewMore, setMoreJoinCity} = props;
     const {name, img, members,id} = cityData;
 
     return (
-        <LazyLoad placeholder={<Loading />}> 
+        <LazyLoad placeholder={<Loading />}>
         <div
                 className="joincity_container content-editable"
-                style={{
+                style={{...editStyle,
                     backgroundImage: `url(${img})`,
                     backgroundColor: isViewMore ? "#F24B6A" : null,
                 }} onClick={props.openForm} key={id}
@@ -47,7 +50,7 @@ export const JoinCity = (props) => {
 
                 {!isViewMore && <p id="joincity_members">{members} members</p>}
             </div>
-           
+
         </LazyLoad>
     );
 };

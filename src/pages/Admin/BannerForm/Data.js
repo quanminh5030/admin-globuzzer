@@ -11,8 +11,15 @@ export const sizes = [
 
 // data for dropdown font-weight
   export const weights = [
-    { label: "B normal", value: "normal" },
-    { label: "B bold", value: "bold" },
-    { label: "B bolder", value: "bolder" },
-    { label: "B lighter", value: "lighter" },
+    { label: "normal", value: "normal" },
+    { label: "bold", value: "bold" },
+    { label: "bolder", value: "bolder" },
+    { label: "lighter", value: "lighter" },
+  ];
+
+  // data for dropdown text-align
+  export const aligns = [
+    { label: "center", value: "center" },
+    { label: "right", value: "right" },
+    { label: "left", value: "left" },
   ];

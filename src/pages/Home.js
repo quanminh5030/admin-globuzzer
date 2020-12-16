@@ -1,6 +1,5 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import "../css/Home.css";
-// import edit from "../css/Form.module.css";
 import { FiSearch } from "react-icons/fi";
 import LazyLoad from "react-lazyload";
 import { HomeValue } from "../components/HomeValue/HomeValue";
@@ -10,7 +9,6 @@ import { OwnSection } from "../components/OwnSection/OwnSection";
 import { Footer } from "../components/Footer/Footer";
 import { SearchCity } from "../components/SearchCity/SearchCity";
 import { JoinCommunity } from "../components/JoinCommunity/JoinCommunity";
-// import { Link } from "react-router-dom";
 import JoinCitySection from "../components/JoinCity/JoinCitySection";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import { EditContext } from "../contexts/editContext";
@@ -33,7 +31,6 @@ const Home = ({ contentEditable }) => {
     handleChangeText,
     fetchedTexts,
     setCurrentText,
-    currentText,
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -69,7 +66,6 @@ const Home = ({ contentEditable }) => {
     };
     getData();
   }, []);
-  console.log(homeData);
 
   //toggle feature box function
   const handleShowFeature = (index) => {
