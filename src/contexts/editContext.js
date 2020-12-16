@@ -96,11 +96,12 @@ const EditContextProvider = (props) => {
   const handleShowForm = (e) => {
     const parent = e.target.parentElement;
     const sibling = e.target.nextSibling;
+    
     if (editMode) {
       if (parent.classList.contains('headers')) {
         sibling ? setHeaderID(1) : setHeaderID(2);
         setShowTextForm(true)
-      } else if (currentPlace.id === e.target.name) {
+      } else if (parent.nodeName === "P") {
         setShowForm(true);
       }
     }

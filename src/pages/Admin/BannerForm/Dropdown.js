@@ -1,9 +1,8 @@
 import React from 'react';
 
-const Dropdown = ({ items, defaultValue }) => {
-console.log(defaultValue)
+const Dropdown = ({ items, defaultValue, styleChange }) => {
   return (
-    <select defaultValue={defaultValue}>
+    <select value={defaultValue} onChange={styleChange}>
       {items.map(({ label, value }) => (
     <option key={value} value={value} >
       {label}

@@ -1,7 +1,7 @@
 .title {
   position: absolute;
-  width: 187.6px;
-  height: 40px;
+  width: 250px;
+  height: 45px;
   left: 950px;
   top: 300px;
   background: #FFFFFF;
@@ -10,6 +10,7 @@
   justify-content: space-around;
   align-items: center;
 }
+
 .title select {
   font-family: Roboto;
   font-style: normal;
@@ -28,7 +29,7 @@
   transform: rotate(90deg);
   position: relative;
 }*/
-.title select::after {
+.title span:after {
   content: '\25be';
   /*display: inline-block;
   -webkit-transform: rotate(180deg);
@@ -38,7 +39,7 @@
   transform: rotate(180deg);*/
   position: relative;
   top: 5px;
-  padding: 5px;
+  /* padding: 5px; */
   font-size: 16px;
   color: #8F8E8E;
 }
