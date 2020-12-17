@@ -12,7 +12,7 @@ const BannerForm = () => {
 
   const {
     handleChange, handleSubmit, showForm, setShowForm,
-    currentPlace, showTextForm, setShowTextForm, headerID, handleSubmitText,
+    currentPlace, showTextForm, setShowTextForm, headerID,
     currentText
         } = useContext(EditContext);
   // manage display and position of popping-up forms

@@ -1,14 +1,19 @@
 import React from 'react';
+import style from './BannerForm.module.css';
 
 const Dropdown = ({ items, defaultValue, styleChange }) => {
   return (
-    <select value={defaultValue} onChange={styleChange}>
-      {items.map(({ label, value }) => (
-    <option key={value} value={value} >
-      {label}
-    </option>
-  ))}
-    </select>
+    <div className={style.selectdiv}>
+      <label>
+        <select value={defaultValue} onChange={styleChange}>
+          {items.map(({ label, value }) => (
+        <option key={value} value={value} >
+          {label}
+        </option>
+        ))};
+        </select>
+      </label>
+    </div>
   );
 }
 
