@@ -30,7 +30,7 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace,
     handleChangeText,
     fetchedTexts,
-    setCurrentText,
+    setCurrentText, editMode
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -124,7 +124,7 @@ const Home = ({ contentEditable }) => {
           />
         </div>
       </section>
-      {showFeature && (
+      {editMode && showFeature && (
         <div>
           <FeatureBox
             homeData={homeData}

@@ -3,12 +3,14 @@ import { FiSearch } from "react-icons/fi";
 import "./style.css";
 import JoinCityData from "../../Data/JoinCityData";
 
+
 export const SearchCity = () => {
   const [query, setQuery] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [joinCity, setJoinCity] = useState(JoinCityData);
   const [currentURL, setCurrentURL] = useState();
   const node = useRef();
+  
 
   useEffect(() => {
     fetchJoinCityData();
