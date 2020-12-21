@@ -3,6 +3,7 @@ import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
 import { sizes, weights, aligns } from './Data';
 import Dropdown from './Dropdown';
+import { FiCamera } from 'react-icons/fi';
 
 const BannerForm = () => {
   // values for drop-down lists
@@ -13,7 +14,7 @@ const BannerForm = () => {
   const {
     handleChange, handleSubmit, showForm, setShowForm,
     currentPlace, showTextForm, setShowTextForm, headerID,
-    currentText
+    currentText, editMode
         } = useContext(EditContext);
   // manage display and position of popping-up forms
   const formStyle = !showForm ? { display: "none" } : {};
@@ -57,8 +58,13 @@ const BannerForm = () => {
     setDefaultAlign(e.target.value)
   }
 
+  const loadPicture = () => {
+    
+  }
+
   return (
     <div>
+    <div className={edit.loadPicture} style={{display: !editMode ? "none" : ""}}onClick={loadPicture}><FiCamera /></div>
       {/*Start form for text headers edit on the banner*/}
     <div className={edit.title} style={formTextStyle}
     onDoubleClick={() => setShowTextForm(false)}

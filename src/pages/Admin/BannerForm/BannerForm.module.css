@@ -186,6 +186,15 @@ select::-ms-expand {
   pointer-events: none;
 }
 
+.loadPicture {
+  font-size: 64px;
+  color: #ffffff;
+  position: absolute;
+  top: 500px;
+  left: 400px;
+  cursor: pointer;
+}
+
 
 /*reset the default style of dropdown color*/
 input[type="color"] {

@@ -90,6 +90,9 @@ const EditContextProvider = (props) => {
 
   const handleEditMode = () => {
     setEditMode(!editMode);
+    [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
+      element.classList.add('edit-mode');
+  })
   }
 
 
