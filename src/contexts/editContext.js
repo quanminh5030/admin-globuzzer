@@ -84,8 +84,8 @@ const EditContextProvider = (props) => {
   const handleSubmitText = (e) => {
      e.preventDefault();
         firestore.collection('texts').doc(currentText.id).update(currentText);
-       // console.log('updated:', currentText.id)
-    // console.log(e.target)
+    //    console.log('updated:', currentText.id)
+    // console.log("saved...")
   }
 
   const handleEditMode = () => {

@@ -24,7 +24,7 @@ export const JoinCity = (props) => {
           backgroundImage: `url(${img})`,
           backgroundColor: isViewMore ? "#F24B6A" : null,
         }}
-        onClick={editMode && props.openForm}
+        onClick={props.openForm}
         key={id}
       >
         <p

@@ -7,7 +7,7 @@ const FeaturedArticle = (props) => {
   const {data} = props;
   const {title, description, url, img} = data;
   return (
-    <div className="article_container content-editable" onClick={editMode &&props.editArticle} style={editStyle}>
+    <div className="article_container content-editable" onClick={props.editArticle} style={editStyle}>
       <div className="content_container">
         <p id="article_title">{title}</p>
         <p id="article_description">{description}</p>
