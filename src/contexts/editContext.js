@@ -6,6 +6,7 @@ const EditContextProvider = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
+  const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [headerID, setHeaderID] = useState(null);
 
   const rawPlace = {text: '', color: '', link: ''};
@@ -95,6 +96,12 @@ const EditContextProvider = (props) => {
   })
   }
 
+  const showEditPictureForm = (e) => {
+    if (e.target.id === "camera") {
+      e.target.style.color = "#F35270";
+      setShowPhotoForm(true);
+    }
+  }
 
   const handleShowForm = (e) => {
     const parent = e.target.parentElement;
@@ -117,7 +124,7 @@ const EditContextProvider = (props) => {
       handleEditMode, editMode, editStyle, places,
       showForm, setShowForm, showTextForm, setShowTextForm,
       handleShowForm, currentPlace, setCurrentPlace, handleChangeText, headerID,
-      handleSubmitText, currentText, setCurrentText
+      handleSubmitText, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm
        }}
     >
       {props.children}

@@ -1,9 +1,10 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import "./style.css";
+import { EditContext } from "../../contexts/editContext";
 
 export const HomeValue = ({ homeData, handleShowFeature }) => {
   const [showEditMode, setShowEditMode] = useState(true);
-
+  const { editMode } = useContext(EditContext);
   useEffect(() => {
     document.body.addEventListener("click", onEditMode);
     return () => {
@@ -17,7 +18,7 @@ export const HomeValue = ({ homeData, handleShowFeature }) => {
   };
 
   const editedMode = () => {
-    if (!showEditMode) {
+    if (editMode && !showEditMode) {
       return {
         background: "#f4798933",
         borderRadius: "10px",
