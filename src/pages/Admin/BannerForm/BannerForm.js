@@ -22,8 +22,8 @@ const BannerForm = () => {
   const formTextStyle = !showTextForm ? { display: "none" }
             : {
                 position:'',
-                top: headerID === 1 ? '300px' : '400px',
-                left: '750px'
+                top: headerID === 1 ? '12%' : '30%',
+                left: '20%'
               };
   // set the default values for drop-down lists font size and weight
   const [defaultSize, setDefaultSize] = useState('');

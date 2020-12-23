@@ -15,6 +15,7 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
+import url from "../assets/Home_header.png";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -74,9 +75,10 @@ const Home = ({ contentEditable }) => {
 
   return (
     <div className="home-page">
-      <BannerForm />
       <LazyLoad>
-        <section className="section_header" id="section_header">
+        <section className="section_header" 
+        id="section_header" style={{backgroundImage: `url(${url})`}}>
+          <BannerForm />
           <div onClick={handleShowForm} className="headers">
             {fetchedTexts.map((t) => (
               <p

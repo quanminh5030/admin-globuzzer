@@ -10,6 +10,7 @@ const EditContextProvider = (props) => {
   const [headerID, setHeaderID] = useState(null);
 
   const rawPlace = {text: '', color: '', link: ''};
+  const rawBanner = {img: ''};
   const rawText = {
     content: '',
     style: {
@@ -25,6 +26,10 @@ const EditContextProvider = (props) => {
 
   const [places, setPlaces] = useState([]);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
+
+  const [banners, setBanners] = useState([]);
+  const [currentBanner, setCurrentBanner] = useState(rawBanner);
+  console.log(banners)
 
   // add red marks around editable content
   const editStyle =
@@ -63,6 +68,21 @@ const EditContextProvider = (props) => {
         // console.log('new place:', newPlace);
       });
       return () => getPlaces();
+  }, []);
+
+  // fetch 'banners' content from db
+  useEffect(() => {
+    const getBanners = firestore
+      .collection("banners")
+      .onSnapshot((snapshot) => {
+        const newBanner = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setBanners(newBanner);
+        // console.log('new place:', newPlace);
+      });
+      return () => getBanners();
   }, []);
 
   // change handler for place
