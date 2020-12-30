@@ -11,7 +11,7 @@ const Loading = () => (
 );
 
 export const JoinCity = (props) => {
-  const { editStyle } = useContext(EditContext);
+  const { editStyle, editMode } = useContext(EditContext);
   const { cityData, isViewMore, setMoreJoinCity } = props;
   const { name, img, members, id } = cityData;
 
@@ -24,7 +24,7 @@ export const JoinCity = (props) => {
           backgroundImage: `url(${img})`,
           backgroundColor: isViewMore ? "#F24B6A" : null,
         }}
-        onClick={props.openForm}
+        onClick={editMode ? props.openForm : undefined}
         key={id}
       >
         <p

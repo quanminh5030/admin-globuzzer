@@ -3,6 +3,8 @@ import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
 import { sizes, weights, aligns } from './Data';
 import Dropdown from './Dropdown';
+import { FiCamera } from 'react-icons/fi';
+import UploadImage from './UploadImage';
 
 const BannerForm = () => {
   // values for drop-down lists
@@ -12,16 +14,16 @@ const BannerForm = () => {
 
   const {
     handleChange, handleSubmit, showForm, setShowForm,
-    currentPlace, showTextForm, setShowTextForm, headerID, handleSubmitText,
-    currentText
+    currentPlace, showTextForm, setShowTextForm, headerID,
+    currentText, editMode, showEditPictureForm
         } = useContext(EditContext);
   // manage display and position of popping-up forms
   const formStyle = !showForm ? { display: "none" } : {};
   const formTextStyle = !showTextForm ? { display: "none" }
             : {
                 position:'',
-                top: headerID === 1 ? '300px' : '400px',
-                left: '750px'
+                top: headerID === 1 ? '12%' : '30%',
+                left: '20%'
               };
   // set the default values for drop-down lists font size and weight
   const [defaultSize, setDefaultSize] = useState('');
@@ -57,8 +59,13 @@ const BannerForm = () => {
     setDefaultAlign(e.target.value)
   }
 
+
   return (
     <div>
+    <div className={edit.loadPicture} style={{display: !editMode ? "none" : ""}}onClick={showEditPictureForm}><FiCamera id="camera"/></div>
+    {/*Start form for img upload*/}
+    <UploadImage />
+    {/*End form for img upload*/}
       {/*Start form for text headers edit on the banner*/}
     <div className={edit.title} style={formTextStyle}
     onDoubleClick={() => setShowTextForm(false)}

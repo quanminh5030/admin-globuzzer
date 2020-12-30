@@ -3,12 +3,15 @@ import { firestore } from "../utils/firebase.utils";
 export const EditContext = createContext();
 
 const EditContextProvider = (props) => {
+  const [fileUrl, setFileUrl] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
+  const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [headerID, setHeaderID] = useState(null);
 
   const rawPlace = {text: '', color: '', link: ''};
+  const rawBanner = {img: ''};
   const rawText = {
     content: '',
     style: {
@@ -25,6 +28,9 @@ const EditContextProvider = (props) => {
   const [places, setPlaces] = useState([]);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
 
+  const [banners, setBanners] = useState([]);
+  const [currentBanner, setCurrentBanner] = useState(rawBanner);
+ 
   // add red marks around editable content
   const editStyle =
     editMode ? {
@@ -36,18 +42,19 @@ const EditContextProvider = (props) => {
 
   // fetch 'texts' content from db
     useEffect(() => {
-    const getTexts = firestore
-      .collection("texts")
-      .onSnapshot((snapshot) => {
-        const newText = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setFetchedTexts(newText);
-        // console.log('new snapshot:', newText);
-      });
-      return () => getTexts();
+      const getTexts = firestore
+        .collection("texts")
+        .onSnapshot((snapshot) => {
+          const newText = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setFetchedTexts(newText);
+          // console.log('new snapshot:', newText);
+        });
+        return () => getTexts();
   }, []);
+
 
   // fetch 'places' content from db
     useEffect(() => {
@@ -63,6 +70,17 @@ const EditContextProvider = (props) => {
       });
       return () => getPlaces();
   }, []);
+
+  // fetch 'banners' content from db
+  useEffect(() => {
+    const fetchBanners = async () => {
+      const bannersCollection = await firestore.collection('banners').get();
+      setBanners(bannersCollection.docs.map(doc => {
+        return doc.data();
+      }))
+    }
+    fetchBanners();
+  }, [])
 
   // change handler for place
   const handleChange = (e) => {
@@ -84,14 +102,23 @@ const EditContextProvider = (props) => {
   const handleSubmitText = (e) => {
      e.preventDefault();
         firestore.collection('texts').doc(currentText.id).update(currentText);
-       // console.log('updated:', currentText.id)
-    // console.log(e.target)
+    //    console.log('updated:', currentText.id)
+    // console.log("saved...")
   }
 
   const handleEditMode = () => {
     setEditMode(!editMode);
+    [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
+      element.classList.add('edit-mode');
+  })
   }
 
+  const showEditPictureForm = (e) => {
+    if (e.target.id === "camera") {
+      e.target.style.color = "#F35270";
+      setShowPhotoForm(true);
+    }
+  }
 
   const handleShowForm = (e) => {
     const parent = e.target.parentElement;
@@ -114,7 +141,7 @@ const EditContextProvider = (props) => {
       handleEditMode, editMode, editStyle, places,
       showForm, setShowForm, showTextForm, setShowTextForm,
       handleShowForm, currentPlace, setCurrentPlace, handleChangeText, headerID,
-      handleSubmitText, currentText, setCurrentText
+      handleSubmitText, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners
        }}
     >
       {props.children}

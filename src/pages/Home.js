@@ -15,6 +15,7 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
+import url from "../assets/Home_header.png";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -30,7 +31,7 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace,
     handleChangeText,
     fetchedTexts,
-    setCurrentText,
+    setCurrentText, editMode, fileUrl, banners
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -74,9 +75,12 @@ const Home = ({ contentEditable }) => {
 
   return (
     <div className="home-page">
-      <BannerForm />
       <LazyLoad>
-        <section className="section_header" id="section_header">
+        {banners.map(banner => (
+          <section key={banner.img} className="section_header" 
+          id="section_header" style={{backgroundImage: `url(${banner.img})`}}>
+            {console.log(banner.img)}
+          <BannerForm />
           <div onClick={handleShowForm} className="headers">
             {fetchedTexts.map((t) => (
               <p
@@ -115,6 +119,7 @@ const Home = ({ contentEditable }) => {
             </p>
           </div>
         </section>
+        ))}
       </LazyLoad>
       <section className="section_value">
         <div>
@@ -124,7 +129,7 @@ const Home = ({ contentEditable }) => {
           />
         </div>
       </section>
-      {showFeature && (
+      {editMode && showFeature && (
         <div>
           <FeatureBox
             homeData={homeData}

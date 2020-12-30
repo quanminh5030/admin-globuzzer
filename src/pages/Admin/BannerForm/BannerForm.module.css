@@ -1,9 +1,8 @@
 .title {
-  position: absolute;
-  width: 250px;
+  width: 300px;
   height: 45px;
-  left: 950px;
-  top: 300px;
+  position: absolute;
+  /* position top left is setted with inline style */
   background: #FFFFFF;
   border-radius: 6px;
   display: flex;
@@ -16,7 +15,7 @@
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 21px;
+  /* line-height: 21px; */
   color: #8F8E8E;
 }
 /*.title span {
@@ -29,20 +28,13 @@
   transform: rotate(90deg);
   position: relative;
 }*/
-.title span:after {
+/* .title span:after {
   content: '\25be';
-  /*display: inline-block;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);*/
   position: relative;
   top: 5px;
-  /* padding: 5px; */
   font-size: 16px;
   color: #8F8E8E;
-}
+} */
 
 .arrowDown {
   position: absolute;
@@ -60,8 +52,8 @@
   position: absolute;
   width: 315px;
   height: 281px;
-  left: 50%;
-  top: 700px;
+  left: 40%;
+  top: 92%;
   background: #F8F8F8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -107,6 +99,15 @@
   cursor: pointer;
 }
 
+.command p:nth-child(1):hover {
+  background:white;
+  border-radius: 0 0 0 8px;
+}
+.command p:nth-child(2):hover {
+  background:white;
+  border-radius: 0 0 8px 0;
+}
+
 .formContainer {
   display: flex;
   justify-content:center;
@@ -149,19 +150,57 @@
   color: #A4A4A4;
 }
 
-select {
+/* drop-downs */
+
+.selectdiv select {
+  /* get rid of default style */
   border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-   appearance: none;
-   /*background-image: url("/images/down.png");*/
+  /* appearance: none; */
+  display: block;
+  width: 100%;
+  /* max-width: 320px; */
+  float: right;
+  margin: 0px 2px;
+  padding: 0px 10px;
+  font-size: 18px;
+  line-height: 1.75;
+  background-color: #ffffff;
+  background-image: none;
+  -ms-word-break: normal;
+  word-break: normal;
+}
+
+/* IE11 hide native button*/
+select::-ms-expand {
+  display: none;
+}
+
+.selectdiv {
+  position: relative;
+  float: left;
+  max-width: 100%;
+  /* margin: 0px auto; */
+}
+
+.selectdiv:after {
+  content: '\25be';
+  color: #6F6C6C;
+  /* font: normal normal normal 17px/1 FontAwesome; */
+  position:absolute;
+  right: 2px;
+  top: 10px;
+  pointer-events: none;
 }
 
 
-/*reset the default style of dropdowns*/
+
+/*reset the default style of dropdown color*/
 input[type="color"] {
   -webkit-appearance: none;
-  border: none;
+  border: 2px solid #C4C4C4;
+  border-radius: 50%;
   width: 17px;
   height: 17px;
 }
@@ -172,6 +211,91 @@ input[type="color"]::-webkit-color-swatch {
   border: none;
   border-radius: 50%;
 }
+
+.loadPicture {
+  font-size: 40px;
+  color: #ffffff;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  cursor: pointer;
+}
+
+/* image upload form */
+.imageUpload {
+  position: absolute;
+  width: 385px;
+  height: 247px;
+  top: 15%;
+  left: 8%;
+  background: #F8F8F8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.imageContent {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.imageUpload .info {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #979797;
+  margin-bottom: 20px;
+}
+.imageUpload .head {
+  margin-bottom: 30px;
+  color: #5F5E5E;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
+.imageUpload .uploadBtn {
+  margin-top: 20px;
+}
+/* Upload file button */
+.uploadBtn {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.uploadBtn input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  color: gray;
+  background-color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  cursor: pointer;
+  filter: brightness(110%);
+}
+
+
 
 
 

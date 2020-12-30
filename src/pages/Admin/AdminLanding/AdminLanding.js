@@ -40,7 +40,7 @@ const AdminLanding = () => {
                  </div>
                 )
                 }
-                {  <Home contentEditable={editMode ? true : false} editMode={editMode}/> }
+                {  <Home contentEditable={editMode ? true : false}/> }
             </section>
             </div>
           </div>
