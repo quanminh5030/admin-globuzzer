@@ -31,7 +31,7 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace,
     handleChangeText,
     fetchedTexts,
-    setCurrentText, editMode
+    setCurrentText, editMode, fileUrl, banners
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -76,8 +76,10 @@ const Home = ({ contentEditable }) => {
   return (
     <div className="home-page">
       <LazyLoad>
-        <section className="section_header" 
-        id="section_header" style={{backgroundImage: `url(${url})`}}>
+        {banners.map(banner => (
+          <section key={banner.img} className="section_header" 
+          id="section_header" style={{backgroundImage: `url(${banner.img})`}}>
+            {console.log(banner.img)}
           <BannerForm />
           <div onClick={handleShowForm} className="headers">
             {fetchedTexts.map((t) => (
@@ -117,6 +119,7 @@ const Home = ({ contentEditable }) => {
             </p>
           </div>
         </section>
+        ))}
       </LazyLoad>
       <section className="section_value">
         <div>

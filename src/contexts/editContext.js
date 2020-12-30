@@ -3,6 +3,7 @@ import { firestore } from "../utils/firebase.utils";
 export const EditContext = createContext();
 
 const EditContextProvider = (props) => {
+  const [fileUrl, setFileUrl] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
@@ -29,8 +30,7 @@ const EditContextProvider = (props) => {
 
   const [banners, setBanners] = useState([]);
   const [currentBanner, setCurrentBanner] = useState(rawBanner);
-  console.log(banners)
-
+ 
   // add red marks around editable content
   const editStyle =
     editMode ? {
@@ -42,18 +42,19 @@ const EditContextProvider = (props) => {
 
   // fetch 'texts' content from db
     useEffect(() => {
-    const getTexts = firestore
-      .collection("texts")
-      .onSnapshot((snapshot) => {
-        const newText = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setFetchedTexts(newText);
-        // console.log('new snapshot:', newText);
-      });
-      return () => getTexts();
+      const getTexts = firestore
+        .collection("texts")
+        .onSnapshot((snapshot) => {
+          const newText = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setFetchedTexts(newText);
+          // console.log('new snapshot:', newText);
+        });
+        return () => getTexts();
   }, []);
+
 
   // fetch 'places' content from db
     useEffect(() => {
@@ -72,18 +73,14 @@ const EditContextProvider = (props) => {
 
   // fetch 'banners' content from db
   useEffect(() => {
-    const getBanners = firestore
-      .collection("banners")
-      .onSnapshot((snapshot) => {
-        const newBanner = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setBanners(newBanner);
-        // console.log('new place:', newPlace);
-      });
-      return () => getBanners();
-  }, []);
+    const fetchBanners = async () => {
+      const bannersCollection = await firestore.collection('banners').get();
+      setBanners(bannersCollection.docs.map(doc => {
+        return doc.data();
+      }))
+    }
+    fetchBanners();
+  }, [])
 
   // change handler for place
   const handleChange = (e) => {
@@ -144,7 +141,7 @@ const EditContextProvider = (props) => {
       handleEditMode, editMode, editStyle, places,
       showForm, setShowForm, showTextForm, setShowTextForm,
       handleShowForm, currentPlace, setCurrentPlace, handleChangeText, headerID,
-      handleSubmitText, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm
+      handleSubmitText, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners
        }}
     >
       {props.children}

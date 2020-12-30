@@ -4,6 +4,7 @@ import edit from './BannerForm.module.css';
 import { sizes, weights, aligns } from './Data';
 import Dropdown from './Dropdown';
 import { FiCamera } from 'react-icons/fi';
+import UploadImage from './UploadImage';
 
 const BannerForm = () => {
   // values for drop-down lists
@@ -14,10 +15,9 @@ const BannerForm = () => {
   const {
     handleChange, handleSubmit, showForm, setShowForm,
     currentPlace, showTextForm, setShowTextForm, headerID,
-    currentText, editMode, showEditPictureForm, showPhotoForm, setShowPhotoForm
+    currentText, editMode, showEditPictureForm
         } = useContext(EditContext);
   // manage display and position of popping-up forms
-  const photoFormStyle = !showPhotoForm ? { display: "none" } : {};
   const formStyle = !showForm ? { display: "none" } : {};
   const formTextStyle = !showTextForm ? { display: "none" }
             : {
@@ -64,20 +64,7 @@ const BannerForm = () => {
     <div>
     <div className={edit.loadPicture} style={{display: !editMode ? "none" : ""}}onClick={showEditPictureForm}><FiCamera id="camera"/></div>
     {/*Start form for img upload*/}
-    <div className={edit.imageUpload} style={photoFormStyle}>
-      <div className={edit.imageContent}>
-        <p className={edit.head}>Image</p>
-        <p className={edit.info}>The size of the image should be maximum 500kb, and the format need to be PNG, JPG.</p>
-        <div className={edit.uploadBtn}>
-          <input type="file" onChange={(e) => console.log(e)} name="images" />
-          <button className={edit.btn}>Upload image</button>
-        </div>
-      </div>
-      <div className={edit.command}>
-      <p id="apply">Apply</p>
-      <p id="cancel" onClick={() => setShowPhotoForm(false)}>Cancel</p>
-      </div>
-    </div>
+    <UploadImage />
     {/*End form for img upload*/}
       {/*Start form for text headers edit on the banner*/}
     <div className={edit.title} style={formTextStyle}
