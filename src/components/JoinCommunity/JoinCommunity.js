@@ -33,7 +33,6 @@ export const JoinCommunity = () => {
           <track kind="captions" />
         </video>
       </div>
-
       <div className="join_info">
         <p id="join_title">Connect with expats and locals around the world</p>
         <p id="join_header">More than 180K expats and 32K members globally</p>

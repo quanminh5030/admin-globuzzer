@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './BannerForm.module.css';
+import style from './Dropdown.module.css';
 
 const Dropdown = ({ items, defaultValue, styleChange }) => {
   return (

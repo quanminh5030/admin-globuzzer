@@ -15,7 +15,6 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
-import url from "../assets/Home_header.png";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -27,11 +26,11 @@ const Home = ({ contentEditable }) => {
   const {
     editStyle,
     places,
-    handleShowForm,
+    showBannerForms,
     setCurrentPlace,
     handleChangeText,
     fetchedTexts,
-    setCurrentText, editMode, fileUrl, banners
+    setCurrentText, editMode, banners
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -79,9 +78,8 @@ const Home = ({ contentEditable }) => {
         {banners.map(banner => (
           <section key={banner.img} className="section_header" 
           id="section_header" style={{backgroundImage: `url(${banner.img})`}}>
-            {console.log(banner.img)}
           <BannerForm />
-          <div onClick={handleShowForm} className="headers">
+          <div onClick={showBannerForms} className="headers">
             {fetchedTexts.map((t) => (
               <p
                 key={t.id}
@@ -91,7 +89,7 @@ const Home = ({ contentEditable }) => {
                 style={{ ...editStyle, ...t.style }}
                 suppressContentEditableWarning="true"
                 onBlur={handleChangeText}
-                onClick={handleShowForm}
+                onClick={showBannerForms}
                 onFocus={getCurrentText}
               >
                 {t.content}
@@ -100,7 +98,7 @@ const Home = ({ contentEditable }) => {
           </div>
           <SearchCity />
           <div>
-            <p id="header_suggestion" onClick={handleShowForm}>
+            <p id="header_suggestion" onClick={showBannerForms}>
               Maybe{" "}
               {places.map((p) => (
                 <a

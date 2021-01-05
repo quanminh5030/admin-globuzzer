@@ -5,13 +5,13 @@ export const EditContext = createContext();
 const EditContextProvider = (props) => {
   const [fileUrl, setFileUrl] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showPlaceForm, setShowPlaceForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [headerID, setHeaderID] = useState(null);
+  const [viewMode, setViewMode] = useState(false);
 
   const rawPlace = {text: '', color: '', link: ''};
-  const rawBanner = {img: ''};
   const rawText = {
     content: '',
     style: {
@@ -29,17 +29,16 @@ const EditContextProvider = (props) => {
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
 
   const [banners, setBanners] = useState([]);
-  const [currentBanner, setCurrentBanner] = useState(rawBanner);
  
   // add red marks around editable content
   const editStyle =
     editMode ? {
-    border: "2px solid #F26678",
+    border: viewMode ? "none" : "2px solid #F26678",
     boxSizing: "border-box",
     borderRadius: "5px",
     padding: "8px"
     } : {};
-
+    
   // fetch 'texts' content from db
     useEffect(() => {
       const getTexts = firestore
@@ -54,7 +53,6 @@ const EditContextProvider = (props) => {
         });
         return () => getTexts();
   }, []);
-
 
   // fetch 'places' content from db
     useEffect(() => {
@@ -83,7 +81,7 @@ const EditContextProvider = (props) => {
   }, [])
 
   // change handler for place
-  const handleChange = (e) => {
+  const handleChangePlace = (e) => {
     const { name, value } = e.target;
     setCurrentPlace({...currentPlace, [name]: value});
   }
@@ -94,17 +92,20 @@ const EditContextProvider = (props) => {
       setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (collection, document) => (e) => {
     e.preventDefault();
-      firestore.collection('places').doc(currentPlace.id).update(currentPlace);
+      if(document.id) {firestore.collection(collection).doc(document.id).update(document)}
   }
 
-  const handleSubmitText = (e) => {
-     e.preventDefault();
-        firestore.collection('texts').doc(currentText.id).update(currentText);
-    //    console.log('updated:', currentText.id)
-    // console.log("saved...")
-  }
+  // const handleSubmitPlaces = (e) => {
+  //   e.preventDefault();
+  //     firestore.collection('places').doc(currentPlace.id).update(currentPlace);
+  // }
+
+  // const handleSubmitText = (e) => {
+  //    e.preventDefault();
+  //       firestore.collection('texts').doc(currentText.id).update(currentText);
+  // }
 
   const handleEditMode = () => {
     setEditMode(!editMode);
@@ -120,7 +121,7 @@ const EditContextProvider = (props) => {
     }
   }
 
-  const handleShowForm = (e) => {
+  const showBannerForms = (e) => {
     const parent = e.target.parentElement;
     const sibling = e.target.nextSibling;
     
@@ -129,19 +130,27 @@ const EditContextProvider = (props) => {
         sibling ? setHeaderID(1) : setHeaderID(2);
         setShowTextForm(true)
       } else if (parent.nodeName === "P") {
-        setShowForm(true);
+        setShowPlaceForm(true);
       }
     }
   }
+  const viewIt = () => {
+   
+      // setShowPlaceForm(false);
+      // setShowTextForm(false);
+      // setShowPhotoForm(false);
+      setViewMode(!viewMode);
+      setEditMode(!editMode);
 
+  }
   return (
     <EditContext.Provider
     value={{
-      fetchedTexts, handleChange, handleSubmit,
+      fetchedTexts, handleChangePlace, handleSubmit,
       handleEditMode, editMode, editStyle, places,
-      showForm, setShowForm, showTextForm, setShowTextForm,
-      handleShowForm, currentPlace, setCurrentPlace, handleChangeText, headerID,
-      handleSubmitText, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners
+      showPlaceForm, setShowPlaceForm, showTextForm, setShowTextForm,
+      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, viewIt,
+      viewMode
        }}
     >
       {props.children}
