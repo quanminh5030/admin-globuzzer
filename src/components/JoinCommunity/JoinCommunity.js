@@ -12,7 +12,7 @@ import Chloe from "../../assets/Chloe.png";
 import Jonathan from "../../assets/Jonathan.png";
 import Chloé from "../../assets/Asya.png";
 
-export const JoinCommunity = () => {
+export const JoinCommunity = ({ texts, editStyle, contentEditable }) => {
   const { width } = GetWindowDimension();
   const Join = () => (
     <section className="join">
@@ -34,8 +34,21 @@ export const JoinCommunity = () => {
         </video>
       </div>
       <div className="join_info">
-        <p id="join_title">Connect with expats and locals around the world</p>
-        <p id="join_header">More than 180K expats and 32K members globally</p>
+        {texts.map(t => (
+          <p
+          key={t.id}
+          id={t.cssid}
+          name={t.id}
+          contentEditable={contentEditable}
+          style={{ ...editStyle, ...t.style }}
+          suppressContentEditableWarning="true"
+          //onBlur={handleChangeText}
+          //onClick={showBannerForms}
+          //onFocus={getCurrentText}
+        >
+          {t.content}
+        </p>
+        ))}
         <div className="join_member_list">
           {MemberNearYouData.map((memberData, index) => (
             <MemberNearYou memberData={memberData} key={index} />

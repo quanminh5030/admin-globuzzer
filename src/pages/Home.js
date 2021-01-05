@@ -15,6 +15,7 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
+import JoinCommunityForm from "./Admin/JoinCommunityForm/JoinCommunityForm";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -30,7 +31,7 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace,
     handleChangeText,
     fetchedTexts,
-    setCurrentText, editMode, banners
+    setCurrentText, editMode, banners, fetchedCommunityTexts, showCommunityForms
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -152,7 +153,8 @@ const Home = ({ contentEditable }) => {
         </div>
         <JoinCitySection />
       </section>
-      <JoinCommunity />
+      <JoinCommunityForm />
+      <JoinCommunity texts={fetchedCommunityTexts} editStyle={editStyle} contentEditable={contentEditable} onClick={showCommunityForms}/>
       <section className="featured_articles" id="featured_articles">
         <SectionHeader header="Featured articles" />
         <FeaturedArticlePage />

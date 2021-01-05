@@ -7,9 +7,9 @@ const EditContextProvider = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
+  const [showCommunityForm, setShowCommunitytForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [headerID, setHeaderID] = useState(null);
-  const [viewMode, setViewMode] = useState(false);
 
   const rawPlace = {text: '', color: '', link: ''};
   const rawText = {
@@ -25,6 +25,9 @@ const EditContextProvider = (props) => {
   const [fetchedTexts, setFetchedTexts] = useState([]);
   const [currentText, setCurrentText] = useState(rawText);
 
+  const [fetchedCommunityTexts, setFetchedCommunityTexts] = useState([]);
+  const [currentCommunityText, setCurrentCommunityText] = useState(rawText);
+
   const [places, setPlaces] = useState([]);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
 
@@ -33,13 +36,13 @@ const EditContextProvider = (props) => {
   // add red marks around editable content
   const editStyle =
     editMode ? {
-    border: viewMode ? "none" : "2px solid #F26678",
+    border: "2px solid #F26678",
     boxSizing: "border-box",
     borderRadius: "5px",
     padding: "8px"
     } : {};
     
-  // fetch 'texts' content from db
+  // fetch banner 'texts' content from db
     useEffect(() => {
       const getTexts = firestore
         .collection("texts")
@@ -53,6 +56,20 @@ const EditContextProvider = (props) => {
         });
         return () => getTexts();
   }, []);
+
+  // fetch comunnity 'texts' content from db
+  useEffect(() => {
+    const getTexts = firestore
+      .collection("community")
+      .onSnapshot((snapshot) => {
+        const newText = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setFetchedCommunityTexts(newText);
+      });
+      return () => getTexts();
+}, []);
 
   // fetch 'places' content from db
     useEffect(() => {
@@ -86,11 +103,16 @@ const EditContextProvider = (props) => {
     setCurrentPlace({...currentPlace, [name]: value});
   }
 
-  // change handler for text
+  // change handler for banner text
   const handleChangeText = (e) => {
      // const { name, value } = e.target;
       setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
   }
+
+  // change handler for community text
+  const handleChangeCommunityText = (e) => {
+    setCurrentCommunityText({...currentCommunityText, content: e.target.innerText, id: e.target.id});
+ }
 
   const handleSubmit = (collection, document) => (e) => {
     e.preventDefault();
@@ -108,7 +130,7 @@ const EditContextProvider = (props) => {
   // }
 
   const handleEditMode = () => {
-    setEditMode(!editMode);
+    setEditMode(true);
     [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
       element.classList.add('edit-mode');
   })
@@ -134,23 +156,23 @@ const EditContextProvider = (props) => {
       }
     }
   }
-  const viewIt = () => {
-   
-      // setShowPlaceForm(false);
-      // setShowTextForm(false);
-      // setShowPhotoForm(false);
-      setViewMode(!viewMode);
-      setEditMode(!editMode);
 
+  const showCommunityForms = (e) => {
+    console.log(e.target)
+    const parent = e.target.parentElement;
+    const sibling = e.target.nextSibling;
+    console.log(parent, sibling);
+    setShowCommunitytForm(!showCommunityForm);
+    console.log(showCommunityForm)
   }
+  
   return (
     <EditContext.Provider
     value={{
       fetchedTexts, handleChangePlace, handleSubmit,
-      handleEditMode, editMode, editStyle, places,
+      handleEditMode, editMode, setEditMode, editStyle, places,
       showPlaceForm, setShowPlaceForm, showTextForm, setShowTextForm,
-      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, viewIt,
-      viewMode
+      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms
        }}
     >
       {props.children}
