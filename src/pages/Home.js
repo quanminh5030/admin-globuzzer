@@ -153,8 +153,9 @@ const Home = ({ contentEditable }) => {
         </div>
         <JoinCitySection />
       </section>
-      <JoinCommunityForm />
-      <JoinCommunity texts={fetchedCommunityTexts} editStyle={editStyle} contentEditable={contentEditable} onClick={showCommunityForms}/>
+      
+      <JoinCommunity texts={fetchedCommunityTexts} editStyle={editStyle} contentEditable={contentEditable} showCommunityForms={showCommunityForms}/>
+      {/* <JoinCommunityForm /> */}
       <section className="featured_articles" id="featured_articles">
         <SectionHeader header="Featured articles" />
         <FeaturedArticlePage />

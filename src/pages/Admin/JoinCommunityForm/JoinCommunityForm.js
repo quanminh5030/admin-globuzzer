@@ -4,16 +4,16 @@ import TextEdit from '../../../components/TextEdit/TextEdit';
 
 const JoinCommunityForm = () => {
   const { 
-    showCommunityForm, currentCommunityText, showCommunityForms
+    showTextCommunityForm, currentCommunityText, textCommunityID
         } = useContext(EditContext);
-  const formTextStyle = !showCommunityForm ? { display: "none" }
+        
+  const formTextStyle = !showTextCommunityForm ? { display: "none" }
             : {
-                position:'relative',
-                top: '30%',
-                left: '20%'
+                top: textCommunityID === 'join_title' ? '1%' : '35%',
+                left: textCommunityID === 'join_title' ? '50%' : '20%'
               };
   return (
-    <div onClick={showCommunityForms}>
+    <div>
       <TextEdit currentText={currentCommunityText} formTextStyle={formTextStyle} />
     </div>
   );

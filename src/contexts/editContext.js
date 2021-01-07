@@ -7,9 +7,10 @@ const EditContextProvider = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
-  const [showCommunityForm, setShowCommunitytForm] = useState(false);
+  const [showTextCommunityForm, setShowTextCommunitytForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [headerID, setHeaderID] = useState(null);
+  const [textCommunityID, setTextCommunityID] = useState(null);
 
   const rawPlace = {text: '', color: '', link: ''};
   const rawText = {
@@ -158,12 +159,10 @@ const EditContextProvider = (props) => {
   }
 
   const showCommunityForms = (e) => {
-    console.log(e.target)
-    const parent = e.target.parentElement;
-    const sibling = e.target.nextSibling;
-    console.log(parent, sibling);
-    setShowCommunitytForm(!showCommunityForm);
-    console.log(showCommunityForm)
+    if (editMode) {
+      setTextCommunityID(e.target.id);
+      setShowTextCommunitytForm(true);
+    }
   }
   
   return (
@@ -172,7 +171,7 @@ const EditContextProvider = (props) => {
       fetchedTexts, handleChangePlace, handleSubmit,
       handleEditMode, editMode, setEditMode, editStyle, places,
       showPlaceForm, setShowPlaceForm, showTextForm, setShowTextForm,
-      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms
+      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, textCommunityID
        }}
     >
       {props.children}

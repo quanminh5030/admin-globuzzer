@@ -11,8 +11,9 @@ import Gunjan from "../../assets/Gunjan.png";
 import Chloe from "../../assets/Chloe.png";
 import Jonathan from "../../assets/Jonathan.png";
 import Chloé from "../../assets/Asya.png";
+import JoinCommunityForm from "../../pages/Admin/JoinCommunityForm/JoinCommunityForm";
 
-export const JoinCommunity = ({ texts, editStyle, contentEditable }) => {
+export const JoinCommunity = ({ texts, editStyle, contentEditable, showCommunityForms }) => {
   const { width } = GetWindowDimension();
   const Join = () => (
     <section className="join">
@@ -34,6 +35,7 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable }) => {
         </video>
       </div>
       <div className="join_info">
+        <JoinCommunityForm />
         {texts.map(t => (
           <p
           key={t.id}
@@ -43,7 +45,7 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable }) => {
           style={{ ...editStyle, ...t.style }}
           suppressContentEditableWarning="true"
           //onBlur={handleChangeText}
-          //onClick={showBannerForms}
+          onClick={showCommunityForms}
           //onFocus={getCurrentText}
         >
           {t.content}
