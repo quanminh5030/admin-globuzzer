@@ -15,7 +15,6 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
-import url from "../assets/Home_header.png";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -27,11 +26,11 @@ const Home = ({ contentEditable }) => {
   const {
     editStyle,
     places,
-    handleShowForm,
+    showBannerForms,
     setCurrentPlace,
     handleChangeText,
     fetchedTexts,
-    setCurrentText, editMode, fileUrl, banners
+    setCurrentText, editMode, banners, fetchedCommunityTexts, setCurrentCommunityText
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -42,12 +41,19 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace(newPlace[0]);
   };
 
-  // select the clicked 'text'
+  // select the clicked 'text' on banner
   const getCurrentText = (e) => {
     const newText = fetchedTexts.filter((text) => {
       return text.id === e.target.id;
     });
     setCurrentText(newText[0]);
+  };
+  // select the clicked 'text' on join community
+  const getCurrentCommunityText = (e) => {
+    const newText = fetchedCommunityTexts.filter((text) => {
+      return text.id === e.target.id;
+    });
+    setCurrentCommunityText(newText[0]);
   };
 
   //fetching features data from firebase firestore
@@ -79,9 +85,8 @@ const Home = ({ contentEditable }) => {
         {banners.map(banner => (
           <section key={banner.img} className="section_header" 
           id="section_header" style={{backgroundImage: `url(${banner.img})`}}>
-            {console.log(banner.img)}
           <BannerForm />
-          <div onClick={handleShowForm} className="headers">
+          <div onClick={showBannerForms} className="headers">
             {fetchedTexts.map((t) => (
               <p
                 key={t.id}
@@ -91,7 +96,7 @@ const Home = ({ contentEditable }) => {
                 style={{ ...editStyle, ...t.style }}
                 suppressContentEditableWarning="true"
                 onBlur={handleChangeText}
-                onClick={handleShowForm}
+                onClick={showBannerForms}
                 onFocus={getCurrentText}
               >
                 {t.content}
@@ -100,7 +105,7 @@ const Home = ({ contentEditable }) => {
           </div>
           <SearchCity />
           <div>
-            <p id="header_suggestion" onClick={handleShowForm}>
+            <p id="header_suggestion" onClick={showBannerForms}>
               Maybe{" "}
               {places.map((p) => (
                 <a
@@ -154,7 +159,12 @@ const Home = ({ contentEditable }) => {
         </div>
         <JoinCitySection />
       </section>
-      <JoinCommunity />
+      <JoinCommunity 
+        texts={fetchedCommunityTexts} 
+        editStyle={editStyle} 
+        contentEditable={contentEditable} 
+        getCurrentCommunityText={getCurrentCommunityText} 
+      />
       <section className="featured_articles" id="featured_articles">
         <SectionHeader header="Featured articles" />
         <FeaturedArticlePage />

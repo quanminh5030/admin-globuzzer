@@ -432,6 +432,7 @@
     justify-content: center;
     margin: 50px;
     margin-top: 179px;
+    position: relative;
 }
 
 .join_info {
@@ -440,27 +441,21 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 }
 
-#join_title {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 48px;
+.join_title {
     line-height: 64px;
-    color: #555555;
     margin-bottom: 69px;
     width: 847px;
-    height: 106px;
-    text-align: left;
 }
 
-#join_header {
+.join_header {
     margin-bottom: 29px;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     line-height: 36px;
-    color: #555555;
 }
 
 .join_button {

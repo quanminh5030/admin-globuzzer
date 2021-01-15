@@ -24,7 +24,7 @@ const JoinCitySection = () => {
             ...doc.data(),
           }));
           setJoinCity(newCity);
-          console.log(newCity);
+          // console.log(newCity);
         });
         return () => unsubscribe();
     }, []);

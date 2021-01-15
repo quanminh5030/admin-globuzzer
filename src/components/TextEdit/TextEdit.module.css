@@ -1,0 +1,31 @@
+.title {
+  width: 300px;
+  height: 45px;
+  position: absolute;
+  /* position top left is setted with inline style */
+  background: #FFFFFF;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title select {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  /* line-height: 21px; */
+  color: #8F8E8E;
+}
+.arrowDown {
+  position: absolute;
+  top: 100%;
+  right: 40%;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 26px solid #ffffff;
+
+}

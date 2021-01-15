@@ -23,7 +23,7 @@ const AuxServiceSection = () => {
     },[]);
 
     const displayEditForm = (data) => {
-        setServices(true);
+        setDisplay(true);
         setCurrentService({
             id: data.id,
             des: data.des,
@@ -38,13 +38,19 @@ const AuxServiceSection = () => {
         firestore.collection("services").doc(currentService.id).update(updatedService);
     });
 
+    const deleteService = (data) => {
+        setDisplay(false);
+        // firestore.collection("services").doc(data).delete();
+        console.log("do you want to delete this???:",data)
+    }
+    
     return (
      <div className="aux_list">
           {services.map((data) => (
-            <AuxService key={data.id} data={data} editService={()=>displayEditForm(data)} />
+            <AuxService key={data.id} data={data} editService={()=> displayEditForm(data)} />
           ))}
           {display && <div>
-            <ServiceForm setDisplay={setDisplay} currentService={currentService} updateService={updateService}/>
+            <ServiceForm setDisplay={setDisplay} currentService={currentService} updateService={updateService} deleteService={deleteService} />
         </div>
         }
         </div>

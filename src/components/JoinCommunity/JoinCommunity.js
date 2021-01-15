@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { MemberNearYou } from "../MemberNearYou/MemberNearYou";
@@ -11,32 +11,62 @@ import Gunjan from "../../assets/Gunjan.png";
 import Chloe from "../../assets/Chloe.png";
 import Jonathan from "../../assets/Jonathan.png";
 import Chloé from "../../assets/Asya.png";
+import JoinCommunityForm from "../../pages/Admin/JoinCommunityForm/JoinCommunityForm";
+import { EditContext } from "../../contexts/editContext";
 
-export const JoinCommunity = () => {
+export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCommunityText }) => {
   const { width } = GetWindowDimension();
+  const { handleChangeCommunityText, showCommunityForms, editMode, videos } = useContext(EditContext);
+  const [showPhotoForm, setShowPhotoForm] = useState(false);
+
+  const showForm = () => {
+    return editMode ? setShowPhotoForm(true) : undefined;
+  }
+  
   const Join = () => (
     <section className="join">
-      <div className="join_video_container">
+      <div className="join_video_container" onClick={showForm}>
+      {videos.map(video => (
         <video
           width="100%"
           autoPlay
           playsInline
           loop
           muted
-          poster="https://www.mightynetworks.com/wp-content/themes/_mn2018/img/video-home-page-poster-new.png"
+          poster={video.img}
           className="video"
+          style={editStyle}
         >
-          <source
+
+          {/* <source
             src="https://staging1.globuzzer.com/globuzzer_Liu/pages/vid.mp4"
             type="video/mp4"
-          />
+          /> */}
           <track kind="captions" />
         </video>
+        ))}
       </div>
-
       <div className="join_info">
-        <p id="join_title">Connect with expats and locals around the world</p>
-        <p id="join_header">More than 180K expats and 32K members globally</p>
+        <JoinCommunityForm 
+          showPhotoForm={showPhotoForm} 
+          setShowPhotoForm={setShowPhotoForm} 
+        />
+        {texts.map(t => (
+          <p
+          key={t.id}
+          className={t.cssid}
+          id={t.id}
+          name={t.id}
+          contentEditable={contentEditable}
+          style={{ ...editStyle, ...t.style }}
+          suppressContentEditableWarning="true"
+          onBlur={handleChangeCommunityText}
+          onClick={showCommunityForms}
+          onFocus={getCurrentCommunityText}
+        >
+          {t.content}
+        </p>
+        ))}
         <div className="join_member_list">
           {MemberNearYouData.map((memberData, index) => (
             <MemberNearYou memberData={memberData} key={index} />

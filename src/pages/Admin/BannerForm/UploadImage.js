@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import edit from './BannerForm.module.css';
 import { EditContext } from '../../../contexts/editContext';
 import { app, firestore } from '../../../utils/firebase.utils';
