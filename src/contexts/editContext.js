@@ -33,7 +33,8 @@ const EditContextProvider = (props) => {
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
 
   const [banners, setBanners] = useState([]);
- 
+  const [videos, setVideos] = useState([]);
+
   // add red marks around editable content
   const editStyle =
     editMode ? {
@@ -53,7 +54,6 @@ const EditContextProvider = (props) => {
             ...doc.data(),
           }));
           setFetchedTexts(newText);
-          // console.log('new snapshot:', newText);
         });
         return () => getTexts();
   }, []);
@@ -93,9 +93,22 @@ const EditContextProvider = (props) => {
       const bannersCollection = await firestore.collection('banners').get();
       setBanners(bannersCollection.docs.map(doc => {
         return doc.data();
-      }))
+      }));
     }
     fetchBanners();
+  }, [])
+
+  // fetch 'videos' content from db
+  useEffect(() => {
+    const fetchVideos = firestore
+    .collection('video')
+    .onSnapshot((snapshot) => {
+      const newVideo = snapshot.docs.map((doc) => ({
+        ...doc.data()
+      }));
+      setVideos(newVideo);
+    });
+    return () => fetchVideos();
   }, [])
 
   // change handler for place
@@ -120,16 +133,6 @@ const EditContextProvider = (props) => {
       if(document.id) {firestore.collection(collection).doc(document.id).update(document)}
   }
 
-  // const handleSubmitPlaces = (e) => {
-  //   e.preventDefault();
-  //     firestore.collection('places').doc(currentPlace.id).update(currentPlace);
-  // }
-
-  // const handleSubmitText = (e) => {
-  //    e.preventDefault();
-  //       firestore.collection('texts').doc(currentText.id).update(currentText);
-  // }
-
   const handleEditMode = () => {
     setEditMode(true);
     [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
@@ -147,7 +150,6 @@ const EditContextProvider = (props) => {
   const showBannerForms = (e) => {
     const parent = e.target.parentElement;
     const sibling = e.target.nextSibling;
-    
     if (editMode) {
       if (parent.classList.contains('headers')) {
         sibling ? setHeaderID(1) : setHeaderID(2);
@@ -160,8 +162,8 @@ const EditContextProvider = (props) => {
 
   const showCommunityForms = (e) => {
     if (editMode) {
-      setTextCommunityID(e.target.id);
-      setShowTextCommunitytForm(true);
+      setTextCommunityID(e.target.classList.value);
+      setShowTextCommunitytForm(true); 
     }
   }
   
@@ -171,7 +173,7 @@ const EditContextProvider = (props) => {
       fetchedTexts, handleChangePlace, handleSubmit,
       handleEditMode, editMode, setEditMode, editStyle, places,
       showPlaceForm, setShowPlaceForm, showTextForm, setShowTextForm,
-      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, textCommunityID
+      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, textCommunityID, setCurrentCommunityText, handleChangeCommunityText, videos
        }}
     >
       {props.children}

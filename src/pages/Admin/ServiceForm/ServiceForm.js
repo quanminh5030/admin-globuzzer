@@ -1,7 +1,7 @@
 import React, { useEffect , useState} from 'react';
 import styles from './ServiceForm.module.css';
 
-const ServiceForm = ({setDisplay, currentService, updateService}) => {
+const ServiceForm = ({setDisplay, currentService, updateService, deleteService}) => {
     const [data, setData] = useState(currentService);
 
     useEffect(()=>{
@@ -19,25 +19,30 @@ const ServiceForm = ({setDisplay, currentService, updateService}) => {
         console.log("submit passed the id and item", data);
         updateService({currentService}, data);
     }; 
+
+    const showWarning = () => {
+        deleteService(data);
+    }
     return (
         <div className={styles.wrapper}>
-            <p className={styles.header}>Articles</p>
+            <p className={styles.header}>Service Card</p>
             <form className={styles.container} >
                     <div className={styles.fields} >
-                    <label>
-                        Image
-                        <input type="text" name="logo" value={data.logo} onChange={inputHandler} />
+                    <label><span>
+                        Image<span className={styles.smallText}>(Image has to be below 200 KB and PNG/JPG format.)</span></span>
                     </label>
+                        <input type="submit" name="logo" value="Upload image" onChange={inputHandler} />
                     <label>
                         URL
-                        <input type="text" name="link" value={data.link} onChange={inputHandler}/>
                     </label>
+                        <input type="text" name="link" value={data.link} onChange={inputHandler}/>
+                    
                     <label>
                         Text
-                        <input type="text" name="des" value={data.des} onChange={inputHandler}/>
                     </label>
+                        <textarea id="des" name="des" value={data.des} onChange={inputHandler}/>
                     </div> 
-                    <button className={styles.deleteBtn}>Delete the service!</button>
+                    <button className={styles.deleteBtn} onClick={showWarning}>Delete the service!</button>
                 </form>
                 <div className={styles.buttons}>
                         <button type="submit" onClick={submitService}>Apply</button>

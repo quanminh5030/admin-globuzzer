@@ -42,18 +42,15 @@ const TextEdit = ({ currentText, formTextStyle }) => {
     <div className={edit.title} style={formTextStyle}>
     <div className={edit.arrowDown}></div>
       <span>
-      <Dropdown items={fontSizes} defaultValue={defaultSize} styleChange={handleSizeChange}/>
+        <Dropdown items={fontSizes} defaultValue={defaultSize} styleChange={handleSizeChange}/>
       </span>
       <span>
-      <Dropdown items={fontWeights} defaultValue={defaultWeight} styleChange={handleWeightChange}/>
+        <Dropdown items={fontWeights} defaultValue={defaultWeight} styleChange={handleWeightChange}/>
       </span>
       <form>
         <input type="color" value={defaultColor} name="style.color" onChange={handleColorChange}/>
       </form>
-      {/* <img src="/images/sizer.png" alt="" /> */}
-      
-      <Dropdown items={textAligns} defaultValue={defaultAlign} styleChange={handleAlignChange}/>
-    
+        <Dropdown items={textAligns} defaultValue={defaultAlign} styleChange={handleAlignChange}/>
     </div>
   );
 };

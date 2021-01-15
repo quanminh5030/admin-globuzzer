@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
 import { FiCamera } from 'react-icons/fi';
@@ -27,9 +27,7 @@ const BannerForm = () => {
     {/*Start form for img upload*/}
     <UploadImage />
     {/*End form for img upload*/}
-      {/*Start form for text headers edit on the banner*/}
     <TextEdit currentText={currentText} formTextStyle={formTextStyle} />
-  {/*END form for text headers edit on the banner*/}
     {/*Start forms for city place edit on the banner*/}
     <div className={edit.place} style={formPlaceStyle}>
       <p className={edit.head}>Place</p>

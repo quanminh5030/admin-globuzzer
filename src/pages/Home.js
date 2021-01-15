@@ -15,7 +15,6 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
-import JoinCommunityForm from "./Admin/JoinCommunityForm/JoinCommunityForm";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -31,7 +30,7 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace,
     handleChangeText,
     fetchedTexts,
-    setCurrentText, editMode, banners, fetchedCommunityTexts, showCommunityForms
+    setCurrentText, editMode, banners, fetchedCommunityTexts, setCurrentCommunityText
   } = useContext(EditContext);
 
   // select the clicked 'place'
@@ -42,12 +41,19 @@ const Home = ({ contentEditable }) => {
     setCurrentPlace(newPlace[0]);
   };
 
-  // select the clicked 'text'
+  // select the clicked 'text' on banner
   const getCurrentText = (e) => {
     const newText = fetchedTexts.filter((text) => {
       return text.id === e.target.id;
     });
     setCurrentText(newText[0]);
+  };
+  // select the clicked 'text' on join community
+  const getCurrentCommunityText = (e) => {
+    const newText = fetchedCommunityTexts.filter((text) => {
+      return text.id === e.target.id;
+    });
+    setCurrentCommunityText(newText[0]);
   };
 
   //fetching features data from firebase firestore
@@ -153,9 +159,12 @@ const Home = ({ contentEditable }) => {
         </div>
         <JoinCitySection />
       </section>
-      
-      <JoinCommunity texts={fetchedCommunityTexts} editStyle={editStyle} contentEditable={contentEditable} showCommunityForms={showCommunityForms}/>
-      {/* <JoinCommunityForm /> */}
+      <JoinCommunity 
+        texts={fetchedCommunityTexts} 
+        editStyle={editStyle} 
+        contentEditable={contentEditable} 
+        getCurrentCommunityText={getCurrentCommunityText} 
+      />
       <section className="featured_articles" id="featured_articles">
         <SectionHeader header="Featured articles" />
         <FeaturedArticlePage />
