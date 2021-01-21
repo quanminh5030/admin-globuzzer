@@ -7,10 +7,11 @@ const EditContextProvider = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
   const [showTextForm, setShowTextForm] = useState(false);
-  const [showTextCommunityForm, setShowTextCommunitytForm] = useState(false);
+  const [showTextCommunityForm, setShowTextCommunityForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [headerID, setHeaderID] = useState(null);
   const [textCommunityID, setTextCommunityID] = useState(null);
+  const [coord, setCoord] = useState({X: null, Y: null});
 
   const rawPlace = {text: '', color: '', link: ''};
   const rawText = {
@@ -43,7 +44,11 @@ const EditContextProvider = (props) => {
     borderRadius: "5px",
     padding: "8px"
     } : {};
-    
+  
+  //capture X Y coordinates of the click
+  const getCoordinates = (e) => {
+    setCoord({X:e.clientX, Y:e.clientY});
+  }
   // fetch banner 'texts' content from db
     useEffect(() => {
       const getTexts = firestore
@@ -130,7 +135,9 @@ const EditContextProvider = (props) => {
 
   const handleSubmit = (collection, document) => (e) => {
     e.preventDefault();
-      if(document.id) {firestore.collection(collection).doc(document.id).update(document)}
+      if(document.id) {firestore.collection(collection).doc(document.id).update(document);
+        console.log(document.id, "saved to db")
+      }
   }
 
   const handleEditMode = () => {
@@ -163,7 +170,7 @@ const EditContextProvider = (props) => {
   const showCommunityForms = (e) => {
     if (editMode) {
       setTextCommunityID(e.target.classList.value);
-      setShowTextCommunitytForm(true); 
+      setShowTextCommunityForm(true); 
     }
   }
   
@@ -173,7 +180,7 @@ const EditContextProvider = (props) => {
       fetchedTexts, handleChangePlace, handleSubmit,
       handleEditMode, editMode, setEditMode, editStyle, places,
       showPlaceForm, setShowPlaceForm, showTextForm, setShowTextForm,
-      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, textCommunityID, setCurrentCommunityText, handleChangeCommunityText, videos
+      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, setShowTextCommunityForm, textCommunityID, setCurrentCommunityText, handleChangeCommunityText, videos, getCoordinates, coord
        }}
     >
       {props.children}

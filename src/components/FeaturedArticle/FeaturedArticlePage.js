@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import FeaturedArticle from "./FeaturedArticle";
 import { firestore } from "../../utils/firebase.utils";
 import "../../css/Home.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import ArticleForm from '../../pages/Admin/ArticleForm/ArticleForm';
+import { EditContext } from "../../contexts/editContext";
+
 const FeaturedArticlePage = () => {
   const [articles, setArticles] = useState([]);
   const [show, setShow] = useState(false);
@@ -11,6 +13,7 @@ const FeaturedArticlePage = () => {
     {id: null, description:"", img:"", title:"", url:""},
   ]
   const [currentArticle, setCurrentArticle] = useState(initialArticleState);
+  const { getCoordinates, coord } = useContext(EditContext);
   useEffect(() => {
     const unsubscribe = firestore
       .collection("articles")
@@ -43,9 +46,9 @@ const FeaturedArticlePage = () => {
   });
 
   return (
-    <div>
+    <div onClick={getCoordinates} style={{position: 'relative'}}>
       {articles.map((data) => (
-        <FeaturedArticle key={data.id} data={data} editArticle={()=>openEditForm(data)}/>
+        <FeaturedArticle key={data.id} data={data} editArticle={()=>openEditForm(data)} />
       ))}
       <div className="featured_articles_more">
         <a
@@ -57,7 +60,7 @@ const FeaturedArticlePage = () => {
         <MdKeyboardArrowRight className="featured_articles_more_icon" />
       </div>
       {show && <div>
-        <ArticleForm setShow={setShow} currentArticle={currentArticle} updateArticle={updateArticle}/>
+        <ArticleForm setShow={setShow} currentArticle={currentArticle} updateArticle={updateArticle} coord={coord}/>
         </div>}
     </div>
   );

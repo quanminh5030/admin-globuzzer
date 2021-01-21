@@ -9,7 +9,7 @@ const BannerForm = () => {
 
   const {
     handleChangePlace, handleSubmit, showPlaceForm, setShowPlaceForm,
-    currentPlace, showTextForm, headerID,
+    currentPlace, showTextForm, setShowTextForm, headerID,
     currentText, editMode, showEditPictureForm
         } = useContext(EditContext);
   // manage display and position of popping-up forms
@@ -27,7 +27,7 @@ const BannerForm = () => {
     {/*Start form for img upload*/}
     <UploadImage />
     {/*End form for img upload*/}
-    <TextEdit currentText={currentText} formTextStyle={formTextStyle} />
+    <TextEdit currentText={currentText} formTextStyle={formTextStyle} showForm={setShowTextForm} save={handleSubmit('texts', currentText)}/>
     {/*Start forms for city place edit on the banner*/}
     <div className={edit.place} style={formPlaceStyle}>
       <p className={edit.head}>Place</p>

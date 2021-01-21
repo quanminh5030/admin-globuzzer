@@ -15,14 +15,14 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
+import FeatureCard from "../components/FeatureCard/FeatureCard";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
   const [showFeature, setShowFeature] = useState(false);
   //state for homeValue
   const [homeData, setHomeData] = useState([]);
-  let place = useRef("");
-
+  let place = useRef();
   const {
     editStyle,
     places,
@@ -79,6 +79,7 @@ const Home = ({ contentEditable }) => {
     setShowFeature(index + 1);
   };
 
+
   return (
     <div className="home-page">
       <LazyLoad>
@@ -110,6 +111,7 @@ const Home = ({ contentEditable }) => {
               {places.map((p) => (
                 <a
                   href={p.link}
+                  target="_new"
                   key={p.id}
                   name={p.id}
                   contentEditable={contentEditable}
@@ -163,13 +165,16 @@ const Home = ({ contentEditable }) => {
         texts={fetchedCommunityTexts} 
         editStyle={editStyle} 
         contentEditable={contentEditable} 
-        getCurrentCommunityText={getCurrentCommunityText} 
+        getCurrentCommunityText={getCurrentCommunityText}
       />
       <section className="featured_articles" id="featured_articles">
         <SectionHeader header="Featured articles" />
         <FeaturedArticlePage />
       </section>
       <section className="aux_services" id="aux_services">
+        {editMode &&
+          <div className="add_service">+</div>
+        }
         <SectionHeader header="Helpful services" />
         <AuxServiceSection />
       </section>

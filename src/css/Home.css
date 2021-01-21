@@ -285,6 +285,7 @@
         width: 900px;
         justify-content: center;
         overflow: visible;
+        position: relative;
     }
     .joincity_grid {
         display: grid;
@@ -522,3 +523,19 @@
     align-items: center;
     margin-bottom: 78px;
 }
+.add_service {
+    width: 52px;
+    height: 52px;
+    background: #C4C4C4;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 70px;
+    position: relative;
+    left: 180px;
+    bottom: -70px;
+    cursor: pointer;
+  }
+  

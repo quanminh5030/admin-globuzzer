@@ -1,5 +1,5 @@
 .title {
-  width: 300px;
+  width: 400px;
   height: 45px;
   position: absolute;
   /* position top left is setted with inline style */
@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 0 10px 0 10px;
 }
 
 .title select {
@@ -27,5 +28,9 @@
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-top: 26px solid #ffffff;
+}
 
+.cmdButton {
+  color: #8F8E8E;
+  cursor:pointer;
 }

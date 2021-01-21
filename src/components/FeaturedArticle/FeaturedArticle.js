@@ -14,7 +14,7 @@ const FeaturedArticle = (props) => {
         <p id="article_description">{description}</p>
         <div className="content_readmore_container">
           <button type="button" id="readmore">
-            <a id="readmore" href={url}>
+            <a id="readmore" href={url} target="_new">
               READ MORE
             </a>
           </button>

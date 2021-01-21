@@ -5,7 +5,7 @@ import UploadImage from '../../../components/UploadImage/UploadImage';
 
 const JoinCommunityForm = ({ showPhotoForm, setShowPhotoForm }) => {
   const { 
-    showTextCommunityForm, currentCommunityText, textCommunityID
+    showTextCommunityForm, setShowTextCommunityForm, currentCommunityText, textCommunityID, handleSubmit
         } = useContext(EditContext);
         
   const formTextStyle = !showTextCommunityForm ? { display: "none" }
@@ -32,7 +32,7 @@ const JoinCommunityForm = ({ showPhotoForm, setShowPhotoForm }) => {
         style={imageUploadStyle}
         setShowPhotoForm={setShowPhotoForm}
       />
-      <TextEdit currentText={currentCommunityText} formTextStyle={formTextStyle} />
+      <TextEdit currentText={currentCommunityText} formTextStyle={formTextStyle} showForm={setShowTextCommunityForm} save={handleSubmit('community', currentCommunityText)}/>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const AuxService = (props) => {
   const {link, logo, name, des} = data;
   return (
     <button type="button" className="auxservice-container content-editable" onClick={editMode ? props.editService : undefined} style={editStyle}>
-      <a href={link}>
+     <a href={link} target="_new" style={{pointerEvents: editMode ? 'none' : undefined}}>
         <div className="aux-logo-container">
           <img src={logo} alt="logo" className="aux-logo" />
         </div>
