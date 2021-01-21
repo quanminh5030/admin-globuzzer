@@ -1,12 +1,12 @@
 import React, { useEffect , useState} from 'react';
 import styles from './ArticleForm.module.css';
 
-const CityForm = ({setShow, currentArticle, updateArticle}) => {
+const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
     const [data, setData] = useState(currentArticle);
 
     useEffect(()=>{
         setData(currentArticle);
-        console.log("useEffect passes current item", currentArticle);
+        // console.log("useEffect passes current item", currentArticle);
     },[currentArticle]);
 
     const inputHandler = (e) => {
@@ -19,10 +19,11 @@ const CityForm = ({setShow, currentArticle, updateArticle}) => {
         console.log("submit passed the id and item", data);
         updateArticle({currentArticle}, data);
     }; 
+    const position = {position: 'absolute', left: '160px', bottom: coord.Y + 'px'};
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} style={position}>
             <p className={styles.header}>Articles</p>
-            <form className={styles.container} >
+            <form className={styles.container}>
                     <div className={styles.fields} >
                     <label>
                         Cover Image

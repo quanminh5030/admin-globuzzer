@@ -46,7 +46,7 @@ export const JoinCity = (props) => {
             View More
           </button>
         ) : (
-          <Link to={`/${name}`} type="button" id="joincity_join">
+          <Link to={`/${name}`} type="button" id="joincity_join" target="_new">
             Explore
           </Link>
         )}
