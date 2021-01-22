@@ -15,7 +15,7 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
-import FeatureCard from "../components/FeatureCard/FeatureCard";
+import FeatureCardPage from "../components/FeatureCard/FeatureCardPage";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -130,10 +130,11 @@ const Home = ({ contentEditable }) => {
       </LazyLoad>
       <section className="section_value">
         <div>
-          <HomeValue
+          <FeatureCardPage />
+          {/* <HomeValue
             homeData={homeData}
             handleShowFeature={handleShowFeature}
-          />
+          /> */}
         </div>
       </section>
       {editMode && showFeature && (
