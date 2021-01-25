@@ -14,6 +14,7 @@ const FeaturedArticlePage = () => {
   ]
   const [currentArticle, setCurrentArticle] = useState(initialArticleState);
   const { getCoordinates, coord } = useContext(EditContext);
+  
   useEffect(() => {
     const unsubscribe = firestore
       .collection("articles")
@@ -45,10 +46,22 @@ const FeaturedArticlePage = () => {
     firestore.collection('articles').doc(currentArticle.id).update(updatedArticle);
   });
 
+  const onSelectedArticle = () => {
+    return (
+      show && <div>
+        <ArticleForm setShow={setShow} currentArticle={currentArticle} updateArticle={updateArticle} coord={coord} />
+        </div>
+    );
+  };
+  
   return (
     <div onClick={getCoordinates} style={{position: 'relative'}}>
-      {articles.map((data) => (
-        <FeaturedArticle key={data.id} data={data} editArticle={()=>openEditForm(data)} />
+      {articles.map((data, id) => (
+         <div>
+        <FeaturedArticle key={data.id} data={data} editArticle={()=>openEditForm(data)} onClick={onSelectedArticle()}/>
+        {console.log(data.id, id)}
+        {data.id === 'CbmyjwzGeNkNvBiqZOZd' ? onSelectedArticle() : 'mumu'}
+        </div>
       ))}
       <div className="featured_articles_more">
         <a
@@ -59,9 +72,7 @@ const FeaturedArticlePage = () => {
         </a>
         <MdKeyboardArrowRight className="featured_articles_more_icon" />
       </div>
-      {show && <div>
-        <ArticleForm setShow={setShow} currentArticle={currentArticle} updateArticle={updateArticle} coord={coord}/>
-        </div>}
+      
     </div>
   );
 };

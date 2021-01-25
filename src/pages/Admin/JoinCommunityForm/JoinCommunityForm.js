@@ -12,11 +12,12 @@ const JoinCommunityForm = ({ showPhotoForm, setShowPhotoForm }) => {
             : {
                 position: '',
                 top: textCommunityID === 'join_title' ? '1%' : '35%',
-                left: textCommunityID === 'join_title' ? '50%' : '20%'
+                left: textCommunityID === 'join_title' ? '70%' : '50%'
               };
   const imageUploadStyle = {
     bottom: '-250px',
-    left: '-400px'
+    left: '0px',
+    zIndex: 100
   }
 
   return (

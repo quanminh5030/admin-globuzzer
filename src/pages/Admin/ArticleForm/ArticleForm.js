@@ -19,7 +19,7 @@ const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
         console.log("submit passed the id and item", data);
         updateArticle({currentArticle}, data);
     }; 
-    const position = {position: 'absolute', left: '160px', bottom: coord.Y + 'px'};
+    const position = {position: 'relative', bottom: `0px`};
     return (
         <div className={styles.wrapper} style={position}>
             <p className={styles.header}>Articles</p>
