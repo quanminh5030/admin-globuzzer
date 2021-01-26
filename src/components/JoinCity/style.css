@@ -11,6 +11,8 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
     transition: all 1s ease;
+    position: absolute;
+    z-index: 0;
 }
 
 .joincity_container:hover {
