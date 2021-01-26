@@ -46,21 +46,25 @@ const FeaturedArticlePage = () => {
     firestore.collection('articles').doc(currentArticle.id).update(updatedArticle);
   });
 
-  const onSelectedArticle = () => {
+  const onSelectedArticle = (data, article) => {
     return (
+      article.id === data.id &&
       show && <div>
         <ArticleForm setShow={setShow} currentArticle={currentArticle} updateArticle={updateArticle} coord={coord} />
         </div>
     );
   };
-  
+  console.log('currentarticle',currentArticle)
   return (
     <div onClick={getCoordinates} style={{position: 'relative'}}>
       {articles.map((data, id) => (
-         <div>
-        <FeaturedArticle key={data.id} data={data} editArticle={()=>openEditForm(data)} onClick={onSelectedArticle()}/>
-        {console.log(data.id, id)}
-        {data.id === 'CbmyjwzGeNkNvBiqZOZd' ? onSelectedArticle() : 'mumu'}
+        <div key={data.id}>
+          <FeaturedArticle 
+            data={data} 
+            editArticle={()=>openEditForm(data)} 
+            // onClick={onSelectedArticle()}
+          />
+          {onSelectedArticle(data, currentArticle)}
         </div>
       ))}
       <div className="featured_articles_more">
