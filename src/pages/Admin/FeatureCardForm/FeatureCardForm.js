@@ -3,7 +3,7 @@ import styles from './FeatureCardForm.module.css';
 
 const FeatureCardForm = ({ setShow, currentFeatureCard, updateFeatureCard, onFileChange, onFileSubmit }) => {
   const [data, setData] = useState(currentFeatureCard);
-  const position = {position: 'relative', left: '20px', bottom: '-10px'};
+  
   useEffect(()=>{
     setData(currentFeatureCard);
     // console.log("useEffect passes current card data", currentFeatureCard);
@@ -21,7 +21,7 @@ const submitFeatureCard = (e) => {
 }
 
   return (
-    <div className={styles.feature_card} style={position}>
+    <div className={styles.feature_card}>
       <div className={styles.feature_card_container}>
         <h4>Feature</h4>
         <div className={styles.icon_text}>

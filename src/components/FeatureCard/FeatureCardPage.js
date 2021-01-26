@@ -90,25 +90,36 @@ const onFileChange = async (e) => {
   }
 }
 
+const onSelectedCard = (card, currentCard) => {
+  return (
+    card.id === currentCard.id &&
+    show && 
+    <div>
+    <FeatureCardForm 
+      setShow={setShow} 
+      currentFeatureCard={currentFeatureCard} 
+      updateFeatureCard={updateFeatureCard} 
+      onFileChange={onFileChange}
+      onFileSubmit={onSubmit}
+    />
+  </div>
+  );
+};
 
 
   return (
     <div>
       <div className={styles.home_value_container}>
         {featureCards.map((card) => (
-          <FeatureCard key={card.id} card={card} editFeatureCard={() => openEditForm(card)} />
+          <div key={card.id} >
+            <FeatureCard 
+              card={card} 
+              editFeatureCard={() => openEditForm(card)} 
+            />
+            {onSelectedCard(card, currentFeatureCard)}
+          </div>
         ))}
       </div>
-      {show && 
-        <div>
-          <FeatureCardForm 
-            setShow={setShow} 
-            currentFeatureCard={currentFeatureCard} 
-            updateFeatureCard={updateFeatureCard} 
-            onFileChange={onFileChange}
-            onFileSubmit={onSubmit} 
-          />
-        </div>}
     </div>
   );
 };
