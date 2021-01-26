@@ -54,7 +54,7 @@ const FeaturedArticlePage = () => {
         </div>
     );
   };
-  console.log('currentarticle',currentArticle)
+
   return (
     <div onClick={getCoordinates} style={{position: 'relative'}}>
       {articles.map((data, id) => (
