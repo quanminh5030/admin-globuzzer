@@ -48,6 +48,7 @@ const EditContextProvider = (props) => {
   //capture X Y coordinates of the click
   const getCoordinates = (e) => {
     setCoord({X:e.clientX, Y:e.clientY});
+    console.log(coord.X, coord.Y)
   }
   // fetch banner 'texts' content from db
     useEffect(() => {
@@ -169,6 +170,7 @@ const EditContextProvider = (props) => {
 
   const showCommunityForms = (e) => {
     if (editMode) {
+      console.log(e.target.classList.value)
       setTextCommunityID(e.target.classList.value);
       setShowTextCommunityForm(true); 
     }

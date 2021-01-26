@@ -18,6 +18,7 @@ const TextEdit = ({ currentText, formTextStyle, showForm, save }) => {
     setDefaultColor(currentText.style.color);
     setDefaultAlign(currentText.style.textAlign);
   }, [currentText]);
+  
   const handleSizeChange = (e) => {
     e.preventDefault();
     currentText.style.fontSize = e.target.value + 'px'

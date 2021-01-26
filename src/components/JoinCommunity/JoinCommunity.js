@@ -47,21 +47,18 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
         ))}
       </div>
       <div className="join_info">
-        <JoinCommunityForm 
-          showPhotoForm={showPhotoForm} 
-          setShowPhotoForm={setShowPhotoForm} 
-        />
+        
         {texts.map(t => (
           <p
           key={t.id}
           className={t.cssid}
           id={t.id}
           name={t.id}
+          onClick={showCommunityForms}
           contentEditable={contentEditable}
           style={{ ...editStyle, ...t.style }}
           suppressContentEditableWarning="true"
           onBlur={handleChangeCommunityText}
-          onClick={showCommunityForms}
           onFocus={getCurrentCommunityText}
         >
           {t.content}
@@ -77,7 +74,12 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
             Join us
           </Link>
         </button>
+        
       </div>
+      <JoinCommunityForm 
+          showPhotoForm={showPhotoForm} 
+          setShowPhotoForm={setShowPhotoForm} 
+        />
     </section>
   );
   const JoinMobile = () => (
