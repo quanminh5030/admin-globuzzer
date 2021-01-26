@@ -39,6 +39,20 @@ const JoinCitySection = () => {
      img:cityData.img
    })
   };
+
+  const onSelectedCity = (data, city) => {
+    return (
+      city.id === data.id &&
+      isVisible &&
+        <div>
+          <CityForm 
+            setIsVisible={setIsVisible} 
+            currentItem={currentItem} 
+            updateItem={updateItem}
+          />                
+        </div>
+    );
+  }
   
   const updateItem = (({currentItem}, updatedItem)=> {
     console.log("it sends item to the updated item function", updatedItem, currentItem.id);
@@ -49,7 +63,13 @@ const JoinCitySection = () => {
         <div>
         <div className="joincity_grid">
           {joinCity.map((cityData) => (
-            <JoinCity cityData={cityData} key={cityData.id} openForm={()=>formHandler(cityData)}/>
+            <div key={cityData.id}>
+              <JoinCity 
+                cityData={cityData}  
+                openForm={()=>formHandler(cityData)}
+              />
+              {onSelectedCity(cityData, currentItem)}
+            </div>
           ))}
           {!moreJoinCity && joinCity.length > 0 && (
             <JoinCity
@@ -59,9 +79,9 @@ const JoinCitySection = () => {
             />
           )}
           {moreJoinCity && joinCity.length > 0 && <RequestNewCity />}
-          {isVisible &&  <div>
+          {/* {isVisible &&  <div>
           <CityForm setIsVisible={setIsVisible} currentItem={currentItem} updateItem={updateItem}/>                
-        </div>}  
+        </div>}   */}
         </div> 
        
         <div className="no_item">

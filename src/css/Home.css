@@ -294,6 +294,7 @@
         grid-auto-rows: 190px;
         justify-content: center;
         margin: 100px;
+        z-index: 0;
     }
     .newcity_input {
         width: 405px;

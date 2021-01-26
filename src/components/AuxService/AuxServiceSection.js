@@ -43,16 +43,30 @@ const AuxServiceSection = () => {
         // firestore.collection("services").doc(data).delete();
         console.log("do you want to delete this???:",data)
     }
+
+    const onSelectedService = (data, service) => {
+        return (
+            data.id === service.id &&
+            display &&
+            <div>
+                <ServiceForm 
+                    setDisplay={setDisplay} 
+                    currentService={currentService} 
+                    updateService={updateService} 
+                    deleteService={deleteService} 
+                />
+            </div>
+        );
+    }
     
     return (
      <div className="aux_list">
           {services.map((data) => (
-            <AuxService key={data.id} data={data} editService={()=> displayEditForm(data)} />
+            <div key={data.id}>
+                <AuxService data={data} editService={()=> displayEditForm(data)} />
+                {onSelectedService(data, currentService)}
+            </div>
           ))}
-          {display && <div>
-            <ServiceForm setDisplay={setDisplay} currentService={currentService} updateService={updateService} deleteService={deleteService} />
-        </div>
-        }
         </div>
     );
 }
