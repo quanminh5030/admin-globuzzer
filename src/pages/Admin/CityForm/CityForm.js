@@ -1,9 +1,9 @@
 import React, { useEffect , useState} from 'react';
 import styles from './CityForm.module.css';
 
-const CityForm = ({setIsVisible, currentItem, updateItem}) => {
+const CityForm = ({setIsVisible, currentItem, updateItem, onFileChange, fileUrl}) => {
     const [item, setItem] = useState(currentItem);
-
+console.log('url:',fileUrl)
     useEffect(()=>{
         setItem(currentItem);
         console.log("useEffect passes current item", currentItem);
@@ -17,17 +17,28 @@ const CityForm = ({setIsVisible, currentItem, updateItem}) => {
     const submitForm = (e) => {
         e.preventDefault();
         console.log("submit passed the id and item", item);
-        updateItem({currentItem}, item);
+        updateItem({currentItem}, {...item, img: fileUrl || item.img});
     }; 
     return (
         <div className={styles.wrapper}>
             <form className={styles.container} >
                 <p className={styles.header}>City Section</p>
                     <div className={styles.fields} >
-                    <label>
+                    <div className={styles.icon_text}>
                         Cover Image
-                        <input type="text" name="img" value={item.img} onChange={onChange} />
-                    </label>
+                        <span>
+                            (Image has to be below 200 KB and PNG/JPG format)
+                        </span>
+                    </div>
+                    <div className={styles.upload_btn_wrapper}>
+                        <input 
+                            type="file" 
+                            name="img" 
+                            onChange={onFileChange} 
+                        />
+                        <button className={styles.btn}>Upload image
+                        </button>
+                    </div>
                     <label>
                         City section
                         <input type="text" name="name" value={item.name} onChange={onChange}/>
