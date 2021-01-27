@@ -27,7 +27,12 @@ const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
                     <div className={styles.fields} >
                     <label>
                         Cover Image
-                        <input type="text" name="img" value={data.img} onChange={inputHandler} />
+                        <input 
+                            type="text" 
+                            name="img" 
+                            value={data.img}
+                            onChange={inputHandler} 
+                        />
                     </label>
                     <label>
                         Title

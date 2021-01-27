@@ -28,6 +28,7 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
       <div className="join_video_container" onClick={showForm}>
       {videos.map(video => (
         <video
+          key={video.img}
           width="100%"
           autoPlay
           playsInline
