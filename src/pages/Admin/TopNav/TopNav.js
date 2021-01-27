@@ -13,7 +13,7 @@ const TopNav = ({ currentUser }) => {
         <img src={logo} alt="logo" />
         <img src={logoSmall} alt="logo-icon" />
         {currentUser ? (
-          <Link className={styles.logout} onClick={() => auth.signOut()}>
+          <Link to="#" className={styles.logout} onClick={() => auth.signOut()}>
             SIGN OUT
           </Link>
         ) : (

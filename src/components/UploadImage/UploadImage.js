@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { firestore, app } from '../../utils/firebase.utils';
+import { sizeTransform } from '../../utils/sizeTransform';
 import edit from './UploadImage.module.css';
 
 
@@ -17,25 +18,12 @@ function UploadImage({ setShowPhotoForm, showPhotoForm, style, typeValidation, s
     console.log("file saved:", fileUrl)
     setShowPhotoForm(false);
   }
-
-  // transform file size for displaying in bits, Kb or Mb
-  const sizeTransform = (value) => {
-    if(value < 1000) {
-      return `${value}bits`;
-    } else if (value >= 1000 && value < 1000000) {
-      return `${value/1000}Kb`;
-    } else if (value >= 1000000 && value < 1000000000) {
-      return `${value/1000000}Mb`;
-    } else {
-      return "the size is more than 1Gb"
-    }
-  }
   
   // manage the upload file form + type and size validation
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
-    if (file.type === typeValidation) {
+    if (file && typeValidation.includes(file.type)) {
       if (file.size > sizeValidation) {
         alert(`The size of the file should be maximum ${sizeTransform(sizeValidation)}, yours is ${sizeTransform(file.size)}`)
         } else {

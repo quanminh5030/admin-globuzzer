@@ -27,7 +27,12 @@ const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
                     <div className={styles.fields} >
                     <label>
                         Cover Image
-                        <input type="text" name="img" value={data.img} onChange={inputHandler} />
+                        <input 
+                            type="text" 
+                            name="img" 
+                            value={data.img}
+                            onChange={inputHandler} 
+                        />
                     </label>
                     <label>
                         Title
@@ -35,7 +40,14 @@ const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
                     </label>
                     <label>
                         Text
-                        <input type="text" name="description" value={data.description} onChange={inputHandler}/>
+                        <textarea 
+                            name="description"
+                            className={styles.textarea_input} 
+                            value={data.description}
+                            rows="4" 
+                            cols="65"
+                            onChange={inputHandler}
+                        />
                     </label>
                     <label>
                         Link of the article

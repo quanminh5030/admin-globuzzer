@@ -36,7 +36,10 @@ const ServiceForm = ({setDisplay, currentService, updateService, deleteService})
                         URL
                     </label>
                         <input type="text" name="link" value={data.link} onChange={inputHandler}/>
-                    
+                    <label>
+                        Title
+                    </label>
+                        <input type="text" name="name" value={data.name} onChange={inputHandler}/>
                     <label>
                         Text
                     </label>

@@ -25,7 +25,7 @@ const JoinCommunityForm = ({ showPhotoForm, setShowPhotoForm }) => {
       <UploadImage 
         showPhotoForm={showPhotoForm}
         title="Gif"
-        typeValidation="image/gif"
+        typeValidation={["image/gif"]}
         sizeValidation="5000000"
         collection="video"
         doc="gif"

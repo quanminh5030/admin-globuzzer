@@ -1,17 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import {JoinCity} from './JoinCity';
 import "../../css/Home.css";
-import { firestore } from "../../utils/firebase.utils";
+import { app, firestore } from "../../utils/firebase.utils";
 import CityForm from '../../pages/Admin/CityForm/CityForm';
 import {RequestNewCity} from '../RequestNewCity/RequestNewCity';
+import { sizeTransform } from '../../utils/sizeTransform';
 const JoinCitySection = () => {
     const [moreJoinCity, setMoreJoinCity] = useState(false);
     const [joinCity, setJoinCity] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
+    const [fileUrl, setFileUrl] = useState(null);
     const initialItemState = [
       { id: null, name: "", img: "", members: ""},
     ];
-  
+    // console.log('url:',fileUrl)
     const [currentItem, setCurrentItem] = useState(initialItemState);
     useEffect(() => {
       const unsubscribe=firestore
@@ -39,6 +41,26 @@ const JoinCitySection = () => {
      img:cityData.img
    })
   };
+  //validations
+  const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
+  const sizeValidation = 200000;
+  const message = (file) => {
+    return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
+  } 
+
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    
+    if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) 
+    {
+      const fileRef = storageRef.child(`cities/${file.name}`);
+      await fileRef.put(file);
+      setFileUrl(await fileRef.getDownloadURL());
+    } else {
+      alert(message(file))
+    }     
+  }
 
   const onSelectedCity = (data, city) => {
     return (
@@ -49,6 +71,8 @@ const JoinCitySection = () => {
             setIsVisible={setIsVisible} 
             currentItem={currentItem} 
             updateItem={updateItem}
+            onFileChange={onFileChange}
+            fileUrl={fileUrl}
           />                
         </div>
     );
@@ -58,7 +82,8 @@ const JoinCitySection = () => {
     console.log("it sends item to the updated item function", updatedItem, currentItem.id);
     setIsVisible(false);
     firestore.collection('cities').doc(currentItem.id).update(updatedItem);
-  })
+  });
+
     return (
         <div>
         <div className="joincity_grid">
