@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import FeaturedArticle from "./FeaturedArticle";
-import { firestore } from "../../utils/firebase.utils";
+import { firestore, app } from "../../utils/firebase.utils";
 import "../../css/Home.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import ArticleForm from '../../pages/Admin/ArticleForm/ArticleForm';
 import { EditContext } from "../../contexts/editContext";
+import { sizeTransform } from "../../utils/sizeTransform";
 
 const FeaturedArticlePage = () => {
   const [articles, setArticles] = useState([]);
   const [show, setShow] = useState(false);
+  const [fileUrl, setFileUrl] = useState(null);
   const initialArticleState = [
     {id: null, description:"", img:"", title:"", url:""},
   ]
@@ -46,11 +48,38 @@ const FeaturedArticlePage = () => {
     firestore.collection('articles').doc(currentArticle.id).update(updatedArticle);
   });
 
+  //validations
+  const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
+  const sizeValidation = 200000;
+  const message = (file) => {
+    return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
+  };
+
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    
+    if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) 
+    {
+      const fileRef = storageRef.child(`articles/${file.name}`);
+      await fileRef.put(file);
+      setFileUrl(await fileRef.getDownloadURL());
+    } else {
+      alert(message(file))
+    }     
+  };
+
   const onSelectedArticle = (data, article) => {
     return (
       article.id === data.id &&
       show && <div>
-        <ArticleForm setShow={setShow} currentArticle={currentArticle} updateArticle={updateArticle} coord={coord} />
+        <ArticleForm 
+          setShow={setShow} 
+          currentArticle={currentArticle} 
+          updateArticle={updateArticle}
+          onFileChange={onFileChange}
+          fileUrl={fileUrl}  
+        />
         </div>
     );
   };

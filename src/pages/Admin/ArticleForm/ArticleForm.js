@@ -1,7 +1,7 @@
 import React, { useEffect , useState} from 'react';
 import styles from './ArticleForm.module.css';
 
-const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
+const ArticleForm = ({setShow, currentArticle, updateArticle, onFileChange, fileUrl}) => {
     const [data, setData] = useState(currentArticle);
 
     useEffect(()=>{
@@ -17,7 +17,7 @@ const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
     const submitArticle = (e) => {
         e.preventDefault();
         console.log("submit passed the id and item", data);
-        updateArticle({currentArticle}, data);
+        updateArticle({currentArticle}, {...data, img: fileUrl || data.img});
     }; 
     const position = {position: 'relative', bottom: `0px`};
     return (
@@ -25,15 +25,24 @@ const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
             <p className={styles.header}>Articles</p>
             <form className={styles.container}>
                     <div className={styles.fields} >
-                    <label>
+                    <div className={styles.icon_text}>
                         Cover Image
+                        <span>
+                            (Image has to be below 200 KB and PNG/JPG format)
+                        </span>
+                        </div>
+                        <div className={styles.upload_btn_wrapper}>
                         <input 
-                            type="text" 
+                            type="file" 
                             name="img" 
-                            value={data.img}
-                            onChange={inputHandler} 
+                            onChange={onFileChange} 
                         />
-                    </label>
+                        <button 
+                            className={styles.btn}
+                        >
+                            Upload image
+                        </button>
+                        </div>
                     <label>
                         Title
                         <input type="text" name="title" value={data.title} onChange={inputHandler}/>
@@ -63,4 +72,4 @@ const CityForm = ({setShow, currentArticle, updateArticle, coord}) => {
     );
 }
 
-export default CityForm;
+export default ArticleForm;

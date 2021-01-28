@@ -41,12 +41,13 @@ const JoinCitySection = () => {
      img:cityData.img
    })
   };
+
   //validations
   const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
   const sizeValidation = 200000;
   const message = (file) => {
     return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
-  } 
+  };
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -60,7 +61,7 @@ const JoinCitySection = () => {
     } else {
       alert(message(file))
     }     
-  }
+  };
 
   const onSelectedCity = (data, city) => {
     return (
