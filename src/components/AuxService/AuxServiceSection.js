@@ -99,20 +99,28 @@ const AuxServiceSection = () => {
         ]
       };
 
+    const renderedServices = () => {
+      return (
+        services.map((data) => (
+          <div key={data.id}>
+                  <AuxService 
+                      data={data} 
+                      editService={()=> displayEditForm(data)} 
+                  />
+              {onSelectedService(data, currentService)}
+          </div>
+        ))
+      );
+      
+    };
+
     return (
-     <div className="aux_list">
-         <Slider {...settings}>
-          {services.map((data) => (
-            <div key={data.id}>
-                    <AuxService 
-                        data={data} 
-                        editService={()=> displayEditForm(data)} 
-                    />
-                {onSelectedService(data, currentService)}
-            </div>
-          ))}
-          </Slider>
-        </div>
+      <div className="aux_list" style={{display: services.length > 4 ? '' : 'flex'}}>
+       {services.length <= 4 ? 
+         renderedServices() : 
+         <Slider {...settings}>{renderedServices()}</Slider>
+       }
+      </div>
     );
 }
 
