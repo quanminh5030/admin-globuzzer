@@ -30,8 +30,8 @@ const ArticleForm = ({setShow, currentArticle, updateArticle, onFileChange, file
                         <span>
                             (Image has to be below 200 KB and PNG/JPG format)
                         </span>
-                        </div>
-                        <div className={styles.upload_btn_wrapper}>
+                    </div>
+                    <div className={styles.upload_btn_wrapper}>
                         <input 
                             type="file" 
                             name="img" 
@@ -42,7 +42,7 @@ const ArticleForm = ({setShow, currentArticle, updateArticle, onFileChange, file
                         >
                             Upload image
                         </button>
-                        </div>
+                    </div>
                     <label>
                         Title
                         <input type="text" name="title" value={data.title} onChange={inputHandler}/>

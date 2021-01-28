@@ -34,15 +34,24 @@ const ServiceForm = ({
             <p className={styles.header}>Service Card</p>
             <form className={styles.container} >
                     <div className={styles.fields} >
-                    <label><span>
-                        Image<span className={styles.smallText}>(Image has to be below 200 KB and PNG/JPG format.)</span></span>
-                    </label>
+                    <div className={styles.icon_text}>
+                        Image
+                        <span>
+                            (Image has to be below 200 KB and PNG/JPG format.)
+                        </span>
+                    </div>
+                    <div className={styles.upload_btn_wrapper}>
                         <input 
-                            type="submit" 
+                            type="file" 
                             name="logo" 
-                            value="Upload image" 
                             onChange={onFileChange} 
                         />
+                        <button 
+                            className={styles.btn}
+                        >
+                            Upload image
+                        </button>
+                    </div>
                     <label>
                         URL
                     </label>
