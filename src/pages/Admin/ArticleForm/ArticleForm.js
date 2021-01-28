@@ -1,7 +1,7 @@
 import React, { useEffect , useState} from 'react';
 import styles from './ArticleForm.module.css';
 
-const ArticleForm = ({setShow, currentArticle, updateArticle, coord}) => {
+const ArticleForm = ({setShow, currentArticle, updateArticle, onFileChange, fileUrl}) => {
     const [data, setData] = useState(currentArticle);
 
     useEffect(()=>{
@@ -17,7 +17,7 @@ const ArticleForm = ({setShow, currentArticle, updateArticle, coord}) => {
     const submitArticle = (e) => {
         e.preventDefault();
         console.log("submit passed the id and item", data);
-        updateArticle({currentArticle}, data);
+        updateArticle({currentArticle}, {...data, img: fileUrl || data.img});
     }; 
     const position = {position: 'relative', bottom: `0px`};
     return (
@@ -35,8 +35,13 @@ const ArticleForm = ({setShow, currentArticle, updateArticle, coord}) => {
                         <input 
                             type="file" 
                             name="img" 
-                            onChange={inputHandler} 
+                            onChange={onFileChange} 
                         />
+                        <button 
+                            className={styles.btn}
+                        >
+                            Upload image
+                        </button>
                         </div>
                     <label>
                         Title

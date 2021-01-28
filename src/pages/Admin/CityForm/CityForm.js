@@ -36,7 +36,10 @@ console.log('url:',fileUrl)
                             name="img" 
                             onChange={onFileChange} 
                         />
-                        <button className={styles.btn}>Upload image
+                        <button 
+                            className={styles.btn}
+                        >
+                            Upload image
                         </button>
                     </div>
                     <label>
