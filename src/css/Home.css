@@ -562,7 +562,7 @@
   
   .slick-prev {
     background: url("../assets/AuxServices/left.png") center center no-repeat!important;
-    margin: 0 -45px;
+    margin: 0 -55px;
   }
   
   .slick-next::before, .slick-prev::before {
