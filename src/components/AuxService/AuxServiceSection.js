@@ -65,7 +65,7 @@ const AuxServiceSection = () => {
     
     const settings = {
         dots: false,
-        arrows: true,
+        arrows: false,
         infinite: true,
         speed: 500,
         slidesToShow: 4,
@@ -77,8 +77,8 @@ const AuxServiceSection = () => {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
-              infinite: false,
-              dots: false
+              // infinite: true,
+              // dots: false
             }
           },
           {
@@ -86,7 +86,7 @@ const AuxServiceSection = () => {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 2,
-              initialSlide: 2
+              // initialSlide: 2
             }
           },
           {
