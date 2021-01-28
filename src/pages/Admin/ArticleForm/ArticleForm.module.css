@@ -76,3 +76,39 @@
     height: 100%;
     color: #a4a4a4;
 }
+
+.icon_text {
+    text-align: center;
+    padding: 0.5rem;
+  }
+  .icon_text span {
+    color: #727272;
+    font-size: 12px;
+  }
+
+  /* Upload file button */
+.upload_btn_wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 180px;
+  }
+  
+  .btn {
+    border: none;
+    outline: none;
+    color: gray;
+    background-color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .upload_btn_wrapper input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
