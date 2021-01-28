@@ -1,7 +1,13 @@
 import React, { useEffect , useState} from 'react';
 import styles from './ServiceForm.module.css';
 
-const ServiceForm = ({setDisplay, currentService, updateService, deleteService}) => {
+const ServiceForm = ({ 
+    setDisplay, 
+    currentService, 
+    updateService, 
+    deleteService,
+    onFileChange,
+    fileUrl }) => {
     const [data, setData] = useState(currentService);
 
     useEffect(()=>{
@@ -17,7 +23,7 @@ const ServiceForm = ({setDisplay, currentService, updateService, deleteService})
     const submitService = (e) => {
         e.preventDefault();
         console.log("submit passed the id and item", data);
-        updateService({currentService}, data);
+        updateService({currentService}, {...data, logo: fileUrl || data.logo});
     }; 
 
     const showWarning = () => {
@@ -31,7 +37,12 @@ const ServiceForm = ({setDisplay, currentService, updateService, deleteService})
                     <label><span>
                         Image<span className={styles.smallText}>(Image has to be below 200 KB and PNG/JPG format.)</span></span>
                     </label>
-                        <input type="submit" name="logo" value="Upload image" onChange={inputHandler} />
+                        <input 
+                            type="submit" 
+                            name="logo" 
+                            value="Upload image" 
+                            onChange={onFileChange} 
+                        />
                     <label>
                         URL
                     </label>
