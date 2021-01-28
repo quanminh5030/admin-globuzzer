@@ -1,7 +1,13 @@
 import React, { useEffect , useState} from 'react';
 import styles from './ServiceForm.module.css';
 
-const ServiceForm = ({setDisplay, currentService, updateService, deleteService}) => {
+const ServiceForm = ({ 
+    setDisplay, 
+    currentService, 
+    updateService, 
+    deleteService,
+    onFileChange,
+    fileUrl }) => {
     const [data, setData] = useState(currentService);
 
     useEffect(()=>{
@@ -17,7 +23,7 @@ const ServiceForm = ({setDisplay, currentService, updateService, deleteService})
     const submitService = (e) => {
         e.preventDefault();
         console.log("submit passed the id and item", data);
-        updateService({currentService}, data);
+        updateService({currentService}, {...data, logo: fileUrl || data.logo});
     }; 
 
     const showWarning = () => {
@@ -28,10 +34,24 @@ const ServiceForm = ({setDisplay, currentService, updateService, deleteService})
             <p className={styles.header}>Service Card</p>
             <form className={styles.container} >
                     <div className={styles.fields} >
-                    <label><span>
-                        Image<span className={styles.smallText}>(Image has to be below 200 KB and PNG/JPG format.)</span></span>
-                    </label>
-                        <input type="submit" name="logo" value="Upload image" onChange={inputHandler} />
+                    <div className={styles.icon_text}>
+                        Image
+                        <span>
+                            (Image has to be below 200 KB and PNG/JPG format.)
+                        </span>
+                    </div>
+                    <div className={styles.upload_btn_wrapper}>
+                        <input 
+                            type="file" 
+                            name="logo" 
+                            onChange={onFileChange} 
+                        />
+                        <button 
+                            className={styles.btn}
+                        >
+                            Upload image
+                        </button>
+                    </div>
                     <label>
                         URL
                     </label>

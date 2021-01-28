@@ -171,7 +171,7 @@
 
 .aux_list {
     /* display: flex; */
-    width: 100%;
+    width: 700px;
     overflow: scroll;
     padding-bottom: 40px;
 }
