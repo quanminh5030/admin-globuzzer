@@ -14,6 +14,7 @@ import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureCardPage from "../components/FeatureCard/FeatureCardPage";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
+import AddService from "../components/AuxService/AddService";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -132,7 +133,7 @@ const Home = ({ contentEditable }) => {
       </section>
       <section className="aux_services" id="aux_services">
         {editMode &&
-          <div className="add_service">+</div>
+          <AddService />
         }
         <SectionHeader header="Helpful services" />
         <AuxServiceSection />
