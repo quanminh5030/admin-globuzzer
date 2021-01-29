@@ -7,11 +7,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { sizeTransform } from '../../utils/sizeTransform';
+import DeleteServiceForm from '../../pages/Admin/ServiceForm/DeleteServiceForm';
 
 const AuxServiceSection = () => {
     const [services, setServices] = useState([]);
     const [display, setDisplay] = useState(false);
     const [fileUrl, setFileUrl] = useState(null);
+    const [showWarning, setShowWarning] = useState(false);
     const initialServiceState = [
         {id:null, des:"", logo:"", link:"", name:""},
     ];
@@ -44,10 +46,12 @@ const AuxServiceSection = () => {
         firestore.collection("services").doc(currentService.id).update(updatedService);
     });
 
-    const deleteService = (data) => {
+    const deleteService = async (data) => {
         setDisplay(false);
+        setShowWarning(true);
         // firestore.collection("services").doc(data).delete();
-        console.log("do you want to delete this???:",data)
+        alert(`Are you sure you want to DELETE "${data.name}" service?`)
+        // await firestore.collection('services').doc(data.id).delete();
     };
 
     //validations

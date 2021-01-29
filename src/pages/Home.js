@@ -16,6 +16,7 @@ import BannerForm from "./Admin/BannerForm/BannerForm";
 import FeatureBox from "../components/FeatureBox/FeatureBox";
 import { firestore } from "./../utils/firebase.utils";
 import FeatureCardPage from "../components/FeatureCard/FeatureCardPage";
+import AddService from "../components/AuxService/AddService";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
@@ -174,7 +175,7 @@ const Home = ({ contentEditable }) => {
       </section>
       <section className="aux_services" id="aux_services">
         {editMode &&
-          <div className="add_service">+</div>
+          <AddService />
         }
         <SectionHeader header="Helpful services" />
         <AuxServiceSection />

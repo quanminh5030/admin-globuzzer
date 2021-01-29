@@ -38,7 +38,6 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
           className="video"
           style={editStyle}
         >
-
           {/* <source
             src="https://staging1.globuzzer.com/globuzzer_Liu/pages/vid.mp4"
             type="video/mp4"
