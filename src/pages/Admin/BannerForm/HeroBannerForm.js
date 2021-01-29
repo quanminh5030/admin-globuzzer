@@ -2,8 +2,11 @@ import React from 'react';
 import TextEdit from '../../../components/TextEdit/TextEdit';
 import UploadImage from './UploadImage';
 import { FiCamera } from 'react-icons/fi';
+import edit from './BannerForm.module.css';
 
-const HeroBannerForm = ({ showTextForm, showPlaceForm, currentText, currentPlace}) => {
+const HeroBannerForm = (props) => {
+  const { showTextForm, showPlaceForm, currentText, currentPlace} = props;
+  const [showPhotoForm, setShowPhotoForm] = useState(false);
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
   const formTextStyle = !showTextForm ? { display: "none" }
             : {
@@ -11,10 +14,23 @@ const HeroBannerForm = ({ showTextForm, showPlaceForm, currentText, currentPlace
                 top: headerID === 1 ? '12%' : '30%',
                 left: '20%'
               };
-  
+  const showEditPictureForm = (e) => {
+    if (e.target.id === "camera") {
+      e.target.style.color = "#F35270";
+      setShowPhotoForm(true);
+    }
+  }
+
+
   return (
     <div>
-    <div className={edit.loadPicture} style={{display: !editMode ? "none" : ""}}onClick={showEditPictureForm}><FiCamera id="camera"/></div>
+    <div 
+      className={edit.loadPicture} 
+      // style={{display: !editMode ? "none" : ""}} 
+      onClick={showEditPictureForm}
+    >
+      <FiCamera id="camera"/>
+    </div>
     <UploadImage />
     <TextEdit 
       currentText={currentText} 

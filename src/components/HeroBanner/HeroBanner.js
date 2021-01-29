@@ -10,7 +10,6 @@ const HeroBanner = ({ contentEditable }) => {
   const [headerID, setHeaderID] = useState(null);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
-  
   let header = useRef();
   let place = useRef();
   const rawPlace = {text: '', color: '', link: ''};
@@ -69,26 +68,16 @@ const HeroBanner = ({ contentEditable }) => {
   }, []);
 
   const showBannerForms = (e) => {
+    console.log(e.target)
+    // console.log(showTextForm, showPlaceForm);
     return (
       editMode &&
       header.current.contains(e.target) ? setShowTextForm(true) 
       : place.current.contains(e.target) ? setShowPlaceForm(true) 
       : undefined
     );
-    
-
-    // const parent = e.target.parentElement;
-    // const sibling = e.target.nextSibling;
-    // if (editMode) {
-    //   if (parent.classList.contains('headers')) {
-    //     sibling ? setHeaderID(1) : setHeaderID(2);
-    //     setShowTextForm(true)
-    //   } else if (parent.nodeName === "P") {
-    //     setShowPlaceForm(true);
-    //   }
-    // }
   };
-  console.log(showTextForm, showPlaceForm);
+  // console.log(showTextForm, showPlaceForm);
 // select the clicked 'place'
 const handleClick = (e) => {
   const newPlace = places.filter((place) => {
@@ -118,52 +107,60 @@ const handleChangeText = (e) => {
 };
 
   return (
-    <div>
+    <div onClick={showBannerForms}>
       {banners.map(banner => (
-          <section key={banner.img} className="section_header" 
-          id="section_header" style={{backgroundImage: `url(${banner.img})`}} >
-          <HeroBannerForm 
-            showTextForm={showTextForm}
-            showPlaceForm={showPlaceForm}
-            currentText={currentText}
-            currentPlace={currentPlace}
-          />
-          <div className="headers" ref={header} onClick={showBannerForms}>
-            {fetchedTexts.map((t) => (
-              <p
-                key={t.id}
-                id={t.id}
-                name={t.id}
-                contentEditable={contentEditable}
-                style={{ ...editStyle, ...t.style }}
-                suppressContentEditableWarning="true"
-                onBlur={handleChangeText}
-                onFocus={getCurrentText}
-              >
-                {t.content}
-              </p>
-            ))}
-          </div>
-          <SearchCity />
-          <div ref={place}>
-            <p id="header_suggestion">
-              Maybe{" "}
-              {places.map((p) => (
-                <a
-                  href={p.link}
-                  target="_new"
-                  key={p.id}
-                  name={p.id}
-                  contentEditable={contentEditable}
-                  suppressContentEditableWarning="true"
-                  style={{ ...editStyle, color: p.color }}
-                  onFocus={handleClick}
-                >
-                  {p.text}
-                </a>
-              ))}
+        <section 
+          key={banner.img} 
+          className="section_header" 
+          id="section_header" 
+          style={{backgroundImage: `url(${banner.img})`}} 
+        >
+        <HeroBannerForm 
+          showTextForm={showTextForm}
+          showPlaceForm={showPlaceForm}
+          currentText={currentText}
+          currentPlace={currentPlace}
+        />
+        <div 
+          className="headers" 
+          ref={header} 
+          
+        >
+          {fetchedTexts.map((t) => (
+            <p
+              key={t.id}
+              id={t.id}
+              name={t.id}
+              contentEditable={contentEditable}
+              style={{ ...editStyle, ...t.style }}
+              suppressContentEditableWarning="true"
+              onBlur={handleChangeText}
+              onFocus={getCurrentText}
+            >
+              {t.content}
             </p>
-          </div>
+          ))}
+        </div>
+        <SearchCity />
+        <div ref={place} onClick={showBannerForms}>
+          <p id="header_suggestion">
+            Maybe{" "}
+            {places.map((p) => (
+              <a
+                href={p.link}
+                target="_new"
+                key={p.id}
+                name={p.id}
+                contentEditable={contentEditable}
+                suppressContentEditableWarning="true"
+                style={{ ...editStyle, color: p.color }}
+                onFocus={handleClick}
+              >
+                {p.text}
+              </a>
+            ))}
+          </p>
+        </div>
         </section>
       ))}
     </div>

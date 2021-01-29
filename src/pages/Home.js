@@ -55,8 +55,8 @@ const Home = ({ contentEditable }) => {
   return (
     <div className="home-page">
       <LazyLoad>
-        {/* <HeroBanner contentEditable={editMode ? true : false}/> */}
-        {banners.map(banner => (
+        <HeroBanner contentEditable={editMode ? true : false}/>
+        {/* {banners.map(banner => (
           <section key={banner.img} className="section_header" 
           id="section_header" style={{backgroundImage: `url(${banner.img})`}}>
           <BannerForm />
@@ -99,7 +99,7 @@ const Home = ({ contentEditable }) => {
             </p>
           </div>
         </section>
-        ))}
+        ))} */}
       </LazyLoad>
       <section className="section_value">
         <div>
