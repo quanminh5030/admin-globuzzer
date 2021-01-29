@@ -33,7 +33,7 @@ const ServiceForm = ({
         <div className={styles.wrapper}>
             <p className={styles.header}>Service Card</p>
             <form className={styles.container} >
-                    <div className={styles.fields} >
+                <div className={styles.fields} >
                     <div className={styles.icon_text}>
                         Image
                         <span>
@@ -55,22 +55,37 @@ const ServiceForm = ({
                     <label>
                         URL
                     </label>
-                        <input type="text" name="link" value={data.link} onChange={inputHandler}/>
+                        <input 
+                            type="text" 
+                            name="link" 
+                            value={data.link} 
+                            onChange={inputHandler}
+                        />
                     <label>
                         Title
                     </label>
-                        <input type="text" name="name" value={data.name} onChange={inputHandler}/>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value={data.name} 
+                            onChange={inputHandler}
+                        />
                     <label>
                         Text
                     </label>
-                        <textarea id="des" name="des" value={data.des} onChange={inputHandler}/>
-                    </div> 
+                        <textarea 
+                            id="des" 
+                            name="des" 
+                            value={data.des} 
+                            onChange={inputHandler}
+                        />
+                </div> 
                     <button className={styles.deleteBtn} onClick={showWarning}>Delete the service!</button>
-                </form>
-                <div className={styles.buttons}>
-                        <button type="submit" onClick={submitService}>Apply</button>
-                        <button onClick={()=>setDisplay(false)}>Cancel</button>
-                </div>
+            </form>
+            <div className={styles.buttons}>
+                <button type="submit" onClick={submitService}>Apply</button>
+                <button onClick={()=>setDisplay(false)}>Cancel</button>
+            </div>
         </div>
     );
 }

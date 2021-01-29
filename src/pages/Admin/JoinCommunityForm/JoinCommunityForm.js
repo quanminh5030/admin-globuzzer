@@ -33,7 +33,12 @@ const JoinCommunityForm = ({ showPhotoForm, setShowPhotoForm }) => {
         style={imageUploadStyle}
         setShowPhotoForm={setShowPhotoForm}
       />
-      <TextEdit currentText={currentCommunityText} formTextStyle={formTextStyle} showForm={setShowTextCommunityForm} save={handleSubmit('community', currentCommunityText)}/>
+      <TextEdit 
+        currentText={currentCommunityText} 
+        formTextStyle={formTextStyle} 
+        showForm={setShowTextCommunityForm} 
+        save={handleSubmit('community', currentCommunityText)}
+      />
     </div>
   );
 };

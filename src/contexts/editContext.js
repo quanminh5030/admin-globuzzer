@@ -102,7 +102,7 @@ const EditContextProvider = (props) => {
       }));
     }
     fetchBanners();
-  }, [])
+  }, []);
 
   // fetch 'videos' content from db
   useEffect(() => {
@@ -121,32 +121,32 @@ const EditContextProvider = (props) => {
   const handleChangePlace = (e) => {
     const { name, value } = e.target;
     setCurrentPlace({...currentPlace, [name]: value});
-  }
+  };
 
   // change handler for banner text
   const handleChangeText = (e) => {
      // const { name, value } = e.target;
       setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
-  }
+  };
 
   // change handler for community text
   const handleChangeCommunityText = (e) => {
     setCurrentCommunityText({...currentCommunityText, content: e.target.innerText, id: e.target.id});
- }
+ };
 
   const handleSubmit = (collection, document) => (e) => {
     e.preventDefault();
       if(document.id) {firestore.collection(collection).doc(document.id).update(document);
         console.log(document.id, "saved to db")
       }
-  }
+  };
 
   const handleEditMode = () => {
     setEditMode(true);
     [ ...document.querySelectorAll('.content-editable')].forEach((element)=>{
       element.classList.add('edit-mode');
   })
-  }
+  };
 
   const showEditPictureForm = (e) => {
     if (e.target.id === "camera") {
@@ -166,7 +166,7 @@ const EditContextProvider = (props) => {
         setShowPlaceForm(true);
       }
     }
-  }
+  };
 
   const showCommunityForms = (e) => {
     if (editMode) {
@@ -174,7 +174,7 @@ const EditContextProvider = (props) => {
       setTextCommunityID(e.target.classList.value);
       setShowTextCommunityForm(true); 
     }
-  }
+  };
   
   return (
     <EditContext.Provider

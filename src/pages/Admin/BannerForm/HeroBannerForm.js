@@ -1,18 +1,9 @@
-import React, { useContext } from 'react';
-import { EditContext } from '../../../contexts/editContext';
-import edit from './BannerForm.module.css';
-import { FiCamera } from 'react-icons/fi';
-import UploadImage from './UploadImage';
+import React from 'react';
 import TextEdit from '../../../components/TextEdit/TextEdit';
+import UploadImage from './UploadImage';
+import { FiCamera } from 'react-icons/fi';
 
-const BannerForm = () => {
-
-  const {
-    handleChangePlace, handleSubmit, showPlaceForm, setShowPlaceForm,
-    currentPlace, showTextForm, setShowTextForm, headerID,
-    currentText, editMode, showEditPictureForm
-        } = useContext(EditContext);
-  // manage display and position of popping-up forms
+const HeroBannerForm = ({ showTextForm, showPlaceForm, currentText, currentPlace}) => {
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
   const formTextStyle = !showTextForm ? { display: "none" }
             : {
@@ -72,4 +63,4 @@ const BannerForm = () => {
   );
 }
 
-export default BannerForm;
+export default HeroBannerForm;

@@ -1,8 +1,7 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
 import "../css/Home.css";
 import { FiSearch } from "react-icons/fi";
 import LazyLoad from "react-lazyload";
-import { HomeValue } from "../components/HomeValue/HomeValue";
 import { SectionHeader } from "../components/SectionHeader/SectionHeader";
 import AuxServiceSection from "../components/AuxService/AuxServiceSection";
 import { OwnSection } from "../components/OwnSection/OwnSection";
@@ -13,15 +12,11 @@ import JoinCitySection from "../components/JoinCity/JoinCitySection";
 import FeaturedArticlePage from "../components/FeaturedArticle/FeaturedArticlePage";
 import { EditContext } from "../contexts/editContext";
 import BannerForm from "./Admin/BannerForm/BannerForm";
-import FeatureBox from "../components/FeatureBox/FeatureBox";
-import { firestore } from "./../utils/firebase.utils";
 import FeatureCardPage from "../components/FeatureCard/FeatureCardPage";
+import HeroBanner from "../components/HeroBanner/HeroBanner";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
-  const [showFeature, setShowFeature] = useState(false);
-  //state for homeValue
-  const [homeData, setHomeData] = useState([]);
   let place = useRef();
   const {
     editStyle,
@@ -56,33 +51,10 @@ const Home = ({ contentEditable }) => {
     setCurrentCommunityText(newText[0]);
   };
 
-  //fetching features data from firebase firestore
-  useEffect(() => {
-    const getData = async () => {
-      const getFeatures = await firestore.collection("features").get();
-      const snapShot = [];
-      getFeatures.forEach((feature) => {
-        // console.log({ ...feature.data() });
-        snapShot.push({
-          id: feature.id,
-          ...feature.data(),
-        });
-      });
-
-      setHomeData(snapShot);
-    };
-    getData();
-  }, []);
-
-  //toggle feature box function
-  const handleShowFeature = (index) => {
-    setShowFeature(index + 1);
-  };
-
-
   return (
     <div className="home-page">
       <LazyLoad>
+        {/* <HeroBanner contentEditable={editMode ? true : false}/> */}
         {banners.map(banner => (
           <section key={banner.img} className="section_header" 
           id="section_header" style={{backgroundImage: `url(${banner.img})`}}>
@@ -131,22 +103,8 @@ const Home = ({ contentEditable }) => {
       <section className="section_value">
         <div>
           <FeatureCardPage />
-          {/* <HomeValue
-            homeData={homeData}
-            handleShowFeature={handleShowFeature}
-          /> */}
         </div>
       </section>
-      {editMode && showFeature && (
-        <div>
-          <FeatureBox
-            homeData={homeData}
-            setHomeData={setHomeData}
-            showFeature={showFeature}
-            setShowFeature={setShowFeature}
-          />
-        </div>
-      )}
       <section className="section_newcity" id="section_newcity">
         {/* <p id="newcity_p">Move to a new city? </p> */}
         <SectionHeader header="What is your next destination? " />

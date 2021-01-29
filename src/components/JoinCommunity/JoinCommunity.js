@@ -14,7 +14,8 @@ import Chloé from "../../assets/Asya.png";
 import JoinCommunityForm from "../../pages/Admin/JoinCommunityForm/JoinCommunityForm";
 import { EditContext } from "../../contexts/editContext";
 
-export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCommunityText }) => {
+export const JoinCommunity = (props) => {
+  const { texts, editStyle, contentEditable, getCurrentCommunityText } = props;
   const { width } = GetWindowDimension();
   const { handleChangeCommunityText, showCommunityForms, editMode, videos } = useContext(EditContext);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
@@ -47,7 +48,6 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
         ))}
       </div>
       <div className="join_info">
-        
         {texts.map(t => (
           <p
           key={t.id}
@@ -77,11 +77,12 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
         
       </div>
       <JoinCommunityForm 
-          showPhotoForm={showPhotoForm} 
-          setShowPhotoForm={setShowPhotoForm} 
-        />
+        showPhotoForm={showPhotoForm} 
+        setShowPhotoForm={setShowPhotoForm} 
+      />
     </section>
   );
+
   const JoinMobile = () => (
     <div>
       <SectionHeader header="Top members to meet" />
