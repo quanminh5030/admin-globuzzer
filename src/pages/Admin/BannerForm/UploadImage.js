@@ -4,8 +4,8 @@ import { EditContext } from '../../../contexts/editContext';
 import { app, firestore } from '../../../utils/firebase.utils';
 
 
-function UploadImage() {
-  const { showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl } = useContext(EditContext);
+function UploadImage({ showPhotoForm, setShowPhotoForm }) {
+  const { setShowPhotoForm, fileUrl, setFileUrl } = useContext(EditContext);
   const photoFormStyle = !showPhotoForm ? { display: "none" } : {};
   const onSubmit = (e) => {
     e.preventDefault();

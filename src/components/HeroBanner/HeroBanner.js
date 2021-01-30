@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import HeroBannerForm from '../../pages/Admin/BannerForm/HeroBannerForm';
 import { firestore } from '../../utils/firebase.utils';
 import { EditContext } from '../../contexts/editContext';
 import { SearchCity } from '../SearchCity/SearchCity';
 import { Fragment } from 'react';
 import TextEdit from '../TextEdit/TextEdit';
+import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
+import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 
 const HeroBanner = ({ contentEditable }) => {
-  const { editMode, editStyle, handleSubmit } = useContext(EditContext);
+  const { editStyle, handleSubmit } = useContext(EditContext);
   const [banners, setBanners] = useState([]);
-  const [headerID, setHeaderID] = useState(null);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
   let header = useRef();
@@ -69,16 +69,6 @@ const HeroBanner = ({ contentEditable }) => {
       return () => getPlaces();
   }, []);
 
-  const showBannerForms = (e) => {
-    // console.log(e.target)
-    // return (
-    //   editMode &&
-    //   header.current.contains(e.target) ? setShowTextForm(true) 
-    //   : place.current.contains(e.target) ? setShowPlaceForm(true) 
-    //   : undefined
-    // );
-  };
-  // console.log(showTextForm, showPlaceForm);
 // select the clicked 'place'
 const handleClick = (e) => {
   const newPlace = places.filter((place) => {
@@ -129,7 +119,7 @@ const onSelectedText = (text, currentText) => {
 const onSelectedPlace = (place, currentPlace) => {
   return(
     showPlaceForm && place.id === currentPlace.id &&
-    <HeroBannerForm 
+    <BannerPlacesForm 
     showPlaceForm={showPlaceForm}
     currentPlace={currentPlace}
     handleChangePlace={handleChangePlace}
@@ -139,9 +129,9 @@ const onSelectedPlace = (place, currentPlace) => {
   );
 };
 
-
   return (
-    <div>
+    <Fragment>
+      <BannerPhotoForm />
       {banners.map(banner => (
         <section 
           key={banner.img} 
@@ -156,7 +146,6 @@ const onSelectedPlace = (place, currentPlace) => {
         >
           {fetchedTexts.map((t) => (
             <Fragment >
-              {onSelectedText(t, currentText)}
               <p
                 key={t.id}
                 id={t.id}
@@ -170,15 +159,17 @@ const onSelectedPlace = (place, currentPlace) => {
               >
                 {t.content}
               </p>
+              {onSelectedText(t, currentText)}
             </Fragment>
           ))}
         </div>
         <SearchCity />
         <div ref={place}>
-          <p id="header_suggestion">
+          <p id="header_suggestion" className="places">
             Maybe{" "}
             {places.map((p) => (
               <Fragment>
+                {onSelectedPlace(p, currentPlace)}
                 <a
                   href={p.link}
                   target="_new"
@@ -192,14 +183,13 @@ const onSelectedPlace = (place, currentPlace) => {
                 >
                   {p.text}
                 </a>
-                {onSelectedPlace(p, currentPlace)}
               </Fragment>
             ))}
           </p>
         </div>
         </section>
       ))}
-    </div>
+    </Fragment>
   );
 };
 

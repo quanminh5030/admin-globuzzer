@@ -19,7 +19,7 @@
 }
 
 .headers p:first-child {
-  margin-top: 65px;
+    margin-top: 65px;
     width: 1084px;
     height: 92px;
     font-weight: 700;
@@ -28,7 +28,7 @@
 }
 
 .headers p:nth-child(2) {
-  margin-top: 6px;
+    margin-top: 6px;
     margin-bottom: 27px;
     height: 57px;
     font-style: normal;
@@ -37,30 +37,8 @@
     line-height: 48px;
 }
 
-/*#header_1 {
-    width: 333px;
-    height: 48px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 35px;
-    text-align: center;
-    margin-top: 100px;
-}
-
-#header_2 {
-    margin-top: 30px;
-    margin-bottom: 33px;
-    height: 31px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    text-align: center;
-    line-height: 24px;
-}*/
-
 #header_suggestion a:first-child:after {
-  content: ", ";
+  content: ', ';
   color: #ffffff;
   font-style: normal;
   font-weight: 500;

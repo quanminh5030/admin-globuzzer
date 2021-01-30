@@ -5,11 +5,7 @@ export const EditContext = createContext();
 const EditContextProvider = (props) => {
   const [fileUrl, setFileUrl] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [showPlaceForm, setShowPlaceForm] = useState(false);
-  const [showTextForm, setShowTextForm] = useState(false);
   const [showTextCommunityForm, setShowTextCommunityForm] = useState(false);
-  const [showPhotoForm, setShowPhotoForm] = useState(false);
-  const [headerID, setHeaderID] = useState(null);
   const [textCommunityID, setTextCommunityID] = useState(null);
   const [coord, setCoord] = useState({X: null, Y: null});
 
@@ -89,26 +85,6 @@ const EditContextProvider = (props) => {
   })
   };
 
-  const showEditPictureForm = (e) => {
-    if (e.target.id === "camera") {
-      e.target.style.color = "#F35270";
-      setShowPhotoForm(true);
-    }
-  }
-
-  const showBannerForms = (e) => {
-    const parent = e.target.parentElement;
-    const sibling = e.target.nextSibling;
-    if (editMode) {
-      if (parent.classList.contains('headers')) {
-        sibling ? setHeaderID(1) : setHeaderID(2);
-        setShowTextForm(true)
-      } else if (parent.nodeName === "P") {
-        setShowPlaceForm(true);
-      }
-    }
-  };
-
   const showCommunityForms = (e) => {
     if (editMode) {
       console.log(e.target.classList.value)
@@ -121,9 +97,7 @@ const EditContextProvider = (props) => {
     <EditContext.Provider
     value={{
       handleSubmit,
-      handleEditMode, editMode, setEditMode, editStyle,
-      showPlaceForm, setShowPlaceForm, showTextForm, setShowTextForm,
-      showBannerForms, headerID, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, setShowTextCommunityForm, textCommunityID, setCurrentCommunityText, handleChangeCommunityText, videos, getCoordinates, coord
+      handleEditMode, editMode, setEditMode, editStyle, fileUrl, setFileUrl, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, setShowTextCommunityForm, textCommunityID, setCurrentCommunityText, handleChangeCommunityText, videos, getCoordinates, coord
        }}
     >
       {props.children}

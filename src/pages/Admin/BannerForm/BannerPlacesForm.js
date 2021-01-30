@@ -1,17 +1,16 @@
-import React, { useContext, useState } from 'react';
-import UploadImage from './UploadImage';
-import { FiCamera } from 'react-icons/fi';
+import React, { useContext } from 'react';
 import edit from './BannerForm.module.css';
 import { EditContext } from '../../../contexts/editContext';
+import { Fragment } from 'react';
 
-const HeroBannerForm = (props) => {
+const BannerPlacesForm = (props) => {
   const { showPlaceForm, currentPlace, handleChangePlace, setShowPlaceForm} = props;
   const { handleSubmit } = useContext(EditContext)
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
               
   
   return (
-    <div>
+    <Fragment>
     {/*Start forms for city place edit on the banner*/}
     <div className={edit.place} style={formPlaceStyle}>
       <p className={edit.head}>Place</p>
@@ -54,8 +53,8 @@ const HeroBannerForm = (props) => {
       </div>
     </div>
   {/*END forms for city place edit on the banner*/}
-    </div>
+    </Fragment>
   );
 }
 
-export default HeroBannerForm;
+export default BannerPlacesForm;
