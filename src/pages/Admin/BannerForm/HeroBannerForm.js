@@ -1,19 +1,15 @@
-import React from 'react';
-import TextEdit from '../../../components/TextEdit/TextEdit';
+import React, { useContext, useState } from 'react';
 import UploadImage from './UploadImage';
 import { FiCamera } from 'react-icons/fi';
 import edit from './BannerForm.module.css';
+import { EditContext } from '../../../contexts/editContext';
 
 const HeroBannerForm = (props) => {
-  const { showTextForm, showPlaceForm, currentText, currentPlace} = props;
+  const { showPlaceForm, currentPlace, handleChangePlace, setShowPlaceForm} = props;
+  const { handleSubmit } = useContext(EditContext)
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
-  const formTextStyle = !showTextForm ? { display: "none" }
-            : {
-                position:'',
-                top: headerID === 1 ? '12%' : '30%',
-                left: '20%'
-              };
+              
   const showEditPictureForm = (e) => {
     if (e.target.id === "camera") {
       e.target.style.color = "#F35270";
@@ -32,12 +28,6 @@ const HeroBannerForm = (props) => {
       <FiCamera id="camera"/>
     </div>
     <UploadImage />
-    <TextEdit 
-      currentText={currentText} 
-      formTextStyle={formTextStyle} 
-      showForm={setShowTextForm} 
-      save={handleSubmit('texts', currentText)}
-    />
     {/*Start forms for city place edit on the banner*/}
     <div className={edit.place} style={formPlaceStyle}>
       <p className={edit.head}>Place</p>
@@ -70,7 +60,12 @@ const HeroBannerForm = (props) => {
         </form>
       </div>
       <div className={edit.command}>
-      <p id="apply" onClick={handleSubmit('places', currentPlace)}>Apply</p>
+      <p 
+        id="apply" 
+        onClick={() => handleSubmit('places', currentPlace)}
+      >
+        Apply
+      </p>
       <p id="cancel" onClick={() => setShowPlaceForm(false)}>Cancel</p>
       </div>
     </div>

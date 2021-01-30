@@ -13,7 +13,6 @@ const EditContextProvider = (props) => {
   const [textCommunityID, setTextCommunityID] = useState(null);
   const [coord, setCoord] = useState({X: null, Y: null});
 
-  const rawPlace = {text: '', color: '', link: ''};
   const rawText = {
     content: '',
     style: {
@@ -24,16 +23,9 @@ const EditContextProvider = (props) => {
     }
   };
 
-  const [fetchedTexts, setFetchedTexts] = useState([]);
-  const [currentText, setCurrentText] = useState(rawText);
-
   const [fetchedCommunityTexts, setFetchedCommunityTexts] = useState([]);
   const [currentCommunityText, setCurrentCommunityText] = useState(rawText);
 
-  const [places, setPlaces] = useState([]);
-  const [currentPlace, setCurrentPlace] = useState(rawPlace);
-
-  const [banners, setBanners] = useState([]);
   const [videos, setVideos] = useState([]);
 
   // add red marks around editable content
@@ -50,19 +42,6 @@ const EditContextProvider = (props) => {
     setCoord({X:e.clientX, Y:e.clientY});
     console.log(coord.X, coord.Y)
   }
-  // fetch banner 'texts' content from db
-    useEffect(() => {
-      const getTexts = firestore
-        .collection("texts")
-        .onSnapshot((snapshot) => {
-          const newText = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setFetchedTexts(newText);
-        });
-        return () => getTexts();
-  }, []);
 
   // fetch comunnity 'texts' content from db
   useEffect(() => {
@@ -78,32 +57,6 @@ const EditContextProvider = (props) => {
       return () => getTexts();
 }, []);
 
-  // fetch 'places' content from db
-    useEffect(() => {
-    const getPlaces = firestore
-      .collection("places")
-      .onSnapshot((snapshot) => {
-        const newPlace = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setPlaces(newPlace);
-        // console.log('new place:', newPlace);
-      });
-      return () => getPlaces();
-  }, []);
-
-  // fetch 'banners' content from db
-  useEffect(() => {
-    const fetchBanners = async () => {
-      const bannersCollection = await firestore.collection('banners').get();
-      setBanners(bannersCollection.docs.map(doc => {
-        return doc.data();
-      }));
-    }
-    fetchBanners();
-  }, []);
-
   // fetch 'videos' content from db
   useEffect(() => {
     const fetchVideos = firestore
@@ -116,18 +69,6 @@ const EditContextProvider = (props) => {
     });
     return () => fetchVideos();
   }, [])
-
-  // change handler for place
-  const handleChangePlace = (e) => {
-    const { name, value } = e.target;
-    setCurrentPlace({...currentPlace, [name]: value});
-  };
-
-  // change handler for banner text
-  const handleChangeText = (e) => {
-     // const { name, value } = e.target;
-      setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
-  };
 
   // change handler for community text
   const handleChangeCommunityText = (e) => {
@@ -179,10 +120,10 @@ const EditContextProvider = (props) => {
   return (
     <EditContext.Provider
     value={{
-      fetchedTexts, handleChangePlace, handleSubmit,
-      handleEditMode, editMode, setEditMode, editStyle, places,
+      handleSubmit,
+      handleEditMode, editMode, setEditMode, editStyle,
       showPlaceForm, setShowPlaceForm, showTextForm, setShowTextForm,
-      showBannerForms, currentPlace, setCurrentPlace, handleChangeText, headerID, currentText, setCurrentText, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, banners, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, setShowTextCommunityForm, textCommunityID, setCurrentCommunityText, handleChangeCommunityText, videos, getCoordinates, coord
+      showBannerForms, headerID, showEditPictureForm, showPhotoForm, setShowPhotoForm, fileUrl, setFileUrl, fetchedCommunityTexts, currentCommunityText, showCommunityForms, showTextCommunityForm, setShowTextCommunityForm, textCommunityID, setCurrentCommunityText, handleChangeCommunityText, videos, getCoordinates, coord
        }}
     >
       {props.children}

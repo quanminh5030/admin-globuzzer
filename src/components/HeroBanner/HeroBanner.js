@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import HeroBannerForm from '../../pages/Admin/BannerForm/BannerForm';
+import HeroBannerForm from '../../pages/Admin/BannerForm/HeroBannerForm';
 import { firestore } from '../../utils/firebase.utils';
 import { EditContext } from '../../contexts/editContext';
 import { SearchCity } from '../SearchCity/SearchCity';
+import { Fragment } from 'react';
+import TextEdit from '../TextEdit/TextEdit';
 
 const HeroBanner = ({ contentEditable }) => {
-  const { editMode, editStyle } = useContext(EditContext);
+  const { editMode, editStyle, handleSubmit } = useContext(EditContext);
   const [banners, setBanners] = useState([]);
   const [headerID, setHeaderID] = useState(null);
   const [showTextForm, setShowTextForm] = useState(false);
@@ -68,14 +70,13 @@ const HeroBanner = ({ contentEditable }) => {
   }, []);
 
   const showBannerForms = (e) => {
-    console.log(e.target)
-    // console.log(showTextForm, showPlaceForm);
-    return (
-      editMode &&
-      header.current.contains(e.target) ? setShowTextForm(true) 
-      : place.current.contains(e.target) ? setShowPlaceForm(true) 
-      : undefined
-    );
+    // console.log(e.target)
+    // return (
+    //   editMode &&
+    //   header.current.contains(e.target) ? setShowTextForm(true) 
+    //   : place.current.contains(e.target) ? setShowPlaceForm(true) 
+    //   : undefined
+    // );
   };
   // console.log(showTextForm, showPlaceForm);
 // select the clicked 'place'
@@ -106,8 +107,41 @@ const handleChangeText = (e) => {
     setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
 };
 
+const formTextStyle = !showTextForm ? { display: "none" }
+            : {
+                position:'',
+                top: '12%',
+                left: '20%'
+              };
+
+const onSelectedText = (text, currentText) => {
   return (
-    <div onClick={showBannerForms}>
+    showTextForm && text.id === currentText.id &&
+    <TextEdit 
+      currentText={currentText} 
+      formTextStyle={formTextStyle} 
+      setShowForm={setShowTextForm} 
+      save={() => handleSubmit('texts', currentText)}
+    />
+  );
+};
+
+const onSelectedPlace = (place, currentPlace) => {
+  return(
+    showPlaceForm && place.id === currentPlace.id &&
+    <HeroBannerForm 
+    showPlaceForm={showPlaceForm}
+    currentPlace={currentPlace}
+    handleChangePlace={handleChangePlace}
+    setShowPlaceForm={setShowPlaceForm}
+
+    />
+  );
+};
+
+
+  return (
+    <div>
       {banners.map(banner => (
         <section 
           key={banner.img} 
@@ -115,49 +149,51 @@ const handleChangeText = (e) => {
           id="section_header" 
           style={{backgroundImage: `url(${banner.img})`}} 
         >
-        <HeroBannerForm 
-          showTextForm={showTextForm}
-          showPlaceForm={showPlaceForm}
-          currentText={currentText}
-          currentPlace={currentPlace}
-        />
         <div 
           className="headers" 
           ref={header} 
           
         >
           {fetchedTexts.map((t) => (
-            <p
-              key={t.id}
-              id={t.id}
-              name={t.id}
-              contentEditable={contentEditable}
-              style={{ ...editStyle, ...t.style }}
-              suppressContentEditableWarning="true"
-              onBlur={handleChangeText}
-              onFocus={getCurrentText}
-            >
-              {t.content}
-            </p>
+            <Fragment >
+              {onSelectedText(t, currentText)}
+              <p
+                key={t.id}
+                id={t.id}
+                name={t.id}
+                contentEditable={contentEditable}
+                style={{ ...editStyle, ...t.style }}
+                suppressContentEditableWarning="true"
+                onBlur={handleChangeText}
+                onFocus={getCurrentText}
+                onClick={() => setShowTextForm(true)}
+              >
+                {t.content}
+              </p>
+            </Fragment>
           ))}
         </div>
         <SearchCity />
-        <div ref={place} onClick={showBannerForms}>
+        <div ref={place}>
           <p id="header_suggestion">
             Maybe{" "}
             {places.map((p) => (
-              <a
-                href={p.link}
-                target="_new"
-                key={p.id}
-                name={p.id}
-                contentEditable={contentEditable}
-                suppressContentEditableWarning="true"
-                style={{ ...editStyle, color: p.color }}
-                onFocus={handleClick}
-              >
-                {p.text}
-              </a>
+              <Fragment>
+                <a
+                  href={p.link}
+                  target="_new"
+                  key={p.id}
+                  name={p.id}
+                  contentEditable={contentEditable}
+                  suppressContentEditableWarning="true"
+                  style={{ ...editStyle, color: p.color }}
+                  onFocus={handleClick}
+                  onClick={() => setShowPlaceForm(true)}
+                >
+                  {p.text}
+                </a>
+                {onSelectedPlace(p, currentPlace)}
+              </Fragment>
             ))}
           </p>
         </div>

@@ -1,36 +1,17 @@
-import React, { useContext } from 'react';
-import { EditContext } from '../../../contexts/editContext';
-import edit from './BannerForm.module.css';
-import { FiCamera } from 'react-icons/fi';
+import React, { useContext, useState } from 'react';
 import UploadImage from './UploadImage';
-import TextEdit from '../../../components/TextEdit/TextEdit';
+import { FiCamera } from 'react-icons/fi';
+import edit from './BannerForm.module.css';
+import { EditContext } from '../../../contexts/editContext';
 
-const BannerForm = () => {
-
-  const {
-    handleChangePlace, handleSubmit, showPlaceForm, setShowPlaceForm,
-    currentPlace, showTextForm, setShowTextForm, headerID,
-    currentText, editMode, showEditPictureForm
-        } = useContext(EditContext);
-  // manage display and position of popping-up forms
+const HeroBannerForm = (props) => {
+  const { showPlaceForm, currentPlace, handleChangePlace, setShowPlaceForm} = props;
+  const { handleSubmit } = useContext(EditContext)
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
-  const formTextStyle = !showTextForm ? { display: "none" }
-            : {
-                position:'',
-                top: headerID === 1 ? '12%' : '30%',
-                left: '20%'
-              };
+              
   
   return (
     <div>
-    <div className={edit.loadPicture} style={{display: !editMode ? "none" : ""}}onClick={showEditPictureForm}><FiCamera id="camera"/></div>
-    <UploadImage />
-    <TextEdit 
-      currentText={currentText} 
-      formTextStyle={formTextStyle} 
-      showForm={setShowTextForm} 
-      save={handleSubmit('texts', currentText)}
-    />
     {/*Start forms for city place edit on the banner*/}
     <div className={edit.place} style={formPlaceStyle}>
       <p className={edit.head}>Place</p>
@@ -63,7 +44,12 @@ const BannerForm = () => {
         </form>
       </div>
       <div className={edit.command}>
-      <p id="apply" onClick={handleSubmit('places', currentPlace)}>Apply</p>
+      <p 
+        id="apply" 
+        onClick={() => handleSubmit('places', currentPlace)}
+      >
+        Apply
+      </p>
       <p id="cancel" onClick={() => setShowPlaceForm(false)}>Cancel</p>
       </div>
     </div>
@@ -72,4 +58,4 @@ const BannerForm = () => {
   );
 }
 
-export default BannerForm;
+export default HeroBannerForm;
