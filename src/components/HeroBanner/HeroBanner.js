@@ -99,11 +99,11 @@ const handleChangeText = (e) => {
 
 const formTextStyle = !showTextForm ? { display: "none" }
             : {
-                position:'',
-                top: '12%',
-                left: '20%'
+                // position:'relative',
+                // top: '12%',
+                // left: '20%'
               };
-
+console.log('hero', currentText)
 const onSelectedText = (text, currentText) => {
   return (
     showTextForm && text.id === currentText.id &&
@@ -111,7 +111,7 @@ const onSelectedText = (text, currentText) => {
       currentText={currentText} 
       formTextStyle={formTextStyle} 
       setShowForm={setShowTextForm} 
-      save={() => handleSubmit('texts', currentText)}
+      save={handleSubmit}
     />
   );
 };
@@ -142,10 +142,10 @@ const onSelectedPlace = (place, currentPlace) => {
         <div 
           className="headers" 
           ref={header} 
-          
         >
           {fetchedTexts.map((t) => (
             <Fragment >
+              <div>{onSelectedText(t, currentText)}</div>
               <p
                 key={t.id}
                 id={t.id}
@@ -153,13 +153,12 @@ const onSelectedPlace = (place, currentPlace) => {
                 contentEditable={contentEditable}
                 style={{ ...editStyle, ...t.style }}
                 suppressContentEditableWarning="true"
-                onBlur={handleChangeText}
                 onFocus={getCurrentText}
+                onBlur={handleChangeText}
                 onClick={() => setShowTextForm(true)}
               >
                 {t.content}
               </p>
-              {onSelectedText(t, currentText)}
             </Fragment>
           ))}
         </div>

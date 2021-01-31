@@ -33,7 +33,6 @@ const BannerPlacesForm = (props) => {
           />
           <label htmlFor="link">Link</label>
           <p>{currentPlace.text}</p>
-          <p></p>
           <input type="text"
                  value={currentPlace.link}
                  name="link"

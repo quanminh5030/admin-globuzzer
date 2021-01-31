@@ -71,9 +71,11 @@ const EditContextProvider = (props) => {
     setCurrentCommunityText({...currentCommunityText, content: e.target.innerText, id: e.target.id});
  };
 
-  const handleSubmit = (collection, document) => (e) => {
+  const handleSubmit = async (collection, document) => async (e) => {
+    console.log('submit called')
     e.preventDefault();
-      if(document.id) {firestore.collection(collection).doc(document.id).update(document);
+      if(document.id) {
+        await firestore.collection(collection).doc(document.id).update(document);
         console.log(document.id, "saved to db")
       }
   };
