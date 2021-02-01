@@ -1,25 +1,13 @@
-import React, { useContext } from 'react';
-import { EditContext } from '../../../contexts/editContext';
-import TextEdit from '../../../components/TextEdit/TextEdit';
+import React from 'react';
 import UploadImage from '../../../components/UploadImage/UploadImage';
 
 const JoinCommunityForm = ({ showPhotoForm, setShowPhotoForm }) => {
-  const { 
-    showTextCommunityForm, setShowTextCommunityForm, currentCommunityText, textCommunityID, handleSubmit
-        } = useContext(EditContext);
-        
-  const formTextStyle = !showTextCommunityForm ? { display: "none" }
-            : {
-                position: '',
-                top: textCommunityID === 'join_title' ? '1%' : '35%',
-                left: textCommunityID === 'join_title' ? '70%' : '50%'
-              };
+          
   const imageUploadStyle = {
     bottom: '-250px',
     left: '0px',
     zIndex: 100
   }
-
 
   return (
     <div>
@@ -34,12 +22,6 @@ const JoinCommunityForm = ({ showPhotoForm, setShowPhotoForm }) => {
         style={imageUploadStyle}
         setShowPhotoForm={setShowPhotoForm}
       />
-      {/* <TextEdit 
-        currentText={currentCommunityText} 
-        formTextStyle={formTextStyle} 
-        showForm={setShowTextCommunityForm} 
-        save={handleSubmit('community', currentCommunityText)}
-      /> */}
     </div>
   );
 };

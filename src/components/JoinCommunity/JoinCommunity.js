@@ -20,9 +20,10 @@ import { Fragment } from "react";
 export const JoinCommunity = (props) => {
   const { editStyle, contentEditable } = props;
   const { width } = GetWindowDimension();
-  const { editMode, videos } = useContext(EditContext);
+  const { editMode } = useContext(EditContext);
   const [showTextCommunityForm, setShowTextCommunityForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
+  const [videos, setVideos] = useState([]);
 
   const rawText = {
     content: '',
@@ -37,6 +38,13 @@ export const JoinCommunity = (props) => {
   const [fetchedCommunityTexts, setFetchedCommunityTexts] = useState([]);
   const [currentCommunityText, setCurrentCommunityText] = useState(rawText);
 
+  const formTextStyle = !showTextCommunityForm ? { display: "none" }
+            : {
+                position: 'relative',
+                top: '1%' ,
+                left: '10%'
+              };
+
   // fetch comunnity 'texts' content from db
   useEffect(() => {
     const getTexts = firestore
@@ -49,7 +57,21 @@ export const JoinCommunity = (props) => {
         setFetchedCommunityTexts(newText);
       });
       return () => getTexts();
-}, []);
+  }, []);
+
+
+  // fetch 'videos' content from db
+  useEffect(() => {
+    const fetchVideos = firestore
+    .collection('video')
+    .onSnapshot((snapshot) => {
+      const newVideo = snapshot.docs.map((doc) => ({
+        ...doc.data()
+      }));
+      setVideos(newVideo);
+    });
+    return () => fetchVideos();
+  }, [])
 
   const showForm = () => {
     return editMode ? setShowPhotoForm(true) : undefined;
@@ -68,26 +90,18 @@ export const JoinCommunity = (props) => {
  };
 
   const handleSubmitText = async () => {
-      if(currentCommunityText.id) {
+      
         await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
         console.log(currentCommunityText.id, "saved to db")
-      }
-  };
   
-  const showCommunityForms = (e) => {
-    // if (editMode) {
-    //   console.log(e.target.classList.value)
-    //   setTextCommunityID(e.target.classList.value);
-    //   setShowTextCommunityForm(true); 
-    // }
   };
 
   const onSelectedText = (text, currentText) => {
     return (
-      showCommunityForms && text.id === currentText.id &&
+      showTextCommunityForm && text.id === currentText.id &&
       <TextEdit 
         currentText={currentText} 
-        formTextStyle={{background: 'pink', position: 'relative'}} 
+        formTextStyle={formTextStyle} 
         setShowForm={setShowTextCommunityForm} 
         save={handleSubmitText}
       />
@@ -125,12 +139,12 @@ export const JoinCommunity = (props) => {
             className={t.cssid}
             id={t.id}
             name={t.id}
-            onClick={showCommunityForms}
             contentEditable={contentEditable}
             style={{ ...editStyle, ...t.style }}
             suppressContentEditableWarning="true"
-            onBlur={handleChangeCommunityText}
             onFocus={getCurrentCommunityText}
+            onBlur={handleChangeCommunityText}
+            onClick={() => setShowTextCommunityForm(true)}
           >
             {t.content}
           </p>

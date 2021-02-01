@@ -16,9 +16,7 @@ import AddService from "../components/AuxService/AddService";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
-  const {
-    editStyle, editMode, fetchedCommunityTexts
-  } = useContext(EditContext);
+  const { editStyle, editMode } = useContext(EditContext);
 
 
   return (
