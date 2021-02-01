@@ -65,3 +65,58 @@
 button:focus {
   outline: none;
 }
+
+.warningBox {
+  width: 290px;
+  height: 192px;
+  background: #F8F8F8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.warningHeader {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #727272;
+}
+
+.warningText {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #5F5E5E;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.warningActions {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  
+}
+
+.warningActions p {
+  width: 90px;
+  height: 24px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.warningActions p:first-child {
+  background: #858585;
+}
+
+.warningActions p:last-child {
+  background: #F34C6A;
+}

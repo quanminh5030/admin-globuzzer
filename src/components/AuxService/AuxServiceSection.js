@@ -7,7 +7,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { sizeTransform } from '../../utils/sizeTransform';
-import DeleteServiceForm from '../../pages/Admin/ServiceForm/DeleteServiceForm';
 
 const AuxServiceSection = () => {
     const [services, setServices] = useState([]);
@@ -46,12 +45,14 @@ const AuxServiceSection = () => {
         firestore.collection("services").doc(currentService.id).update(updatedService);
     });
 
-    const deleteService = async (data) => {
+    const deleteWarning = () => {
         setDisplay(false);
         setShowWarning(true);
-        // firestore.collection("services").doc(data).delete();
-        alert(`Are you sure you want to DELETE "${data.name}" service?`)
-        // await firestore.collection('services').doc(data.id).delete();
+    };
+
+    const deleteService = async (data) => {
+        await firestore.collection('services').doc(data.id).delete();
+        setShowWarning(false);
     };
 
     //validations
@@ -75,21 +76,38 @@ const AuxServiceSection = () => {
       }     
     };
 
-    const onSelectedService = (data, service) => {
+    const warningForm = (data) => {
       return (
-        data.id === service.id &&
-        display &&
+        <div className="warningBox">
+          <div className="warningHeader">Warning</div>
+          <div className="warningText">
+          {`Are you sure you want to DELETE "${data.name}" service?`}
+          </div>
+          <div className="warningActions">
+            <p onClick={() => deleteService(data)}>Yes</p>
+            <p onClick={() => setShowWarning(false)}>No</p>
+          </div>
+        </div>
+      );
+    }
+
+    const onSelectedService = (data, service) => {
+      if (data.id === service.id) {
+        return (
+          display ?
           <div>
             <ServiceForm 
               setDisplay={setDisplay} 
               currentService={currentService} 
               updateService={updateService} 
-              deleteService={deleteService}
+              deleteService={deleteWarning}
               onFileChange={onFileChange}
               fileUrl={fileUrl}
             />
-          </div>
-      );
+          </div> : showWarning ? 
+          <div>{warningForm(data)}</div> : null
+        );
+      }
     };
     
     const settings = {
@@ -98,14 +116,14 @@ const AuxServiceSection = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
           {
             breakpoint: 1024,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToScroll: 1,
               // infinite: true,
               // dots: false
             }
@@ -114,7 +132,7 @@ const AuxServiceSection = () => {
             breakpoint: 600,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 2,
+              slidesToScroll: 1,
               // initialSlide: 2
             }
           },
