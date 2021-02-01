@@ -8,7 +8,7 @@ import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 
 const HeroBanner = ({ contentEditable }) => {
-  const { editStyle, handleSubmit } = useContext(EditContext);
+  const { editStyle } = useContext(EditContext);
   const [banners, setBanners] = useState([]);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
@@ -103,7 +103,22 @@ const formTextStyle = !showTextForm ? { display: "none" }
                 // top: '12%',
                 // left: '20%'
               };
-console.log('hero', currentText)
+
+const handleSubmitText = async () => {
+    if(currentText.id) {
+      await firestore.collection("texts").doc(currentText.id).update(currentText);
+      console.log(currentText.id, "saved to db")
+    }
+};
+
+const handleSubmitPlace = async () => {
+  // e.preventDefault()
+    if(currentPlace.id) {
+      await firestore.collection("places").doc(currentPlace.id).update(currentPlace);
+      console.log(currentPlace.id, "saved to db")
+    }
+};
+
 const onSelectedText = (text, currentText) => {
   return (
     showTextForm && text.id === currentText.id &&
@@ -111,7 +126,7 @@ const onSelectedText = (text, currentText) => {
       currentText={currentText} 
       formTextStyle={formTextStyle} 
       setShowForm={setShowTextForm} 
-      save={handleSubmit}
+      save={handleSubmitText}
     />
   );
 };
@@ -124,7 +139,7 @@ const onSelectedPlace = (place, currentPlace) => {
     currentPlace={currentPlace}
     handleChangePlace={handleChangePlace}
     setShowPlaceForm={setShowPlaceForm}
-
+    save={handleSubmitPlace}
     />
   );
 };
@@ -144,10 +159,9 @@ const onSelectedPlace = (place, currentPlace) => {
           ref={header} 
         >
           {fetchedTexts.map((t) => (
-            <Fragment >
-              <div>{onSelectedText(t, currentText)}</div>
+            <Fragment key={t.id}>
+              <div >{onSelectedText(t, currentText)}</div>
               <p
-                key={t.id}
                 id={t.id}
                 name={t.id}
                 contentEditable={contentEditable}
@@ -164,15 +178,14 @@ const onSelectedPlace = (place, currentPlace) => {
         </div>
         <SearchCity />
         <div ref={place}>
-          <p id="header_suggestion" className="places">
+          <div id="header_suggestion" className="places">
             Maybe{" "}
             {places.map((p) => (
-              <Fragment>
+              <Fragment key={p.id}>
                 {onSelectedPlace(p, currentPlace)}
                 <a
                   href={p.link}
                   target="_new"
-                  key={p.id}
                   name={p.id}
                   contentEditable={contentEditable}
                   suppressContentEditableWarning="true"
@@ -184,7 +197,7 @@ const onSelectedPlace = (place, currentPlace) => {
                 </a>
               </Fragment>
             ))}
-          </p>
+          </div>
         </div>
         </section>
       ))}

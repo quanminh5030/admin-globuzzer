@@ -53,7 +53,7 @@ const TextEdit = ({ currentText, formTextStyle, setShowForm, save }) => {
         <input type="color" value={defaultColor} name="style.color" onChange={handleColorChange}/>
       </form>
         <Dropdown items={textAligns} defaultValue={defaultAlign} styleChange={handleAlignChange}/>
-        <p className={edit.cmdButton} onClick={() => save('texts', currentText)}>Apply</p>
+        <p className={edit.cmdButton} onClick={() => save()}>Apply</p>
     </div>
   );
 };

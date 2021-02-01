@@ -3,7 +3,6 @@ import styles from './CityForm.module.css';
 
 const CityForm = ({setIsVisible, currentItem, updateItem, onFileChange, fileUrl}) => {
     const [item, setItem] = useState(currentItem);
-console.log('url:',fileUrl)
     useEffect(()=>{
         setItem(currentItem);
         console.log("useEffect passes current item", currentItem);
@@ -23,7 +22,7 @@ console.log('url:',fileUrl)
         <div className={styles.wrapper}>
             <form className={styles.container} >
                 <p className={styles.header}>City Section</p>
-                    <div className={styles.fields} >
+                <div className={styles.fields} >
                     <div className={styles.icon_text}>
                         Cover Image
                         <span>
@@ -50,12 +49,14 @@ console.log('url:',fileUrl)
                         Members
                         <input type="text" name="members" value={item.members} onChange={onChange}/>
                     </label>
-                    </div>
-                    <button className={styles.editBtn}>Go to edit this page</button>  
-                </form>
+                </div>
+                    <button className={styles.editBtn}>
+                        Go to edit this page
+                    </button>  
+            </form>
                 <div className={styles.buttons}>
-                        <button type="submit" onClick={submitForm}>Apply</button>
-                        <button onClick={()=>setIsVisible(false)}>Cancel</button>
+                    <button type="submit" onClick={submitForm}>Apply</button>
+                    <button onClick={()=>setIsVisible(false)}>Cancel</button>
                 </div>
         </div>
     );

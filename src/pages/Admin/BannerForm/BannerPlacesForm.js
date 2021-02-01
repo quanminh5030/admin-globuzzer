@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import edit from './BannerForm.module.css';
-import { EditContext } from '../../../contexts/editContext';
 import { Fragment } from 'react';
 
 const BannerPlacesForm = (props) => {
-  const { showPlaceForm, currentPlace, handleChangePlace, setShowPlaceForm} = props;
-  const { handleSubmit } = useContext(EditContext)
+  const { showPlaceForm, currentPlace, handleChangePlace, setShowPlaceForm, save} = props;
+  // const { handleSubmit } = useContext(EditContext)
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
               
-  
   return (
     <Fragment>
     {/*Start forms for city place edit on the banner*/}
@@ -33,6 +31,7 @@ const BannerPlacesForm = (props) => {
           />
           <label htmlFor="link">Link</label>
           <p>{currentPlace.text}</p>
+          <p></p>
           <input type="text"
                  value={currentPlace.link}
                  name="link"
@@ -44,7 +43,7 @@ const BannerPlacesForm = (props) => {
       <div className={edit.command}>
       <p 
         id="apply" 
-        onClick={() => handleSubmit('places', currentPlace)}
+        onClick={() => save()}
       >
         Apply
       </p>
