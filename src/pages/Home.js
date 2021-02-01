@@ -17,16 +17,9 @@ import AddService from "../components/AuxService/AddService";
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
   const {
-    editStyle, editMode, fetchedCommunityTexts, setCurrentCommunityText
+    editStyle, editMode, fetchedCommunityTexts
   } = useContext(EditContext);
 
-  // select the clicked 'text' on join community
-  const getCurrentCommunityText = (e) => {
-    const newText = fetchedCommunityTexts.filter((text) => {
-      return text.id === e.target.id;
-    });
-    setCurrentCommunityText(newText[0]);
-  };
 
   return (
     <div className="home-page">
@@ -54,10 +47,10 @@ const Home = ({ contentEditable }) => {
         <JoinCitySection />
       </section>
       <JoinCommunity 
-        texts={fetchedCommunityTexts} 
+        // texts={fetchedCommunityTexts} 
         editStyle={editStyle} 
         contentEditable={contentEditable} 
-        getCurrentCommunityText={getCurrentCommunityText}
+        // getCurrentCommunityText={getCurrentCommunityText}
       />
       <section className="featured_articles" id="featured_articles">
         <SectionHeader header="Featured articles" />
