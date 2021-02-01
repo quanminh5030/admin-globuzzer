@@ -1,33 +1,14 @@
-import React, { useContext } from 'react';
-import { EditContext } from '../../../contexts/editContext';
+import React from 'react';
 import edit from './BannerForm.module.css';
-import { FiCamera } from 'react-icons/fi';
-import UploadImage from './UploadImage';
-import TextEdit from '../../../components/TextEdit/TextEdit';
+import { Fragment } from 'react';
 
-const BannerForm = () => {
-
-  const {
-    handleChangePlace, handleSubmit, showPlaceForm, setShowPlaceForm,
-    currentPlace, showTextForm, setShowTextForm, headerID,
-    currentText, editMode, showEditPictureForm
-        } = useContext(EditContext);
-  // manage display and position of popping-up forms
+const BannerPlacesForm = (props) => {
+  const { showPlaceForm, currentPlace, handleChangePlace, setShowPlaceForm, save} = props;
+  // const { handleSubmit } = useContext(EditContext)
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
-  const formTextStyle = !showTextForm ? { display: "none" }
-            : {
-                position:'',
-                top: headerID === 1 ? '12%' : '30%',
-                left: '20%'
-              };
-  
+              
   return (
-    <div>
-    <div className={edit.loadPicture} style={{display: !editMode ? "none" : ""}}onClick={showEditPictureForm}><FiCamera id="camera"/></div>
-    {/*Start form for img upload*/}
-    <UploadImage />
-    {/*End form for img upload*/}
-    <TextEdit currentText={currentText} formTextStyle={formTextStyle} showForm={setShowTextForm} save={handleSubmit('texts', currentText)}/>
+    <Fragment>
     {/*Start forms for city place edit on the banner*/}
     <div className={edit.place} style={formPlaceStyle}>
       <p className={edit.head}>Place</p>
@@ -60,13 +41,18 @@ const BannerForm = () => {
         </form>
       </div>
       <div className={edit.command}>
-      <p id="apply" onClick={handleSubmit('places', currentPlace)}>Apply</p>
+      <p 
+        id="apply" 
+        onClick={() => save()}
+      >
+        Apply
+      </p>
       <p id="cancel" onClick={() => setShowPlaceForm(false)}>Cancel</p>
       </div>
     </div>
   {/*END forms for city place edit on the banner*/}
-    </div>
-  )
+    </Fragment>
+  );
 }
 
-export default BannerForm;
+export default BannerPlacesForm;

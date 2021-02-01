@@ -3,7 +3,7 @@ import Dropdown from '../EditDropdown/Dropdown';
 import edit from './TextEdit.module.css';
 import { sizes, weights, aligns } from './Data';
 
-const TextEdit = ({ currentText, formTextStyle, showForm, save }) => {
+const TextEdit = ({ currentText, formTextStyle, setShowForm, save }) => {
   const[fontSizes] = useState(sizes);
   const[fontWeights] = useState(weights);
   const[textAligns] = useState(aligns);
@@ -41,7 +41,7 @@ const TextEdit = ({ currentText, formTextStyle, showForm, save }) => {
   }
   return (
     <div className={edit.title} style={formTextStyle}>
-      <p className={edit.cmdButton} onClick={() => showForm(false)}>Cancel</p>
+      <p className={edit.cmdButton} onClick={() => setShowForm(false)}>Cancel</p>
     <div className={edit.arrowDown}></div>
       <span>
         <Dropdown items={fontSizes} defaultValue={defaultSize} styleChange={handleSizeChange}/>
@@ -53,7 +53,7 @@ const TextEdit = ({ currentText, formTextStyle, showForm, save }) => {
         <input type="color" value={defaultColor} name="style.color" onChange={handleColorChange}/>
       </form>
         <Dropdown items={textAligns} defaultValue={defaultAlign} styleChange={handleAlignChange}/>
-        <p className={edit.cmdButton} onClick={save}>Apply</p>
+        <p className={edit.cmdButton} onClick={() => save()}>Apply</p>
     </div>
   );
 };

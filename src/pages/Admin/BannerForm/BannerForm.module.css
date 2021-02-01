@@ -106,9 +106,10 @@
   font-size: 40px;
   color: #ffffff;
   position: absolute;
-  top: 10%;
-  left: 5%;
+  top: 1%;
+  left: 10%;
   cursor: pointer;
+  z-index: 10;
 }
 
 /* image upload form */

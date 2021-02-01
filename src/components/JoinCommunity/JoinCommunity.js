@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { MemberNearYou } from "../MemberNearYou/MemberNearYou";
@@ -13,15 +13,100 @@ import Jonathan from "../../assets/Jonathan.png";
 import Chloé from "../../assets/Asya.png";
 import JoinCommunityForm from "../../pages/Admin/JoinCommunityForm/JoinCommunityForm";
 import { EditContext } from "../../contexts/editContext";
+import TextEdit from "../TextEdit/TextEdit";
+import { firestore } from "../../utils/firebase.utils";
+import { Fragment } from "react";
 
-export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCommunityText }) => {
+export const JoinCommunity = (props) => {
+  const { editStyle, contentEditable } = props;
   const { width } = GetWindowDimension();
-  const { handleChangeCommunityText, showCommunityForms, editMode, videos } = useContext(EditContext);
+  const { editMode } = useContext(EditContext);
+  const [showTextCommunityForm, setShowTextCommunityForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
+  const [videos, setVideos] = useState([]);
+
+  const rawText = {
+    content: '',
+    style: {
+      color: '',
+      fontSize: '',
+      fontWeight: '',
+      textAlign: ''
+    }
+  };
+
+  const [fetchedCommunityTexts, setFetchedCommunityTexts] = useState([]);
+  const [currentCommunityText, setCurrentCommunityText] = useState(rawText);
+
+  const formTextStyle = !showTextCommunityForm ? { display: "none" }
+            : {
+                position: 'relative',
+                top: '1%' ,
+                left: '10%'
+              };
+
+  // fetch comunnity 'texts' content from db
+  useEffect(() => {
+    const getTexts = firestore
+      .collection("community")
+      .onSnapshot((snapshot) => {
+        const newText = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setFetchedCommunityTexts(newText);
+      });
+      return () => getTexts();
+  }, []);
+
+
+  // fetch 'videos' content from db
+  useEffect(() => {
+    const fetchVideos = firestore
+    .collection('video')
+    .onSnapshot((snapshot) => {
+      const newVideo = snapshot.docs.map((doc) => ({
+        ...doc.data()
+      }));
+      setVideos(newVideo);
+    });
+    return () => fetchVideos();
+  }, [])
 
   const showForm = () => {
     return editMode ? setShowPhotoForm(true) : undefined;
-  }
+  };
+
+  const getCurrentCommunityText = (e) => {
+    const newText = fetchedCommunityTexts.filter((text) => {
+      return text.id === e.target.id;
+    });
+    setCurrentCommunityText(newText[0]);
+  };
+
+  // change handler for community text
+  const handleChangeCommunityText = (e) => {
+    setCurrentCommunityText({...currentCommunityText, content: e.target.innerText, id: e.target.id});
+ };
+
+  const handleSubmitText = async () => {
+      
+        await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
+        console.log(currentCommunityText.id, "saved to db")
+  
+  };
+
+  const onSelectedText = (text, currentText) => {
+    return (
+      showTextCommunityForm && text.id === currentText.id &&
+      <TextEdit 
+        currentText={currentText} 
+        formTextStyle={formTextStyle} 
+        setShowForm={setShowTextCommunityForm} 
+        save={handleSubmitText}
+      />
+    );
+  };
   
   const Join = () => (
     <section className="join">
@@ -47,22 +132,23 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
         ))}
       </div>
       <div className="join_info">
-        
-        {texts.map(t => (
-          <p
-          key={t.id}
-          className={t.cssid}
-          id={t.id}
-          name={t.id}
-          onClick={showCommunityForms}
-          contentEditable={contentEditable}
-          style={{ ...editStyle, ...t.style }}
-          suppressContentEditableWarning="true"
-          onBlur={handleChangeCommunityText}
-          onFocus={getCurrentCommunityText}
-        >
-          {t.content}
-        </p>
+        {fetchedCommunityTexts.map(t => (
+          <Fragment key={t.id}>
+            {onSelectedText(t, currentCommunityText)}
+            <p
+            className={t.cssid}
+            id={t.id}
+            name={t.id}
+            contentEditable={contentEditable}
+            style={{ ...editStyle, ...t.style }}
+            suppressContentEditableWarning="true"
+            onFocus={getCurrentCommunityText}
+            onBlur={handleChangeCommunityText}
+            onClick={() => setShowTextCommunityForm(true)}
+          >
+            {t.content}
+          </p>
+        </Fragment>
         ))}
         <div className="join_member_list">
           {MemberNearYouData.map((memberData, index) => (
@@ -77,11 +163,12 @@ export const JoinCommunity = ({ texts, editStyle, contentEditable, getCurrentCom
         
       </div>
       <JoinCommunityForm 
-          showPhotoForm={showPhotoForm} 
-          setShowPhotoForm={setShowPhotoForm} 
-        />
+        showPhotoForm={showPhotoForm} 
+        setShowPhotoForm={setShowPhotoForm} 
+      />
     </section>
   );
+
   const JoinMobile = () => (
     <div>
       <SectionHeader header="Top members to meet" />
