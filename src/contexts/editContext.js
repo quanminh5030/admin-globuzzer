@@ -7,7 +7,6 @@ const EditContextProvider = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [coord, setCoord] = useState({X: null, Y: null});
   
-
   // add red marks around editable content
   const editStyle =
     editMode ? {
@@ -22,7 +21,6 @@ const EditContextProvider = (props) => {
     setCoord({X:e.clientX, Y:e.clientY});
     console.log(coord.X, coord.Y)
   }
-
 
   const handleSubmit = async (collection, document) => async (e) => {
     console.log('submit called')
@@ -40,7 +38,6 @@ const EditContextProvider = (props) => {
   })
   };
 
-  
   return (
     <EditContext.Provider
     value={{

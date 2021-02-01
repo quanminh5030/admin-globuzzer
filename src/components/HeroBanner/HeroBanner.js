@@ -99,9 +99,9 @@ const handleChangeText = (e) => {
 
 const formTextStyle = !showTextForm ? { display: "none" }
             : {
-                // position:'relative',
-                // top: '12%',
-                // left: '20%'
+                // position:'absolute',
+                left: '30%',
+                // top: '10%'
               };
 
 const handleSubmitText = async () => {
@@ -160,7 +160,7 @@ const onSelectedPlace = (place, currentPlace) => {
         >
           {fetchedTexts.map((t) => (
             <Fragment key={t.id}>
-              <div >{onSelectedText(t, currentText)}</div>
+              <div>{onSelectedText(t, currentText)}</div>
               <p
                 id={t.id}
                 name={t.id}

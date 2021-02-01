@@ -1,5 +1,6 @@
 .home-page {
     width: 90%;
+    position:relative;
 }
 .section_header {
     /* background-image: url("../assets/Home_header.png"); */
@@ -17,7 +18,6 @@
     color: white;
     position: relative
 }
-
 
 
 /* First headere */

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Fragment } from 'react';
 import { FiCamera } from 'react-icons/fi';
 import UploadImage from '../../../components/UploadImage/UploadImage';
+import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
 
 const BannerPhotoForm = () => {
   const [showPhotoForm, setShowPhotoForm] = useState(false);
-  const photoFormStyle = !showPhotoForm ? { display: "none" } : {};    
+  const photoFormStyle = !showPhotoForm ? { display: "none" } : {}; 
+  const { editMode } = useContext(EditContext);   
   // const editMode = true;
 
   const showEditPictureForm = (e) => {
@@ -20,7 +22,7 @@ const BannerPhotoForm = () => {
     <Fragment>
     <div 
       className={edit.loadPicture} 
-      // style={{display: !editMode ? "none" : ""}} 
+      style={{display: !editMode ? "none" : ""}} 
       onClick={showEditPictureForm}
     >
       <FiCamera id="camera"/>

@@ -106,8 +106,8 @@
   font-size: 40px;
   color: #ffffff;
   position: absolute;
-  top: 45%;
-  left: 30%;
+  top: 1%;
+  left: 10%;
   cursor: pointer;
   z-index: 10;
 }
