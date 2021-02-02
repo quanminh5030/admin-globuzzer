@@ -38,12 +38,14 @@ export const JoinCommunity = (props) => {
   const [fetchedCommunityTexts, setFetchedCommunityTexts] = useState([]);
   const [currentCommunityText, setCurrentCommunityText] = useState(rawText);
 
-  const formTextStyle = !showTextCommunityForm ? { display: "none" }
-            : {
-                position: 'relative',
-                top: '1%' ,
-                left: '10%'
-              };
+  const formTextStyle = editMode && showTextCommunityForm ? {
+    position: 'relative',
+    top: '1%' ,
+    left: '10%'
+  }
+            : 
+
+  { display: 'none'};
 
   // fetch comunnity 'texts' content from db
   useEffect(() => {
@@ -58,7 +60,6 @@ export const JoinCommunity = (props) => {
       });
       return () => getTexts();
   }, []);
-
 
   // fetch 'videos' content from db
   useEffect(() => {
@@ -90,10 +91,8 @@ export const JoinCommunity = (props) => {
  };
 
   const handleSubmitText = async () => {
-      
-        await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
-        console.log(currentCommunityText.id, "saved to db")
-  
+    await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
+    console.log(currentCommunityText.id, "saved to db")
   };
 
   const onSelectedText = (text, currentText) => {
@@ -107,7 +106,6 @@ export const JoinCommunity = (props) => {
       />
     );
   };
-  
   const Join = () => (
     <section className="join">
       <div className="join_video_container" onClick={showForm}>
@@ -123,10 +121,6 @@ export const JoinCommunity = (props) => {
           className="video"
           style={editStyle}
         >
-          {/* <source
-            src="https://staging1.globuzzer.com/globuzzer_Liu/pages/vid.mp4"
-            type="video/mp4"
-          /> */}
           <track kind="captions" />
         </video>
         ))}
