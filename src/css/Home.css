@@ -1,3 +1,4 @@
+
 .home-page {
     width: 90%;
     position:relative;
@@ -164,6 +165,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
+    text-align: -webkit-center;
 }
 
 .joincity_request_city_icon {

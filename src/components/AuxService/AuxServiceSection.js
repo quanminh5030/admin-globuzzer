@@ -131,6 +131,7 @@ const AuxServiceSection = () => {
           {
             breakpoint: 600,
             settings: {
+              arrows: false,
               slidesToShow: 2,
               slidesToScroll: 1,
               // initialSlide: 2
@@ -139,6 +140,7 @@ const AuxServiceSection = () => {
           {
             breakpoint: 480,
             settings: {
+              arrows: false,
               slidesToShow: 1,
               slidesToScroll: 1
             }
