@@ -141,7 +141,7 @@ const AuxServiceSection = () => {
             breakpoint: 480,
             settings: {
               arrows: false,
-              slidesToShow: 2,
+              slidesToShow: 1,
               slidesToScroll: 1
             }
           }
