@@ -13,14 +13,16 @@ import { EditContext } from "../contexts/editContext";
 import FeatureCardPage from "../components/FeatureCard/FeatureCardPage";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 import AddService from "../components/AuxService/AddService";
+import { GetWindowDimension } from "../utils/GetWindowDimension";
 
 const Home = ({ contentEditable }) => {
   const [query, setQuery] = useState("");
   const { editStyle, editMode } = useContext(EditContext);
 
-
+const { width, height } = GetWindowDimension();
   return (
     <div className="home-page">
+      <div style={{position: 'fixed', top: '20px', left: '20px'}}>{`width: ${width}  height: ${height}`}</div>
       <LazyLoad>
         <HeroBanner contentEditable={editMode ? true : false}/>
       </LazyLoad>
