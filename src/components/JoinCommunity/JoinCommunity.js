@@ -45,6 +45,10 @@ export const JoinCommunity = (props) => {
                 left: '10%'
               };
 
+  const onTextClick = (bool) => {
+    setShowTextCommunityForm(bool);
+  };
+
   // fetch comunnity 'texts' content from db
   useEffect(() => {
     const getTexts = firestore
@@ -58,7 +62,6 @@ export const JoinCommunity = (props) => {
       });
       return () => getTexts();
   }, []);
-
 
   // fetch 'videos' content from db
   useEffect(() => {
@@ -90,10 +93,8 @@ export const JoinCommunity = (props) => {
  };
 
   const handleSubmitText = async () => {
-      
-        await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
-        console.log(currentCommunityText.id, "saved to db")
-  
+    await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
+    console.log(currentCommunityText.id, "saved to db")
   };
 
   const onSelectedText = (text, currentText) => {
@@ -123,15 +124,11 @@ export const JoinCommunity = (props) => {
           className="video"
           style={editStyle}
         >
-          {/* <source
-            src="https://staging1.globuzzer.com/globuzzer_Liu/pages/vid.mp4"
-            type="video/mp4"
-          /> */}
           <track kind="captions" />
         </video>
         ))}
       </div>
-      <div className="join_info">
+      <div className="join_info" onClick={() => setShowTextCommunityForm(true)}>
         {fetchedCommunityTexts.map(t => (
           <Fragment key={t.id}>
             {onSelectedText(t, currentCommunityText)}
@@ -144,7 +141,7 @@ export const JoinCommunity = (props) => {
             suppressContentEditableWarning="true"
             onFocus={getCurrentCommunityText}
             onBlur={handleChangeCommunityText}
-            onClick={() => setShowTextCommunityForm(true)}
+            onClick={onTextClick(true)}
           >
             {t.content}
           </p>
