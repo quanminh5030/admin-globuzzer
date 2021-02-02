@@ -38,16 +38,14 @@ export const JoinCommunity = (props) => {
   const [fetchedCommunityTexts, setFetchedCommunityTexts] = useState([]);
   const [currentCommunityText, setCurrentCommunityText] = useState(rawText);
 
-  const formTextStyle = !showTextCommunityForm ? { display: "none" }
-            : {
-                position: 'relative',
-                top: '1%' ,
-                left: '10%'
-              };
+  const formTextStyle = editMode && showTextCommunityForm ? {
+    position: 'relative',
+    top: '1%' ,
+    left: '10%'
+  }
+            : 
 
-  const onTextClick = (bool) => {
-    setShowTextCommunityForm(bool);
-  };
+  { display: 'none'};
 
   // fetch comunnity 'texts' content from db
   useEffect(() => {
@@ -108,7 +106,6 @@ export const JoinCommunity = (props) => {
       />
     );
   };
-  
   const Join = () => (
     <section className="join">
       <div className="join_video_container" onClick={showForm}>
@@ -128,7 +125,7 @@ export const JoinCommunity = (props) => {
         </video>
         ))}
       </div>
-      <div className="join_info" onClick={() => setShowTextCommunityForm(true)}>
+      <div className="join_info">
         {fetchedCommunityTexts.map(t => (
           <Fragment key={t.id}>
             {onSelectedText(t, currentCommunityText)}
@@ -141,7 +138,7 @@ export const JoinCommunity = (props) => {
             suppressContentEditableWarning="true"
             onFocus={getCurrentCommunityText}
             onBlur={handleChangeCommunityText}
-            onClick={onTextClick(true)}
+            onClick={() => setShowTextCommunityForm(true)}
           >
             {t.content}
           </p>
