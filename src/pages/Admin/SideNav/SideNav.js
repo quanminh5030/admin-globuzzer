@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './SideNav.module.css';
 import {Link} from 'react-router-dom';
-import {IoMdArrowDropright} from 'react-icons/io';
 
 const SideNav = () => {
     return (

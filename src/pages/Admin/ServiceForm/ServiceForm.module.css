@@ -67,7 +67,7 @@
     font-weight: normal;
     font-size: 10px;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     text-align: left;
     padding: 8px;
     resize: none;

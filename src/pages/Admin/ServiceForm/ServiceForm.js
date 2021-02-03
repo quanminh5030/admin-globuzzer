@@ -74,7 +74,7 @@ const ServiceForm = ({
               Text
             </label>
               <textarea 
-                  id="des" 
+                  // id="des" 
                   name="des" 
                   value={data.des} 
                   onChange={inputHandler}

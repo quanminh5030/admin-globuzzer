@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import FeaturedArticle from "./FeaturedArticle";
 import { firestore, app } from "../../utils/firebase.utils";
 import "../../css/Home.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import ArticleForm from '../../pages/Admin/ArticleForm/ArticleForm';
-import { EditContext } from "../../contexts/editContext";
 import { sizeTransform } from "../../utils/sizeTransform";
 
 const FeaturedArticlePage = () => {
@@ -15,7 +14,6 @@ const FeaturedArticlePage = () => {
     {id: null, description:"", img:"", title:"", url:""},
   ]
   const [currentArticle, setCurrentArticle] = useState(initialArticleState);
-  const { getCoordinates, coord } = useContext(EditContext);
   
   useEffect(() => {
     const unsubscribe = firestore
@@ -85,7 +83,7 @@ const FeaturedArticlePage = () => {
   };
 
   return (
-    <div onClick={getCoordinates} style={{position: 'relative'}}>
+    <div style={{position: 'relative'}}>
       {articles.map((data, id) => (
         <div key={data.id}>
           <FeaturedArticle 

@@ -74,7 +74,7 @@ class SignIn extends Component {
                 <span className={styles.checkmark} />
                 Remember me
               </label>
-              <a className={styles.link}>Forgot Password?</a>
+              <a className={styles.link} href="www">Forgot Password?</a>
             </div>
           </form>
           <button
