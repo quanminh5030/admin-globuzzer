@@ -88,12 +88,17 @@ export const JoinCommunity = (props) => {
 
   // change handler for community text
   const handleChangeCommunityText = (e) => {
-    setCurrentCommunityText({...currentCommunityText, content: e.target.innerText, id: e.target.id});
+    setCurrentCommunityText(prev => ({...prev, content: e.target.innerText, id: e.target.id}));
+    console.log(e.target.innerText);
+    console.log(currentCommunityText.content);
  };
 
   const handleSubmitText = async () => {
-    await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
-    console.log(currentCommunityText.id, "saved to db")
+    if (currentCommunityText.id) {
+      await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
+      // setShowTextCommunityForm(false);
+    console.log(currentCommunityText.id, "saved to db");
+    }
   };
 
   const onSelectedText = (text, currentText) => {
@@ -136,10 +141,10 @@ export const JoinCommunity = (props) => {
             name={t.id}
             contentEditable={contentEditable}
             style={{ ...editStyle, ...t.style }}
-            suppressContentEditableWarning="true"
+            suppressContentEditableWarning
             onFocus={getCurrentCommunityText}
-            onBlur={handleChangeCommunityText}
-            onClick={() => setShowTextCommunityForm(true)}
+           onBlur={handleChangeCommunityText}
+            // onClick={(e) => setShowTextCommunityForm(true)}
           >
             {t.content}
           </p>

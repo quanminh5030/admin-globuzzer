@@ -112,7 +112,6 @@ const handleSubmitText = async () => {
 };
 
 const handleSubmitPlace = async () => {
-  // e.preventDefault()
     if(currentPlace.id) {
       await firestore.collection("places").doc(currentPlace.id).update(currentPlace);
       console.log(currentPlace.id, "saved to db")
