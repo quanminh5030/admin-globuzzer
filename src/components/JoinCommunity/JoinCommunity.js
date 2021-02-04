@@ -83,6 +83,7 @@ export const JoinCommunity = (props) => {
       return text.id === e.target.id;
     });
     setCurrentCommunityText(newText[0]);
+    setShowTextCommunityForm(true);
   };
 
   // change handler for community text
