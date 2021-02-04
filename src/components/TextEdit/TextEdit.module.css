@@ -33,4 +33,9 @@
 .cmdButton {
   color: #8F8E8E;
   cursor:pointer;
+  display: block
+}
+
+.cmdButton:hover {
+  color: #464444;
 }
