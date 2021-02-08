@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 const Header = () => {
   let {city} = useParams();
   const data = JoinCityData.find((data)=>data.name === city)
+  console.log("jsdata", JoinCityData)
   return (
     <div className={styles.header}>
       <div className={styles.content}>
@@ -16,7 +17,7 @@ const Header = () => {
           </p>
           <AiFillCaretRight className={styles.icon} />
           <p>
-            <a id="city-name" href="#">{data.name}</a>
+            <a id="city-name" href="www">{data.name}</a>
           </p>
         </div>
         <div className={styles.text}>

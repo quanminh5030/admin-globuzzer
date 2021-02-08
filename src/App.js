@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import SignUp from "./pages/Admin/SignUp/SignUp";
 import AdminLanding from './pages/Admin/AdminLanding/AdminLanding';
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
