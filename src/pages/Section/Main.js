@@ -13,9 +13,9 @@ import { Footer } from "../../components/Footer/Footer";
 import styles from "./index.module.css";
 
 const Main = () => {
-  useEffect(() => {
-    document.querySelector(".section_navigation").style.visibility = "hidden";
-  }, []);
+  // useEffect(() => {
+  //   document.querySelector(".section_navigation").style.visibility = "hidden";
+  // }, []);
   return (
     <div className={styles.section}>
       <NavBar />

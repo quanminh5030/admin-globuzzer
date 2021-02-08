@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import SignUp from "./pages/Admin/SignUp/SignUp";
 import AdminLanding from './pages/Admin/AdminLanding/AdminLanding';
+import AdminSection from "./pages/Admin/AdminSection/AdminSection";
+import AdminSectionCity from "./pages/Admin/AdminSection/AdminSectionCity";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -49,6 +51,8 @@ class App extends React.Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/signup" component={SignUp} />
           <Route path="/landing" component={AdminLanding} />
+          <Route exact path="/section" component={AdminSection} />
+          <Route path="/section/:city" component={AdminSectionCity} />
         </Switch>
       </>
     );

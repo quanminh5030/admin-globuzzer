@@ -1,0 +1,91 @@
+/* section main */
+.sectionGrid {
+  display: grid;
+  grid-gap: 2.5px;
+  gap: 2.5px;
+  grid-template-columns: repeat(2,200px);
+  grid-auto-rows: 280px;
+  justify-content: center;
+  margin-top: 36px;
+  margin-bottom: 50px;
+}
+
+.sectionGrid div {
+  background-color: antiquewhite;
+}
+
+/* admin section */
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 3rem;
+  gap: 50px;
+  width: min-content;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding-left: 10px;
+  width: 150%;
+}
+.navLink a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dashboardLink {
+  color: #808080;
+}
+
+.landingLink {
+  color: #F26678;
+}
+
+.svrBtn {
+padding: 0.5rem 1.5rem;
+background: #F35270;
+border-radius: 3px;
+color: #ffffff;
+font-size: 18px;
+text-align: center;
+border: none;
+margin-bottom: 1rem;
+margin-right: 22px;
+}
+.editBtn {
+  padding: 0.5rem 3rem;
+  background: #898787;;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  border: none;
+  margin-bottom: 1rem;
+  margin-right: 22px;
+}
+
+.main {
+  justify-self: center;
+  margin-left: 20px;
+}
+
+
+/* section main */
+@media (min-width: 1100px)
+{
+  .sectionGrid {
+    display: grid;
+    /* grid-gap: 14px; */
+    gap: 30px;
+    grid-template-columns: repeat(4,200px);
+    grid-auto-rows: 280px;
+    /* justify-content: center; */
+    margin: 100px;
+    z-index: 0;
+  }
+
+}
+
