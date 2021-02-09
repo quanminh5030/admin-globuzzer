@@ -89,7 +89,7 @@ const AuxServiceSection = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const onSelectedService = (data, service) => {
     if (data.id === service.id) {
