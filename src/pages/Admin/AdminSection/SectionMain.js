@@ -41,7 +41,11 @@ const SectionMain = () => {
       {loading ? 'Loading...' : 
         <div className={styles.sectionGrid}>
         {items.map(item => (
-          <div className={styles.card} style={{backgroundImage: `url(${item.url}), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0,0.3), rgba(0, 0, 0, 0.3))`}}>
+          <div 
+            key={item.id}
+            className={styles.card} 
+            style={{backgroundImage: `url(${item.url}), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0,0.3), rgba(0, 0, 0, 0.3))`}}
+          >
             <div className={styles.options}>
               <p>Edit</p>
               <p onClick={() => deleteWarning(item)}>Delete</p>
