@@ -18,7 +18,7 @@ const Main = () => {
   // }, []);
   return (
     <div className={styles.section}>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className={styles.header}>
         <Header />
       </div>
