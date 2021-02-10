@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import useFetchSection from '../../../hooks/useFetchSection';
 import styles from './AdminSection.module.css';
 import SectionItems from './SectionItems';
+import { BsSearch } from "react-icons/bs";
 
 const SectionMain = () => {
   const { error, loading, items } = useFetchSection();
@@ -20,10 +21,13 @@ const SectionMain = () => {
       {loading ? 'Loading...' : 
       <div className={styles.mainContainer}>
         <div className={styles.actions}>
-        <input type="text"
-          value={searchedCity}
-          onChange={ (e) => setSearchedCity(e.target.value)} 
-        />
+          <span className={styles.input}>
+            <BsSearch />
+            <input type="text"
+              value={searchedCity}
+              onChange={ (e) => setSearchedCity(e.target.value)} 
+            />
+          </span>
         <button>Add</button>
         </div>
         <SectionItems items={mySearch()} loading={loading}/>

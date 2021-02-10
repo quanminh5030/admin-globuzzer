@@ -77,6 +77,12 @@
   border: 1px solid #9E9E9E;
   box-sizing: border-box;
   border-radius: 10px;
+  color: #9E9E9E;
+}
+
+.input svg {
+  
+  color: #9E9E9E;
 }
 
 .actions button {

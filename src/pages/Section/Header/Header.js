@@ -11,7 +11,6 @@ const Header = () => {
   console.log("jsdata", JoinCityData)
   return (
     <Fragment>
-      {data ? 
       <div className={styles.header}>
       <div className={styles.content}>
         <div className={styles.url}>
@@ -34,8 +33,6 @@ const Header = () => {
         </div>
       </div>
     </div>
-      : <h1>404 - Page Not Found</h1>}
-    
     </Fragment>
     
   );
