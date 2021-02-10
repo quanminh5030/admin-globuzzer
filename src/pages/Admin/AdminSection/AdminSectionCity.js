@@ -50,7 +50,7 @@ const AdminSectionCity = () => {
               </div>
             )
             }
-            {  <Main contentEditable={editMode ? true : false}/> }
+            {  <Main /> }
         </section>
       </div>
     </div>

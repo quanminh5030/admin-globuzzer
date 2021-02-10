@@ -8,11 +8,19 @@ import { EditContext } from "../../../contexts/editContext";
 import useFetchSection from "../../../hooks/useFetchSection";
 import BannerPhotoForm from "../../Admin/BannerForm/BannerPhotoForm";
 
-const Header = () => {
+const Header = ({ contentEditable }) => {
   const { editMode, editStyle } = useContext(EditContext);
   const { city, cityId } = useParams();
   const { error, loading, items } = useFetchSection();
   const data = items.find((data) => data.id === cityId && data.name === city);
+  console.log(data)
+  // select the clicked 'place'
+  const handleClick = (e) => {
+    // const newPlace = places.filter((place) => {
+    //   return place.id === e.target.name;
+    // });
+    // setCurrentPlace(newPlace[0]);
+  };
 
   return (
     <Fragment>
@@ -30,13 +38,43 @@ const Header = () => {
               </p>
             </div>
             <div className={styles.text}>
-              <p className={styles.textOne}>{data.name} Community</p>
-              <p className={styles.textTwo}>Explore different topics and information</p>
+            {data.banner.texts.map((t) => (
+              <Fragment key={t.id}>
+                <p
+                id={t.id}
+                name={t.id}
+                contentEditable={contentEditable}
+                style={{ ...editStyle, ...t.style }}
+                suppressContentEditableWarning="true"
+                // onFocus={getCurrentText}
+                // onBlur={handleChangeText}
+                // onClick={() => setShowTextForm(true)}
+                >
+                  {t.content}
+                </p>
+              </Fragment>
+              ))}
+              {/* <p className={styles.textOne}>{data.name} Community</p>
+              <p className={styles.textTwo}>Explore different topics and information</p> */}
               <SearchBar />
               <p className={styles.suggestions}>
-                Maybe <a href="https://globuzzer.mn.co/groups/195831/feed">Attractions</a>,<a href="https://globuzzer.mn.co/groups/195832/feed"> Career</a> or{" "}
-                <a href="https://globuzzer.mn.co/groups/195834/feed">Culture</a>?
+              {data.banner.places.map((p) => (
+                <Fragment key={p.id}>
+                  <a 
+                    href={p.link}
+                    target="_new"
+                    name={p.id}
+                    contentEditable={contentEditable}
+                    suppressContentEditableWarning="true"
+                    style={{ ...editStyle, color: p.color }}
+                    onFocus={handleClick}
+                  >
+                    {p.text}
+                  </a>
+                </Fragment>
+                ))}
               </p>
+              
             </div>
           </div>
         </div>

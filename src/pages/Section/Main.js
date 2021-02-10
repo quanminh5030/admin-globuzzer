@@ -22,7 +22,7 @@ const Main = () => {
     <div className={styles.section}>
       {/* <NavBar /> */}
       <div className={styles.header}>
-        <Header />
+        <Header contentEditable={editMode ? true : false}/>
       </div>
       <div className={styles.main}>
         <div className={styles.center}>

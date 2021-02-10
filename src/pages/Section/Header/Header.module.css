@@ -65,6 +65,42 @@
   text-align: center;
 }
 
+.suggestions::before {
+  content: "Maybe ";
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.suggestions a:first-child:after {
+  content: ", ";
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.suggestions a:last-child:before {
+  content: " or ";
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.suggestions a:last-child:after {
+  content: " ?";
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
 .suggestions a {
   color: #f24b6a;
   font-weight: bolder;
