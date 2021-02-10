@@ -5,7 +5,6 @@ import styles from './AdminSection.module.css';
 import SectionItems from './SectionItems';
 
 const SectionMain = () => {
-  
   const { error, loading, items } = useFetchSection();
   const [searchedCity, setSearchedCity] = useState('');
 
@@ -14,6 +13,7 @@ const SectionMain = () => {
       .name.toLowerCase()
       .includes(searchedCity.toLowerCase()))
   };
+  
   
   return (
     <Fragment>

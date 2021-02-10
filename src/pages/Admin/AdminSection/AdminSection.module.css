@@ -70,9 +70,18 @@
   justify-content: space-between;
 }
 
+.actions input {
+  width: 220px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 1px solid #9E9E9E;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
 .actions button {
   width: 89px;
-  height: 35px;
+  height: 30px;
   background: #F34C6A;
   border-radius: 8px;
   font-family: Roboto;
@@ -161,6 +170,16 @@ margin-right: 22px;
 
   .actions {
     margin-bottom: 25px;
+  }
+
+  .actions input {
+    width: 391px;
+    height: 35px;
+  }
+  
+  .actions button {
+    width: 89px;
+    height: 35px;
   }
   
 }

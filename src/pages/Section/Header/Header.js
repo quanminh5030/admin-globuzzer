@@ -4,12 +4,15 @@ import SearchBar from "./SearchBar/SearchBar";
 import styles from  "./Header.module.css";
 import JoinCityData from '../../../Data/JoinCityData';
 import { Link, useParams } from "react-router-dom";
+import { Fragment } from "react";
 const Header = () => {
   let {city} = useParams();
-  const data = JoinCityData.find((data)=>data.name === city)
+  const data = JoinCityData.find((data) => data.name === city)
   console.log("jsdata", JoinCityData)
   return (
-    <div className={styles.header}>
+    <Fragment>
+      {data ? 
+      <div className={styles.header}>
       <div className={styles.content}>
         <div className={styles.url}>
           <p>
@@ -31,6 +34,10 @@ const Header = () => {
         </div>
       </div>
     </div>
+      : <h1>404 - Page Not Found</h1>}
+    
+    </Fragment>
+    
   );
 };
 
