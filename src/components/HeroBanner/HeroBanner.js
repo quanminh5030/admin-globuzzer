@@ -145,7 +145,10 @@ const onSelectedPlace = (place, currentPlace) => {
 
   return (
     <Fragment>
-      <BannerPhotoForm />
+      <BannerPhotoForm 
+        collection="banners"
+        doc="banner"
+      />
       {banners.map(banner => (
         <section 
           key={banner.img} 

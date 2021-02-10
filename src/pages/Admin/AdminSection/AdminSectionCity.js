@@ -7,10 +7,10 @@ import TopNav from "../TopNav/TopNav";
 import Main from "../../Section/Main";
 import { EditContext } from "../../../contexts/editContext";
 
-
 const AdminSectionCity = () => {
-  const {city} = useParams();
-  const { editMode, handleEditMode, setEditMode } = useContext(EditContext)
+  const { city, cityId } = useParams();
+
+  const { editMode, handleEditMode, setEditMode } = useContext(EditContext);
   return (
     <div className={styles.wrapper}>
       <TopNav/>
@@ -32,7 +32,7 @@ const AdminSectionCity = () => {
             </Link>
             <IoMdArrowDropright color="#F26678" size="25px"/>
             <Link 
-              to={`/section/${city}`}
+              to={`/section/${city}/${cityId}`}
               className={styles.landingLink}
             >
               {city}

@@ -5,7 +5,7 @@ import UploadImage from '../../../components/UploadImage/UploadImage';
 import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
 
-const BannerPhotoForm = () => {
+const BannerPhotoForm = ({ collection, doc}) => {
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const photoFormStyle = !showPhotoForm ? { display: "none" } : {}; 
   const { editMode } = useContext(EditContext);   
@@ -33,8 +33,8 @@ const BannerPhotoForm = () => {
       style={photoFormStyle}
       typeValidation={['image/jpg', 'image/jpeg', 'image/png']}
       sizeValidation="500000"
-      collection="banners"
-      doc="banner"
+      collection={collection}
+      doc={doc}
       message="The size of the image should be maximum 500KB, and the format need to be PNG, JPG."
       title='image'
     />

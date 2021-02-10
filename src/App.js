@@ -52,7 +52,7 @@ class App extends React.Component {
           <Route path="/signup" component={SignUp} />
           <Route path="/landing" component={AdminLanding} />
           <Route exact path="/section" component={AdminSection} />
-          <Route path="/section/:city" component={AdminSectionCity} />
+          <Route path="/section/:city/:cityId" component={AdminSectionCity} />
           </Switch>
       </>
     );

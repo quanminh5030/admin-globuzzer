@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./Header/Header";
 import NavBar from "./Header/NavBar/NavBar";
 import Services from "./Services/Services";
@@ -11,8 +11,10 @@ import Vimeo from "./Vimeo/Vimeo";
 import { OwnSection } from "../../components/OwnSection/OwnSection";
 import { Footer } from "../../components/Footer/Footer";
 import styles from "./index.module.css";
+import { EditContext } from "../../contexts/editContext";
 
 const Main = () => {
+  const { editMode, editStyle } = useContext(EditContext)
   // useEffect(() => {
   //   document.querySelector(".section_navigation").style.visibility = "hidden";
   // }, []);

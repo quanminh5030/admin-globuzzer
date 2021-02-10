@@ -6,7 +6,7 @@ import SectionItems from './SectionItems';
 import { BsSearch } from "react-icons/bs";
 
 const SectionMain = () => {
-  const { error, loading, items } = useFetchSection();
+  const { loading, items } = useFetchSection();
   const [searchedCity, setSearchedCity] = useState('');
 
   const mySearch = () => {
@@ -21,7 +21,7 @@ const SectionMain = () => {
       {loading ? 'Loading...' : 
       <div className={styles.mainContainer}>
         <div className={styles.actions}>
-          <span className={styles.input}>
+          <span className={styles.inputForm}>
             <BsSearch />
             <input type="text"
               value={searchedCity}
