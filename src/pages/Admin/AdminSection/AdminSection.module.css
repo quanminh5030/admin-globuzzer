@@ -60,18 +60,29 @@
   align-items: center;
 }
 
-/* .sectionGrid iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  transform: scale();
+.mainContainer {
+  display: flex;
+  flex-direction: column;
 }
-*/
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions button {
+  width: 89px;
+  height: 35px;
+  background: #F34C6A;
+  border-radius: 8px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #FFFFFF;
+  border: none;
+}
 
 /* admin section */
 .container {
@@ -144,7 +155,13 @@ margin-right: 22px;
     /* justify-content: center; */
     margin: 100px;
     z-index: 0;
+    width: 100%;
+    margin: 0 auto;
   }
 
+  .actions {
+    margin-bottom: 25px;
+  }
+  
 }
 
