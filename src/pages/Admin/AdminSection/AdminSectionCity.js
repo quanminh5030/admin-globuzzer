@@ -50,7 +50,7 @@ const AdminSectionCity = () => {
               </div>
             )
             }
-            {  <Main /> }
+            {  <Main cityId={cityId}/> }
         </section>
       </div>
     </div>

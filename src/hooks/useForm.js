@@ -4,7 +4,7 @@ const useForm = (initialValues) => {
   const [values, setValues] = useState(initialValues);
 
   return {
-      values,
+    values,
     handleChange: (e) => {
       setValues({
         ...values,

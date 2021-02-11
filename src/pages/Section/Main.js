@@ -12,8 +12,9 @@ import { OwnSection } from "../../components/OwnSection/OwnSection";
 import { Footer } from "../../components/Footer/Footer";
 import styles from "./index.module.css";
 import { EditContext } from "../../contexts/editContext";
+import HeroHeader from "../../components/HeroHeader/HeroHeader";
 
-const Main = () => {
+const Main = ({ cityId }) => {
   const { editMode, editStyle } = useContext(EditContext)
   // useEffect(() => {
   //   document.querySelector(".section_navigation").style.visibility = "hidden";
@@ -23,6 +24,10 @@ const Main = () => {
       {/* <NavBar /> */}
       <div className={styles.header}>
         <Header contentEditable={editMode ? true : false}/>
+        {/* <HeroHeader 
+          cityId={cityId} 
+          contentEditable={editMode ? true : false}
+        /> */}
       </div>
       <div className={styles.main}>
         <div className={styles.center}>

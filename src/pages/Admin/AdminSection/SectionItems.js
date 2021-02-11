@@ -39,7 +39,7 @@ const SectionItems = ({ items }) => {
           <div 
             key={item.id}
             className={styles.card} 
-            style={{backgroundImage: `url(${item.url}), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0,0.3), rgba(0, 0, 0, 0.3))`}}
+            style={{backgroundImage: `url(${item.banner.img}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat:'no-repeat'}}
           >
             <div className={styles.options}>
               <Link to={`/section/${item.name}/${item.id}`}>
