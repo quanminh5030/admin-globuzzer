@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { firestore } from "../utils/firebase.utils"
 
-const useFetchSection = () => {
+const useFetch = (collection) => {
   const [data, setData] = useState({
     error: null,
     loading: true,
@@ -10,7 +10,7 @@ const useFetchSection = () => {
 
   useEffect(() => {
     const unsubscribe = firestore
-      .collection('section_items')
+      .collection(collection)
       .onSnapshot(
         (snapshot) => {
           setData({
@@ -35,4 +35,4 @@ const useFetchSection = () => {
   return data;
 };
 
-export default useFetchSection;
+export default useFetch;

@@ -1,27 +1,22 @@
 import React, { useState } from 'react';
 import { Fragment } from 'react';
-import { firestore } from '../../../utils/firebase.utils';
 import styles from './AdminSection.module.css';
 import { Link, withRouter } from "react-router-dom";
+import { deleteData } from '../../../utils/actions.firebase';
 
 const SectionItems = ({ items }) => {
   const [showWarning, setShowWarning] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
-  
+
   const deleteWarning = (item) => {
     setClickedCard(item);
     setShowWarning(true);
   };
-
-  // const onSelectedCard = (item) => {
-  //   setEdit(true);
-  //   setCity(item.name);
-  // };
-
-  const deleteSection = async (data) => {
-    await firestore.collection('section_items').doc(data.id).delete();
+  const onDelete = (data) => {
+    deleteData('section_items', data);
     setShowWarning(false);
-  };
+  }
+  
   const warningForm = (data) => {
     return (
       <div className="warningBox" style={{margin: '0 auto'}}>
@@ -30,7 +25,7 @@ const SectionItems = ({ items }) => {
         {`Are you sure you want to DELETE "${data.name}" section?`}
         </div>
         <div className="warningActions">
-          <p onClick={() => deleteSection(data)}>Yes</p>
+          <p onClick={() => onDelete(data)}>Yes</p>
           <p onClick={() => setShowWarning(false)}>No</p>
         </div>
       </div>

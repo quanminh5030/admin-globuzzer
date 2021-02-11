@@ -534,5 +534,129 @@ export const data =
       {text: "", url: "", img: ""}
     ]
   }
-]
+];
+
+export const empty = 
+{
+  name: "New",
+    url: "", 
+    advertisements: [
+      {
+        backgroundColor: "",
+        buttonColor: "",
+        link: "",
+        logo: "",
+        text1: "",
+        text2: "",
+      }
+    ],
+    articles: [
+      {
+        author_img: "",
+        author_name: "",
+        img: "",
+        likes: 0,
+        link: "",
+        title: "",
+      },
+      {
+        author_img: "",
+        author_name: "",
+        img: "",
+        likes: 0,
+        link: "",
+        title: "",
+      }
+    ],
+    banner: {
+      img: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
+      places: [
+        {color: "", text: "", link: ""},
+        {link: "", text: "", color: ""},
+        {color: "", link: "", text: ""},
+      ],
+      texts: [
+        {
+          content: "",
+          style: {
+            color: "#000000",
+            fontSize: "48",
+            fontWeight: "bold",
+            textAlign: "center",
+          }
+        },
+        {
+          content: "",
+          style: {
+            color: "crimson",
+            fontSize: "24",
+            fontWeight: "bold",
+            textAlign: "center",
+          }
+        }
+      ],
+    },
+    mews: [
+      {text: "", img: "", link: ""},
+      {text: "", img: "", link: ""},
+    ],
+    people: [
+      {
+        img: "",
+        name: "",
+        flags: [],
+      },
+      {
+        img: "",
+        name: "",
+        flags: [],
+      }
+    ],
+    services: [
+      {text: "", url: "", name: "", img: ""},
+      {text: "", url: "", name: "", img: ""},
+      {text: "", url: "", name: "", img: ""},
+    ],
+    topics: [
+      {link: "", img: "", topic: ""},
+      {link: "", img: "", topic: ""},
+    ],
+    videos: [
+      {text: "", url: "", img: ""},
+      {text: "", url: "", img: ""}
+    ]
+};
+
+export const forTest = 
+{
+  name: "Test210",
+  banner: {
+    img: "",
+      places: [
+        {color: "", text: "test", link: ""},
+        {link: "", text: "this", color: ""},
+        {color: "", link: "", text: "out"},
+      ],
+      texts: [
+        {
+          content: "Stockholmzzz Community",
+          style: {
+            color: "#000000",
+            fontSize: "48",
+            fontWeight: "bold",
+            textAlign: "center",
+          }
+        },
+        {
+          content: "Exploreyyy different topics and information",
+          style: {
+            color: "crimson",
+            fontSize: "24",
+            fontWeight: "bold",
+            textAlign: "center",
+          }
+        }
+      ],
+  },
+};
   

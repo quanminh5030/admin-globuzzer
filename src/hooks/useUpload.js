@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { firestore } from "../utils/firebase.utils"
 
-const useUploadSection = (data) => {
+const useUpload = (data) => {
   useEffect(() => {
     const uploadData = async (data)=> {
       await firestore.collection("section_items").add(data);
@@ -10,4 +10,4 @@ const useUploadSection = (data) => {
   }, [data]);
 };
 
-export default useUploadSection;
+export default useUpload;

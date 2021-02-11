@@ -1,32 +1,26 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, Fragment, useState } from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import SearchBar from "./SearchBar/SearchBar";
 import styles from  "./Header.module.css";
-import JoinCityData from '../../../Data/JoinCityData';
 import { Link, useParams } from "react-router-dom";
 import { EditContext } from "../../../contexts/editContext";
-import useFetchSection from "../../../hooks/useFetchSection";
-import BannerPhotoForm from "../../Admin/BannerForm/BannerPhotoForm";
+import useFetch from "../../../hooks/useFetch";
 
 const Header = ({ contentEditable }) => {
   const { editMode, editStyle } = useContext(EditContext);
   const { city, cityId } = useParams();
-  const { error, loading, items } = useFetchSection();
+  const { error, loading, items } = useFetch('section_items');
+  
   const data = items.find((data) => data.id === cityId && data.name === city);
-  console.log(data)
-  // select the clicked 'place'
-  const handleClick = (e) => {
-    // const newPlace = places.filter((place) => {
-    //   return place.id === e.target.name;
-    // });
-    // setCurrentPlace(newPlace[0]);
-  };
-
+ 
   return (
     <Fragment>
       {!loading && 
         <Fragment>
-          <div className={styles.header}>
+          <div 
+            className={styles.header} 
+            style={{backgroundImage: `url(${data.banner.img})`}}
+          >
           <div className={styles.content}>
             <div className={styles.url}>
               <p>
@@ -67,7 +61,7 @@ const Header = ({ contentEditable }) => {
                     contentEditable={contentEditable}
                     suppressContentEditableWarning="true"
                     style={{ ...editStyle, color: p.color }}
-                    onFocus={handleClick}
+                    // onFocus={handleClick}
                   >
                     {p.text}
                   </a>
