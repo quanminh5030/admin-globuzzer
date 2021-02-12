@@ -27,13 +27,13 @@ const SHeader = ({ contentEditable, cityId }) => {
   };
   const [currentText, setCurrentText] = useState(rawText);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
-  
+
 // select the clicked 'place'
 const getCurrentPlace = (e) => {
   const newPlace = places.filter((place, id) => {
     return id === parseInt(e.target.id, 10);
   });
-  setCurrentPlace(newPlace[0]);
+  setCurrentPlace({...newPlace[0], id: e.target.id});
 };
 
 // select the clicked 'text' on banner
@@ -90,9 +90,9 @@ const onSelectedText = (id, currentText) => {
   );
 };
 
-const onSelectedPlace = (place, currentPlace) => {
+const onSelectedPlace = (id, currentPlace) => {
   return(
-    showPlaceForm && place.id === currentPlace.id &&
+    showPlaceForm && id === parseInt(currentPlace.id, 10) &&
     <BannerPlacesForm 
     showPlaceForm={showPlaceForm}
     currentPlace={currentPlace}
@@ -144,7 +144,7 @@ const renderedHeader = () => {
             Maybe{" "}
             {places.map((p, id) => (
               <Fragment key={`${id}-${p.content}-${p.color}`}>
-                {onSelectedPlace(p, currentPlace)}
+                {onSelectedPlace(id, currentPlace)}
                 <a
                   id={id}
                   href={p.link}
@@ -152,8 +152,8 @@ const renderedHeader = () => {
                   contentEditable={contentEditable}
                   suppressContentEditableWarning="true"
                   style={{ ...editStyle, color: p.color }}
-                  onClick={getCurrentPlace}
-                  // onClick={() => setShowPlaceForm(true)}
+                  onFocus={getCurrentPlace}
+                  onClick={() => setShowPlaceForm(true)}
                 >
                   {p.text}
                 </a>
