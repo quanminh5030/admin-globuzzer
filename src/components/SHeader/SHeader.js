@@ -27,9 +27,9 @@ const SHeader = ({ contentEditable, cityId }) => {
   };
   const [currentText, setCurrentText] = useState(rawText);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
-
+  
 // select the clicked 'place'
-const handleClick = (e) => {
+const getCurrentPlace = (e) => {
   const newPlace = places.filter((place, id) => {
     return id === parseInt(e.target.id, 10);
   });
@@ -41,7 +41,8 @@ const getCurrentText = (e) => {
   const newText = fetchedTexts.filter((text, id) => {
     return id === parseInt(e.target.id, 10);
   });
-  setCurrentText(newText[0]);
+  // setShowTextForm(true);
+  setCurrentText({...newText[0], id: e.target.id});
 };
 
 // change handler for place
@@ -126,9 +127,9 @@ const renderedHeader = () => {
                 contentEditable={contentEditable}
                 style={{ ...editStyle, ...t.style }}
                 suppressContentEditableWarning="true"
-                onClick={getCurrentText}
+                onFocus={getCurrentText}
                 onBlur={handleChangeText}
-                // onClick={() => setShowTextForm(true)}
+                onClick={() => setShowTextForm(true)}
               >
                 {t.content}
               </p>
@@ -151,7 +152,7 @@ const renderedHeader = () => {
                   contentEditable={contentEditable}
                   suppressContentEditableWarning="true"
                   style={{ ...editStyle, color: p.color }}
-                  onClick={handleClick}
+                  onClick={getCurrentPlace}
                   // onClick={() => setShowPlaceForm(true)}
                 >
                   {p.text}
