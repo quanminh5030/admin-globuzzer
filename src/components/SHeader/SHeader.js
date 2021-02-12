@@ -41,7 +41,6 @@ const getCurrentText = (e) => {
   const newText = fetchedTexts.filter((text, id) => {
     return id === parseInt(e.target.id, 10);
   });
-  // setShowTextForm(true);
   setCurrentText({...newText[0], id: e.target.id});
 };
 
@@ -63,19 +62,24 @@ const formTextStyle = !showTextForm ? { display: "none" }
                 left: '30%',
                 // top: '10%'
               };
+// const handleTest = async () => {
+//     await firestore.collection("test_upload").doc("zmFAmo01OBBlQEtPxhae").update({banner: {img:"210", places: [], texts: []}});
+//     console.log(currentText.id, "saved to db")
+// };
+
 
 const handleSubmitText = async () => {
-    if(currentText.id) {
-      await firestore.collection("texts").doc(currentText.id).update(currentText);
-      console.log(currentText.id, "saved to db")
-    }
+  if(currentText.id) {
+    await firestore.collection("section_items").doc(cityId).update(currentText);
+    console.log(currentText.id, "saved to db")
+  }
 };
 
 const handleSubmitPlace = async () => {
-    if(currentPlace.id) {
-      await firestore.collection("places").doc(currentPlace.id).update(currentPlace);
-      console.log(currentPlace.id, "saved to db")
-    }
+  if(currentPlace.id) {
+    await firestore.collection("places").doc(currentPlace.id).update(currentPlace);
+    console.log(currentPlace.id, "saved to db")
+  }
 };
 
 const onSelectedText = (id, currentText) => {
@@ -102,10 +106,12 @@ const onSelectedPlace = (id, currentPlace) => {
     />
   );
 };
+
 const style = {
   position: 'relative',
   top: '36px',
-}
+};
+
 const renderedHeader = () => {
   return (
     <Fragment>
