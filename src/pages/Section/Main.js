@@ -13,6 +13,7 @@ import { Footer } from "../../components/Footer/Footer";
 import styles from "./index.module.css";
 import { EditContext } from "../../contexts/editContext";
 import HeroHeader from "../../components/HeroHeader/HeroHeader";
+import SHeader from "../../components/SHeader/SHeader";
 
 const Main = ({ cityId }) => {
   const { editMode, editStyle } = useContext(EditContext)
@@ -23,11 +24,12 @@ const Main = ({ cityId }) => {
     <div className={styles.section}>
       {/* <NavBar /> */}
       <div className={styles.header}>
-        <Header contentEditable={editMode ? true : false}/>
+        {/* <Header contentEditable={editMode ? true : false}/> */}
         {/* <HeroHeader 
           cityId={cityId} 
           contentEditable={editMode ? true : false}
         /> */}
+        <SHeader contentEditable={editMode ? true : false} cityId={cityId} />
       </div>
       <div className={styles.main}>
         <div className={styles.center}>

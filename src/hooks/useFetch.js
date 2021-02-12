@@ -31,7 +31,7 @@ const useFetch = (collection) => {
         },
       );
       return () => unsubscribe();
-  }, [collection]);
+  }, [collection, setData]);
   return data;
 };
 

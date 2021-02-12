@@ -9,7 +9,7 @@ export const createNew = async (collection, doc) => {
 // updatye a doc in db
 export const updateData = async (collection, currentDoc, updatedDoc) => {
   if(currentDoc.id) {
-  await firestore.collection(collection).doc(currentDoc.id).update({...currentDoc, ...updatedDoc})
+  await firestore.collection(collection).doc(currentDoc.id).update({...updatedDoc})
 }
 };
 
