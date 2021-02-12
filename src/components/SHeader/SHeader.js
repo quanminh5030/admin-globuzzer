@@ -30,7 +30,7 @@ const SHeader = ({ contentEditable, cityId }) => {
   const [currentText, setCurrentText] = useState(rawText);
   const [places, setPlaces] = useState([]);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
-  
+  console.log('currentText:',currentText)
  // fetch current city data
  useEffect(() => {
   const getCurrentCity = async () => {
@@ -44,11 +44,9 @@ const SHeader = ({ contentEditable, cityId }) => {
       setFetchedTexts(doc.data().banner.texts);
       setPlaces(doc.data().banner.places);
     }
-    
-  }
+  };
   getCurrentCity();
 }, [cityId]);
-
 
 // select the clicked 'place'
 const handleClick = (e) => {
@@ -60,10 +58,12 @@ const handleClick = (e) => {
 
 // select the clicked 'text' on banner
 const getCurrentText = (e) => {
-  const newText = fetchedTexts.filter((text) => {
-    return text.id === e.target.id;
+  console.log(e.target)
+  const newText = fetchedTexts.filter((text, id) => {
+    return id === parseInt(e.target.id, 10);
   });
   setCurrentText(newText[0]);
+  
 };
 
 // change handler for place
@@ -99,9 +99,9 @@ const handleSubmitPlace = async () => {
     }
 };
 
-const onSelectedText = (text, currentText) => {
+const onSelectedText = (id, currentText) => {
   return (
-    showTextForm && text.id === currentText.id &&
+    showTextForm && id === parseInt(currentText.id, 10) &&
     <TextEdit 
       currentText={currentText} 
       formTextStyle={formTextStyle} 
@@ -142,16 +142,15 @@ const renderedHeader = () => {
         >
           {fetchedTexts.map((t, id) => (
             <Fragment key={`${id}-${t.content}-${t.style.fontSize}`}>
-              <div>{onSelectedText(t, currentText)}</div>
+              <div>{onSelectedText(id, currentText)}</div>
               <p
-                id={t.id}
-                name={t.id}
+                id={id}
                 contentEditable={contentEditable}
                 style={{ ...editStyle, ...t.style }}
                 suppressContentEditableWarning="true"
-                onFocus={getCurrentText}
+                onClick={getCurrentText}
                 onBlur={handleChangeText}
-                onClick={() => setShowTextForm(true)}
+                // onClick={() => setShowTextForm(true)}
               >
                 {t.content}
               </p>
