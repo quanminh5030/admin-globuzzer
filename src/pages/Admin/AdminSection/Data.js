@@ -571,24 +571,24 @@ export const empty =
     banner: {
       img: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/books_small.jpg?alt=media&token=8638a146-0d61-49a2-8d67-42316b9034c4",
       places: [
-        {color: "", text: "", link: ""},
-        {link: "", text: "", color: ""},
-        {color: "", link: "", text: ""},
+        {color: "", text: "This", link: ""},
+        {link: "", text: "This", color: ""},
+        {color: "", link: "", text: "That"},
       ],
       texts: [
         {
-          content: "",
+          content: "Here is your main title",
           style: {
-            color: "#000000",
+            color: "#ffffff",
             fontSize: "48",
             fontWeight: "bold",
             textAlign: "center",
           }
         },
         {
-          content: "",
+          content: "and here is your description",
           style: {
-            color: "crimson",
+            color: "#ffffff",
             fontSize: "24",
             fontWeight: "bold",
             textAlign: "center",
