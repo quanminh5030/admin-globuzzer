@@ -10,7 +10,9 @@ const Dashboard = () => {
         <Link to="/landing">
           <p className={styles.landing}>Landing Page</p>
         </Link>
-        <p className={styles.section}>Section Page</p>
+        <Link to="/section">
+          <p className={styles.section}>Section Page</p>
+        </Link>
         <p className={styles.service}>Service Page</p>
         <p className={styles.topic}>Topic Page</p>
         <p className={styles.other}>Other Page</p>

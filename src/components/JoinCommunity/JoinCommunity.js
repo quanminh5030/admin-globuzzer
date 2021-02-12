@@ -143,7 +143,7 @@ export const JoinCommunity = (props) => {
             style={{ ...editStyle, ...t.style }}
             suppressContentEditableWarning
             onFocus={getCurrentCommunityText}
-           onBlur={handleChangeCommunityText}
+            onBlur={handleChangeCommunityText}
             // onClick={(e) => setShowTextCommunityForm(true)}
           >
             {t.content}

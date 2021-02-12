@@ -6,70 +6,31 @@ import { Fragment } from 'react';
 import TextEdit from '../TextEdit/TextEdit';
 import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
+import useFetch from '../../hooks/useFetch';
+import { updateData } from '../../utils/actions.firebase';
 
-const HeroBanner = ({ contentEditable }) => {
+const HeroHeader = ({ contentEditable, cityId }) => {
+  const { loading, items } = useFetch('section_items');
   const { editStyle } = useContext(EditContext);
-  const [banners, setBanners] = useState([]);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
-  let header = useRef();
-  let place = useRef();
-  const rawPlace = {text: '', color: '', link: ''};
-  const rawText = {
-    content: '',
-    style: {
-      color: '',
-      fontSize: '',
-      fontWeight: '',
-      textAlign: ''
-    }
-  };
-  const [fetchedTexts, setFetchedTexts] = useState([]);
-  const [currentText, setCurrentText] = useState(rawText);
+  // let header = useRef();
+  // let place = useRef();
+  
+  const currentItem = items.find(item => item.id === cityId);
+  // let texts = [];
+  // const [fetchedTexts, setFetchedTexts] = useState();
+  const [currentText, setCurrentText] = useState(null);
   const [places, setPlaces] = useState([]);
-  const [currentPlace, setCurrentPlace] = useState(rawPlace);
-
-  // fetch 'banners' content from db
-  useEffect(() => {
-    const fetchBanners = async () => {
-      const bannersCollection = await firestore.collection('banners').get();
-      setBanners(bannersCollection.docs.map(doc => {
-        return doc.data();
-      }));
-    }
-    fetchBanners();
-  }, []);
-
-  // fetch banner 'texts' content from db
-  useEffect(() => {
-    const getTexts = firestore
-      .collection("texts")
-      .onSnapshot((snapshot) => {
-        const newText = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setFetchedTexts(newText);
-      });
-      return () => getTexts();
-}, []);
-
-  // fetch 'places' content from db
-  useEffect(() => {
-    const getPlaces = firestore
-      .collection("places")
-      .onSnapshot((snapshot) => {
-        const newPlace = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setPlaces(newPlace);
-        // console.log('new place:', newPlace);
-      });
-      return () => getPlaces();
-  }, []);
-
+  const [currentPlace, setCurrentPlace] = useState({});
+  const [updatedItem, setUpdatedItem] = useState(currentItem);
+  // console.log(updatedItem.banner.texts);
 // select the clicked 'place'
+// if (!loading) {
+//   texts = [...currentItem.banner.texts];
+// }
+// console.log('texts:', texts);
+
 const handleClick = (e) => {
   const newPlace = places.filter((place) => {
     return place.id === e.target.name;
@@ -78,11 +39,14 @@ const handleClick = (e) => {
 };
 
 // select the clicked 'text' on banner
-const getCurrentText = (e) => {
-  const newText = fetchedTexts.filter((text) => {
-    return text.id === e.target.id;
+const getCurrentText = async (e) => {
+  const newText = await currentItem.banner.texts.filter((text, id) => {
+    return id === parseInt(e.target.id, 10);
   });
-  setCurrentText(newText[0]);
+  setCurrentText({...newText[0], content: e.target.innerText, id: e.target.id});
+  // setUpdatedItem({...currentItem, banner: {...currentItem.banner, texts: [...currentItem.banner.texts, currentItem.banner.texts[parseInt(currentText.id, 10)] = currentText ]}});
+  
+  setShowTextForm(true);
 };
 
 // change handler for place
@@ -92,10 +56,6 @@ const handleChangePlace = (e) => {
 };
 
 // change handler for banner text
-const handleChangeText = (e) => {
-   // const { name, value } = e.target;
-    setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
-};
 
 const formTextStyle = !showTextForm ? { display: "none" }
             : {
@@ -105,10 +65,11 @@ const formTextStyle = !showTextForm ? { display: "none" }
               };
 
 const handleSubmitText = async () => {
-    if(currentText.id) {
-      await firestore.collection("texts").doc(currentText.id).update(currentText);
-      console.log(currentText.id, "saved to db")
-    }
+    // if(currentText.id) {
+    //   await firestore.collection("texts").doc(currentText.id).update(currentText);
+    //   console.log(currentText.id, "saved to db")
+    // }
+    updateData("section_items", currentItem, updatedItem);
 };
 
 const handleSubmitPlace = async () => {
@@ -118,9 +79,9 @@ const handleSubmitPlace = async () => {
     }
 };
 
-const onSelectedText = (text, currentText) => {
+const onSelectedText = (id, currentText) => {
   return (
-    showTextForm && text.id === currentText.id &&
+    showTextForm && id === parseInt(currentText.id, 10) &&
     <TextEdit 
       currentText={currentText} 
       formTextStyle={formTextStyle} 
@@ -143,46 +104,54 @@ const onSelectedPlace = (place, currentPlace) => {
   );
 };
 
+const renderedHeader = () => {
+  let texts = [...currentItem.banner.texts];
+  const handleChangeText = (e) => {
+    // const { name, value } = e.target;
+     // setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
+     console.log(currentText)
+    //  texts[currentText.id] = currentText;
+     console.log('texts1:', texts);
+ };
+ 
+  // console.log('ttt',texts)
   return (
     <Fragment>
       <BannerPhotoForm 
         collection="banners"
         doc="banner"
       />
-      {banners.map(banner => (
         <section 
-          key={banner.img} 
           className="section_header" 
           id="section_header" 
-          style={{backgroundImage: `url(${banner.img})`}} 
+          style={{backgroundImage: `url(${currentItem.banner.img})`}} 
         >
         <div 
           className="headers" 
-          ref={header} 
+          // ref={header} 
         >
-          {fetchedTexts.map((t) => (
-            <Fragment key={t.id}>
-              <div>{onSelectedText(t, currentText)}</div>
+          {currentItem.banner.texts.map((t, id) => (
+            <Fragment key={`${t.id}-${t.content}-${t.style.fontSize}`}>
+              <div>{onSelectedText(id, currentText)}</div>
               <p
-                id={t.id}
-                name={t.id}
+                id={id}
                 contentEditable={contentEditable}
                 style={{ ...editStyle, ...t.style }}
                 suppressContentEditableWarning="true"
-                onFocus={getCurrentText}
-                onBlur={handleChangeText}
-                onClick={() => setShowTextForm(true)}
+                onClick={getCurrentText}
+                // onFocus={getCurrentText}
+                onFocus={handleChangeText}
               >
                 {t.content}
               </p>
             </Fragment>
           ))}
         </div>
-        <SearchCity />
+        {/* <SearchCity />
         <div ref={place}>
           <div id="header_suggestion" className="places">
             Maybe{" "}
-            {places.map((p) => (
+            {currentItem.banner.places.map((p) => (
               <Fragment key={p.id}>
                 {onSelectedPlace(p, currentPlace)}
                 <a
@@ -200,11 +169,17 @@ const onSelectedPlace = (place, currentPlace) => {
               </Fragment>
             ))}
           </div>
-        </div>
+        </div> */}
         </section>
-      ))}
+    </Fragment>
+  );
+}
+
+  return (
+    <Fragment>
+      {loading ? <div>Loading....gogule</div> : renderedHeader()}
     </Fragment>
   );
 };
 
-export default HeroBanner;
+export default HeroHeader;

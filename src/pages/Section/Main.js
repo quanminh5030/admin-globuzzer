@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./Header/Header";
 import NavBar from "./Header/NavBar/NavBar";
 import Services from "./Services/Services";
@@ -11,16 +11,25 @@ import Vimeo from "./Vimeo/Vimeo";
 import { OwnSection } from "../../components/OwnSection/OwnSection";
 import { Footer } from "../../components/Footer/Footer";
 import styles from "./index.module.css";
+import { EditContext } from "../../contexts/editContext";
+import HeroHeader from "../../components/HeroHeader/HeroHeader";
+import SHeader from "../../components/SHeader/SHeader";
 
-const Main = () => {
-  useEffect(() => {
-    document.querySelector(".section_navigation").style.visibility = "hidden";
-  }, []);
+const Main = ({ cityId }) => {
+  const { editMode, editStyle } = useContext(EditContext)
+  // useEffect(() => {
+  //   document.querySelector(".section_navigation").style.visibility = "hidden";
+  // }, []);
   return (
     <div className={styles.section}>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className={styles.header}>
-        <Header />
+        {/* <Header contentEditable={editMode ? true : false}/> */}
+        {/* <HeroHeader 
+          cityId={cityId} 
+          contentEditable={editMode ? true : false}
+        /> */}
+        <SHeader contentEditable={editMode ? true : false} cityId={cityId} />
       </div>
       <div className={styles.main}>
         <div className={styles.center}>
