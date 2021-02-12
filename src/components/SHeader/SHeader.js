@@ -6,12 +6,11 @@ import { Fragment } from 'react';
 import TextEdit from '../TextEdit/TextEdit';
 import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
+import { useFetchHeader } from '../../hooks/useFetchData';
 
 const SHeader = ({ contentEditable, cityId }) => {
+  const { loading, banner, fetchedTexts, places } = useFetchHeader(cityId);
   const { editStyle } = useContext(EditContext);
-  const [currentCity, setCurrentCity] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [banner, setBanner] = useState({});
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
   // let header = useRef();
@@ -26,44 +25,23 @@ const SHeader = ({ contentEditable, cityId }) => {
       textAlign: ''
     }
   };
-  const [fetchedTexts, setFetchedTexts] = useState([]);
   const [currentText, setCurrentText] = useState(rawText);
-  const [places, setPlaces] = useState([]);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
-  console.log('currentText:',currentText)
- // fetch current city data
- useEffect(() => {
-  const getCurrentCity = async () => {
-    const doc = await firestore.collection('section_items').doc(cityId).get();
-    if (!doc.exists) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-      setCurrentCity(doc.data());
-      setBanner(doc.data().banner);
-      setFetchedTexts(doc.data().banner.texts);
-      setPlaces(doc.data().banner.places);
-    }
-  };
-  getCurrentCity();
-}, [cityId]);
 
 // select the clicked 'place'
 const handleClick = (e) => {
-  const newPlace = places.filter((place) => {
-    return place.id === e.target.name;
+  const newPlace = places.filter((place, id) => {
+    return id === parseInt(e.target.id, 10);
   });
   setCurrentPlace(newPlace[0]);
 };
 
 // select the clicked 'text' on banner
 const getCurrentText = (e) => {
-  console.log(e.target)
   const newText = fetchedTexts.filter((text, id) => {
     return id === parseInt(e.target.id, 10);
   });
   setCurrentText(newText[0]);
-  
 };
 
 // change handler for place
@@ -167,14 +145,14 @@ const renderedHeader = () => {
               <Fragment key={`${id}-${p.content}-${p.color}`}>
                 {onSelectedPlace(p, currentPlace)}
                 <a
+                  id={id}
                   href={p.link}
                   target="_new"
-                  name={p.id}
                   contentEditable={contentEditable}
                   suppressContentEditableWarning="true"
                   style={{ ...editStyle, color: p.color }}
-                  onFocus={handleClick}
-                  onClick={() => setShowPlaceForm(true)}
+                  onClick={handleClick}
+                  // onClick={() => setShowPlaceForm(true)}
                 >
                   {p.text}
                 </a>
