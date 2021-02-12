@@ -62,6 +62,9 @@ const formTextStyle = !showTextForm ? { display: "none" }
                 left: '30%',
                 // top: '10%'
               };
+// const upBanner = {...banner};
+// upBanner.texts[1] = {...upBanner.texts[1], content: "gogu de la vascauti"};
+// console.log(upBanner)
 // const handleTest = async () => {
 //     await firestore.collection("test_upload").doc("zmFAmo01OBBlQEtPxhae").update({banner: {img:"210", places: [], texts: []}});
 //     console.log(currentText.id, "saved to db")
