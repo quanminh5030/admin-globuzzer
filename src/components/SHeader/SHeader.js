@@ -102,14 +102,19 @@ const onSelectedPlace = (id, currentPlace) => {
     />
   );
 };
-
+const style = {
+  position: 'relative',
+  top: '36px',
+}
 const renderedHeader = () => {
   return (
     <Fragment>
+      <div style={style}>
       <BannerPhotoForm 
-        collection="banners"
-        doc="banner"
+        collection="section_items"
+        doc={cityId}
       />
+      </div>
         <section 
           className="section_header" 
           id="section_header" 
