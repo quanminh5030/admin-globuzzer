@@ -539,92 +539,92 @@ export const data =
 export const empty = 
 {
   name: "New",
-    url: "", 
-    advertisements: [
-      {
-        backgroundColor: "",
-        buttonColor: "",
-        link: "",
-        logo: "",
-        text1: "",
-        text2: "",
-      }
-    ],
-    articles: [
-      {
-        author_img: "",
-        author_name: "",
-        img: "",
-        likes: 0,
-        link: "",
-        title: "",
-      },
-      {
-        author_img: "",
-        author_name: "",
-        img: "",
-        likes: 0,
-        link: "",
-        title: "",
-      }
-    ],
-    banner: {
-      img: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/books_small.jpg?alt=media&token=8638a146-0d61-49a2-8d67-42316b9034c4",
-      places: [
-        {color: "", text: "This", link: ""},
-        {link: "", text: "This", color: ""},
-        {color: "", link: "", text: "That"},
-      ],
-      texts: [
-        {
-          content: "Here is your main title",
-          style: {
-            color: "#ffffff",
-            fontSize: "48",
-            fontWeight: "bold",
-            textAlign: "center",
-          }
-        },
-        {
-          content: "and here is your description",
-          style: {
-            color: "#ffffff",
-            fontSize: "24",
-            fontWeight: "bold",
-            textAlign: "center",
-          }
-        }
-      ],
+  url: "", 
+  advertisements: [
+    {
+      backgroundColor: "",
+      buttonColor: "",
+      link: "",
+      logo: "",
+      text1: "",
+      text2: "",
+    }
+  ],
+  articles: [
+    {
+      author_img: "",
+      author_name: "",
+      img: "",
+      likes: 0,
+      link: "",
+      title: "",
     },
-    mews: [
-      {text: "", img: "", link: ""},
-      {text: "", img: "", link: ""},
+    {
+      author_img: "",
+      author_name: "",
+      img: "",
+      likes: 0,
+      link: "",
+      title: "",
+    }
+  ],
+  banner: {
+    img: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/books_small.jpg?alt=media&token=8638a146-0d61-49a2-8d67-42316b9034c4",
+    places: [
+      {color: "", text: "This", link: ""},
+      {link: "", text: "This", color: ""},
+      {color: "", link: "", text: "That"},
     ],
-    people: [
+    texts: [
       {
-        img: "",
-        name: "",
-        flags: [],
+        content: "Here is your main title",
+        style: {
+          color: "#ffffff",
+          fontSize: "48",
+          fontWeight: "bold",
+          textAlign: "center",
+        }
       },
       {
-        img: "",
-        name: "",
-        flags: [],
+        content: "and here is your description",
+        style: {
+          color: "#ffffff",
+          fontSize: "24",
+          fontWeight: "bold",
+          textAlign: "center",
+        }
       }
     ],
-    services: [
-      {text: "", url: "", name: "", img: ""},
-      {text: "", url: "", name: "", img: ""},
-      {text: "", url: "", name: "", img: ""},
-    ],
-    topics: [
-      {link: "", img: "", topic: ""},
-      {link: "", img: "", topic: ""},
-    ],
-    videos: [
-      {text: "", url: "", img: ""},
-      {text: "", url: "", img: ""}
-    ]
+  },
+  mews: [
+    {text: "", img: "", link: ""},
+    {text: "", img: "", link: ""},
+  ],
+  people: [
+    {
+      img: "",
+      name: "",
+      flags: [],
+    },
+    {
+      img: "",
+      name: "",
+      flags: [],
+    }
+  ],
+  services: [
+    {text: "", url: "", name: "", img: ""},
+    {text: "", url: "", name: "", img: ""},
+    {text: "", url: "", name: "", img: ""},
+  ],
+  topics: [
+    {link: "", img: "", topic: ""},
+    {link: "", img: "", topic: ""},
+  ],
+  videos: [
+    {text: "", url: "", img: ""},
+    {text: "", url: "", img: ""}
+  ]
 };
 
 export const forTest = 

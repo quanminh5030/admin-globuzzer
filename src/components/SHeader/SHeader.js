@@ -7,9 +7,10 @@ import TextEdit from '../TextEdit/TextEdit';
 import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 import { useFetchHeader } from '../../hooks/useFetchData';
+import { updateObject } from '../../utils/actions.firebase';
 
 const SHeader = ({ contentEditable, cityId }) => {
-  const { loading, banner, fetchedTexts, places } = useFetchHeader(cityId);
+  const { loading, banner, fetchedTexts, places, currentCity } = useFetchHeader(cityId);
   const { editStyle } = useContext(EditContext);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
@@ -69,6 +70,13 @@ const formTextStyle = !showTextForm ? { display: "none" }
 //     await firestore.collection("test_upload").doc("zmFAmo01OBBlQEtPxhae").update({banner: {img:"210", places: [], texts: []}});
 //     console.log(currentText.id, "saved to db")
 // };
+ 
+  
+
+// for (const item in currentCity) {
+//   console.log(item, currentCity[item])
+// }
+// console.log(updateObject(currentCity, 'banner', {...currentCity.banner, img:'sasidasi'}));
 
 
 const handleSubmitText = async () => {
