@@ -31,3 +31,11 @@ export const useFetchHeader = (cityId) => {
     places
   };
 };
+
+export const useCityId = () => {
+  const [cityId, setCityId] = useState(null);
+  
+  useEffect(() => {
+
+  })
+}

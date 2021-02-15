@@ -19,8 +19,23 @@ export const deleteData = async (collection, data) => {
 };
 
 
-// update a certain key in an object
+// update a certain key in an object -->>
 export const updateObject = (obj, key, value) => {
    const updatedObj = {...obj, [key]: value};
    return updatedObj;
+};
+// obj[key] = value
+
+// object update inside an object
+export const updObj = (obj, key, value) => {
+  const myObj = {...obj};
+  myObj[key] = value;
+  return myObj;
+};
+// array update inside an object
+export const updArr = (arr, index, value) => {
+// console.log(Array.isArray(a))
+  const myArr = [...arr];
+  myArr[index] = value;
+  return myArr;
 };

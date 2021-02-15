@@ -7,9 +7,9 @@ import TextEdit from '../TextEdit/TextEdit';
 import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 import { useFetchHeader } from '../../hooks/useFetchData';
-import { updateObject } from '../../utils/actions.firebase';
+import { updObj, updArr } from '../../utils/actions.firebase';
 
-const SHeader = ({ contentEditable, cityId }) => {
+const SHeader = ({ contentEditable, cityId, callback }) => {
   const { loading, banner, fetchedTexts, places, currentCity } = useFetchHeader(cityId);
   const { editStyle } = useContext(EditContext);
   const [showTextForm, setShowTextForm] = useState(false);
@@ -26,35 +26,41 @@ const SHeader = ({ contentEditable, cityId }) => {
       textAlign: ''
     }
   };
-  const [currentText, setCurrentText] = useState(rawText);
-  const [currentPlace, setCurrentPlace] = useState(rawPlace);
 
+  const [currentText, setCurrentText] = useState(rawText);
+  const [currentTextId, setCurrentTextId] = useState(null);
+  const [currentPlace, setCurrentPlace] = useState(rawPlace);
+  const [currentPlaceId, setCurrentPlaceId] = useState(null);
+  const [currentBanner, setCurrentBanner] = useState({});
+  
 // select the clicked 'place'
 const getCurrentPlace = (e) => {
   const newPlace = places.filter((place, id) => {
     return id === parseInt(e.target.id, 10);
   });
-  setCurrentPlace({...newPlace[0], id: e.target.id});
+  setCurrentPlace({...newPlace[0]});
+  setCurrentPlaceId(e.target.id);
 };
-
+console.log(currentPlaceId)
 // select the clicked 'text' on banner
 const getCurrentText = (e) => {
   const newText = fetchedTexts.filter((text, id) => {
     return id === parseInt(e.target.id, 10);
   });
-  setCurrentText({...newText[0], id: e.target.id});
+  setCurrentText({...newText[0]});
+  setCurrentTextId(e.target.id);
 };
 
 // change handler for place
 const handleChangePlace = (e) => {
   const { name, value } = e.target;
-  setCurrentPlace({...currentPlace, [name]: value});
+  // setCurrentPlace({...currentPlace, [name]: value});
+  setCurrentBanner(updObj(banner, 'places', updArr(banner.places, e.target.id, {...currentPlace, [name]: value})));
 };
 
 // change handler for banner text
 const handleChangeText = (e) => {
-   // const { name, value } = e.target;
-    setCurrentText({...currentText, content: e.target.innerText, id: e.target.id});
+    setCurrentBanner(updObj(banner, 'texts', updArr(banner.texts, e.target.id, {...currentText, content: e.target.innerText})));
 };
 
 const formTextStyle = !showTextForm ? { display: "none" }
@@ -63,39 +69,26 @@ const formTextStyle = !showTextForm ? { display: "none" }
                 left: '30%',
                 // top: '10%'
               };
-// const upBanner = {...banner};
-// upBanner.texts[1] = {...upBanner.texts[1], content: "gogu de la vascauti"};
-// console.log(upBanner)
-// const handleTest = async () => {
-//     await firestore.collection("test_upload").doc("zmFAmo01OBBlQEtPxhae").update({banner: {img:"210", places: [], texts: []}});
-//     console.log(currentText.id, "saved to db")
-// };
- 
-  
-
-// for (const item in currentCity) {
-//   console.log(item, currentCity[item])
-// }
-// console.log(updateObject(currentCity, 'banner', {...currentCity.banner, img:'sasidasi'}));
-
 
 const handleSubmitText = async () => {
-  if(currentText.id) {
-    await firestore.collection("section_items").doc(cityId).update(currentText);
-    console.log(currentText.id, "saved to db")
+  if(currentTextId) {
+    await firestore.collection("section_items").doc(cityId).update({banner:{...currentBanner}});
+    console.log(currentTextId, "saved to db")
   }
+  console.log(currentBanner)
 };
 
 const handleSubmitPlace = async () => {
-  if(currentPlace.id) {
-    await firestore.collection("places").doc(currentPlace.id).update(currentPlace);
-    console.log(currentPlace.id, "saved to db")
-  }
+  // if(currentPlaceId) {
+  //   await firestore.collection("places").doc(currentPlaceId).update(currentPlace);
+  //   console.log(currentPlaceId, "saved to db")
+  // }
+  console.log(currentBanner)
 };
 
 const onSelectedText = (id, currentText) => {
   return (
-    showTextForm && id === parseInt(currentText.id, 10) &&
+    showTextForm && id === parseInt(currentTextId, 10) &&
     <TextEdit 
       currentText={currentText} 
       formTextStyle={formTextStyle} 
@@ -107,7 +100,7 @@ const onSelectedText = (id, currentText) => {
 
 const onSelectedPlace = (id, currentPlace) => {
   return(
-    showPlaceForm && id === parseInt(currentPlace.id, 10) &&
+    showPlaceForm && id === parseInt(currentPlaceId, 10) &&
     <BannerPlacesForm 
     showPlaceForm={showPlaceForm}
     currentPlace={currentPlace}
