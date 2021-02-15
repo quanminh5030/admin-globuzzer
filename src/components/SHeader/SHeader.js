@@ -8,6 +8,7 @@ import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 import { useFetchHeader } from '../../hooks/useFetchData';
 import { updObj, updArr } from '../../utils/actions.firebase';
+import useForm from '../../hooks/useForm';
 
 const SHeader = ({ contentEditable, cityId, callback }) => {
   const { loading, banner, fetchedTexts, places, currentCity } = useFetchHeader(cityId);
@@ -26,7 +27,26 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
       textAlign: ''
     }
   };
-
+//   // ////////////////
+//   const [test, setTest] = useState(null)
+//   useEffect(() => {
+//     const unsubscribe = firestore
+//       .collection('section_items')
+//       .onSnapshot(
+//         (snapshot) => {
+//           setTest(
+//             snapshot.docs.map((doc) => ({
+//               ...doc.data()
+//             })),
+//           );
+//         },
+//       );
+//       return () => unsubscribe();
+//   }, [cityId]);
+//   console.log(test.filter(t => {
+//     return t.id === cityId
+//   }))
+// // ////////////////////////////
   const [currentText, setCurrentText] = useState(rawText);
   const [currentTextId, setCurrentTextId] = useState(null);
   const [currentPlace, setCurrentPlace] = useState(rawPlace);
@@ -41,7 +61,6 @@ const getCurrentPlace = (e) => {
   setCurrentPlace({...newPlace[0]});
   setCurrentPlaceId(e.target.id);
 };
-console.log(currentPlaceId)
 // select the clicked 'text' on banner
 const getCurrentText = (e) => {
   const newText = fetchedTexts.filter((text, id) => {
@@ -50,17 +69,17 @@ const getCurrentText = (e) => {
   setCurrentText({...newText[0]});
   setCurrentTextId(e.target.id);
 };
-
 // change handler for place
 const handleChangePlace = (e) => {
   const { name, value } = e.target;
-  // setCurrentPlace({...currentPlace, [name]: value});
-  setCurrentBanner(updObj(banner, 'places', updArr(banner.places, e.target.id, {...currentPlace, [name]: value})));
+  setCurrentBanner(updObj(banner, 'places', updArr(banner.places, currentPlaceId, {...currentPlace, [name]: value})));
+  setCurrentPlace({...currentPlace, [name]: value});
 };
 
 // change handler for banner text
 const handleChangeText = (e) => {
     setCurrentBanner(updObj(banner, 'texts', updArr(banner.texts, e.target.id, {...currentText, content: e.target.innerText})));
+    // setCurrentText({...currentText, content: e.target.innerText});
 };
 
 const formTextStyle = !showTextForm ? { display: "none" }
@@ -75,15 +94,11 @@ const handleSubmitText = async () => {
     await firestore.collection("section_items").doc(cityId).update({banner:{...currentBanner}});
     console.log(currentTextId, "saved to db")
   }
-  console.log(currentBanner)
 };
 
 const handleSubmitPlace = async () => {
-  // if(currentPlaceId) {
-  //   await firestore.collection("places").doc(currentPlaceId).update(currentPlace);
-  //   console.log(currentPlaceId, "saved to db")
-  // }
-  console.log(currentBanner)
+    await firestore.collection("section_items").doc(cityId).update({banner:{...currentBanner}});
+    console.log(currentPlaceId, "saved to db")
 };
 
 const onSelectedText = (id, currentText) => {

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { firestore } from "../utils/firebase.utils";
 
 export const useFetchHeader = (cityId) => {
+  const [items, setItems] = useState(null);
   const [currentCity, setCurrentCity] = useState(null);
   const [loading, setLoading] = useState(true);
   const [banner, setBanner] = useState({});
@@ -23,6 +24,33 @@ export const useFetchHeader = (cityId) => {
     };
     getCurrentCity();
   }, [cityId]);
+  
+  // useEffect(() => {
+  //   const unsubscribe = async () => {
+  //     firestore
+  //     .collection('section_items')
+  //     .onSnapshot(
+  //       (snapshot) => {
+  //          setItems(
+  //           snapshot.docs.map((doc) => ({
+  //             ...doc.data()
+  //           })),
+  //         );
+  //       },
+  //     );
+  //     if(!items) {
+  //       setLoading(true);
+  //     } else {
+  //       setLoading(false);
+  //       setCurrentCity(items.filter(t => t.id === cityId));
+  //       setBanner(items.filter(t => t.id === cityId).banner);
+  //       setFetchedTexts(items.filter(t => t.id === cityId).banner.texts);
+  //       setPlaces(items.filter(t => t.id === cityId).banner.places);
+  //     }
+  //   };
+  //     return () => unsubscribe();
+  // }, [items, cityId]);
+
   return {
     currentCity,
     loading,
@@ -38,4 +66,4 @@ export const useCityId = () => {
   useEffect(() => {
 
   })
-}
+};

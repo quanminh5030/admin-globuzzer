@@ -6,7 +6,6 @@ const BannerPlacesForm = (props) => {
   const { showPlaceForm, currentPlace, handleChangePlace, setShowPlaceForm, save} = props;
   // const { handleSubmit } = useContext(EditContext)
   const formPlaceStyle = !showPlaceForm ? { display: "none" } : {};
-        
   return (
     <Fragment>
     {/*Start forms for city place edit on the banner*/}
