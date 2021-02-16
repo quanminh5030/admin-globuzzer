@@ -107,6 +107,7 @@ const formTextStyle = !showTextForm ? { display: "none" }
 const handleSubmitText = async () => {
     if(currentText.id) {
       await firestore.collection("texts").doc(currentText.id).update(currentText);
+      setShowTextForm(false);
       console.log(currentText.id, "saved to db")
     }
 };
@@ -114,6 +115,7 @@ const handleSubmitText = async () => {
 const handleSubmitPlace = async () => {
     if(currentPlace.id) {
       await firestore.collection("places").doc(currentPlace.id).update(currentPlace);
+      setShowPlaceForm(false)
       console.log(currentPlace.id, "saved to db")
     }
 };

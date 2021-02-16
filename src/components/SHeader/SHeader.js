@@ -92,12 +92,14 @@ const formTextStyle = !showTextForm ? { display: "none" }
 const handleSubmitText = async () => {
   if(currentTextId) {
     await firestore.collection("section_items").doc(cityId).update({banner:{...currentBanner}});
+    setShowTextForm(false);
     console.log(currentTextId, "saved to db")
   }
 };
 
 const handleSubmitPlace = async () => {
     await firestore.collection("section_items").doc(cityId).update({banner:{...currentBanner}});
+    setShowPlaceForm(false);
     console.log(currentPlaceId, "saved to db")
 };
 
