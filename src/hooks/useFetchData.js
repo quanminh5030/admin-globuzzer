@@ -3,7 +3,7 @@ import { firestore } from "../utils/firebase.utils";
 
 export const useFetchHeader = (cityId) => {
   const [items, setItems] = useState(null);
-  const [currentCity, setCurrentCity] = useState(null);
+  const [currentCity, setCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
   const [banner, setBanner] = useState({});
   const [fetchedTexts, setFetchedTexts] = useState([]);
@@ -26,30 +26,26 @@ export const useFetchHeader = (cityId) => {
   }, [cityId]);
   
   // useEffect(() => {
-  //   const unsubscribe = async () => {
-  //     firestore
-  //     .collection('section_items')
-  //     .onSnapshot(
-  //       (snapshot) => {
-  //          setItems(
-  //           snapshot.docs.map((doc) => ({
-  //             ...doc.data()
-  //           })),
-  //         );
-  //       },
-  //     );
-  //     if(!items) {
-  //       setLoading(true);
-  //     } else {
-  //       setLoading(false);
-  //       setCurrentCity(items.filter(t => t.id === cityId));
-  //       setBanner(items.filter(t => t.id === cityId).banner);
-  //       setFetchedTexts(items.filter(t => t.id === cityId).banner.texts);
-  //       setPlaces(items.filter(t => t.id === cityId).banner.places);
-  //     }
+  //   const unsubscribe = () => {
+
+  //     const doc = firestore.collection('section_items').doc(cityId);
+  //     doc.onSnapshot(docSnapshot => {
+  //        const current = docSnapshot.data();
+  //        if(!current) {
+  //         setLoading(true);
+  //       } else {
+  //         setLoading(false);
+  //         setCurrentCity(current);
+  //         setBanner(current.banner);
+  //         setFetchedTexts(current.banner.texts);
+  //         setPlaces(current.banner.places);
+  //       }
+  //     }, error => {
+  //       console.log(error)
+  //     });
   //   };
   //     return () => unsubscribe();
-  // }, [items, cityId]);
+  // }, [cityId, currentCity]);
 
   return {
     currentCity,
