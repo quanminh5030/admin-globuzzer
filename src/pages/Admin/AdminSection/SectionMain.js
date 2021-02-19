@@ -4,7 +4,7 @@ import useFetch from '../../../hooks/useFetch';
 import styles from './AdminSection.module.css';
 import SectionItems from './SectionItems';
 import { BsSearch } from "react-icons/bs";
-import { empty } from '../../Admin/AdminSection/Data';
+import { empty, dataObj } from '../../Admin/AdminSection/Data';
 import { createNew } from '../../../utils/actions.firebase';
 
 const SectionMain = () => {
@@ -28,7 +28,7 @@ const SectionMain = () => {
               onChange={ (e) => setSearchedCity(e.target.value)} 
             />
           </span>
-        <button onClick={() => createNew('section_items', empty)}>Add</button>
+        <button onClick={() => createNew('section_items', dataObj)}>Add</button>
         </div>
         <SectionItems items={mySearch()} loading={loading}/>
       </div>

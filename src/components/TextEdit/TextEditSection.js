@@ -3,7 +3,7 @@ import Dropdown from '../EditDropdown/Dropdown';
 import edit from './TextEdit.module.css';
 import { sizes, weights, aligns } from './Data';
 
-const TextEdit = ({ currentText, formTextStyle, setShowForm, save }) => {
+const TextEdit = ({ currentText, formTextStyle, setShowForm, save, changeHandler, header }) => {
   const[fontSizes] = useState(sizes);
   const[fontWeights] = useState(weights);
   const[textAligns] = useState(aligns);
@@ -12,18 +12,19 @@ const TextEdit = ({ currentText, formTextStyle, setShowForm, save }) => {
   const [defaultWeight, setDefaultWeight] = useState('');
   const [defaultColor, setDefaultColor] = useState('');
   const [defaultAlign, setDefaultAlign] = useState('');
-  console.log('textedit',currentText.style.fontSize)
+  
   useEffect(() => {
     setDefaultSize(currentText.style.fontSize.substring(0, 2, - 1));
     setDefaultWeight(currentText.style.fontWeight);
     setDefaultColor(currentText.style.color);
     setDefaultAlign(currentText.style.textAlign);
   }, [currentText]);
-  
+  console.log('header', header)
   const handleSizeChange = (e) => {
     e.preventDefault();
-    currentText.style.fontSize = e.target.value + 'px'
-    setDefaultSize(e.target.value)
+    // currentText.style.fontSize = e.target.value + 'px'
+    setDefaultSize(e.target.value);
+    changeHandler(header, {fontSize: e.target.value + 'px'});
   }
 
   const handleColorChange = (e) => {
