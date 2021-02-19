@@ -10,16 +10,16 @@ const Header = ({ contentEditable }) => {
   const { editMode, editStyle } = useContext(EditContext);
   const { city, cityId } = useParams();
   const { error, loading, items } = useFetch('section_items');
+  
   const data = items.find((data) => data.id === cityId && data.name === city);
-  const { bannerImg, name, places, texts } = data;
-
+ 
   return (
     <Fragment>
       {!loading && 
         <Fragment>
           <div 
             className={styles.header} 
-            style={{backgroundImage: `url(${bannerImg})`}}
+            style={{backgroundImage: `url(${data.banner.img})`}}
           >
           <div className={styles.content}>
             <div className={styles.url}>
@@ -28,49 +28,45 @@ const Header = ({ contentEditable }) => {
               </p>
               <AiFillCaretRight className={styles.icon} />
               <p>
-                <a id="city-name" href="www">{name}</a>
+                <a id="city-name" href="www">{data.name}</a>
               </p>
             </div>
             <div className={styles.text}>
-              <Fragment>
+            {data.banner.texts.map((t) => (
+              <Fragment key={t.id}>
                 <p
+                id={t.id}
+                name={t.id}
                 contentEditable={contentEditable}
-                style={{ ...editStyle, ...texts.title.style }}
+                style={{ ...editStyle, ...t.style }}
                 suppressContentEditableWarning="true"
                 // onFocus={getCurrentText}
                 // onBlur={handleChangeText}
                 // onClick={() => setShowTextForm(true)}
                 >
-                  {texts.title.content}
-                </p>
-                <p
-                contentEditable={contentEditable}
-                style={{ ...editStyle, ...texts.subtitle.style }}
-                suppressContentEditableWarning="true"
-                // onFocus={getCurrentText}
-                // onBlur={handleChangeText}
-                // onClick={() => setShowTextForm(true)}
-                >
-                  {texts.subtitle.content}
+                  {t.content}
                 </p>
               </Fragment>
+              ))}
               {/* <p className={styles.textOne}>{data.name} Community</p>
               <p className={styles.textTwo}>Explore different topics and information</p> */}
               <SearchBar />
               <p className={styles.suggestions}>
-                <Fragment>
+              {data.banner.places.map((p) => (
+                <Fragment key={p.id}>
                   <a 
-                    href={places.one.link}
+                    href={p.link}
                     target="_new"
+                    name={p.id}
                     contentEditable={contentEditable}
                     suppressContentEditableWarning="true"
-                    style={{ ...editStyle, color: places.one.color }}
+                    style={{ ...editStyle, color: p.color }}
                     // onFocus={handleClick}
                   >
-                    {places.one.text}
+                    {p.text}
                   </a>
                 </Fragment>
-      
+                ))}
               </p>
               
             </div>

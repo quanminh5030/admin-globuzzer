@@ -61,7 +61,7 @@
 }
 
 #header_suggestion a:last-child:after {
-  content: "?";
+  content: " ?";
   color: #ffffff;
   font-style: normal;
   font-weight: 500;
