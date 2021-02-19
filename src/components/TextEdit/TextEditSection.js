@@ -28,18 +28,21 @@ const TextEdit = ({ currentText, formTextStyle, setShowForm, save, changeHandler
   }
 
   const handleColorChange = (e) => {
-    currentText.style.color = e.target.value
-    setDefaultColor(e.target.value)
+    // currentText.style.color = e.target.value
+    setDefaultColor(e.target.value);
+    changeHandler(header, {color: e.target.value});
   }
 
   const handleWeightChange = (e) => {
-    currentText.style.fontWeight = e.target.value
-    setDefaultWeight(e.target.value)
+    // currentText.style.fontWeight = e.target.value
+    setDefaultWeight(e.target.value);
+    changeHandler(header, {fontWeight: e.target.value});
   }
 
   const handleAlignChange = (e) => {
-    currentText.style.textAlign = e.target.value
-    setDefaultAlign(e.target.value)
+    // currentText.style.textAlign = e.target.value
+    setDefaultAlign(e.target.value);
+    changeHandler(header, {textAlign: e.target.value});
   }
   return (
     <div className={edit.title} style={formTextStyle}>

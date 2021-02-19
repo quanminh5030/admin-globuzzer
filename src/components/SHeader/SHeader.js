@@ -26,9 +26,8 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
 
   const formTextStyle = !showTextForm ? { display: "none" }
             : {
-                position: "relative",
-                top: "40px"
-                // header === "title"
+                position: 'relative',
+                top: header === "title" ? '50px' : '140px'
               };
 
 const renderedHeader = () => {
@@ -113,6 +112,7 @@ const renderedHeader = () => {
           // onClick={getCurrentText}
         >
           {header === "title" && onSelectedText(title)}
+          {header === "subtitle" && onSelectedText(subtitle)}
           <p
             contentEditable={contentEditable}
             style={{...texts.title.style, ...editStyle, ...title.style}}
@@ -122,7 +122,7 @@ const renderedHeader = () => {
             onKeyUp={handleChangeText}
           >
             {texts.title.content}</p>
-            {header === "subtitle" && onSelectedText(subtitle)}
+          
           <p
             contentEditable={contentEditable}
             style={{...texts.subtitle.style, ...editStyle, ...subtitle.style}}
