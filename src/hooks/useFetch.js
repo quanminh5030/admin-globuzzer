@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { firestore } from "../utils/firebase.utils"
+import { firestore } from "../utils/firebase.utils";
 
 const useFetch = (collection) => {
   const [data, setData] = useState({
