@@ -49,7 +49,10 @@ const AdminLanding = () => {
       await firestore.collection('landing_live').doc('video').update({...video.items});
       // updateToLive(documents);
       (texts.loading || places.loading || articles.loading ||banners.loading || cities.loading || community.loading || features.loading || video.loading) ? setLoading(true) : setLoading(false);
+      alert("your changes are now live...");
   };
+
+  
 
 
   return (
