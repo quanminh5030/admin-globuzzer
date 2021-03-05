@@ -30,7 +30,7 @@ const AdminLanding = () => {
   //     await firestore.collection('texts_live').add(item)
   //   })
   // };
-
+console.log(services.items)
   const updateToLive = (documents) => {
     documents.map( async (document) => {
        await firestore.collection('landing_live').doc(document).update({...document.items});
@@ -45,15 +45,12 @@ const AdminLanding = () => {
       await firestore.collection('landing_live').doc('cities').update({...cities.items});
       await firestore.collection('landing_live').doc('community').update({...community.items});
       await firestore.collection('landing_live').doc('features').update({...features.items});
-      // await firestore.collection('landing_live').doc('services').update({...services.items});
+      await firestore.collection('landing_live').doc('services').update({...services.items});
       await firestore.collection('landing_live').doc('video').update({...video.items});
       // updateToLive(documents);
-      (texts.loading || places.loading || articles.loading ||banners.loading || cities.loading || community.loading || features.loading || video.loading) ? setLoading(true) : setLoading(false);
+      (texts.loading || places.loading || articles.loading ||banners.loading || cities.loading || community.loading || features.loading || video.loading || services.loading) ? setLoading(true) : setLoading(false);
       alert("your changes are now live...");
   };
-
-  
-
 
   return (
     <div className={styles.wrapper}>
