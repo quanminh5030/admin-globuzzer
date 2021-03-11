@@ -38,7 +38,8 @@ const JoinCitySection = () => {
      id: cityData.id,
      name:cityData.name,
      members: cityData.members,
-     img:cityData.img
+     img:cityData.img,
+     join:cityData.join
    })
   };
 

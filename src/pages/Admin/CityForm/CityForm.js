@@ -49,6 +49,10 @@ const CityForm = ({setIsVisible, currentItem, updateItem, onFileChange, fileUrl}
                         Members
                         <input type="text" name="members" value={item.members} onChange={onChange}/>
                     </label>
+                    <label>
+                        Link
+                        <input type="text" name="join" value={item.join} onChange={onChange}/>
+                    </label>
                 </div>
                     <button className={styles.editBtn}>
                         Go to edit this page
