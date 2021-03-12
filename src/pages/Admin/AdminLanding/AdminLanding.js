@@ -30,7 +30,7 @@ const AdminLanding = () => {
   //     await firestore.collection('texts_live').add(item)
   //   })
   // };
-console.log('services',services.items)
+
   const updateToLive = (documents) => {
     documents.map( async (document) => {
        await firestore.collection('landing_live').doc(document).update({...document.items});
