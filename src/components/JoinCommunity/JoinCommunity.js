@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { MemberNearYou } from "../MemberNearYou/MemberNearYou";
-import MemberNearYouData from "../../Data/MemberNearYouData";
+// import MemberNearYouData from "../../Data/MemberNearYouData";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
 import "./style.css";
@@ -24,6 +24,7 @@ export const JoinCommunity = (props) => {
   const [showTextCommunityForm, setShowTextCommunityForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [videos, setVideos] = useState([]);
+  const [MemberNearYouData, setMemberNearYouData] = useState([]);
 
   const rawText = {
     content: '',
@@ -72,7 +73,21 @@ export const JoinCommunity = (props) => {
       setVideos(newVideo);
     });
     return () => fetchVideos();
-  }, [])
+  }, []);
+
+  // fetch comunnity 'member_near' content from db
+  useEffect(() => {
+    const getMembers = firestore
+      .collection("member_near")
+      .onSnapshot((snapshot) => {
+        const newMember = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setMemberNearYouData(newMember);
+      });
+      return () => getMembers();
+  }, []);
 
   const showForm = () => {
     return editMode ? setShowPhotoForm(true) : undefined;
