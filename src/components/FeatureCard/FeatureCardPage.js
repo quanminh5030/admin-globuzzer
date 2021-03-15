@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { EditContext } from '../../contexts/editContext';
 import FeatureCardForm from '../../pages/Admin/FeatureCardForm/FeatureCardForm';
 import { app, firestore } from '../../utils/firebase.utils';
 import { sizeTransform } from '../../utils/sizeTransform';
@@ -13,6 +14,7 @@ const FeatureCardPage = () => {
     {id: null, text:"", image:"", title:""},
   ];
   const [currentFeatureCard, setCurrentFeatureCard] = useState(initialFeatureCardState);
+  const { editStyle, editMode } = useContext(EditContext);
 
   useEffect(() => {
     //fetch FeatureCard data from firebase
@@ -78,7 +80,7 @@ const FeatureCardPage = () => {
 const onSelectedCard = (card, currentCard) => {
   return (
     card.id === currentCard.id &&
-    show && 
+    show && editMode &&
     <div>
     <FeatureCardForm 
       setShow={setShow} 

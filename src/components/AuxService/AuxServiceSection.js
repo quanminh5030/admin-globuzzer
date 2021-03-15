@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import AuxService from './AuxService';
 import { firestore, app } from "../../utils/firebase.utils";
 import "../../css/Home.css";
@@ -7,8 +7,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { sizeTransform } from '../../utils/sizeTransform';
+import { EditContext } from '../../contexts/editContext';
 
 const AuxServiceSection = () => {
+  const { editMode } = useContext(EditContext);
   const [services, setServices] = useState([]);
   const [display, setDisplay] = useState(false);
   const [fileUrl, setFileUrl] = useState(null);
@@ -94,7 +96,7 @@ const AuxServiceSection = () => {
   const onSelectedService = (data, service) => {
     if (data.id === service.id) {
       return (
-        display ?
+        editMode && display ?
         <div>
           <ServiceForm 
             setDisplay={setDisplay} 

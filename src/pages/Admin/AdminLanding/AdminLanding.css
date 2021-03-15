@@ -10,7 +10,7 @@
 }
 
 .edit-mode {
-    border: 5px solid #f3a6b0;
+    /* border: 5px solid #f3a6b0; */
     background-blend-mode: #f3a6b0;
     outline: none;
 }

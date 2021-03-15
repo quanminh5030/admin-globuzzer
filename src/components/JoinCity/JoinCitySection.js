@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {JoinCity} from './JoinCity';
 import "../../css/Home.css";
 import { app, firestore } from "../../utils/firebase.utils";
 import CityForm from '../../pages/Admin/CityForm/CityForm';
 import {RequestNewCity} from '../RequestNewCity/RequestNewCity';
 import { sizeTransform } from '../../utils/sizeTransform';
+import { EditContext } from '../../contexts/editContext';
 const JoinCitySection = () => {
+  const { editMode } = useContext(EditContext);
     const [moreJoinCity, setMoreJoinCity] = useState(false);
     const [joinCity, setJoinCity] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
@@ -67,7 +69,7 @@ const JoinCitySection = () => {
   const onSelectedCity = (data, city) => {
     return (
       city.id === data.id &&
-      isVisible &&
+      isVisible && editMode &&
         <div>
           <CityForm 
             setIsVisible={setIsVisible} 

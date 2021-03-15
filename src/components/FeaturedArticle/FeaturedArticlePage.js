@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FeaturedArticle from "./FeaturedArticle";
 import { firestore, app } from "../../utils/firebase.utils";
 import "../../css/Home.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import ArticleForm from '../../pages/Admin/ArticleForm/ArticleForm';
 import { sizeTransform } from "../../utils/sizeTransform";
+import { EditContext } from "../../contexts/editContext";
 
 const FeaturedArticlePage = () => {
+  const { editMode } = useContext(EditContext);
   const [articles, setArticles] = useState([]);
   const [show, setShow] = useState(false);
   const [fileUrl, setFileUrl] = useState(null);
@@ -70,7 +72,7 @@ const FeaturedArticlePage = () => {
   const onSelectedArticle = (data, article) => {
     return (
       article.id === data.id &&
-      show && <div>
+      editMode && show && <div>
         <ArticleForm 
           setShow={setShow} 
           currentArticle={currentArticle} 

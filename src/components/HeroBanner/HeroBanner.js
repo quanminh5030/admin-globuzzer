@@ -8,7 +8,7 @@ import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 
 const HeroBanner = ({ contentEditable }) => {
-  const { editStyle } = useContext(EditContext);
+  const { editStyle, editMode } = useContext(EditContext);
   const [banners, setBanners] = useState([]);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
@@ -122,7 +122,7 @@ const handleSubmitPlace = async () => {
 
 const onSelectedText = (text, currentText) => {
   return (
-    showTextForm && text.id === currentText.id &&
+    editMode && showTextForm && text.id === currentText.id &&
     <TextEdit 
       currentText={currentText} 
       formTextStyle={formTextStyle} 
@@ -134,7 +134,7 @@ const onSelectedText = (text, currentText) => {
 
 const onSelectedPlace = (place, currentPlace) => {
   return(
-    showPlaceForm && place.id === currentPlace.id &&
+    editMode && showPlaceForm && place.id === currentPlace.id &&
     <BannerPlacesForm 
     showPlaceForm={showPlaceForm}
     currentPlace={currentPlace}

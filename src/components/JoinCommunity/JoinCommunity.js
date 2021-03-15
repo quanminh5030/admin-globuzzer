@@ -177,10 +177,12 @@ export const JoinCommunity = (props) => {
         </button>
         
       </div>
-      <JoinCommunityForm 
+      { editMode &&
+        <JoinCommunityForm 
         showPhotoForm={showPhotoForm} 
         setShowPhotoForm={setShowPhotoForm} 
       />
+      }
     </section>
   );
 

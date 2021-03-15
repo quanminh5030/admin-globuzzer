@@ -45,7 +45,7 @@ const FeatureBox = ({ showFeature, setShowFeature, homeData, setHomeData }) => {
     newData[showFeature - 1].text = data.body;
     //these are the updated values when user clicks apply
     setHomeData(newData);
-    console.log("Check", newData);
+    // console.log("Check", newData);
     setShowFeature(false);
     //updating the id in firestore
     updateItem(id);
