@@ -6,7 +6,7 @@ const ComunnityMembersForm = (props) => {
   const [data, setData] = useState(currentMember);
   
   const editMemberStyle = {
-    bottom: '-283px',
+    bottom: '-210px',
     left: '489px',
     zIndex: 100
   };
