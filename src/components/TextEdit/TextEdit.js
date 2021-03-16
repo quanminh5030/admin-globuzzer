@@ -24,22 +24,24 @@ const TextEdit = ({ currentText, formTextStyle, setShowForm, save }) => {
     e.preventDefault();
     currentText.style.fontSize = e.target.value + 'px'
     setDefaultSize(e.target.value)
-  }
+  };
 
   const handleColorChange = (e) => {
     currentText.style.color = e.target.value
     setDefaultColor(e.target.value)
-  }
+  };
 
   const handleWeightChange = (e) => {
     currentText.style.fontWeight = e.target.value
     setDefaultWeight(e.target.value)
-  }
+  };
 
   const handleAlignChange = (e) => {
     currentText.style.textAlign = e.target.value
     setDefaultAlign(e.target.value)
-  }
+  };
+
+  
   return (
     <div className={edit.title} style={formTextStyle}>
       <p className={edit.cmdButton} onClick={() => setShowForm(false)}>Cancel</p>

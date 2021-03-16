@@ -42,13 +42,13 @@ export const JoinCommunity = (props) => {
   const formTextStyle = editMode && showTextCommunityForm ? {
     position: 'relative',
     top: '1%' ,
-    left: '10%'
+    left: '10%',
   }
             : 
 
-  { display: 'none'};
+  { display: 'none',};
 
-  // fetch comunnity 'texts' content from db
+  // fetch community 'texts' content from db
   useEffect(() => {
     const getTexts = firestore
       .collection("community")
@@ -104,15 +104,15 @@ export const JoinCommunity = (props) => {
   // change handler for community text
   const handleChangeCommunityText = (e) => {
     setCurrentCommunityText(prev => ({...prev, content: e.target.innerText, id: e.target.id}));
-    console.log(e.target.innerText);
-    console.log(currentCommunityText.content);
+    // console.log(e.target.innerText);
+    // console.log(currentCommunityText.content);
  };
 
-  const handleSubmitText = async () => {
-    if (currentCommunityText.id) {
-      await firestore.collection("community").doc(currentCommunityText.id).update(currentCommunityText);
+  const handleSubmitText = async (text) => {
+    if (text.id) {
+      await firestore.collection("community").doc(text.id).update(text);
       // setShowTextCommunityForm(false);
-    console.log(currentCommunityText.id, "saved to db");
+    console.log(text.id, "saved to db");
     }
   };
 
@@ -120,14 +120,15 @@ export const JoinCommunity = (props) => {
     return (
       showTextCommunityForm && text.id === currentText.id &&
       <TextEdit 
+        save={handleSubmitText(currentCommunityText)}
         currentText={currentText} 
         formTextStyle={formTextStyle} 
         setShowForm={setShowTextCommunityForm} 
-        save={handleSubmitText}
       />
     );
   };
   const Join = () => (
+    
     <section className="join">
       <div className="join_video_container" onClick={showForm}>
       {videos.map(video => (
@@ -159,7 +160,7 @@ export const JoinCommunity = (props) => {
             suppressContentEditableWarning
             onFocus={getCurrentCommunityText}
             onBlur={handleChangeCommunityText}
-            // onClick={(e) => setShowTextCommunityForm(true)}
+            // onClick={() => setShowTextCommunityForm(true)}
           >
             {t.content}
           </p>
