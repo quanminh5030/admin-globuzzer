@@ -18,7 +18,7 @@ const submitFeatureCard = (e) => {
   e.preventDefault();
   updateFeatureCard({currentFeatureCard}, data);
   onFileSubmit(data);
-}
+};
 
   return (
     <div className={styles.feature_card}>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Home from "../../Home";
 import SideNav from "../SideNav/SideNav";
 import styles from "./AdminLanding.module.css";
@@ -22,20 +22,7 @@ const AdminLanding = () => {
   const features = useFetch('features');
   const services = useFetch('services');
   const video = useFetch('video');
-  const documents = [
-    'texts', 'places', 'articles', 'banners', 'cities', 'community', 'features', 'services', 'video'
-  ];
-  // const addData = () => {
-  //   data.items.map(async (item) => {
-  //     await firestore.collection('texts_live').add(item)
-  //   })
-  // };
-
-  const updateToLive = (documents) => {
-    documents.map( async (document) => {
-       await firestore.collection('landing_live').doc(document).update({...document.items});
-    })
-  }
+  
 
   const updateData = async () => {
       await firestore.collection('landing_live').doc('texts').update({...texts.items});

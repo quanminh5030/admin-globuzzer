@@ -2,11 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { MemberNearYou } from "../MemberNearYou/MemberNearYou";
-// import MemberNearYouData from "../../Data/MemberNearYouData";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
 import "./style.css";
-
 import Gunjan from "../../assets/Gunjan.png";
 import Chloe from "../../assets/Chloe.png";
 import Jonathan from "../../assets/Jonathan.png";
@@ -14,8 +12,10 @@ import Chloé from "../../assets/Asya.png";
 import JoinCommunityForm from "../../pages/Admin/JoinCommunityForm/JoinCommunityForm";
 import { EditContext } from "../../contexts/editContext";
 import TextEdit from "../TextEdit/TextEdit";
-import { firestore } from "../../utils/firebase.utils";
+import { app, firestore } from "../../utils/firebase.utils";
 import { Fragment } from "react";
+import CommunityMembersForm from "../../pages/Admin/JoinCommunityForm/CommunityMembersForm";
+import { sizeTransform } from "../../utils/sizeTransform";
 
 export const JoinCommunity = (props) => {
   const { editStyle, contentEditable } = props;
@@ -24,8 +24,11 @@ export const JoinCommunity = (props) => {
   const [showTextCommunityForm, setShowTextCommunityForm] = useState(false);
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [videos, setVideos] = useState([]);
+  const [showMembersForm, setShowMembersForm] = useState(false);
   const [MemberNearYouData, setMemberNearYouData] = useState([]);
-
+  const [currentMember, setCurrentMember] = useState({id: "", name: '', city: '', img: ''});
+  const [fileUrl, setFileUrl] = useState(null);
+  
   const rawText = {
     content: '',
     style: {
@@ -104,8 +107,6 @@ export const JoinCommunity = (props) => {
   // change handler for community text
   const handleChangeCommunityText = (e) => {
     setCurrentCommunityText(prev => ({...prev, content: e.target.innerText, id: e.target.id}));
-    // console.log(e.target.innerText);
-    // console.log(currentCommunityText.content);
  };
 
   const handleSubmitText = async (text) => {
@@ -127,8 +128,51 @@ export const JoinCommunity = (props) => {
       />
     );
   };
+  const getCurrentMember = (e) => {
+    const member = MemberNearYouData.filter((m) => {
+      return m.id === e.target.id;
+    });
+    setCurrentMember(member[0]);
+    setShowMembersForm(true);
+  };
+
+  const updateMemberData = (({currentMember}, updatedMember) => {
+    setShowMembersForm(false);
+    firestore.collection('member_near').doc(currentMember.id).update(updatedMember)
+  });
+
+  // on form submit, the file url is set in firestore
+  const onFileSubmit = async (data) => {
+    const getCollection = firestore.collection('member_near');
+    await getCollection.doc(currentMember.id).set({
+      img: fileUrl || data.img,
+      city: data.city,
+      name: data.name
+    })
+    console.log("file saved:", fileUrl)
+    setShowMembersForm(false);
+  }
+
+  // validations for uploaded images
+  const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
+  const sizeValidation = 200000;
+  const message = (file) => {
+    return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
+  } 
+  // manage the upload member picture form + type and size validation
+  const onFileChange = async (e) => {
+  const file = e.target.files[0];
+  const storageRef = app.storage().ref();
+  if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+    const fileRef = storageRef.child(`members/${file.name}`);
+    await fileRef.put(file);
+    setFileUrl(await fileRef.getDownloadURL());
+  } else {
+    alert(message(file))
+  }
+}
+
   const Join = () => (
-    
     <section className="join">
       <div className="join_video_container" onClick={showForm}>
       {videos.map(video => (
@@ -166,9 +210,17 @@ export const JoinCommunity = (props) => {
           </p>
         </Fragment>
         ))}
-        <div className="join_member_list">
+        <div 
+          className="join_member_list" 
+          style={
+            {...editStyle, 
+              padding:" 8px 0 8px 0", 
+              justifyContent:'space-evenly'
+            }
+          }
+        >
           {MemberNearYouData.map((memberData, index) => (
-            <MemberNearYou memberData={memberData} key={index} />
+            <MemberNearYou memberData={memberData} key={index} getCurrentMember={getCurrentMember} />
           ))}
         </div>
         <button type="button" className="join_button">
@@ -178,11 +230,22 @@ export const JoinCommunity = (props) => {
         </button>
         
       </div>
-      { editMode &&
+      { editMode && 
+      <Fragment>
+        { showMembersForm && 
+          <CommunityMembersForm
+          currentMember={currentMember}
+          setShowMembersForm={setShowMembersForm}
+          updateMemberData={updateMemberData}
+          onFileSubmit={onFileSubmit}
+          onFileChange={onFileChange}
+        />
+        }
         <JoinCommunityForm 
-        showPhotoForm={showPhotoForm} 
-        setShowPhotoForm={setShowPhotoForm} 
+          showPhotoForm={showPhotoForm} 
+          setShowPhotoForm={setShowPhotoForm} 
       />
+      </Fragment>
       }
     </section>
   );

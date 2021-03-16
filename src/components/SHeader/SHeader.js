@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { firestore } from '../../utils/firebase.utils';
 import { EditContext } from '../../contexts/editContext';
 import { SearchCity } from '../SearchCity/SearchCity';
 import { Fragment } from 'react';
 import TextEdit from '../TextEdit/TextEditSection';
-import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 import { useFetchHeader } from '../../hooks/useFetchData';
-import { updObj, updArr } from '../../utils/actions.firebase';
-import useForm from '../../hooks/useForm';
 
 const SHeader = ({ contentEditable, cityId, callback }) => {
   const { loading, currentCity } = useFetchHeader(cityId);
@@ -31,9 +28,7 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
               };
 
 const renderedHeader = () => {
-  // console.log('ct',title, subtitle);
-  // console.log('crt', header)
-  const { bannerImg, name, places, texts } = currentCity;
+  const { bannerImg, places, texts } = currentCity;
   const { one, two, three } = places;
   const textsState = {
     texts:{
@@ -67,7 +62,6 @@ const renderedHeader = () => {
   const handleSubmitText = async () => {
     await firestore.collection("section_items").doc(cityId).update(textsState);
     setShowTextForm(false);
-    // console.table({texts:{...texts, subtitle: {...texts.subtitle, ...currentSubtitle}, title: {...texts.title, ...currentTitle}}});
     console.log("saved to dbs")
   };
 
