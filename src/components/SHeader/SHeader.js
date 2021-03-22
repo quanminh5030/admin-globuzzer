@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { firestore } from '../../utils/firebase.utils';
 import { EditContext } from '../../contexts/editContext';
 import { SearchCity } from '../SearchCity/SearchCity';
@@ -6,9 +6,11 @@ import { Fragment } from 'react';
 import TextEdit from '../TextEdit/TextEditSection';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 import { useFetchHeader } from '../../hooks/useFetchData';
+import store from 'store';
 
 const SHeader = ({ contentEditable, cityId, callback }) => {
-  const { loading, currentCity } = useFetchHeader(cityId);
+  const { loading, fetchedCurrentCity } = useFetchHeader(cityId);
+  const [currentCity, setCurrentCity] = useState({});
   const { editStyle } = useContext(EditContext);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
@@ -16,7 +18,7 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
   const [subtitle, setSubtitle] = useState({});
   const [header, setHeader] = useState('');
   const [test, setTest] = useState({});
-console.log('test', test.texts.title.content, test.texts.subtitle.content)
+
   const style = {
     position: 'relative',
     top: '36px',
@@ -27,6 +29,12 @@ console.log('test', test.texts.title.content, test.texts.subtitle.content)
                 position: 'relative',
                 top: header === "title" ? '50px' : '140px'
               };
+console.log(currentCity)
+  useEffect(() => {
+    store.set('currentCity', fetchedCurrentCity) //set localStorage at mount
+    setCurrentCity(store.get('currentCity'))
+    return () => store.remove('currentCity') //clean localStorage after unmont
+  },[fetchedCurrentCity])
 
 const renderedHeader = () => {
   const { bannerImg, places, texts } = currentCity;
@@ -64,8 +72,11 @@ const renderedHeader = () => {
     // await firestore.collection("section_items").doc(cityId).update(textsState);
     // setShowTextForm(false);
     // console.log("saved to dbs")
-    localStorage.setItem('texts', JSON.stringify({...currentCity, texts: textsState.texts}))
-    setTest(JSON.parse(localStorage.getItem('texts')))
+    // localStorage.setItem('texts', JSON.stringify({...currentCity, texts: textsState.texts}))
+    // setTest(JSON.parse(localStorage.getItem('texts')))
+    store.set('currentCity', { ...currentCity, texts: textsState })
+    // setCurrentCity(store.get('currentCity'))
+    // console.log(textsState)
   };
 
   const getCurrentText = (e) => {
@@ -116,7 +127,7 @@ const renderedHeader = () => {
             suppressContentEditableWarning="true"
             id="title"
             onFocus={getCurrentText}
-            onKeyUp={handleChangeText}
+            onBlur={handleChangeText}
           >
             {texts.title.content}</p>
           
@@ -126,7 +137,7 @@ const renderedHeader = () => {
             suppressContentEditableWarning="true"
             id="subtitle"
             onFocus={getCurrentText}
-            onKeyUp={handleChangeText}
+            onBlur={handleChangeText}
           >
             {texts.subtitle.content}</p>
         </div>
