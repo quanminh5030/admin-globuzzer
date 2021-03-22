@@ -15,7 +15,8 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
   const [title, setTitle] = useState({});
   const [subtitle, setSubtitle] = useState({});
   const [header, setHeader] = useState('');
-
+  const [test, setTest] = useState({});
+console.log('test', test.texts.title.content, test.texts.subtitle.content)
   const style = {
     position: 'relative',
     top: '36px',
@@ -60,9 +61,11 @@ const renderedHeader = () => {
   };
 
   const handleSubmitText = async () => {
-    await firestore.collection("section_items").doc(cityId).update(textsState);
-    setShowTextForm(false);
-    console.log("saved to dbs")
+    // await firestore.collection("section_items").doc(cityId).update(textsState);
+    // setShowTextForm(false);
+    // console.log("saved to dbs")
+    localStorage.setItem('texts', JSON.stringify({...currentCity, texts: textsState.texts}))
+    setTest(JSON.parse(localStorage.getItem('texts')))
   };
 
   const getCurrentText = (e) => {

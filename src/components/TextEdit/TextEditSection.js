@@ -19,7 +19,7 @@ const TextEdit = ({ currentText, formTextStyle, setShowForm, save, changeHandler
     setDefaultColor(currentText.style.color);
     setDefaultAlign(currentText.style.textAlign);
   }, [currentText]);
-  console.log('header', header)
+  // console.log('header', header)
   const handleSizeChange = (e) => {
     e.preventDefault();
     // currentText.style.fontSize = e.target.value + 'px'
