@@ -10,6 +10,7 @@ import store from 'store';
 import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 
 const SHeader = ({ contentEditable, cityId, callback }) => {
+  const { editMode } = useContext(EditContext)
   const { loading, fetchedCurrentCity } = useFetchHeader(cityId);
   const [currentCity, setCurrentCity] = useState({});
   const { editStyle } = useContext(EditContext);
@@ -40,10 +41,10 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
 
 const renderedHeader = () => {
   const { bannerImg, title, subtitle, placeOne, placeTwo, placeThree, url } = currentCity;
-
+console.log(showPlaceForm)
   const onSelectedText = (text) => {
     return (
-      showTextForm && text &&
+      editMode && showTextForm && text &&
       <TextEdit 
         header={header}
         changeHandler={changeHandler}
@@ -61,7 +62,7 @@ const renderedHeader = () => {
   };
 
   const getCurrentPlace = (e) => {
-    setShowPlaceForm(true);
+    // setShowPlaceForm(true);
     switch (e.target.id) {
       case 'one':
         setCurrentPlace(placeOne);
@@ -98,14 +99,7 @@ const renderedHeader = () => {
   };
 
   const handleSubmitText = async () => {
-    // await firestore.collection("section_items").doc(cityId).update(textsState);
-    // setShowTextForm(false);
-    // console.log("saved to dbs")
-    // localStorage.setItem('texts', JSON.stringify({...currentCity, texts: textsState.texts}))
-    // setTest(JSON.parse(localStorage.getItem('texts')))
-    store.set('currentCity', { ...currentCity, title: currentTitle, subtitle: currentSubtitle })
-    // setCurrentCity(store.get('currentCity'))
-    // console.log(textsState)
+    // store.set('currentCity', { ...currentCity, title: currentTitle, subtitle: currentSubtitle })
     await firestore.collection("section_items").doc(cityId).update({...currentCity, title: currentTitle, subtitle: currentSubtitle });
   };
 
@@ -117,14 +111,12 @@ const renderedHeader = () => {
 
   const handleSubmitPlace = async () => {
     await firestore.collection("section_items").doc(cityId).update({...currentCity, [place]: currentPlace });
-    // console.log({...currentCity, place: currentPlace })
     setShowPlaceForm(false)
-    // console.log(currentPlace, "saved to db")
   };
 
   const onSelectedPlace = (currentPlace) => {
     return(
-      showPlaceForm &&
+      editMode && showPlaceForm &&
       <BannerPlacesForm 
       showPlaceForm={showPlaceForm}
       currentPlace={currentPlace}
@@ -180,7 +172,7 @@ const renderedHeader = () => {
         <div 
           // ref={place}
         >
-          <div id="header_suggestion" className="places" onClick={() => setShowPlaceForm(true)}>
+          <div id="header_suggestion" className="places">
           {onSelectedPlace(currentPlace)}
             Maybe{" "}
               <a
@@ -191,7 +183,7 @@ const renderedHeader = () => {
                 suppressContentEditableWarning="true"
                 style={{ ...editStyle, color: placeOne.color }}
                 onFocus={getCurrentPlace}
-                // onClick={() => setShowPlaceForm(true)}
+                onClick={() => setShowPlaceForm(true)}
               >
                 {placeOne.text}
               </a>
@@ -203,7 +195,7 @@ const renderedHeader = () => {
                 suppressContentEditableWarning="true"
                 style={{ ...editStyle, color: placeTwo.color }}
                 onFocus={getCurrentPlace}
-                // onClick={() => setShowPlaceForm(true)}
+                onClick={() => setShowPlaceForm(true)}
               >
                 {placeTwo.text}
               </a>
@@ -215,7 +207,7 @@ const renderedHeader = () => {
                 suppressContentEditableWarning="true"
                 style={{ ...editStyle, color: placeThree.color }}
                 onFocus={getCurrentPlace}
-                // onClick={() => setShowPlaceForm(true)}
+                onClick={() => setShowPlaceForm(true)}
               >
                 {placeThree.text}
               </a>
