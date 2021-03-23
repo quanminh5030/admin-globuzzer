@@ -7,6 +7,7 @@ import TextEdit from '../TextEdit/TextEditSection';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/BannerPhotoForm';
 import { useFetchHeader } from '../../hooks/useFetchData';
 import store from 'store';
+import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 
 const SHeader = ({ contentEditable, cityId, callback }) => {
   const { loading, fetchedCurrentCity } = useFetchHeader(cityId);
@@ -17,6 +18,8 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
   const [currentTitle, setCurrentTitle] = useState({});
   const [currentSubtitle, setCurrentSubtitle] = useState({});
   const [header, setHeader] = useState('');
+  const [currentPlace, setCurrentPlace] = useState({});
+  const [place, setPlace] = useState('');
 
   const style = {
     position: 'relative',
@@ -57,6 +60,25 @@ const renderedHeader = () => {
     setHeader(e.target.id);
   };
 
+  const getCurrentPlace = (e) => {
+    setShowPlaceForm(true);
+    switch (e.target.id) {
+      case 'one':
+        setCurrentPlace(placeOne);
+        setPlace('placeOne')
+        break;
+      case 'two':
+        setCurrentPlace(placeTwo);
+        setPlace('placeTwo')
+        break;
+      case 'three':
+        setCurrentPlace(placeThree);
+        setPlace('placeThree')
+        break;
+        default:
+    }
+  };
+
   const handleChangeText = (e) => {
     if (e.target.id === "title") {
       setCurrentTitle({...title, content: e.target.innerText});
@@ -85,6 +107,32 @@ const renderedHeader = () => {
     // setCurrentCity(store.get('currentCity'))
     // console.log(textsState)
     await firestore.collection("section_items").doc(cityId).update({...currentCity, title: currentTitle, subtitle: currentSubtitle });
+  };
+
+  // change handler for place
+  const handleChangePlace = (e) => {
+    const { name, value } = e.target;
+    setCurrentPlace({...currentPlace, [name]: value});
+  };
+
+  const handleSubmitPlace = async () => {
+    await firestore.collection("section_items").doc(cityId).update({...currentCity, [place]: currentPlace });
+    // console.log({...currentCity, place: currentPlace })
+    setShowPlaceForm(false)
+    // console.log(currentPlace, "saved to db")
+  };
+
+  const onSelectedPlace = (currentPlace) => {
+    return(
+      showPlaceForm &&
+      <BannerPlacesForm 
+      showPlaceForm={showPlaceForm}
+      currentPlace={currentPlace}
+      handleChangePlace={handleChangePlace}
+      setShowPlaceForm={setShowPlaceForm}
+      save={handleSubmitPlace}
+      />
+    );
   };
 
 
@@ -133,14 +181,16 @@ const renderedHeader = () => {
           // ref={place}
         >
           <div id="header_suggestion" className="places" onClick={() => setShowPlaceForm(true)}>
+          {onSelectedPlace(currentPlace)}
             Maybe{" "}
               <a
                 href={placeOne.link}
                 target="_new"
+                id="one"
                 contentEditable={contentEditable}
                 suppressContentEditableWarning="true"
                 style={{ ...editStyle, color: placeOne.color }}
-                // onFocus={handleClick}
+                onFocus={getCurrentPlace}
                 // onClick={() => setShowPlaceForm(true)}
               >
                 {placeOne.text}
@@ -148,10 +198,11 @@ const renderedHeader = () => {
               <a
                 href={placeTwo.link}
                 target="_new"
+                id="two"
                 contentEditable={contentEditable}
                 suppressContentEditableWarning="true"
                 style={{ ...editStyle, color: placeTwo.color }}
-                // onFocus={handleClick}
+                onFocus={getCurrentPlace}
                 // onClick={() => setShowPlaceForm(true)}
               >
                 {placeTwo.text}
@@ -159,10 +210,11 @@ const renderedHeader = () => {
               <a
                 href={placeThree.link}
                 target="_new"
+                id="three"
                 contentEditable={contentEditable}
                 suppressContentEditableWarning="true"
                 style={{ ...editStyle, color: placeThree.color }}
-                // onFocus={handleClick}
+                onFocus={getCurrentPlace}
                 // onClick={() => setShowPlaceForm(true)}
               >
                 {placeThree.text}
