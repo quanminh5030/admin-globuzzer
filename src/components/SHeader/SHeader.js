@@ -14,10 +14,10 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
   const { editStyle } = useContext(EditContext);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
-  const [title, setTitle] = useState({});
-  const [subtitle, setSubtitle] = useState({});
+  const [currentTitle, setCurrentTitle] = useState({});
+  const [currentSubtitle, setCurrentSubtitle] = useState({});
   const [header, setHeader] = useState('');
-  const [test, setTest] = useState({});
+console.log(currentTitle.style)
 
   const style = {
     position: 'relative',
@@ -29,23 +29,16 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
                 position: 'relative',
                 top: header === "title" ? '50px' : '140px'
               };
-console.log(currentCity)
+// console.log(currentCity)
   useEffect(() => {
     store.set('currentCity', fetchedCurrentCity) //set localStorage at mount
     setCurrentCity(store.get('currentCity'))
-    return () => store.remove('currentCity') //clean localStorage after unmont
+    // return () => store.remove('currentCity') //clean localStorage after unmont
   },[fetchedCurrentCity])
 
 const renderedHeader = () => {
-  const { bannerImg, places, texts } = currentCity;
-  const { one, two, three } = places;
-  const textsState = {
-    texts:{
-      ...texts, 
-      subtitle: {...texts.subtitle, ...subtitle}, 
-      title: {...texts.title, ...title}
-    }
-  };
+  const { bannerImg, title, subtitle, placeOne, placeTwo, placeThree, url } = currentCity;
+
   const onSelectedText = (text) => {
     return (
       showTextForm && text &&
@@ -60,11 +53,26 @@ const renderedHeader = () => {
     );
   };
 
-  const changeHandler = (target, val) => {
+  const getCurrentText = (e) => {
+    setShowTextForm(true);
+    setHeader(e.target.id);
+  };
+
+  const handleChangeText = (e) => {
+    if (e.target.id === "title") {
+      setCurrentTitle({...title, content: e.target.innerText});
+    } else if (e.target.id === "subtitle") {
+      setCurrentSubtitle({...subtitle, content: e.target.innerText});
+    } else {
+      
+    }   
+  };
+
+  const changeHandler = (target, value) => {
     if (target === "title") {
-      setTitle({...title, style:{...title.style, ...val}})
+      setCurrentTitle({...currentTitle, style:{...currentTitle.style, ...value}})
     } else if (target === "subtitle") {
-      setSubtitle({...subtitle, style:{...subtitle.style, ...val}})
+      setCurrentSubtitle({...subtitle, style:{...subtitle.style, ...value}})
     }
   };
 
@@ -74,32 +82,12 @@ const renderedHeader = () => {
     // console.log("saved to dbs")
     // localStorage.setItem('texts', JSON.stringify({...currentCity, texts: textsState.texts}))
     // setTest(JSON.parse(localStorage.getItem('texts')))
-    store.set('currentCity', { ...currentCity, texts: textsState })
+    store.set('currentCity', { ...currentCity, title: currentTitle, subtitle: currentSubtitle })
     // setCurrentCity(store.get('currentCity'))
     // console.log(textsState)
+    await firestore.collection("section_items").doc(cityId).update({...currentCity, title: currentTitle, subtitle: currentSubtitle });
   };
 
-  const getCurrentText = (e) => {
-    setShowTextForm(true);
-    setHeader(e.target.id);
-    if (e.target.id === "title") {
-      setTitle({...texts.title, content: e.target.innerText});
-    } else if (e.target.id === "subtitle") {
-      setSubtitle({...texts.subtitle, content: e.target.innerText});
-    } else {
-      
-    }
-  };
-
-  const handleChangeText = (e) => {
-    if (e.target.id === "title") {
-      setTitle({...title, content: e.target.innerText});;
-    } else if (e.target.id === "subtitle") {
-      setSubtitle({...subtitle, content: e.target.innerText});
-    } else {
-      
-    }   
-};
 
   return (
     <Fragment>
@@ -123,23 +111,23 @@ const renderedHeader = () => {
           {header === "subtitle" && onSelectedText(subtitle)}
           <p
             contentEditable={contentEditable}
-            style={{...texts.title.style, ...editStyle, ...title.style}}
+            style={{...title.style, ...editStyle, ...currentTitle.style}}
             suppressContentEditableWarning="true"
             id="title"
             onFocus={getCurrentText}
             onBlur={handleChangeText}
           >
-            {texts.title.content}</p>
+            {title.content}</p>
           
           <p
             contentEditable={contentEditable}
-            style={{...texts.subtitle.style, ...editStyle, ...subtitle.style}}
+            style={{...subtitle.style, ...editStyle, ...currentSubtitle.style}}
             suppressContentEditableWarning="true"
             id="subtitle"
             onFocus={getCurrentText}
             onBlur={handleChangeText}
           >
-            {texts.subtitle.content}</p>
+            {subtitle.content}</p>
         </div>
           <SearchCity />
         <div 
@@ -148,22 +136,22 @@ const renderedHeader = () => {
           <div id="header_suggestion" className="places" onClick={() => setShowPlaceForm(true)}>
             Maybe{" "}
             <p
-              style={{color: one.color}}
+              style={{color: placeOne.color}}
               id="one"
             >
-              {one.text}
+              {placeOne.text}
             </p>
             <p
-              style={{color: two.color}}
+              style={{color: placeTwo.color}}
               id="two"
             >
-              {two.text}
+              {placeTwo.text}
             </p>
             <p
-              style={{color: three.color}}
+              style={{color: placeThree.color}}
               id="three"
             >
-              {three.text}</p>
+              {placeThree.text}</p>
           </div>
         </div>
         </section>
