@@ -17,7 +17,6 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
   const [currentTitle, setCurrentTitle] = useState({});
   const [currentSubtitle, setCurrentSubtitle] = useState({});
   const [header, setHeader] = useState('');
-console.log(currentTitle.style)
 
   const style = {
     position: 'relative',
@@ -135,23 +134,39 @@ const renderedHeader = () => {
         >
           <div id="header_suggestion" className="places" onClick={() => setShowPlaceForm(true)}>
             Maybe{" "}
-            <p
-              style={{color: placeOne.color}}
-              id="one"
-            >
-              {placeOne.text}
-            </p>
-            <p
-              style={{color: placeTwo.color}}
-              id="two"
-            >
-              {placeTwo.text}
-            </p>
-            <p
-              style={{color: placeThree.color}}
-              id="three"
-            >
-              {placeThree.text}</p>
+              <a
+                href={placeOne.link}
+                target="_new"
+                contentEditable={contentEditable}
+                suppressContentEditableWarning="true"
+                style={{ ...editStyle, color: placeOne.color }}
+                // onFocus={handleClick}
+                // onClick={() => setShowPlaceForm(true)}
+              >
+                {placeOne.text}
+              </a>
+              <a
+                href={placeTwo.link}
+                target="_new"
+                contentEditable={contentEditable}
+                suppressContentEditableWarning="true"
+                style={{ ...editStyle, color: placeTwo.color }}
+                // onFocus={handleClick}
+                // onClick={() => setShowPlaceForm(true)}
+              >
+                {placeTwo.text}
+              </a>
+              <a
+                href={placeThree.link}
+                target="_new"
+                contentEditable={contentEditable}
+                suppressContentEditableWarning="true"
+                style={{ ...editStyle, color: placeThree.color }}
+                // onFocus={handleClick}
+                // onClick={() => setShowPlaceForm(true)}
+              >
+                {placeThree.text}
+              </a>
           </div>
         </div>
         </section>

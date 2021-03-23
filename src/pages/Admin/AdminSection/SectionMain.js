@@ -4,7 +4,7 @@ import useFetch from '../../../hooks/useFetch';
 import styles from './AdminSection.module.css';
 import SectionItems from './SectionItems';
 import { BsSearch } from "react-icons/bs";
-import { emptyObj, dataObj } from '../../Admin/AdminSection/Data';
+import { dataObj } from '../../Admin/AdminSection/Data';
 import { createNew } from '../../../utils/actions.firebase';
 
 const SectionMain = () => {

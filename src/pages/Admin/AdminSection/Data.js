@@ -712,17 +712,17 @@ export const dataObj =
   placeOne: {
     color: "",
     link: "",
-    text: "This",
+    text: "Attractions",
   },
   placeTwo: {
     color: "",
     link: "",
-    text: "That",
+    text: "Career",
   },
   placeThree: {
     color: "",
     link: "",
-    text: "This",
+    text: "Culture",
   },
   title: {
     content: "Here is your main title",
@@ -744,42 +744,3 @@ export const dataObj =
   }
 };
 
-export const emptyObj = 
-{
-  name: "New section soon...",
-  url: "",
-  bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/books_small.jpg?alt=media&token=8638a146-0d61-49a2-8d67-42316b9034c4",
-  placeOne: {
-    color: "",
-    link: "",
-    text: "This",
-  },
-  placeTwo: {
-    color: "",
-    link: "",
-    text: "That",
-  },
-  placeThree: {
-    color: "",
-    link: "",
-    text: "This",
-  },
-  title: {
-    content: "Here is your main title",
-    style: {
-      color: "#ffffff",
-      fontSize: "48px",
-      fontWeight: "bold",
-      textAlign: "center",
-    }
-  },
-  subtitle: {
-    content: "and here is your description",
-    style: {
-      color: "#ffffff",
-      fontSize: "24px",
-      fontWeight: "bold",
-      textAlign: "center",
-    }
-  }
-};
