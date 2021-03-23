@@ -12,7 +12,8 @@ import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 const SHeader = ({ contentEditable, cityId, callback }) => {
   const { editMode } = useContext(EditContext)
   const { loading, fetchedCurrentCity } = useFetchHeader(cityId);
-  const [currentCity, setCurrentCity] = useState({});
+  const currentCity = {...fetchedCurrentCity}
+  // const [currentCity, setCurrentCity] = useState({});
   const { editStyle } = useContext(EditContext);
   const [showTextForm, setShowTextForm] = useState(false);
   const [showPlaceForm, setShowPlaceForm] = useState(false);
@@ -21,7 +22,7 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
   const [header, setHeader] = useState('');
   const [currentPlace, setCurrentPlace] = useState({});
   const [place, setPlace] = useState('');
-
+  
   const style = {
     position: 'relative',
     top: '36px',
@@ -32,16 +33,17 @@ const SHeader = ({ contentEditable, cityId, callback }) => {
                 position: 'relative',
                 top: header === "title" ? '50px' : '140px'
               };
-// console.log(currentCity)
+console.log(currentCity)
   useEffect(() => {
-    store.set('currentCity', fetchedCurrentCity) //set localStorage at mount
-    setCurrentCity(store.get('currentCity'))
+    // store.set('currentCity', fetchedCurrentCity) //set localStorage at mount
+    // setCurrentCity(store.get('currentCity'))
     // return () => store.remove('currentCity') //clean localStorage after unmont
-  },[fetchedCurrentCity])
+    // setCurrentCity(fetchedCurrentCity)
+  },[])
 
 const renderedHeader = () => {
   const { bannerImg, title, subtitle, placeOne, placeTwo, placeThree, url } = currentCity;
-console.log(showPlaceForm)
+
   const onSelectedText = (text) => {
     return (
       editMode && showTextForm && text &&
@@ -92,7 +94,7 @@ console.log(showPlaceForm)
 
   const changeHandler = (target, value) => {
     if (target === "title") {
-      setCurrentTitle({...currentTitle, style:{...currentTitle.style, ...value}})
+      setCurrentTitle({...title, style:{...title.style, ...value}})
     } else if (target === "subtitle") {
       setCurrentSubtitle({...subtitle, style:{...subtitle.style, ...value}})
     }
@@ -101,6 +103,7 @@ console.log(showPlaceForm)
   const handleSubmitText = async () => {
     // store.set('currentCity', { ...currentCity, title: currentTitle, subtitle: currentSubtitle })
     await firestore.collection("section_items").doc(cityId).update({...currentCity, title: currentTitle, subtitle: currentSubtitle });
+    setShowTextForm(false)
   };
 
   // change handler for place
