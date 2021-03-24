@@ -6,22 +6,15 @@ import ServiceCard from "./ServiceCard";
 import more from '../../../assets/Section/Services/more.svg';
 import { EditContext } from "../../../contexts/editContext";
 import { firestore } from "../../../utils/firebase.utils";
+import FeatureCardForm from "../../Admin/FeatureCardForm/SectionServiceCardForm";
 
-const servicesPerPage = 5;
-let arrayForHoldingServices =[];
-const Services = ({cityId}) => {
+const Services = ({ cityId }) => {
   const { editStyle, editMode } = useContext(EditContext);
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
-  const [ServiceData, setServiceData] = useState([]);
-  const [servicesToShow, setServicesToShow]=useState([]);
-  const [next, setNext] = useState(5);
-
-  const loopWithSlice = (start,end)=>{
-    const slicedServices = ServiceData.slice(start,end);
-    arrayForHoldingServices=[...arrayForHoldingServices, ...slicedServices];
-    setServicesToShow(arrayForHoldingServices);
-  };
+  const [serviceData, setServiceData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [currentFeatureCard, setCurrentFeatureCard] = useState([]);
 
   useEffect(() => {
     const getCurrentCity = async () => {
@@ -35,19 +28,46 @@ const Services = ({cityId}) => {
       }
     };
     getCurrentCity();
-    console.log('martor render')
+    
 }, [cityId]);
-console.log(ServiceData)
-  const showMoreHandler = ()=>{
-    loopWithSlice(next, next + servicesPerPage);
-    setNext(next + servicesPerPage);
+
+const openEditForm = (data) => {
+  setShow(true);
+  setCurrentFeatureCard({
+    id: data.id,
+    text: data.text,
+    title: data.title,
+    image: data.image,
+    url: data.url
+  })
+};
+  const onSelectedCard = (card, currentCard) => {
+    return (
+      card.id === currentCard.id &&
+      show && editMode &&
+      <div>
+      <FeatureCardForm 
+        setShow={setShow} 
+        currentFeatureCard={currentFeatureCard} 
+        // updateFeatureCard={updateFeatureCard} 
+        // onFileChange={onFileChange}
+        // onFileSubmit={onSubmit}
+      />
+    </div>
+    );
   };
+  
   return (
-    <div className={styles.wrapper} >
+    <div className={styles.wrapper}>
       <BlogHeader label="Recommend Services" />
       <div className={styles.container}>
-        <ServiceCard servicesToRender={servicesToShow}/> 
-        <div className={styles.moreBtn} onClick={showMoreHandler}>
+        {serviceData.map(card => (
+          <div style={editStyle} key={card.id}>
+          <ServiceCard card={card} editFeatureCard={() => openEditForm(card)} editMode={editMode}/>
+          {onSelectedCard(card, currentFeatureCard)}
+          </div>
+        ))}
+        <div className={styles.moreBtn} >
         <img src={more} alt='more-icon' className={styles.moreIcon}/>
         <p className={styles.moreText}>More</p>
       </div>
