@@ -132,7 +132,7 @@ const onSelectedText = (text, currentText) => {
   );
 };
 
-const onSelectedPlace = (currentPlace) => {
+const onSelectedPlace = (place, currentPlace) => {
   return(
     editMode && showPlaceForm && place.id === currentPlace.id &&
     <BannerPlacesForm 
