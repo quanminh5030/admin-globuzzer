@@ -15,8 +15,9 @@ const inputHandler = (e) => {
 
 const submitFeatureCard = (e) => {
   e.preventDefault();
-  updateFeatureCard({currentFeatureCard}, data);
-  onFileSubmit(data);
+  // updateFeatureCard({currentFeatureCard}, data);
+  // onFileSubmit(data);
+  console.log(data)
 };
 
   return (

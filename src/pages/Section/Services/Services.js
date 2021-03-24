@@ -7,6 +7,7 @@ import more from '../../../assets/Section/Services/more.svg';
 import { EditContext } from "../../../contexts/editContext";
 import { firestore } from "../../../utils/firebase.utils";
 import FeatureCardForm from "../../Admin/FeatureCardForm/SectionServiceCardForm";
+import { sizeTransform } from "../../../utils/sizeTransform";
 
 const Services = ({ cityId }) => {
   const { editStyle, editMode } = useContext(EditContext);
@@ -31,16 +32,53 @@ const Services = ({ cityId }) => {
     
 }, [cityId]);
 
-const openEditForm = (data) => {
-  setShow(true);
-  setCurrentFeatureCard({
-    id: data.id,
-    text: data.text,
-    title: data.title,
-    image: data.image,
-    url: data.url
-  })
-};
+  const openEditForm = (data) => {
+    setShow(true);
+    setCurrentFeatureCard({
+      id: data.id,
+      text: data.text,
+      title: data.title,
+      image: data.image,
+      url: data.url
+    })
+  };
+
+  const updateFeatureCard = (({currentFeatureCard}, updatedFeatureCard) => {
+    setShow(false);
+    // firestore.collection('features').doc(currentFeatureCard.id).update(updatedFeatureCard)
+  });
+
+  // on form submit, the file url is set in firestore
+  const onSubmit = async (data) => {
+    // const getCollection = firestore.collection('features');
+    // await getCollection.doc(currentFeatureCard.id).set({
+    //   image: fileUrl || data.image,
+    //   text: data.text,
+    //   title: data.title
+    // })
+    // console.log("file saved:", fileUrl)
+    // setShow(false);
+  }
+
+
+  const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
+  const sizeValidation = 200000;
+  const message = (file) => {
+    return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
+  } 
+  // manage the upload file form + type and size validation
+  const onFileChange = async (e) => {
+    // const file = e.target.files[0];
+    // const storageRef = app.storage().ref();
+    // if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+    //   const fileRef = storageRef.child(`features/${file.name}`);
+    //   await fileRef.put(file);
+    //   setFileUrl(await fileRef.getDownloadURL());
+    // } else {
+    //   alert(message(file))
+    // }
+  }
+
   const onSelectedCard = (card, currentCard) => {
     return (
       card.id === currentCard.id &&
@@ -63,7 +101,11 @@ const openEditForm = (data) => {
       <div className={styles.container}>
         {serviceData.map(card => (
           <div style={editStyle} key={card.id}>
-          <ServiceCard card={card} editFeatureCard={() => openEditForm(card)} editMode={editMode}/>
+          <ServiceCard 
+            card={card} 
+            editFeatureCard={() => openEditForm(card)} 
+            editMode={editMode}
+          />
           {onSelectedCard(card, currentFeatureCard)}
           </div>
         ))}
