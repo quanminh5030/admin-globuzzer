@@ -708,7 +708,7 @@ export const dataObj =
 {
   name: "New section soon...",
   url: "",
-  bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/books_small.jpg?alt=media&token=8638a146-0d61-49a2-8d67-42316b9034c4",
+  bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   placeOne: {
     color: "",
     link: "",
