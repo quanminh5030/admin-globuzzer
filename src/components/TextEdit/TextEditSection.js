@@ -12,7 +12,6 @@ const TextEdit = ({ currentText, formTextStyle, setShowForm, save, changeHandler
   const [defaultWeight, setDefaultWeight] = useState('');
   const [defaultColor, setDefaultColor] = useState('');
   const [defaultAlign, setDefaultAlign] = useState('');
-  
   useEffect(() => {
     setDefaultSize(currentText.style.fontSize.substring(0, 2, - 1));
     setDefaultWeight(currentText.style.fontWeight);
@@ -31,6 +30,7 @@ const TextEdit = ({ currentText, formTextStyle, setShowForm, save, changeHandler
     // currentText.style.color = e.target.value
     setDefaultColor(e.target.value);
     changeHandler(header, {color: e.target.value});
+    console.log(e.target.value)
   }
 
   const handleWeightChange = (e) => {

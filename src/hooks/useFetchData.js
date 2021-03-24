@@ -35,7 +35,7 @@ import { firestore } from "../utils/firebase.utils";
 // };
 
 export const useFetchHeader = (cityId) => {
-  const [currentCity, setCurrentCity] = useState({});
+  const [fetchedCurrentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const useFetchHeader = (cityId) => {
         if (!doc.exists) {
           setLoading(true);
         } else {
-          setCurrentCity(doc.data());
+          setFetchedCurrentCity(doc.data());
           setLoading(false);
         }
       };
@@ -52,7 +52,7 @@ export const useFetchHeader = (cityId) => {
   }, [cityId]);
 
   return {
-    currentCity,
+    fetchedCurrentCity,
     loading
   };
 };
