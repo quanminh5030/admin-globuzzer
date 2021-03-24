@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ServiceCard.module.css";
-const ServiceCard = ({ servicesToRender}) => {
+const ServiceCard = ({ servicesToRender }) => {
   return (
     <>
    {servicesToRender.map((service, index)=>(
