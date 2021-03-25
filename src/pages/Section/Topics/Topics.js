@@ -6,30 +6,55 @@ import { TopicsData } from "../../../assets/Section/Topics/TopicsData";
 import arrow from "../../../assets/Section/Topics/arrow-icon.svg";
 import { Link } from "react-router-dom";
 import { GetWindowDimension } from "../../../utils/GetWindowDimension";
-const topicsPerPage = 6;
-const topicsPerPageDesk = 9;
-let arrayForHoldingTopics = [];
+// const topicsPerPage = 6;
+// const topicsPerPageDesk = 9;
+// let arrayForHoldingTopics = [];
 const Topics = () => {
   const { width } = GetWindowDimension();
 
+  
   const TopicsMobile = () => {
     const [topicsToShow, setTopicsToShow] = useState([]);
     const [next, setNext] = useState(6);
 
-    const loopWithSlice = (start, end) => {
-      const slicedTopics = TopicsData.slice(start, end);
-      arrayForHoldingTopics = [...arrayForHoldingTopics, ...slicedTopics];
-      setTopicsToShow(arrayForHoldingTopics);
+    const arraySize = () => {
+      let size;
+      (window.innerWidth <= 900) ? (size = 6) : (size = 9);
+        return size;
+    };
+    let [cardsToShow, setCardsToShow] = useState(arraySize());
+  
+    const moreCards = () => {
+      let no = cardsToShow + 3;
+      if (cardsToShow >= TopicsData.length) {
+        if (window.innerWidth <= 900) no = 3;
+            else no = 6;
+      }
+      return setCardsToShow(no);
+    };
+  
+    const moreOrLess = () => {
+      let label = "View more";
+      if (cardsToShow >= TopicsData.length) {
+        label = "View less";
+      }
+      return label;
     };
 
-    useEffect(() => {
-      loopWithSlice(0, topicsPerPage);
-    }, []);
+    // const loopWithSlice = (start, end) => {
+    //   const slicedTopics = TopicsData.slice(start, end);
+    //   arrayForHoldingTopics = [...arrayForHoldingTopics, ...slicedTopics];
+    //   setTopicsToShow(arrayForHoldingTopics);
+    // };
 
-    const showTopicsHandler = () => {
-      loopWithSlice(next, next + topicsPerPage);
-      setNext(next + topicsPerPage);
-    };
+    // useEffect(() => {
+    //   loopWithSlice(0, topicsPerPage);
+    // }, []);
+
+    // const showTopicsHandler = () => {
+    //   loopWithSlice(next, next + topicsPerPage);
+    //   setNext(next + topicsPerPage);
+    // };
 
     return (
       <div className={styles.wrapper}>
@@ -37,10 +62,16 @@ const Topics = () => {
         <div className={styles.container}>
           <TopicCard topicsToRender={topicsToShow} />
         </div>
-        <button className={styles.moreBtn} onClick={showTopicsHandler}>
+        <button 
+          className={styles.moreBtn} 
+          // onClick={showTopicsHandler}
+        >
           View More
         </button>
-        <div className={styles.moreDesk} onClick={showTopicsHandler}>
+        <div 
+          className={styles.moreDesk} 
+          // onClick={showTopicsHandler}
+        >
           <Link className={styles.moreLink}>See more topics</Link>
           <img src={arrow} alt="arrow-icon" className={styles.arrow} />
         </div>
@@ -52,31 +83,62 @@ const Topics = () => {
     const [topicsToShow, setTopicsToShow] = useState([]);
     const [next, setNext] = useState(9);
 
-    const loopWithSlice = (start, end) => {
-      const slicedTopics = TopicsData.slice(start, end);
-      arrayForHoldingTopics = [...arrayForHoldingTopics, ...slicedTopics];
-      setTopicsToShow(arrayForHoldingTopics);
+    const arraySize = () => {
+      let size;
+      (window.innerWidth <= 900) ? (size = 6) : (size = 9);
+        return size;
+    };
+    let [cardsToShow, setCardsToShow] = useState(arraySize());
+  
+    const moreCards = () => {
+      let no = cardsToShow + 3;
+      if (cardsToShow >= TopicsData.length) {
+        if (window.innerWidth <= 900) no = 3;
+            else no = 6;
+      }
+      return setCardsToShow(no);
+    };
+  
+    const moreOrLess = () => {
+      let label = "View more";
+      if (cardsToShow >= TopicsData.length) {
+        label = "View less";
+      }
+      return label;
     };
 
-    useEffect(() => {
-      loopWithSlice(0, topicsPerPageDesk);
-    }, []);
+    // const loopWithSlice = (start, end) => {
+    //   const slicedTopics = TopicsData.slice(start, end);
+    //   arrayForHoldingTopics = [...arrayForHoldingTopics, ...slicedTopics];
+    //   setTopicsToShow(arrayForHoldingTopics);
+    // };
 
-    const showTopicsHandlerDesk = () => {
-      loopWithSlice(next, next + topicsPerPageDesk);
-      setNext(next + topicsPerPageDesk);
-    };
+    // useEffect(() => {
+    //   loopWithSlice(0, topicsPerPageDesk);
+    // }, []);
+
+    // const showTopicsHandlerDesk = () => {
+    //   loopWithSlice(next, next + topicsPerPageDesk);
+    //   setNext(next + topicsPerPageDesk);
+    // };
+  
     return (
       <div className={styles.wrapper}>
         <BlogHeader label="Top Topics to explore" />
         <div className={styles.container}>
-          <TopicCard topicsToRender={topicsToShow} />
+          <TopicCard  topicsToRender={TopicsData.slice(0, cardsToShow)}/>
         </div>
-        <button className={styles.moreBtn} onClick={showTopicsHandlerDesk}>
+        <button 
+          className={styles.moreBtn} 
+          // onClick={showTopicsHandlerDesk}
+        >
           View More
         </button>
-        <div className={styles.moreDesk} onClick={showTopicsHandlerDesk}>
-          <Link className={styles.moreLink}>See more topics</Link>
+        <div 
+          className={styles.moreDesk} 
+          // onClick={showTopicsHandlerDesk}
+        >
+          <Link className={styles.moreLink}>{moreOrLess().includes("more") ? "View Less topics" : "View More topics" }</Link>
           <img src={arrow} alt="arrow-icon" className={styles.arrow} />
         </div>
       </div>

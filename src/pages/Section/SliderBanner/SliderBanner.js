@@ -4,14 +4,12 @@ import "./SliderBanner.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import sliderImg from "../../../assets/Section/slider-banner.jpg";
 import { EditContext } from "../../../contexts/editContext";
 import { firestore, app } from "../../../utils/firebase.utils";
 import FeatureCardForm from "../../Admin/FeatureCardForm/SectionNewsCardForm";
 import { sizeTransform } from "../../../utils/sizeTransform";
 
 const SliderBanner = ({ cityId }) => {
-  const slideImage = [sliderImg, sliderImg, sliderImg];
   const { editStyle, editMode } = useContext(EditContext);
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
@@ -32,9 +30,7 @@ const SliderBanner = ({ cityId }) => {
       }
     };
     getCurrentCity();
-    console.log('martor')
   }, [cityId, show]);
-
 
   const settings = {
     dots: true,
@@ -101,8 +97,8 @@ const SliderBanner = ({ cityId }) => {
       <div className={styles.container} style={editStyle}>
         <Slider {...settings}>
           {newsData.map((news) => (
-            <div>
-            <div className={styles.eachSlide} key={news.id} onClick={() => openEditForm(news)}>
+            <div key={news.id}>
+            <div className={styles.eachSlide} onClick={() => openEditForm(news)}>
               <div
                 style={{
                   backgroundImage: `url(${news.image})`,
