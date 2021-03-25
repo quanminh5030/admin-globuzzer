@@ -46,21 +46,22 @@ const Services = ({ cityId }) => {
 
   const updateFeatureCard = (({currentFeatureCard}, updatedFeatureCard) => {
     setShow(false);
-   const updatedServices = serviceData.map((s) => s.id === updatedFeatureCard.id ? updatedFeatureCard : s)
+   const updatedServices = serviceData.map((s) => s.id === updatedFeatureCard.id ? {...updatedFeatureCard, image: fileUrl || updatedFeatureCard.image} : s)
    return firestore.collection('section_items').doc(cityId).update({services: updatedServices})
   });
 
   // on form submit, the file url is set in firestore
-  const onSubmit = async (data) => {
-    // const getCollection = firestore.collection('features');
-    // await getCollection.doc(currentFeatureCard.id).set({
-    //   image: fileUrl || data.image,
-    //   text: data.text,
-    //   title: data.title
-    // })
-    console.log("file saved:", fileUrl)
-    // setShow(false);
-  }
+  // const onSubmit = async (data) => {
+  //   const getCollection = firestore.collection('section_items');
+  //   await getCollection.doc(cityId).update({
+  //     services: {
+  //       ...data,
+  //       image: fileUrl || data.image,
+  //     }
+  //   })
+  //   console.log("file saved:", fileUrl)
+  //   // setShow(false);
+  // }
 
 
   const typeValidation = ["image/png",  "image/jpeg", "image/jpg", "image/svg+xml"];
@@ -92,7 +93,7 @@ const Services = ({ cityId }) => {
         currentFeatureCard={currentFeatureCard} 
         updateFeatureCard={updateFeatureCard} 
         onFileChange={onFileChange}
-        onFileSubmit={onSubmit}
+        // onFileSubmit={onSubmit}
       />
     </div>
     );
