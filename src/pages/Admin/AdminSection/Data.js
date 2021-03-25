@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid'
+
 export const data = 
 [
   {
@@ -660,50 +662,6 @@ export const forTest =
   },
 };
 
-// export const dataObj = 
-// {
-//   name: "New",
-//   url: "",
-//   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/books_small.jpg?alt=media&token=8638a146-0d61-49a2-8d67-42316b9034c4",
-//   places: {
-//     one: {
-//       color: "",
-//       link: "",
-//       text: "This",
-//     },
-//     two: {
-//       color: "",
-//       link: "",
-//       text: "That",
-//     },
-//     three: {
-//       color: "",
-//       link: "",
-//       text: "This",
-//     },
-//   },
-//   texts: {
-//     title: {
-//       content: "Here is your main title",
-//       style: {
-//         color: "#ffffff",
-//         fontSize: "48px",
-//         fontWeight: "bold",
-//         textAlign: "center",
-//       }
-//     },
-//     subtitle: {
-//       content: "and here is your description",
-//       style: {
-//         color: "#ffffff",
-//         fontSize: "24px",
-//         fontWeight: "bold",
-//         textAlign: "center",
-//       }
-//     }
-//   },
-// };
-
 export const dataObj = 
 {
   name: "New section soon...",
@@ -741,6 +699,26 @@ export const dataObj =
       fontWeight: "bold",
       textAlign: "center",
     }
-  }
+  },
+  services: [
+    {
+      title: "Flight", 
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fservices%2Fflight.svg?alt=media&token=c2c5206e-7b09-4cee-9039-cf39df13de5f",
+      id: uuidv4(),
+      url: "www"
+    },
+    {
+      title: "Hotel", 
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fservices%2Fhotel.svg?alt=media&token=56d58a1b-31fe-4070-b6c7-a46ecc7744e8",
+      id: uuidv4(),
+      url: "www"
+    },
+    {
+      title: "Event", 
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fservices%2Fevent.svg?alt=media&token=4c7bd019-2066-42cd-a05e-10e341dbe707",
+      id: uuidv4(),
+      url: "www"
+    },
+  ],
 };
 

@@ -1,15 +1,12 @@
 import React from "react";
 import styles from "./ServiceCard.module.css";
-const ServiceCard = ({ servicesToRender}) => {
+const ServiceCard = ({ card, editFeatureCard, editMode }) => {
+  
   return (
-    <>
-   {servicesToRender.map((service, index)=>(
-    <div className={styles.card} key={index} >
-        <img src={service.icon} alt='service-icon' className={styles.icon}/>
-        <p className={styles.text}>{service.text}</p>
+    <div className={styles.card} onClick={editMode ? editFeatureCard : undefined}>
+        <img src={card.image} alt='service-icon' className={styles.icon}/>
+        <p className={styles.text}>{card.title}</p>
     </div>
-      ))}
-     </>
   );
   
 };
