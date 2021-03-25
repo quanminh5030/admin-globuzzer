@@ -42,9 +42,7 @@ const AdminLanding = () => {
   return (
     <div className={styles.wrapper}>
       <TopNav/>
-      <div className={styles.container}>
-        <section className={styles.sidenav}>
-          <div className={styles.navLink}>
+      <div className={styles.navLink}>
             <Link 
               to="/dashboard" 
               className={styles.dashboardLink}
@@ -59,6 +57,8 @@ const AdminLanding = () => {
               Landing Page
             </Link>
           </div>
+      <div className={styles.container}>
+        <section className={styles.sidenav}>
           <SideNav/>
         </section>
         <section className={styles.main}>
