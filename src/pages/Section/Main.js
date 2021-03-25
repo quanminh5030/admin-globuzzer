@@ -23,7 +23,7 @@ const Main = ({ cityId }) => {
       <div className={styles.main}>
         <div className={styles.center}>
           <div className={styles.services}>
-            <Services />
+            <Services cityId={cityId}/>
             <Topics />
           </div>
           <div className={styles.slider}>
