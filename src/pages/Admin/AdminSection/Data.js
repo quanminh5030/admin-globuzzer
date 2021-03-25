@@ -705,19 +705,22 @@ export const dataObj =
       title: "Flight", 
       image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fservices%2Fflight.svg?alt=media&token=c2c5206e-7b09-4cee-9039-cf39df13de5f",
       id: uuidv4(),
-      url: "www"
+      url: "www",
+      text: ""
     },
     {
       title: "Hotel", 
       image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fservices%2Fhotel.svg?alt=media&token=56d58a1b-31fe-4070-b6c7-a46ecc7744e8",
       id: uuidv4(),
-      url: "www"
+      url: "www",
+      text: ""
     },
     {
       title: "Event", 
       image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fservices%2Fevent.svg?alt=media&token=4c7bd019-2066-42cd-a05e-10e341dbe707",
       id: uuidv4(),
-      url: "www"
+      url: "www",
+      text: ""
     },
   ],
 };

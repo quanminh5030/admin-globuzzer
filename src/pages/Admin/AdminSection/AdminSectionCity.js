@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import TopNav from "../TopNav/TopNav";
 import Main from "../../Section/Main";
 import { EditContext } from "../../../contexts/editContext";
-import useFetch from "../../../hooks/useFetch";
+// import useFetch from "../../../hooks/useFetch";
 
 const AdminSectionCity = () => {
   const { city, cityId } = useParams();

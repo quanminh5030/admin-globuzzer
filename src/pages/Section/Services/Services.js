@@ -5,7 +5,7 @@ import ServiceCard from "./ServiceCard";
 // import {ServiceData} from '../../../assets/Section/Services/ServiceData';
 import more from '../../../assets/Section/Services/more.svg';
 import { EditContext } from "../../../contexts/editContext";
-import { firestore } from "../../../utils/firebase.utils";
+import { firestore, app } from "../../../utils/firebase.utils";
 import FeatureCardForm from "../../Admin/FeatureCardForm/SectionServiceCardForm";
 import { sizeTransform } from "../../../utils/sizeTransform";
 
@@ -16,7 +16,8 @@ const Services = ({ cityId }) => {
   const [serviceData, setServiceData] = useState([]);
   const [show, setShow] = useState(false);
   const [currentFeatureCard, setCurrentFeatureCard] = useState([]);
-
+  const [fileUrl, setFileUrl] = useState(null);
+  
   useEffect(() => {
     const getCurrentCity = async () => {
       const doc = await firestore.collection('section_items').doc(cityId).get();
@@ -45,7 +46,8 @@ const Services = ({ cityId }) => {
 
   const updateFeatureCard = (({currentFeatureCard}, updatedFeatureCard) => {
     setShow(false);
-    // firestore.collection('features').doc(currentFeatureCard.id).update(updatedFeatureCard)
+   const updatedServices = serviceData.map((s) => s.id === updatedFeatureCard.id ? updatedFeatureCard : s)
+   return firestore.collection('section_items').doc(cityId).update({services: updatedServices})
   });
 
   // on form submit, the file url is set in firestore
@@ -56,27 +58,28 @@ const Services = ({ cityId }) => {
     //   text: data.text,
     //   title: data.title
     // })
-    // console.log("file saved:", fileUrl)
+    console.log("file saved:", fileUrl)
     // setShow(false);
   }
 
 
-  const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
+  const typeValidation = ["image/png",  "image/jpeg", "image/jpg", "image/svg+xml"];
   const sizeValidation = 200000;
   const message = (file) => {
     return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
   } 
   // manage the upload file form + type and size validation
   const onFileChange = async (e) => {
-    // const file = e.target.files[0];
-    // const storageRef = app.storage().ref();
-    // if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
-    //   const fileRef = storageRef.child(`features/${file.name}`);
-    //   await fileRef.put(file);
-    //   setFileUrl(await fileRef.getDownloadURL());
-    // } else {
-    //   alert(message(file))
-    // }
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+      const fileRef = storageRef.child(`section/services/${file.name}`);
+      await fileRef.put(file);
+      setFileUrl(await fileRef.getDownloadURL());
+    } else {
+      alert(message(file))
+    }
+    console.log(e.target.files)
   }
 
   const onSelectedCard = (card, currentCard) => {
@@ -87,9 +90,9 @@ const Services = ({ cityId }) => {
       <FeatureCardForm 
         setShow={setShow} 
         currentFeatureCard={currentFeatureCard} 
-        // updateFeatureCard={updateFeatureCard} 
-        // onFileChange={onFileChange}
-        // onFileSubmit={onSubmit}
+        updateFeatureCard={updateFeatureCard} 
+        onFileChange={onFileChange}
+        onFileSubmit={onSubmit}
       />
     </div>
     );

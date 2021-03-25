@@ -12,12 +12,11 @@ const inputHandler = (e) => {
   const {name, value} = e.target;
   setData({...data, [name]:value})
 };
-
+console.log(data)
 const submitFeatureCard = (e) => {
   e.preventDefault();
-  // updateFeatureCard({currentFeatureCard}, data);
+  updateFeatureCard({currentFeatureCard}, data);
   // onFileSubmit(data);
-  console.log(data)
 };
 
   return (
