@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./Topics.module.css";
 import BlogHeader from "../../../components/TravelBlog/sectionHeader/SectionHeader";
 import TopicCard from "./TopicCard";
@@ -6,61 +6,123 @@ import { TopicsData } from "../../../assets/Section/Topics/TopicsData";
 import arrow from "../../../assets/Section/Topics/arrow-icon.svg";
 import { Link } from "react-router-dom";
 import { GetWindowDimension } from "../../../utils/GetWindowDimension";
-// const topicsPerPage = 6;
-// const topicsPerPageDesk = 9;
-// let arrayForHoldingTopics = [];
-const Topics = () => {
-  const { width } = GetWindowDimension();
+import CityForm from "../../Admin/CityForm/SectionTopicsForm";
+import { EditContext } from "../../../contexts/editContext";
+import { sizeTransform } from "../../../utils/sizeTransform";
+import { firestore } from "../../../utils/firebase.utils";
 
+const Topics = ({ cityId }) => {
+  const { width } = GetWindowDimension();
+  const { editMode } = useContext(EditContext);
+  const [currentCity, setFetchedCurrentCity] = useState({});
+  const [loading, setLoading] = useState(true);
+  
+  const arraySize = () => {
+    let size;
+    (window.innerWidth <= 900) ? (size = 6) : (size = 9);
+      return size;
+  };
+  const [cardsToShow, setCardsToShow] = useState(arraySize());
+  const [isVisible, setIsVisible] = useState(false);
+  const [fileUrl, setFileUrl] = useState(null);
+  const initialItemState = [{ id: null, text: "", image: "", link: ""}];
+  const [currentItem, setCurrentItem] = useState(initialItemState);
+  const [topics, setTopics] = useState([]);
+
+  const moreCards = () => {
+    let no = cardsToShow + 3;
+    if (cardsToShow >= TopicsData.length) {
+      if (window.innerWidth <= 1100) no = 3;
+          else no = 6;
+    }
+    return setCardsToShow(no);
+  };
+
+  const moreOrLess = () => {
+    let label = "View more";
+    if (cardsToShow >= TopicsData.length) {
+      label = "View less";
+    }
+    return label;
+  };
+  
+  useEffect(() => {
+    const getCurrentCity = async () => {
+      const doc = await firestore.collection('section_items').doc(cityId).get();
+      if (!doc.exists) {
+        setLoading(true);
+      } else {
+        setFetchedCurrentCity(doc.data());
+        setTopics(doc.data().topics)
+        setLoading(false);
+      }
+    };
+    getCurrentCity();
+    console.log('martor')
+  }, [cityId, isVisible]);
+  
+   
+const formHandler = (data) => {
+  setIsVisible(true);
+  setCurrentItem({
+    id: data.id,
+    text: data.text,
+    image: data.image,
+    link: data.link
+  })
+};
+
+//validations
+const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
+const sizeValidation = 200000;
+const message = (file) => {
+  return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
+};
+
+const onFileChange = async (e) => {
+  // const file = e.target.files[0];
+  // const storageRef = app.storage().ref();
+  
+  // if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) 
+  // {
+  //   const fileRef = storageRef.child(`cities/${file.name}`);
+  //   await fileRef.put(file);
+  //   setFileUrl(await fileRef.getDownloadURL());
+  // } else {
+  //   alert(message(file))
+  // }     
+};
+
+const updateItem = (({currentItem}, updatedItem)=> {
+  // console.log("it sends item to the updated item function", updatedItem, currentItem.id);
+  // setIsVisible(false);
+  // firestore.collection('cities').doc(currentItem.id).update(updatedItem);
+});
+
+  const onSelectedTopic = (data, topic) => {
+    
+    return (
+      topic.id === data.id &&
+      isVisible && editMode &&
+        <div>
+          <CityForm 
+            setIsVisible={setIsVisible} 
+            currentItem={currentItem} 
+            updateItem={updateItem}
+            onFileChange={onFileChange}
+            fileUrl={fileUrl}
+          />                
+        </div>
+    );
+  }
   
   const TopicsMobile = () => {
-    const [topicsToShow, setTopicsToShow] = useState([]);
-    const [next, setNext] = useState(6);
-
-    const arraySize = () => {
-      let size;
-      (window.innerWidth <= 900) ? (size = 6) : (size = 9);
-        return size;
-    };
-    let [cardsToShow, setCardsToShow] = useState(arraySize());
-  
-    const moreCards = () => {
-      let no = cardsToShow + 3;
-      if (cardsToShow >= TopicsData.length) {
-        if (window.innerWidth <= 900) no = 3;
-            else no = 6;
-      }
-      return setCardsToShow(no);
-    };
-  
-    const moreOrLess = () => {
-      let label = "View more";
-      if (cardsToShow >= TopicsData.length) {
-        label = "View less";
-      }
-      return label;
-    };
-
-    // const loopWithSlice = (start, end) => {
-    //   const slicedTopics = TopicsData.slice(start, end);
-    //   arrayForHoldingTopics = [...arrayForHoldingTopics, ...slicedTopics];
-    //   setTopicsToShow(arrayForHoldingTopics);
-    // };
-
-    // useEffect(() => {
-    //   loopWithSlice(0, topicsPerPage);
-    // }, []);
-
-    // const showTopicsHandler = () => {
-    //   loopWithSlice(next, next + topicsPerPage);
-    //   setNext(next + topicsPerPage);
-    // };
 
     return (
       <div className={styles.wrapper}>
         <BlogHeader label="Top Topics to explore" />
         <div className={styles.container}>
-          <TopicCard topicsToRender={topicsToShow} />
+          <TopicCard topicsToRender={TopicsData.slice(0, cardsToShow)} />
         </div>
         <button 
           className={styles.moreBtn} 
@@ -80,53 +142,22 @@ const Topics = () => {
   };
 
   const TopicsDesktop = () => {
-    const [topicsToShow, setTopicsToShow] = useState([]);
-    const [next, setNext] = useState(9);
-
-    const arraySize = () => {
-      let size;
-      (window.innerWidth <= 900) ? (size = 6) : (size = 9);
-        return size;
-    };
-    let [cardsToShow, setCardsToShow] = useState(arraySize());
-  
-    const moreCards = () => {
-      let no = cardsToShow + 3;
-      if (cardsToShow >= TopicsData.length) {
-        if (window.innerWidth <= 900) no = 3;
-            else no = 6;
-      }
-      return setCardsToShow(no);
-    };
-  
-    const moreOrLess = () => {
-      let label = "View more";
-      if (cardsToShow >= TopicsData.length) {
-        label = "View less";
-      }
-      return label;
-    };
-
-    // const loopWithSlice = (start, end) => {
-    //   const slicedTopics = TopicsData.slice(start, end);
-    //   arrayForHoldingTopics = [...arrayForHoldingTopics, ...slicedTopics];
-    //   setTopicsToShow(arrayForHoldingTopics);
-    // };
-
-    // useEffect(() => {
-    //   loopWithSlice(0, topicsPerPageDesk);
-    // }, []);
-
-    // const showTopicsHandlerDesk = () => {
-    //   loopWithSlice(next, next + topicsPerPageDesk);
-    //   setNext(next + topicsPerPageDesk);
-    // };
-  
     return (
       <div className={styles.wrapper}>
         <BlogHeader label="Top Topics to explore" />
         <div className={styles.container}>
-          <TopicCard  topicsToRender={TopicsData.slice(0, cardsToShow)}/>
+        {topics.slice(0, cardsToShow).map(topic => (
+          <div key={topic.id}>
+            <TopicCard  
+            openForm={() => formHandler(topic)}
+            topic={topic}
+            currentCity={currentCity}
+            />
+          {onSelectedTopic(topic, currentItem)}
+          </div>
+        ))
+        }
+          
         </div>
         <button 
           className={styles.moreBtn} 
@@ -145,7 +176,7 @@ const Topics = () => {
     );
   };
 
-  return <>{width > 1100 ? <TopicsDesktop /> : <TopicsMobile />}</>;
+  return <>{width > 1100 ? TopicsDesktop() : TopicsMobile()}</>;
 };
 
 export default Topics;

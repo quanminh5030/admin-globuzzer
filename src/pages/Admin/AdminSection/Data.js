@@ -123,6 +123,42 @@ export const dataObj =
       link: "",
       text: "Education",
       id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Ftopics%2Feducation.jpg?alt=media&token=332d54eb-eadd-4dd0-ad4d-5ff4c58cee4c4",
+      link: "",
+      text: "Education",
+      id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Ftopics%2Feducation.jpg?alt=media&token=332d54eb-eadd-4dd0-ad4d-5ff4c58cee4c4",
+      link: "",
+      text: "Education",
+      id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Ftopics%2Feducation.jpg?alt=media&token=332d54eb-eadd-4dd0-ad4d-5ff4c58cee4c4",
+      link: "",
+      text: "Education",
+      id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Ftopics%2Feducation.jpg?alt=media&token=332d54eb-eadd-4dd0-ad4d-5ff4c58cee4c4",
+      link: "",
+      text: "Education",
+      id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Ftopics%2Feducation.jpg?alt=media&token=332d54eb-eadd-4dd0-ad4d-5ff4c58cee4c4",
+      link: "",
+      text: "Education",
+      id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Ftopics%2Feducation.jpg?alt=media&token=332d54eb-eadd-4dd0-ad4d-5ff4c58cee4c4",
+      link: "",
+      text: "Education",
+      id: uuidv4(),
     }
   ],
 };

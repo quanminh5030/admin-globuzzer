@@ -24,7 +24,7 @@ const Main = ({ cityId }) => {
         <div className={styles.center}>
           <div className={styles.services}>
             <Services cityId={cityId} />
-            <Topics />
+            <Topics cityId={cityId} />
           </div>
           <div className={styles.slider}>
             <SliderBanner cityId={cityId} />
