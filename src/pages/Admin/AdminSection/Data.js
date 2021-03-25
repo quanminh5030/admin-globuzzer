@@ -723,5 +723,25 @@ export const dataObj =
       text: ""
     },
   ],
+  news: [
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fnews%2Fslider-banner.jpg?alt=media&token=80ea0999-d1e9-4604-a283-a117c0e1e11f",
+      link: "",
+      text: "Google launches educational coronavirus website",
+      id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fnews%2Fslider-banner.jpg?alt=media&token=80ea0999-d1e9-4604-a283-a117c0e1e11f",
+      link: "",
+      text: "News 2",
+      id: uuidv4(),
+    },
+    {
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fnews%2Fslider-banner.jpg?alt=media&token=80ea0999-d1e9-4604-a283-a117c0e1e11f",
+      link: "",
+      text: "News 3",
+      id: uuidv4(),
+    }
+  ],
 };
 

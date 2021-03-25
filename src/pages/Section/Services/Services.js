@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from './Services.module.css';
 import BlogHeader from '../../../components/TravelBlog/sectionHeader/SectionHeader';
 import ServiceCard from "./ServiceCard";
-// import {ServiceData} from '../../../assets/Section/Services/ServiceData';
 import more from '../../../assets/Section/Services/more.svg';
 import { EditContext } from "../../../contexts/editContext";
 import { firestore, app } from "../../../utils/firebase.utils";
@@ -50,20 +49,6 @@ const Services = ({ cityId }) => {
    return firestore.collection('section_items').doc(cityId).update({services: updatedServices})
   });
 
-  // on form submit, the file url is set in firestore
-  // const onSubmit = async (data) => {
-  //   const getCollection = firestore.collection('section_items');
-  //   await getCollection.doc(cityId).update({
-  //     services: {
-  //       ...data,
-  //       image: fileUrl || data.image,
-  //     }
-  //   })
-  //   console.log("file saved:", fileUrl)
-  //   // setShow(false);
-  // }
-
-
   const typeValidation = ["image/png",  "image/jpeg", "image/jpg", "image/svg+xml"];
   const sizeValidation = 200000;
   const message = (file) => {
@@ -80,7 +65,6 @@ const Services = ({ cityId }) => {
     } else {
       alert(message(file))
     }
-    console.log(e.target.files)
   }
 
   const onSelectedCard = (card, currentCard) => {
@@ -93,7 +77,6 @@ const Services = ({ cityId }) => {
         currentFeatureCard={currentFeatureCard} 
         updateFeatureCard={updateFeatureCard} 
         onFileChange={onFileChange}
-        // onFileSubmit={onSubmit}
       />
     </div>
     );
