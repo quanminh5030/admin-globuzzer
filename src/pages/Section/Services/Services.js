@@ -29,8 +29,7 @@ const Services = ({ cityId }) => {
       }
     };
     getCurrentCity();
-    
-}, [cityId]);
+}, [cityId, show]);
 
   const openEditForm = (data) => {
     setShow(true);

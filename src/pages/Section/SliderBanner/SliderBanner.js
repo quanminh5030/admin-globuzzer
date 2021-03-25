@@ -6,8 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import sliderImg from "../../../assets/Section/slider-banner.jpg";
 import { EditContext } from "../../../contexts/editContext";
-import { firestore } from "../../../utils/firebase.utils";
-import FeatureCardForm from "../../Admin/FeatureCardForm/SectionServiceCardForm";
+import { firestore, app } from "../../../utils/firebase.utils";
+import FeatureCardForm from "../../Admin/FeatureCardForm/SectionNewsCardForm";
 import { sizeTransform } from "../../../utils/sizeTransform";
 
 const SliderBanner = ({ cityId }) => {
@@ -32,8 +32,8 @@ const SliderBanner = ({ cityId }) => {
       }
     };
     getCurrentCity();
-    
-  }, [cityId]);
+    console.log('martor')
+  }, [cityId, show]);
 
 
   const settings = {
@@ -60,8 +60,8 @@ const SliderBanner = ({ cityId }) => {
 
   const updateFeatureCard = (({currentFeatureCard}, updatedFeatureCard) => {
     setShow(false);
-  //  const updatedServices = serviceData.map((s) => s.id === updatedFeatureCard.id ? {...updatedFeatureCard, image: fileUrl || updatedFeatureCard.image} : s)
-  //  return firestore.collection('section_items').doc(cityId).update({services: updatedServices})
+   const updatedServices = newsData.map((s) => s.id === updatedFeatureCard.id ? {...updatedFeatureCard, image: fileUrl || updatedFeatureCard.image} : s)
+   return firestore.collection('section_items').doc(cityId).update({news: updatedServices})
   });
 
   const typeValidation = ["image/png",  "image/jpeg", "image/jpg", "image/svg+xml"];
@@ -71,15 +71,15 @@ const SliderBanner = ({ cityId }) => {
   } 
   // manage the upload file form + type and size validation
   const onFileChange = async (e) => {
-    // const file = e.target.files[0];
-    // const storageRef = app.storage().ref();
-    // if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
-    //   const fileRef = storageRef.child(`section/services/${file.name}`);
-    //   await fileRef.put(file);
-    //   setFileUrl(await fileRef.getDownloadURL());
-    // } else {
-    //   alert(message(file))
-    // }
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+      const fileRef = storageRef.child(`section/news/${file.name}`);
+      await fileRef.put(file);
+      setFileUrl(await fileRef.getDownloadURL());
+    } else {
+      alert(message(file))
+    }
   }
 
   const onSelectedCard = (currentFeatureCard) => {
