@@ -9,7 +9,7 @@ import { GetWindowDimension } from "../../../utils/GetWindowDimension";
 import CityForm from "../../Admin/CityForm/SectionTopicsForm";
 import { EditContext } from "../../../contexts/editContext";
 import { sizeTransform } from "../../../utils/sizeTransform";
-import { firestore } from "../../../utils/firebase.utils";
+import { firestore, app } from "../../../utils/firebase.utils";
 
 const Topics = ({ cityId }) => {
   const { width } = GetWindowDimension();
@@ -31,7 +31,7 @@ const Topics = ({ cityId }) => {
 
   const moreCards = () => {
     let no = cardsToShow + 3;
-    if (cardsToShow >= TopicsData.length) {
+    if (cardsToShow >= topics.length) {
       if (window.innerWidth <= 1100) no = 3;
           else no = 6;
     }
@@ -40,7 +40,7 @@ const Topics = ({ cityId }) => {
 
   const moreOrLess = () => {
     let label = "View more";
-    if (cardsToShow >= TopicsData.length) {
+    if (cardsToShow >= topics.length) {
       label = "View less";
     }
     return label;
@@ -58,7 +58,6 @@ const Topics = ({ cityId }) => {
       }
     };
     getCurrentCity();
-    console.log('martor')
   }, [cityId, isVisible]);
   
    
@@ -80,27 +79,27 @@ const message = (file) => {
 };
 
 const onFileChange = async (e) => {
-  // const file = e.target.files[0];
-  // const storageRef = app.storage().ref();
+  const file = e.target.files[0];
+  const storageRef = app.storage().ref();
   
-  // if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) 
-  // {
-  //   const fileRef = storageRef.child(`cities/${file.name}`);
-  //   await fileRef.put(file);
-  //   setFileUrl(await fileRef.getDownloadURL());
-  // } else {
-  //   alert(message(file))
-  // }     
+  if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) 
+  {
+    const fileRef = storageRef.child(`section/topics/${file.name}`);
+    await fileRef.put(file);
+    setFileUrl(await fileRef.getDownloadURL());
+  } else {
+    alert(message(file))
+  }     
 };
 
 const updateItem = (({currentItem}, updatedItem)=> {
   // console.log("it sends item to the updated item function", updatedItem, currentItem.id);
-  // setIsVisible(false);
-  // firestore.collection('cities').doc(currentItem.id).update(updatedItem);
+  const updatedTopics = topics.map((s) => s.id === updatedItem.id ? {...updatedItem, image: fileUrl || updatedItem.image} : s)
+  setIsVisible(false);
+  firestore.collection('section_items').doc(cityId).update({topics: updatedTopics});
 });
 
   const onSelectedTopic = (data, topic) => {
-    
     return (
       topic.id === data.id &&
       isVisible && editMode &&
@@ -169,8 +168,10 @@ const updateItem = (({currentItem}, updatedItem)=> {
           className={styles.moreDesk} 
           // onClick={showTopicsHandlerDesk}
         >
-          <Link className={styles.moreLink}>{moreOrLess().includes("more") ? "View Less topics" : "View More topics" }</Link>
+          <p className={styles.moreLink} onClick={moreCards}>
+            {moreOrLess().includes("less") ? "See Less topics" : "See More topics" }
           <img src={arrow} alt="arrow-icon" className={styles.arrow} />
+          </p>
         </div>
       </div>
     );

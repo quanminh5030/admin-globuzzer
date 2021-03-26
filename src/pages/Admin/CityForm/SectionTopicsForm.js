@@ -16,12 +16,12 @@ const CityForm = ({setIsVisible, currentItem, updateItem, onFileChange, fileUrl}
     const submitForm = (e) => {
         e.preventDefault();
         console.log("submit passed the id and item", item);
-        updateItem({currentItem}, {...item, img: fileUrl || item.img});
+        updateItem({currentItem}, {...item, image: fileUrl || item.image});
     }; 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} style={{top: '0px', height:"470px"}}>
             <form className={styles.container} >
-                <p className={styles.header}>City Section</p>
+                <p className={styles.header}>Topics</p>
                 <div className={styles.fields} >
                     <div className={styles.icon_text}>
                         Cover Image
@@ -32,7 +32,7 @@ const CityForm = ({setIsVisible, currentItem, updateItem, onFileChange, fileUrl}
                     <div className={styles.upload_btn_wrapper}>
                         <input 
                             type="file" 
-                            name="img" 
+                            name="image" 
                             onChange={onFileChange} 
                         />
                         <button 
@@ -42,16 +42,16 @@ const CityForm = ({setIsVisible, currentItem, updateItem, onFileChange, fileUrl}
                         </button>
                     </div>
                     <label>
-                        City section
-                        <input type="text" name="name" value={item.name} onChange={onChange}/>
+                        Topic
+                        <input type="text" name="text" value={item.text} onChange={onChange}/>
                     </label>
-                    <label>
+                    {/* <label>
                         Members
                         <input type="text" name="members" value={item.members} onChange={onChange}/>
-                    </label>
+                    </label> */}
                     <label>
                         Link
-                        <input type="text" name="join" value={item.join} onChange={onChange}/>
+                        <input type="text" name="link" value={item.link} onChange={onChange}/>
                     </label>
                 </div>
                     <button className={styles.editBtn}>
