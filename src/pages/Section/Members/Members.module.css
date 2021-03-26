@@ -2,6 +2,7 @@
   display: grid;
   align-items: center;
   padding-bottom: 2rem;
+  position: relative;
 }
 
 .grid {
@@ -16,6 +17,7 @@
 .ava {
   width: 80px;
   height: 80px;
+  border-radius: 50%;
 }
 
 .name {
