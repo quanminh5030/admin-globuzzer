@@ -47,7 +47,6 @@ const SHeader = ({ contentEditable, cityId }) => {
     getCurrentCity();
 }, [cityId, currentText, currentPlace]);
 
-
 // select the clicked 'place'
 const handleClick = (e) => {
   const newPlace = places.filter((place) => {

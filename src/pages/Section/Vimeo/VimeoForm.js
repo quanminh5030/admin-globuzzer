@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
-const ArticlesForm = (props) => {
+const VimeoForm = (props) => {
   const { setShow, currentArticle, updateArticles, onCoverChange, onAuthorChange } = props;
   const [data, setData] = useState(currentArticle);
   
@@ -27,11 +27,11 @@ const ArticlesForm = (props) => {
 
   return (
     <div>
-      <div className={styles.feature_card} style={{...editMemberStyle, height: "510px", width: "560px"}}>
+      <div className={styles.feature_card} style={{...editMemberStyle, height: "555px", width: "560px"}}>
       <div className={styles.feature_card_container}>
-        <h4>Articles</h4>
+        <h4>Advertisements</h4>
         <div className={styles.icon_text}>
-          Cover Image
+          Logo
           <span>(Image has to be below 200 KB and PNG/JPG format)</span>
         </div>
         <div className={styles.form_wrapper}>
@@ -43,54 +43,53 @@ const ArticlesForm = (props) => {
             />
             <button className={styles.btn}>Upload image</button>
           </div>
-          <div>
-            <p>Title</p>
+          <div className={styles.authLikes}>
+            <p>Background color</p>
             <input
-              type="text"
-              name="title"
+              type="color"
+              name="authName"
               className={styles.title_input}
-              value={data.title}
+              // value={data.authName}
+              onChange={inputHandler}
+            />
+            </div>
+            <div className={styles.authLikes}>
+            <p>Button color</p>
+            <input
+              type="color"
+              name="likes"
+              className={styles.title_input}
+              // value={data.likes}
               onChange={inputHandler}
             />
           </div>
           <div>
-            <p>Link of the article</p>
+            <p>Link</p>
             <input
               type="text"
               name="link"
               className={styles.title_input}
-              value={data.link}
+              // value={data.title}
               onChange={inputHandler}
             />
           </div>
-          <div className={styles.icon_text}>
-          <p>Author image
-          <span>(Image has to be below 200 KB and PNG/JPG format)</span>
-          </p>
-          </div>
-          <div className={styles.upload_btn_wrapper}>
-            <input 
-              type="file"  
-              name="authImg"
-              onChange={onAuthorChange}
-            />
-            <button className={styles.btn}>Upload image</button>
-          </div>
-          <div className={styles.authLikes}>
-            <p>Author name</p>
+          <div>
+            <p>Text1</p>
             <input
               type="text"
-              name="authName"
+              name="text1"
               className={styles.title_input}
-              value={data.authName}
+              // value={data.link}
               onChange={inputHandler}
             />
-            <p>Liked number</p>
+          </div>
+          <div>
+            <p>Text2</p>
             <input
               type="text"
-              name="likes"
+              name="text2"
               className={styles.title_input}
-              value={data.likes}
+              // value={data.link}
               onChange={inputHandler}
             />
           </div>
@@ -120,4 +119,4 @@ const ArticlesForm = (props) => {
   );
 };
 
-export default ArticlesForm;
+export default VimeoForm;

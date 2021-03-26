@@ -152,7 +152,6 @@ const onAuthorChange = async (e) => {
           currentArticle={currentArticle}
           setShow={setShow}
           updateArticles={updateArticles}
-          // onFileSubmit={onFileSubmit}
           onCoverChange={onCoverChange}
           onAuthorChange={onAuthorChange}
         />

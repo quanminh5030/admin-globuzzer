@@ -28,7 +28,7 @@ const Main = ({ cityId }) => {
           </div>
           <div className={styles.slider}>
             <SliderBanner cityId={cityId} />
-            <Vimeo />
+            <Vimeo cityId={cityId} />
           </div>
         </div>
 
