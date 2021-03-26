@@ -1,13 +1,13 @@
-import React from "react";
-import styles from "./MemberCard.module.css";
+import React, { useRef } from "react";
+import styles from "./Members.module.css";
 
-export const MemberCard = (props) => {
-    const {memberData} = props;
-    const {name, img} = memberData;
+export const MemberCard = ({ memberData, getCurrentMember }) => {
+const memberRef = useRef();
     return (
-        <div className={styles.container}>
-            <img src={img} alt="member-ava" className={styles.img} />
-            <p>{name}</p>
-        </div>
+        <div className={styles.memberContainer} onClick={() => getCurrentMember(memberRef)} ref={memberRef} id={memberData.id}>
+            <img src={memberData.image} alt="ava" className={styles.ava} />
+            <p className={styles.name}>{memberData.name}</p>
+            <p className={styles.city}>{memberData.flags}</p>
+          </div>
     );
 };

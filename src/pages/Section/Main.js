@@ -33,7 +33,7 @@ const Main = ({ cityId }) => {
         </div>
 
         <div className={styles.members}>
-          <Members />
+          <Members cityId={cityId} />
         </div>
         <div className={styles.articles}>
           <Articles />

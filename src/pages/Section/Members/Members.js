@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, Fragment, useEffect, useRef } from 'react';
 import styles from './Members.module.css';
 import BlogHeader from '../../../components/TravelBlog/sectionHeader/SectionHeader';
 import Asya from '../../../assets/Section/Members/Asya.jpg';
@@ -7,24 +7,91 @@ import Gabriela from '../../../assets/Section/Members/Gabriela.jpg';
 import Michael from '../../../assets/Section/Members/Michael.jpg';
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { MemberCard } from './MemberCard';
+import { EditContext } from '../../../contexts/editContext';
+import CommunityMembersForm from '../../Admin/JoinCommunityForm/SectionMembersForm';
+import { firestore, app } from '../../../utils/firebase.utils';
+import { sizeTransform } from '../../../utils/sizeTransform';
 
-const Members = () => {
+const Members = ({ cityId }) => {
+  const { editMode } = useContext(EditContext);
+  const [showMembersForm, setShowMembersForm] = useState(false);
+  const [currentMember, setCurrentMember] = useState({id: "", name: '', flags: [], image: ''});
+  const [fileUrl, setFileUrl] = useState(null);
+  const [currentCity, setFetchedCurrentCity] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    const getCurrentCity = async () => {
+      const doc = await firestore.collection('section_items').doc(cityId).get();
+      if (!doc.exists) {
+        setLoading(true);
+      } else {
+        setFetchedCurrentCity(doc.data());
+        setMembers(doc.data().members)
+        setLoading(false);
+      }
+    };
+    getCurrentCity();
+  }, [cityId, showMembersForm]);
+
+  const getCurrentMember = (ref) => {
+    const member = members.filter((m) => {
+      return m.id === ref.current.id;
+    });
+    setCurrentMember(member[0]);
+    setShowMembersForm(true);
+  };
+
+  const updateMemberData = (({currentMember}, updatedMember) => {
+    // setShowMembersForm(false);
+    // firestore.collection('member_near').doc(currentMember.id).update(updatedMember)
+  });
+
+  // on form submit, the file url is set in firestore
+  const onFileSubmit = async (data) => {
+    // const getCollection = firestore.collection('member_near');
+    // await getCollection.doc(currentMember.id).set({
+    //   img: fileUrl || data.img,
+    //   city: data.city,
+    //   name: data.name
+    // })
+    // console.log("file saved:", fileUrl)
+    // setShowMembersForm(false);
+  }
+
+  // validations for uploaded images
+  const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
+  const sizeValidation = 200000;
+  const message = (file) => {
+    return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
+  } 
+  // manage the upload member picture form + type and size validation
+  const onFileChange = async (e) => {
+  const file = e.target.files[0];
+  const storageRef = app.storage().ref();
+  if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+    const fileRef = storageRef.child(`members/${file.name}`);
+    await fileRef.put(file);
+    setFileUrl(await fileRef.getDownloadURL());
+  } else {
+    alert(message(file))
+  }
+}
+
     return (
     <div className={styles.wrapper}>
         <BlogHeader label="Top members to meet" />
         <div className={styles.grid}>
           <div className={styles.empty}/>
-          <div className={styles.memberContainer}>
-            <img src={Asya} alt="ava" className={styles.ava} />
-            <p className={styles.name}>Asya</p>
-            <p className={styles.city}>Lives in Stockholm</p>
-          </div>
-          <div className={styles.empty}/>
-          <div className={styles.memberContainer}>
-            <img src={Chloe} alt="ava" className={styles.ava} />
-            <p className={styles.name}>Chloe</p>
-            <p className={styles.city}>Lives in Amsterdam</p>
-          </div>
+          {members.slice(0,2).map((memberData) => (
+            <MemberCard 
+              key={memberData.id} 
+              memberData={memberData} 
+              getCurrentMember={getCurrentMember} 
+            />
+          ))}
           <div className={styles.flipcard}>
             <div className={styles.flipcardInner}>
               <div className={styles.flipcardFront}>
@@ -37,19 +104,27 @@ const Members = () => {
               </button>
             </div>
           </div>
-          <div className={styles.memberContainer}>
-            <img src={Gabriela} alt="ava" className={styles.ava} />
-            <p className={styles.name}>Gabriela</p>
-            <p className={styles.city}>Lives in Paris</p>
-          </div>
-          <div />
-          <div className={styles.memberContainer}>
-            <img src={Michael} alt="ava" className={styles.ava} />
-            <p className={styles.name}>Michael</p>
-            <p className={styles.city}>Lives in Stockholm</p>
-          </div>
+          {members.slice(2,5).map((memberData) => (
+            <MemberCard 
+              key={memberData.id}
+              memberData={memberData} 
+              getCurrentMember={getCurrentMember} />
+          ))}
           <div />
         </div>
+        { editMode && 
+      <Fragment>
+        { showMembersForm && 
+          <CommunityMembersForm
+          currentMember={currentMember}
+          setShowMembersForm={setShowMembersForm}
+          // updateMemberData={updateMemberData}
+          // onFileSubmit={onFileSubmit}
+          // onFileChange={onFileChange}
+        />
+        }
+      </Fragment>
+      }
     </div>
     );
 }

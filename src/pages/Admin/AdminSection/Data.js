@@ -161,5 +161,31 @@ export const dataObj =
       id: uuidv4(),
     }
   ],
+  members: [
+    {
+      name: "Asya",
+      flags: ["#cook", "#designer"],
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fmembers%2FAsya.83b916c8.jpg?alt=media&token=fee36f56-406d-43a8-ad41-03fa90eaf2b4",
+      id: uuidv4(),
+    },
+    {
+      name: "Chloe",
+      flags: ["#designer", "#architect"],
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fmembers%2Fchloe.jpeg?alt=media&token=c667f77e-ae5c-43b3-ab82-535092948bcc",
+      id: uuidv4(),
+    },
+    {
+      name: "Michael",
+      flags: ["#designer", "#sport"],
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fmembers%2Fmichael.jpeg?alt=media&token=f68e4e02-0020-4559-b530-37c0fd6cefec",
+      id: uuidv4(),
+    },
+    {
+      name: "Gabriela",
+      flags: ["#cook", "#travel"],
+      image: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fmembers%2FGabriela.03f835cd.jpg?alt=media&token=9a127f38-c4a2-444a-ba7f-6e9315aa4240",
+      id: uuidv4(),
+    }
+  ],
 };
 
