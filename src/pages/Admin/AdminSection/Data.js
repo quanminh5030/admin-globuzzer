@@ -187,5 +187,53 @@ export const dataObj =
       id: uuidv4(),
     }
   ],
+  articles: [
+    {
+      coverImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2Farticle-one.jpg?alt=media&token=ffc00a1c-64e7-4611-979e-823f5f984039",
+      title: "Helsinki design district",
+      link: "",
+      authImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2Farticle-author.jpg?alt=media&token=59340231-32e8-4813-bcc4-a601914bdecb",
+      authName: "Sofia",
+      likes: "300",
+      id: uuidv4(),
+    },
+    {
+      coverImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2Farticle-two.jpg?alt=media&token=e5f5a035-1f95-4c06-8e85-dffb862e3570",
+      title: "Modern art museum",
+      link: "",
+      authImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2FJonathan.png?alt=media&token=f2e0a177-b2dc-4ecd-b39d-8a63baf13b3c",
+      authName: "Jonathan",
+      likes: "2k",
+      id: uuidv4(),
+    },
+    {
+      coverImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2Farticle-three.jpg?alt=media&token=fdfc0757-ec54-498e-ba40-ff12600f66a6",
+      title: "Theaters you must visit",
+      link: "",
+      authImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2FGunjan.png?alt=media&token=0e555f25-4c62-4571-8fcb-565c8cc7f001",
+      authName: "Gujan",
+      likes: "785",
+      id: uuidv4()
+    },
+    {
+      coverImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2Farticle-four.jpg?alt=media&token=41d6be9a-8bfb-49a2-a043-7d4964b51a04",
+      title: "Architecture in Helsinki",
+      link: "",
+      authImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2FGabriela.png?alt=media&token=22893eba-2ba6-4be7-8554-0a4847eeee50",
+      authName: "Gabriela",
+      likes: "13k",
+      id: uuidv4()
+    },
+    {
+      coverImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2Farticle-four.jpg?alt=media&token=41d6be9a-8bfb-49a2-a043-7d4964b51a04",
+      title: "Architecture in Helsinki",
+      link: "",
+      authImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Farticles%2FGabriela.png?alt=media&token=22893eba-2ba6-4be7-8554-0a4847eeee50",
+      authName: "Gabriela",
+      likes: "13k",
+      id: uuidv4()
+    },
+    
+  ],
 };
 

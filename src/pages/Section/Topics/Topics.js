@@ -116,26 +116,9 @@ const updateItem = (({currentItem}, updatedItem)=> {
   }
   
   const TopicsMobile = () => {
-
     return (
       <div className={styles.wrapper}>
-        <BlogHeader label="Top Topics to explore" />
-        <div className={styles.container}>
-          <TopicCard topicsToRender={TopicsData.slice(0, cardsToShow)} />
-        </div>
-        <button 
-          className={styles.moreBtn} 
-          // onClick={showTopicsHandler}
-        >
-          View More
-        </button>
-        <div 
-          className={styles.moreDesk} 
-          // onClick={showTopicsHandler}
-        >
-          <Link className={styles.moreLink}>See more topics</Link>
-          <img src={arrow} alt="arrow-icon" className={styles.arrow} />
-        </div>
+        Go on desktop to edit
       </div>
     );
   };
@@ -154,9 +137,7 @@ const updateItem = (({currentItem}, updatedItem)=> {
             />
           {onSelectedTopic(topic, currentItem)}
           </div>
-        ))
-        }
-          
+        ))}
         </div>
         <button 
           className={styles.moreBtn} 
