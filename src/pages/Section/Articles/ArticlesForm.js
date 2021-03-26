@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 const ArticlesForm = (props) => {
-  const { setShow, currentArticle, updateMemberData, onFileSubmit, onFileChange } = props;
+  const { setShow, currentArticle, updateArticles, onFileSubmit, onCoverChange, onAuthorChange } = props;
   const [data, setData] = useState(currentArticle);
   
   const editMemberStyle = {
-    bottom: '-610px',
+    bottom: '-515px',
     left: '315px',
     zIndex: 100
   };
@@ -14,12 +14,12 @@ const ArticlesForm = (props) => {
   const inputHandler = (e) => {
     const {name, value} = e.target;
     setData({...data, [name]:value})
+    
   };
   
   const submitMemberData = (e) => {
     e.preventDefault();
-    updateMemberData({currentArticle}, data);
-    // onFileSubmit(data);
+    updateArticles({currentArticle}, data);
   }
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const ArticlesForm = (props) => {
             <input 
               type="file"  
               name="coverImg"
-              onChange={onFileChange}
+              onChange={onCoverChange}
             />
             <button className={styles.btn}>Upload image</button>
           </div>
@@ -73,7 +73,7 @@ const ArticlesForm = (props) => {
             <input 
               type="file"  
               name="authImg"
-              onChange={onFileChange}
+              onChange={onAuthorChange}
             />
             <button className={styles.btn}>Upload image</button>
           </div>

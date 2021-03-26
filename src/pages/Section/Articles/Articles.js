@@ -18,7 +18,8 @@ import { sizeTransform } from "../../../utils/sizeTransform";
 const Articles = ({ cityId }) => {
   const { width } = GetWindowDimension();
   const { editStyle, editMode } = useContext(EditContext)
-  const [fileUrl, setFileUrl] = useState(null);
+  const [coverUrl, setCoverUrl] = useState(null);
+  const [authUrl, setAuthUrl] = useState(null);
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState([]);
@@ -47,22 +48,12 @@ const Articles = ({ cityId }) => {
     setShow(true);
   };
 
-  const updateMemberData = (({currentMember}, updatedMember) => {
-    // setShowMembersForm(false);
-    // firestore.collection('member_near').doc(currentMember.id).update(updatedMember)
+  const updateArticles = (({currentArticle}, updatedArticle) => {
+    setShow(false);
+    const updatedArticles = articles.map((s) => s.id === updatedArticle.id ? {...updatedArticle, coverImg: coverUrl || updatedArticle.coverImg, authImg: authUrl || updatedArticle.authImg} : s)
+    setShow(false);
+  firestore.collection('section_items').doc(cityId).update({articles: updatedArticles});
   });
-
-  // on form submit, the file url is set in firestore
-  const onFileSubmit = async (data) => {
-    // const getCollection = firestore.collection('member_near');
-    // await getCollection.doc(currentMember.id).set({
-    //   img: fileUrl || data.img,
-    //   city: data.city,
-    //   name: data.name
-    // })
-    // console.log("file saved:", fileUrl)
-    // setShowMembersForm(false);
-  }
 
   // validations for uploaded images
   const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
@@ -71,13 +62,25 @@ const Articles = ({ cityId }) => {
     return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
   } 
   // manage the upload member picture form + type and size validation
-  const onFileChange = async (e) => {
+  const onCoverChange = async (e) => {
   const file = e.target.files[0];
   const storageRef = app.storage().ref();
   if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
     const fileRef = storageRef.child(`section/articles/${file.name}`);
     await fileRef.put(file);
-    setFileUrl(await fileRef.getDownloadURL());
+    setCoverUrl(await fileRef.getDownloadURL());
+  } else {
+    alert(message(file))
+  }
+}
+
+const onAuthorChange = async (e) => {
+  const file = e.target.files[0];
+  const storageRef = app.storage().ref();
+  if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+    const fileRef = storageRef.child(`section/articles/${file.name}`);
+    await fileRef.put(file);
+    setAuthUrl(await fileRef.getDownloadURL());
   } else {
     alert(message(file))
   }
@@ -148,9 +151,10 @@ const Articles = ({ cityId }) => {
           <ArticlesForm
           currentArticle={currentArticle}
           setShow={setShow}
-          // updateMemberData={updateMemberData}
+          updateArticles={updateArticles}
           // onFileSubmit={onFileSubmit}
-          // onFileChange={onFileChange}
+          onCoverChange={onCoverChange}
+          onAuthorChange={onAuthorChange}
         />
         }
       </Fragment>
