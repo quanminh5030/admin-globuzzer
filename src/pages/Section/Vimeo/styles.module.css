@@ -112,23 +112,38 @@
   line-height: 15px;
   letter-spacing: 0em;
   text-align: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
-
+.coco_input {
+  border: none;
+  width: 70px;
+  height: 30px;
+  margin-left: 0;
+}
 .authLikes input {
   /* height: 20px; */
   /* max-width: 60%; */
   /* left: 2425px; */
   /* top: 1136px; */
   /* border-radius: 0px; */
-  margin-right: 180px;
+  margin-right: 90px;
 }
 
 .authLikes input[type="color"] {
   border: none;
   border-radius: 0%;
   background: white;
-  padding-right: 100px;
-  /* padding-left: 100px */
+  /* padding-right: 100px; */
 }
+
+/* .authLikes input[type="color"] {
+  visibility: hidden;
+}
+
+.authLikes label {
+  background-color: black;
+  height: 32px;
+  width: 32px;
+  position: fixed;
+} */

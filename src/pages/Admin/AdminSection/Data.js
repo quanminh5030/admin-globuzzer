@@ -235,5 +235,16 @@ export const dataObj =
     },
     
   ],
+  advertisements: [
+    {
+      logo: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fadvertisements%2Fvimeo.png?alt=media&token=b1b8c27f-8737-4531-909c-73c4fb5ab57c",
+      bgColor: "#5ebfbf",
+      btColor: "#f2a413",
+      link: "www.vimeo.com",
+      text1: "Customizable Player",
+      text2: "A Vimeo Feature",
+      id: uuidv4(),
+    }
+  ],
 };
 

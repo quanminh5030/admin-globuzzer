@@ -11,6 +11,7 @@ import { Footer } from "../../components/Footer/Footer";
 import styles from "./index.module.css";
 import { EditContext } from "../../contexts/editContext";
 import SHeader from "../../components/SHeader/SHeader";
+import AddArticle from "./Articles/AddArticle";
 
 const Main = ({ cityId }) => {
   const { editMode} = useContext(EditContext);
@@ -36,6 +37,9 @@ const Main = ({ cityId }) => {
           <Members cityId={cityId} />
         </div>
         <div className={styles.articles}>
+        {editMode &&
+          <AddArticle cityId={cityId}/>
+        }
           <Articles cityId={cityId} />
         </div>
         <div className={styles.relocate}>
