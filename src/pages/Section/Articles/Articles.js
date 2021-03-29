@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useContext, Fragment, useRef } from "react";
 import styles from "./Articles.module.css";
 import "./Articles.css";
-import ArticleCard from "./ArticleCard";
 import BlogHeader from "../../../components/TravelBlog/sectionHeader/SectionHeader";
-import { ArticleDataDesk } from "../../../assets/Section/Articles/ArticleDataDesk";
-import { ArticleDataMobile } from "../../../assets/Section/Articles/ArticleDataMobile";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";

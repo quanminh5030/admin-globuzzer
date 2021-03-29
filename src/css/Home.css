@@ -569,3 +569,35 @@
       display: none;
     }
   /*slick end*/
+
+.city_header_url {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 67px;
+    top: 25px;
+}
+.city_header_url_icon {
+    width: 16px;
+    height: 16px;
+    color: #f24b6a;
+    padding: 6px;
+}
+.city_header_url p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+}
+.city_header a {
+    text-decoration: none;
+    color: #f24b6a;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
+.city_header a:visited {
+    text-decoration: none;
+    color: #f24b6a;
+}

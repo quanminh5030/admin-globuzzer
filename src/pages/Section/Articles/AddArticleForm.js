@@ -2,34 +2,25 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 const AddArticleForm = (props) => {
-  const { setShow, currentArticle, updateArticles, onCoverChange, onAuthorChange, createArticle } = props;
+  const { setShow, onCoverChange, onAuthorChange, createArticle, currentArticle } = props;
+  
   const [data, setData] = useState(currentArticle);
   
   const editMemberStyle = {
-    bottom: '-515px',
-    left: '315px',
+    bottom: '-3270px',
+    left: '739px',
     zIndex: 100
   };
-
   const inputHandler = (e) => {
     const {name, value} = e.target;
     setData({...data, [name]:value})
   };
   
-  const submitMemberData = (e) => {
-    e.preventDefault();
-    updateArticles({currentArticle}, data);
-  }
-
-  useEffect(() => {
-    setData(currentArticle);
-  },[currentArticle])
-
   return (
     <div>
       <div className={styles.feature_card} style={{...editMemberStyle, height: "510px", width: "560px"}}>
       <div className={styles.feature_card_container}>
-        <h4>Articles</h4>
+        <h4>Add new article</h4>
         <div className={styles.icon_text}>
           Cover Image
           <span>(Image has to be below 200 KB and PNG/JPG format)</span>
@@ -100,7 +91,7 @@ const AddArticleForm = (props) => {
         <span>
           <button 
             className={styles.btn_apply}
-            onClick={submitMemberData}
+            onClick={() => createArticle(data)}
           >
             Apply
           </button>

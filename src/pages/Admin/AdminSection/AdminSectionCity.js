@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SideNav from "../SideNav/SideNav";
 import styles from "./AdminSection.module.css";
 import { IoMdArrowDropright } from "react-icons/io";
@@ -6,12 +6,30 @@ import { Link, useParams } from "react-router-dom";
 import TopNav from "../TopNav/TopNav";
 import Main from "../../Section/Main";
 import { EditContext } from "../../../contexts/editContext";
+import { firestore } from "../../../utils/firebase.utils";
 // import useFetch from "../../../hooks/useFetch";
 
 const AdminSectionCity = () => {
   const { city, cityId } = useParams();
   const { editMode, handleEditMode, setEditMode } = useContext(EditContext);
-  
+  const [currentCity, setFetchedCurrentCity] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getCurrentCity = async () => {
+      const doc = await firestore.collection('section_items').doc(cityId).get();
+      if (!doc.exists) {
+        setLoading(true);
+      } else {
+        setFetchedCurrentCity(doc.data());
+        setLoading(false);
+      }
+    };
+    getCurrentCity();
+  }, [cityId]);
+const releaseNewCity = async () => {
+  await firestore.collection('section_live').add(currentCity)
+};
   return (
     <div className={styles.wrapper}>
       <TopNav/>
@@ -49,7 +67,7 @@ const AdminSectionCity = () => {
             (<div>
               <button className={styles.svrBtn}>Save it</button>
               <button className={styles.svrBtn} onClick={() => setEditMode(false)}>View it</button>
-              <button className={styles.svrBtn}>Release it</button>
+              <button className={styles.svrBtn} onClick={releaseNewCity}>Release it</button>
               </div>
             )
             }

@@ -6,6 +6,8 @@ import { Fragment } from 'react';
 import TextEdit from '../TextEdit/TextEdit';
 import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/SectionBannerPhotoForm';
+import { AiFillCaretRight } from "react-icons/ai";
+import {Link} from 'react-router-dom';
 
 const SHeader = ({ contentEditable, cityId }) => {
   const { editStyle, editMode } = useContext(EditContext);
@@ -138,10 +140,12 @@ const onSelectedPlace = (place, currentPlace) => {
 
   return (
     <Fragment>
+      <div style={{position: 'relative', bottom: "-60px"}}>
       <BannerPhotoForm 
         collection="section_items"
         doc={cityId}
       />
+      </div>
       {banners.map(banner => (
         <section 
           key={banner.img} 
@@ -149,6 +153,13 @@ const onSelectedPlace = (place, currentPlace) => {
           id="section_header" 
           style={{backgroundImage: `url(${banner.img})`}} 
         >
+        <div className="city_header_url">
+        <Link to="/landing">
+          <p>Landing Page</p>
+        </Link>
+          <AiFillCaretRight className="city_header_url_icon" />
+          <p>{currentCity.name}</p>
+        </div>
         <div 
           className="headers" 
           ref={header} 
