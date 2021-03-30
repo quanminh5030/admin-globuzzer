@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 const VimeoForm = (props) => {
-  const { setShow, currentItem, updateArticles, onCoverChange, onAuthorChange } = props;
+  const { setShow, currentItem, updateArticles, onFileChange } = props;
   const [data, setData] = useState(currentItem);
   
   const editMemberStyle = {
@@ -37,7 +37,7 @@ const VimeoForm = (props) => {
             <input 
               type="file"  
               name="coverImg"
-              onChange={onCoverChange}
+              onChange={onFileChange}
             />
             <button className={styles.btn}>Upload image</button>
           </div>
