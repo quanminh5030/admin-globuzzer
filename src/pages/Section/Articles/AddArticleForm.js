@@ -7,7 +7,7 @@ const AddArticleForm = (props) => {
   const [data, setData] = useState(currentArticle);
   
   const editMemberStyle = {
-    bottom: '-3270px',
+    bottom: '-2900px',
     left: '739px',
     zIndex: 100
   };

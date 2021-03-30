@@ -1,0 +1,104 @@
+.feature_card {
+  position: absolute;
+  width: 400px;
+  height: 365px;
+  background: #f8f8f8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  z-index: 100;
+  margin-left: -60px;
+}
+.feature_card_container h4{
+  border-bottom:1px solid #e4e4e4 ;
+}
+.feature_card h4 {
+  text-align: center;
+  color: #727272;
+  font-family: Montserrat;
+  font-size: 18px;
+  padding: 1rem;
+}
+.icon_text {
+  text-align: center;
+  padding: 0.5rem;
+}
+.icon_text span {
+  color: #727272;
+  font-size: 12px;
+}
+
+.form_wrapper {
+  padding: 25px;
+}
+.form_wrapper div {
+  padding: 0.5rem;
+}
+
+.title_input {
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  padding: 8px;
+  width: 90%;
+  color: #a4a4a4;
+}
+.textarea_input {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  padding: 8px;
+  text-align: left;
+  resize: none;
+  width: 90%;
+  color: #a4a4a4;
+}
+
+/* Button */
+.btn_apply,
+.btn_cancel {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 15px;
+  color: #727272;
+
+}
+
+.btn_container {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #e4e4e4;
+  width: 100%;
+}
+.vertical {
+  border-left: 1px solid #e4e4e4;
+  height: 54px;
+  left: 50%;
+  /* border: 1px solid red; */
+}
+
+/* Upload file button */
+.upload_btn_wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  color: gray;
+  background-color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.upload_btn_wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

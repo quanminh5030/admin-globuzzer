@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Services from "./Services/Services";
 import Topics from "./Topics/Topics";
 import Members from "./Members/Members";
@@ -12,9 +12,13 @@ import styles from "./index.module.css";
 import { EditContext } from "../../contexts/editContext";
 import SHeader from "../../components/SHeader/SHeader";
 import AddArticle from "./Articles/AddArticle";
+import {VideoCarousel} from '../../components/VideoCarousel/VideoCarousel'
+import { firestore } from "../../utils/firebase.utils";
+import BlogHeader from "../../components/TravelBlog/sectionHeader/SectionHeader";
+import TopVideos from "./TopVideos/TopVideos";
 
 const Main = ({ cityId }) => {
-  const { editMode} = useContext(EditContext);
+  const { editMode } = useContext(EditContext);
 
   return (
     <div className={styles.section}>
@@ -43,7 +47,8 @@ const Main = ({ cityId }) => {
           <Articles cityId={cityId} />
         </div>
         <div className={styles.relocate}>
-          <Relocate />
+          {/* <Relocate /> */}
+          <TopVideos cityId={cityId} />
         </div>
       </div>
 

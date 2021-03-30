@@ -264,5 +264,25 @@ export const dataObj =
       id: uuidv4(),
     }
   ],
+  videos: [
+    {
+        id: uuidv4(),
+        url: "https://www.youtube.com/embed/yawXq5TlgBU",
+        text: "Visit Helsinki",
+        coverImg: "https://images.unsplash.com/photo-1507495951994-cfcf20e10ce0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1465&q=80"
+    },
+    {
+        id: uuidv4(),
+        url: "https://www.youtube.com/embed/MQSRSfnUtTo",
+        text: "Globuzzer Is Visiting Helsinki!",
+        coverImg: ""
+    },
+    {
+        id: uuidv4(),
+        url: "https://www.youtube.com/embed/nC5A7IK7ws8",
+        text: "Student benefits Helsinki",
+        coverImg: ""
+    }
+  ],
 };
 

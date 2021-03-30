@@ -65,7 +65,7 @@ const Members = ({ cityId }) => {
   } else {
     alert(message(file))
   }
-}
+  }
   return (
   <div className={styles.wrapper}>
       <BlogHeader label="Top members to meet" />
