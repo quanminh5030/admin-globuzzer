@@ -25,7 +25,7 @@ const Members = ({ cityId }) => {
         setLoading(true);
       } else {
         setFetchedCurrentCity(doc.data());
-        setMembers(doc.data().members)
+        setMembers(doc.data().topMembers)
         setLoading(false);
       }
     };
@@ -44,7 +44,7 @@ const Members = ({ cityId }) => {
     setShowMembersForm(false);
     const updatedMembers = members.map((s) => s.id === updatedMember.id ? {...updatedMember, image: fileUrl || updatedMember.image} : s)
     setShowMembersForm(false);
-  firestore.collection('section_items').doc(cityId).update({members: updatedMembers});
+  firestore.collection('section_items').doc(cityId).update({topMembers: updatedMembers});
     
   });
 

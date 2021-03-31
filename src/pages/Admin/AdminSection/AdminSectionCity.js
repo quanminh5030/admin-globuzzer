@@ -28,7 +28,7 @@ const AdminSectionCity = () => {
     getCurrentCity();
   }, [cityId]);
 const releaseNewCity = async () => {
-  await firestore.collection('section_live').add(currentCity)
+  await firestore.collection('section_live').add({...currentCity, id: cityId})
 };
   return (
     <div className={styles.wrapper}>

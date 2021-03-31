@@ -19,20 +19,21 @@ const JoinCitySection = () => {
 
   useEffect(() => {
     const unsubscribe=firestore
-      .collection("cities")
+      .collection("section_items")
       .orderBy("name")
       .limit(11)
       .onSnapshot((snapshot) => {
         const newCity = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        }));
+          // doc.data()
+      }));
         setJoinCity(newCity);
         // console.log(newCity);
       });
       return () => unsubscribe();
   }, []);
-  
+
    
 const formHandler = (cityData) => {
   setIsVisible(true);
@@ -85,7 +86,7 @@ const onSelectedCity = (data, city) => {
 const updateItem = (({currentItem}, updatedItem)=> {
   console.log("it sends item to the updated item function", updatedItem, currentItem.id);
   setIsVisible(false);
-  firestore.collection('cities').doc(currentItem.id).update(updatedItem);
+  firestore.collection('section_items').doc(currentItem.id).update(updatedItem);
 });
 
 return (

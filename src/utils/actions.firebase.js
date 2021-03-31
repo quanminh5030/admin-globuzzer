@@ -17,7 +17,26 @@ export const updateData = async (collection, currentDoc, updatedDoc) => {
 export const deleteData = async (collection, data) => {
   await firestore.collection(collection).doc(data.id).delete();
 };
+// delete doc from db
+export const deleteWithId = async (collection, id) => {
+  await firestore.collection(collection).doc(id).delete();
+};
+// read data from db
+export const readData = async (collection, id) => {
+  const itemRef = firestore.collection(collection);
+  const snapshot = await itemRef.where('id', '==', id).get();
+  let docId = ""
+if (snapshot.empty) {
+  console.log('No matching documents.');
+  return;
+}  
 
+snapshot.forEach(doc => {
+  // console.log(doc.id, '=>', doc.data());
+ docId = doc.id
+});
+return docId
+};
 
 // update a certain key in an object -->>
 export const updateObject = (obj, key, value) => {

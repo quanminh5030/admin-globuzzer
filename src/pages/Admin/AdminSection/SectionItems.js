@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Fragment } from 'react';
 import styles from './AdminSection.module.css';
 import { Link, withRouter } from "react-router-dom";
-import { deleteData } from '../../../utils/actions.firebase';
+import { deleteWithId, readData } from '../../../utils/actions.firebase';
 
 const SectionItems = ({ items }) => {
   const [showWarning, setShowWarning] = useState(false);
@@ -12,8 +12,18 @@ const SectionItems = ({ items }) => {
     setClickedCard(item);
     setShowWarning(true);
   };
-  const onDelete = (data) => {
-    deleteData('section_items', data);
+
+  // find the id of deleted item in live-db
+  const filterDeleted = async (items, id) => {
+    const docId = await readData('section_live', id);
+    return docId
+  }
+
+  // delete selected id from both places in db - live and edit
+  const onDelete = async (data) => {
+    const id = await filterDeleted(items, data.id);
+    await deleteWithId('section_items', data.id)
+    await deleteWithId('section_live', id);
     setShowWarning(false);
   }
   
@@ -39,7 +49,7 @@ const SectionItems = ({ items }) => {
           <div 
             key={item.id}
             className={styles.card} 
-            style={{backgroundImage: `url(${item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat:'no-repeat'}}
+            style={{backgroundImage: `url(${item.img || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat:'no-repeat'}}
           >
             <div className={styles.options}>
               <Link to={`/section/${item.name}/${item.id}`}>
