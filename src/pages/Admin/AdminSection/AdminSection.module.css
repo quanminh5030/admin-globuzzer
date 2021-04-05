@@ -178,14 +178,13 @@ margin-right: 22px;
 }
 
 .released {
-  opacity: 50%;
   font-size: 30px;
   position: relative;
   /* top: -40%; */
   /* transform-origin: 0 20; */
   transform: rotate(30deg);
   /* color: #F26678 */
-  color: white;
+  color: rgba(255, 255, 255, 0.5);
   font-weight: bolder;
 }
 /* section main */
