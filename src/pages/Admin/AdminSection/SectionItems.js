@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import styles from './AdminSection.module.css';
 import { Link, withRouter } from "react-router-dom";
 import { deleteWithId, readData } from '../../../utils/actions.firebase';
+import useFetch from '../../../hooks/useFetch';
 
-const SectionItems = ({ items }) => {
+const SectionItems = ({ currentItems }) => {
+  const { loading, items } = useFetch('section_live');
   const [showWarning, setShowWarning] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
+  const [released, setReleased] = useState([])
 
   const deleteWarning = (item) => {
     setClickedCard(item);
     setShowWarning(true);
   };
+
+  useEffect(() => {
+    setReleased(items.map((i) => i.id))
+  },[items])
 
   // find the id of deleted item in live-db
   const filterDeleted = async (items, id) => {
@@ -21,7 +28,7 @@ const SectionItems = ({ items }) => {
 
   // delete selected id from both places in db - live and edit
   const onDelete = async (data) => {
-    const id = await filterDeleted(items, data.id);
+    const id = await filterDeleted(currentItems, data.id);
     await deleteWithId('section_items', data.id)
     await deleteWithId('section_live', id);
     setShowWarning(false);
@@ -45,12 +52,15 @@ const SectionItems = ({ items }) => {
   return (
     <Fragment>
         <div className={styles.sectionGrid}>
-        {items.map(item => (
+        {currentItems.map(item => (
           <div 
             key={item.id}
             className={styles.card} 
             style={{backgroundImage: `url(${item.img || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat:'no-repeat'}}
           >
+            <div className={styles.released}>
+            {released.includes(item.id) ? "RELEASED" : ""}
+            </div>
             <div className={styles.options}>
               <Link to={`/section/${item.name}/${item.id}`}>
               <p>Edit</p>

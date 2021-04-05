@@ -33,7 +33,6 @@ const Main = ({ cityId }) => {
             <Vimeo cityId={cityId} />
           </div>
         </div>
-
         <div className={styles.members}>
           <Members cityId={cityId} />
         </div>

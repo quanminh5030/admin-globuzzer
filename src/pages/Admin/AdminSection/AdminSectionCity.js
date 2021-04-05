@@ -7,6 +7,7 @@ import TopNav from "../TopNav/TopNav";
 import Main from "../../Section/Main";
 import { EditContext } from "../../../contexts/editContext";
 import { firestore } from "../../../utils/firebase.utils";
+import { readData } from "../../../utils/actions.firebase";
 // import useFetch from "../../../hooks/useFetch";
 
 const AdminSectionCity = () => {
@@ -27,9 +28,16 @@ const AdminSectionCity = () => {
     };
     getCurrentCity();
   }, [cityId]);
+  
 const releaseNewCity = async () => {
+ const check = await readData('section_live', cityId);
+ check
+  ? 
+  await firestore.collection('section_live').doc(check).update(currentCity)
+  :
   await firestore.collection('section_live').add({...currentCity, id: cityId})
 };
+
   return (
     <div className={styles.wrapper}>
       <TopNav/>

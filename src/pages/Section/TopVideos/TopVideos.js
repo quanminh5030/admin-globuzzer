@@ -68,7 +68,7 @@ const TopVideos = ({ cityId }) => {
     <div>
       <BlogHeader label="Top Videos to see"/>
       <div>
-        <VideoCarousel videos={videos} editMode={editMode} editStyle={editStyle}getCurrentVideo={getCurrentVideo}/>
+        <VideoCarousel videos={videos} editMode={editMode} editStyle={editStyle} getCurrentVideo={getCurrentVideo}/>
       </div>
       { editMode && 
     <>

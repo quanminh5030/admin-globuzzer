@@ -177,7 +177,17 @@ margin-right: 22px;
   margin-left: 20px;
 }
 
-
+.released {
+  opacity: 50%;
+  font-size: 30px;
+  position: relative;
+  /* top: -40%; */
+  /* transform-origin: 0 20; */
+  transform: rotate(30deg);
+  /* color: #F26678 */
+  color: white;
+  font-weight: bolder;
+}
 /* section main */
 @media (min-width: 1100px)
 {

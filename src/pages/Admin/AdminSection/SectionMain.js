@@ -30,7 +30,7 @@ const SectionMain = () => {
           </span>
         <button onClick={() => createNew('section_items', dataObj)}>Add</button>
         </div>
-        <SectionItems items={mySearch()} loading={loading}/>
+        <SectionItems currentItems={mySearch()} loading={loading}/>
       </div>
     }
     </Fragment>

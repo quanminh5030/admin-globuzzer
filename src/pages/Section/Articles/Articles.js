@@ -10,6 +10,7 @@ import { firestore, app } from "../../../utils/firebase.utils";
 import { EditContext } from "../../../contexts/editContext";
 import heart from "../../../assets/Section/Articles/heart-button.svg";
 import ArticlesForm from "./ArticlesForm";
+import Form from "./Form";
 import { sizeTransform } from "../../../utils/sizeTransform";
 
 const Articles = ({ cityId }) => {
@@ -83,6 +84,19 @@ const onAuthorChange = async (e) => {
   }
 }
 
+const onImgChange = async (e, setImg) => {
+  // const file = e.target.files[0];
+  // const storageRef = app.storage().ref();
+  // if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+  //   const fileRef = storageRef.child(`section/articles/${file.name}`);
+  //   await fileRef.put(file);
+  //   setImg(await fileRef.getDownloadURL());
+  // } else {
+  //   alert(message(file))
+  // }
+  console.log(e, setImg)
+};
+
   const ArticlesMobile = () => {
     return (
       <div className={styles.mobile}>
@@ -152,6 +166,12 @@ const onAuthorChange = async (e) => {
           onCoverChange={onCoverChange}
           onAuthorChange={onAuthorChange}
         />
+        // <Form
+        //   currentItem={currentArticle}
+        //   setShow={setShow}
+        //   updateItem={updateArticles}
+        //   onImgChange={onImgChange}
+        // />
         }
       </Fragment>
       }
