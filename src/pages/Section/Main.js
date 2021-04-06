@@ -13,6 +13,7 @@ import { EditContext } from "../../contexts/editContext";
 import SHeader from "../../components/SHeader/SHeader";
 import AddArticle from "./Articles/AddArticle";
 import TopVideos from "./TopVideos/TopVideos";
+import AddService from "./Services/AddService";
 
 const Main = ({ cityId }) => {
   const { editMode } = useContext(EditContext);
@@ -25,6 +26,9 @@ const Main = ({ cityId }) => {
       <div className={styles.main}>
         <div className={styles.center}>
           <div className={styles.services}>
+          {editMode &&
+          <AddService cityId={cityId}/>
+        }
             <Services cityId={cityId} />
             <Topics cityId={cityId} />
           </div>

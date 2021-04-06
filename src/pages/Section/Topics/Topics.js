@@ -10,19 +10,14 @@ import CityForm from "../../Admin/CityForm/SectionTopicsForm";
 import { EditContext } from "../../../contexts/editContext";
 import { sizeTransform } from "../../../utils/sizeTransform";
 import { firestore, app } from "../../../utils/firebase.utils";
+import { arraySize } from "../../../utils/manageDisplayItems";
 
 const Topics = ({ cityId }) => {
   const { width } = GetWindowDimension();
   const { editMode } = useContext(EditContext);
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
-  
-  const arraySize = () => {
-    let size;
-    (window.innerWidth <= 900) ? (size = 6) : (size = 9);
-      return size;
-  };
-  const [cardsToShow, setCardsToShow] = useState(arraySize());
+  const [cardsToShow, setCardsToShow] = useState(arraySize(6, 9));
   const [isVisible, setIsVisible] = useState(false);
   const [fileUrl, setFileUrl] = useState(null);
   const initialItemState = [{ id: null, text: "", image: "", link: ""}];
