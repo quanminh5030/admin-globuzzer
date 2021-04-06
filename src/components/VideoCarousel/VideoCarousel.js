@@ -17,7 +17,12 @@ const YoutubeSlide = (props) => {
 export const VideoCarousel = ({videos, editMode, editStyle, getCurrentVideo}) => {
 
     return (
-        <Carousel showArrows={false} className="carousel_container" showThumbs={false}>
+        <Carousel 
+            showArrows={false} 
+            className="carousel_container" 
+            showThumbs={false}
+            dynamicHeight={true}
+        >
         {videos.map((videoData) => (
             <div>
                 <YoutubeSlide videoData={videoData} key={videoData.id} editMode={editMode} editStyle={editStyle} getCurrentVideo={getCurrentVideo}/>
