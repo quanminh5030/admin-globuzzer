@@ -4,10 +4,9 @@ import { sizeTransform } from '../../../utils/sizeTransform';
 import { v4 as uuidv4 } from 'uuid';
 import FeatureCardForm from '../../Admin/FeatureCardForm/SectionServiceAddForm';
 
-const AddArticle = ({cityId}) => {
+const AddArticle = ({ cityId }) => {
   const [show, setShow] = useState(false);
   const [imgUrl, setImgUrl] = useState(null);
-  const [createdId, setCreatedId] = useState(null);
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
@@ -20,7 +19,7 @@ const AddArticle = ({cityId}) => {
       id: uuidv4(),
     }
   );
-
+  
   useEffect(() => {
     const getCurrentCity = async () => {
       const doc = await firestore.collection('section_items').doc(cityId).get();
@@ -33,7 +32,7 @@ const AddArticle = ({cityId}) => {
       }
     };
     getCurrentCity();
-  }, [cityId, show]);
+  }, [show, cityId]);
 
   const createService = async (data)=> {
     setShow(false);

@@ -18,7 +18,6 @@ const Services = ({ cityId }) => {
   const [currentFeatureCard, setCurrentFeatureCard] = useState([]);
   const [fileUrl, setFileUrl] = useState(null);
   const [cardsToShow, setCardsToShow] = useState(arraySize(1, 3));
-  
   const moreCards = () => {
     let no = cardsToShow + 1;
     if (cardsToShow >= serviceData.length) {
@@ -47,6 +46,7 @@ const Services = ({ cityId }) => {
       }
     };
     getCurrentCity();
+    console.log('martor')
 }, [cityId, show]);
 
   const openEditForm = (data) => {

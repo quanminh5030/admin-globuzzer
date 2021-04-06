@@ -36,7 +36,7 @@ const SectionItems = ({ currentItems }) => {
   
   const warningForm = (data) => {
     return (
-      <div className="warningBox" style={{margin: '0 auto'}}>
+      <div className="warningBox" style={{margin: '0 auto', position:'absolute'}}>
         <div className="warningHeader">Warning</div>
         <div className="warningText">
         {`Are you sure you want to DELETE "${data.name}" section?`}
@@ -68,9 +68,10 @@ const SectionItems = ({ currentItems }) => {
               <p onClick={() => deleteWarning(item)}>Delete</p>
             </div>
             <div className={styles.name}>{item.name}</div>
+            {showWarning && item.id === clickedCard.id ? warningForm(clickedCard) : null}
           </div>
+          
         ))}
-        {showWarning ? warningForm(clickedCard) : null}
         </div>
     </Fragment>
   );
