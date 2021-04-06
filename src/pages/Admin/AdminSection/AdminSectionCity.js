@@ -36,6 +36,7 @@ const releaseNewCity = async () => {
   await firestore.collection('section_live').doc(check).update(currentCity)
   :
   await firestore.collection('section_live').add({...currentCity, id: cityId})
+  alert("your changes are now live...");
 };
 
   return (
