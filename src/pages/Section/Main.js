@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import Services from "./Services/Services";
+import AddService from "./Services/AddService";
 import Topics from "./Topics/Topics";
+import AddTopic from "./Topics/AddTopic";
 import Members from "./Members/Members";
 import Articles from "./Articles/Articles";
 import Relocate from "./Relocate/Relocate";
@@ -13,7 +15,6 @@ import { EditContext } from "../../contexts/editContext";
 import SHeader from "../../components/SHeader/SHeader";
 import AddArticle from "./Articles/AddArticle";
 import TopVideos from "./TopVideos/TopVideos";
-import AddService from "./Services/AddService";
 
 const Main = ({ cityId }) => {
   const { editMode } = useContext(EditContext);
@@ -30,6 +31,9 @@ const Main = ({ cityId }) => {
           <AddService cityId={cityId}/>
         }
             <Services cityId={cityId} />
+            {editMode &&
+          <AddTopic cityId={cityId}/>
+        }
             <Topics cityId={cityId} />
           </div>
           <div className={styles.slider}>
