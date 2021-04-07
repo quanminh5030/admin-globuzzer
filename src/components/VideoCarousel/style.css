@@ -1,4 +1,56 @@
-.carousel_container {
+/* .carousel_container {
     width: 860px;
     margin: auto;
+} */
+
+.flexbox-centering { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 269px; 
+    width:379px;
+    font-size:64px;
+    color: white;
+    /* background: crimson; */
+    /* background-image: url('https://firebasestorage.googleapis.com/v0/b/section-admin.appspot.com/o/stockholm-video?alt=media&token=027fef66-4fb2-44b5-ad5b-d99d4b555ec0'); */
+    background-size: cover;
+}
+
+.flexbox-centering:hover {
+  /* filter: brightness(1.2); */
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.25);
+  /* background-color: rgba(0, 0, 0, .3); */
+}
+
+.videoTitle {
+    color: white;
+    position: relative;
+    top: 40px;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+.flexbox-centering svg:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #f24b6a;
+  color:#f24b6a;
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* .video .slick-active { 
+  padding: 20px 0; 
+}
+
+.video .slick-center { 
+  transform: scale(1.3) 
+}
+
+.video .slick-slide:not(.slick-active) { 
+  margin: 20px 0; 
+} */
+
+.video {
+  width: 100%;
 }

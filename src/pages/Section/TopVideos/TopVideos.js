@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import BlogHeader from '../../../components/TravelBlog/sectionHeader/SectionHeader';
-import { VideoCarousel } from '../../../components/VideoCarousel/VideoCarousel';
+import VideoCarousel from '../../../components/VideoCarousel/VideoCarousel';
 import { EditContext } from '../../../contexts/editContext';
 import { firestore, app } from '../../../utils/firebase.utils';
 import { sizeTransform } from '../../../utils/sizeTransform';
@@ -51,12 +51,12 @@ const TopVideos = ({ cityId }) => {
   const message = (file) => {
     return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
   } 
-  // manage the upload member picture form + type and size validation
+  // manage the upload video picture placeholder form + type and size validation
   const onFileChange = async (e) => {
   const file = e.target.files[0];
   const storageRef = app.storage().ref();
   if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
-    const fileRef = storageRef.child(`section/members/${file.name}`);
+    const fileRef = storageRef.child(`section/videos/${file.name}`);
     await fileRef.put(file);
     setFileUrl(await fileRef.getDownloadURL());
   } else {
