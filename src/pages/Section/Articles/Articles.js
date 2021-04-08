@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment, useRef } from "react";
-import styles from "./Articles.module.css";
 import "./Articles.css";
+import styles from "./Articles.module.css";
 import BlogHeader from "../../../components/TravelBlog/sectionHeader/SectionHeader";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

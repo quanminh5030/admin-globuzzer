@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import BlogHeader from '../../../components/TravelBlog/sectionHeader/SectionHeader';
 import VideoCarousel from '../../../components/VideoCarousel/VideoCarousel';
+import KeenSlider from '../../../components/Carousel/Carousel';
 import { EditContext } from '../../../contexts/editContext';
 import { firestore, app } from '../../../utils/firebase.utils';
 import { sizeTransform } from '../../../utils/sizeTransform';
@@ -68,7 +69,8 @@ const TopVideos = ({ cityId }) => {
     <div>
       <BlogHeader label="Top Videos to see"/>
       <div>
-        <VideoCarousel videos={videos} editMode={editMode} editStyle={editStyle} getCurrentVideo={getCurrentVideo}/>
+        {/* <VideoCarousel videos={videos} editMode={editMode} editStyle={editStyle} getCurrentVideo={getCurrentVideo}/> */}
+        <KeenSlider data={videos} />
       </div>
       { editMode && 
     <>

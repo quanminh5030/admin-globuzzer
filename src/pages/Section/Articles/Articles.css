@@ -20,14 +20,39 @@
   filter: brightness(110%);
 } */
 
-.slick-prev.slick-disabled:before {
-  opacity: 0.75;
-}
 
-.slick-prev:before {
-  content: url("../../../assets/Section/Articles/prev.svg");
-}
 
-.slick-next:before {
-  content: url("../../../assets/Section/Articles/next.svg");
-}
+
+  /*Slick style over-write the original*/
+
+  /* .articles .slick-slide > div {
+    margin: 0 16px;
+  }
+  .articles> .slick-list {
+    margin: 0 -16px;
+  }
+  
+  .articles .slick-next, .slick-prev {
+    height: 62px !important;
+    width: 62px !important;
+    border-radius: 50%;
+  }
+  
+  .articles .slick-prev.slick-disabled:before {
+    opacity: 0.75;
+  }
+  
+  .articles .slick-prev:before {
+    content: url("../../../assets/Section/Articles/prev.svg") center center no-repeat!important;
+    margin: 0 -55px;
+  }
+  
+  .articles .slick-next:before {
+    content: url("../../../assets/Section/Articles/next.svg") center center no-repeat!important;
+    margin: 0 -55px;
+  }
+  
+  .articles .slick-next::before, .slick-prev::before {
+      display: none;
+    } */
+  /*slick end*/
