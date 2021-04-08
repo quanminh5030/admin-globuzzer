@@ -109,8 +109,8 @@ const Vimeo = ({ cityId }) => {
       <div className={styles.mainContainer} style={editStyle}>
 				<Slider {...settings}>
 				{advertisements.map((adv) => (
-					<div>
-					<div ref={advRef} key={adv.id} className={styles.wrapper}  onClick={() => openEditForm(adv)} style={{background: adv.bgColor}}>
+					<div key={adv.id}>
+					<div ref={advRef} className={styles.wrapper}  onClick={() => openEditForm(adv)} style={{background: adv.bgColor}}>
 					<div className={styles.container}>
 							{/* <p className={styles.title}>Vimeo</p> */}
 							<img src={adv.logo} alt="logo"/>

@@ -20,7 +20,11 @@ const KeenSlider = ({ data }) => {
   return (
       <div ref={sliderRef} className="keen-slider">
         {data.map((d, i) => (
-            <div key={d.id} className="keen-slider__slide" onClick={() => console.log(currentSlide, i)}>
+            <div 
+              key={d.id} 
+              className="keen-slider__slide" 
+              onClick={() => console.log(currentSlide, i)}
+            >
               <CarouselCard item={d}/>
             </div>
           ))}

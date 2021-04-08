@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import PlayVideo from './PlayVideo';
 import { IconContext } from "react-icons";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiOutlinePlayCircle } from "react-icons/ai";
 
 const CarouselCard = ({ item }) => {
   const [playVideo, setPlayVideo] = useState(false);
@@ -46,7 +46,7 @@ const CarouselCard = ({ item }) => {
     </div>
           <div className="flexbox-centering"> 
             <div onClick={() => {setAbout({video: item.url, play: true}); playMe()} }>
-              <i className="fa fa-play-circle"></i>
+              <AiOutlinePlayCircle />
             </div>
           </div>
         </div>
