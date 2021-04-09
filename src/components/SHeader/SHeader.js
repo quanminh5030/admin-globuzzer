@@ -8,6 +8,7 @@ import BannerPlacesForm from '../../pages/Admin/BannerForm/BannerPlacesForm';
 import BannerPhotoForm from '../../pages/Admin/BannerForm/SectionBannerPhotoForm';
 import { AiFillCaretRight } from "react-icons/ai";
 import {Link} from 'react-router-dom';
+import SearchBar from '../../pages/Section/Header/SearchBar/SearchBar';
 
 const SHeader = ({ contentEditable, cityId }) => {
   const { editStyle, editMode } = useContext(EditContext);
@@ -182,7 +183,8 @@ const onSelectedPlace = (place, currentPlace) => {
             </Fragment>
           ))}
         </div>
-        <SearchCity />
+        {/* <SearchCity /> */}
+        <SearchBar sectionName={currentCity.name}/>
         <div ref={place}>
           <div id="header_suggestion" className="places">
             Maybe{" "}

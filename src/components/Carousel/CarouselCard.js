@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react';
+import './styles.css';
 import PlayVideo from './PlayVideo';
 import { IconContext } from "react-icons";
 import { AiOutlineCloseCircle, AiOutlinePlayCircle } from "react-icons/ai";
 
-const CarouselCard = ({ item }) => {
+const CarouselCard = ({ item, currentSlide, slideIndex }) => {
   const [playVideo, setPlayVideo] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState('');
   const videoFrameRef = useRef();
@@ -25,10 +26,19 @@ const CarouselCard = ({ item }) => {
     return target.classList.add('video-disabled')
   };
 
+  const centerStyle = () => {
+    if (currentSlide === slideIndex) {
+      return {
+        transform: 'scale(1.09)',
+
+      }
+    }
+  };
+
   return (
     <>
     <div className="slider center">
-     <div className="slide">
+     <div className="slide" style={centerStyle()}>
         <p>{item.name}</p>
         <div 
         className="cl"

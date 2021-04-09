@@ -3,8 +3,9 @@ import { BsSearch } from "react-icons/bs";
 import styles from  "./SearchBar.module.css";
 import RelatedInfo from "./RelatedInfo";
 import RelatedInfoData from '../../../../assets/Section/Header/RelatedInfoData';
+import { oldSections } from './oldSections';
 
-const SearchBar = () => {
+const SearchBar = ({ sectionName }) => {
   const [query, setQuery] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const node = useRef();
@@ -16,10 +17,13 @@ const SearchBar = () => {
   const navigationHandler = () => {
     window.addEventListener("submit", (e) => {
       e.preventDefault();
-      let searchForm = document.querySelector(".headerSearch");
+      let searchForm = document.querySelector("#headerSearch");
+      // let searchForm = node.current;
       const value = searchForm.querySelector("#header-input-city").value.replace(/[^a-z0-9 ]/gi, "");
       if (searchForm && value) {
-        window.open(`https://globuzzer.mn.co/groups/195832/search?term=${value}`);
+        Object.keys(oldSections).includes(sectionName.toLowerCase()) ?
+        window.open(`https://globuzzer.mn.co/groups/${oldSections[sectionName.toLowerCase()]}/search?term=${value}`) : 
+        window.open(`https://globuzzer.mn.co/search?term=${value}`)
       }
     });
   };
@@ -40,7 +44,7 @@ const SearchBar = () => {
 
   return (
     <div className={styles.container} ref={node}>
-      <form className={styles.headerSearch}>
+      <form className={styles.headerSearch} id="headerSearch">
         <div className={styles.searchInput}>
           <BsSearch className={styles.searchIcon} size="40px" />
           <input
@@ -51,6 +55,7 @@ const SearchBar = () => {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             onClick={() => setIsVisible(!isVisible)}
+            style={{ backgroundColor: '#fff' }}
           />
         </div>
         <button
