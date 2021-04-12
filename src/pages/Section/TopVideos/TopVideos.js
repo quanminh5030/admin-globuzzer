@@ -26,7 +26,7 @@ const TopVideos = ({ cityId }) => {
         setLoading(false);
       }
     };
-    console.log('martor')
+    // console.log('martor')
     getCurrentCity();
   }, [cityId, editMode]);
 
