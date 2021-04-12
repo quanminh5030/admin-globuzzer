@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import BlogHeader from '../../../components/TravelBlog/sectionHeader/SectionHeader';
-import VideoCarousel from '../../../components/VideoCarousel/VideoCarousel';
 import KeenSlider from '../../../components/Carousel/Carousel';
 import { EditContext } from '../../../contexts/editContext';
 import { firestore, app } from '../../../utils/firebase.utils';
@@ -27,8 +26,9 @@ const TopVideos = ({ cityId }) => {
         setLoading(false);
       }
     };
+    console.log('martor')
     getCurrentCity();
-  }, [cityId]);
+  }, [cityId, editMode]);
 
   const getCurrentVideo = (id) => {
     const video = videos.filter((m) => {
@@ -69,8 +69,9 @@ const TopVideos = ({ cityId }) => {
     <div>
       <BlogHeader label="Top Videos to see"/>
       <div>
-        {/* <VideoCarousel videos={videos} editMode={editMode} editStyle={editStyle} getCurrentVideo={getCurrentVideo}/> */}
-        <KeenSlider data={videos} />
+        {!loading ? (
+          <KeenSlider data={videos} editStyle={editStyle} getCurrentVideo={getCurrentVideo}/>
+        ) : <div>loading...</div>}
       </div>
       { editMode && 
     <>

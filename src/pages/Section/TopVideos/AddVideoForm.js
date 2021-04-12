@@ -18,7 +18,7 @@ const VideoForm = (props) => {
   
   const submitMemberData = (e) => {
     e.preventDefault();
-    updateMemberData({currentMember}, data);
+    updateMemberData(data);
     // onFileSubmit(data);
   };
   useEffect(() => {
@@ -29,7 +29,7 @@ const VideoForm = (props) => {
     <div>
       <div className={styles.feature_card} style={editMemberStyle}>
       <div className={styles.feature_card_container}>
-        <h4>{currentMember.text}</h4>
+        <h4>Add video</h4>
         <div className={styles.icon_text}>
           Cover image
           <span>(Image has to be below 200 KB and PNG/JPG format)</span>

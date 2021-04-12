@@ -15,6 +15,7 @@ import { EditContext } from "../../contexts/editContext";
 import SHeader from "../../components/SHeader/SHeader";
 import AddArticle from "./Articles/AddArticle";
 import TopVideos from "./TopVideos/TopVideos";
+import AddVideo from "./TopVideos/AddVideo";
 
 const Main = ({ cityId }) => {
   const { editMode } = useContext(EditContext);
@@ -51,7 +52,9 @@ const Main = ({ cityId }) => {
           <Articles cityId={cityId} />
         </div>
         <div className={styles.relocate}>
-          {/* <Relocate /> */}
+        {editMode &&
+          <AddVideo cityId={cityId}/>
+        }
           <TopVideos cityId={cityId} />
         </div>
       </div>
