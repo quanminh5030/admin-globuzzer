@@ -11,6 +11,7 @@ const TopVideos = ({ cityId }) => {
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState([]);
+  const [videosNow, setVideosNow] = useState([]);
   const [showVideoForm, setShowVideoForm] = useState(false);
   const [currentVideo, setCurrentVideo] = useState({});
   const [fileUrl, setFileUrl] = useState(null);
@@ -30,6 +31,19 @@ const TopVideos = ({ cityId }) => {
     getCurrentCity();
   }, [cityId, editMode]);
 
+//   useEffect(() => {
+//     const getVideos = firestore
+//       .collection("section_items")
+//       .onSnapshot((snapshot) => {
+//         const newVideos = snapshot.docs.map((doc) => ({
+//           id: doc.id,
+//           ...doc.data(),
+//         }));
+//         setVideos(newVideos);
+//       });
+//       return () => getVideos();
+// }, []);
+
   const getCurrentVideo = (id) => {
     const video = videos.filter((m) => {
       return m.id === id;
@@ -43,8 +57,8 @@ const TopVideos = ({ cityId }) => {
     const updatedVideos = videos.map((s) => s.id === updatedVideo.id ? {...updatedVideo, coverImg: fileUrl || updatedVideo.coverImg} : s)
     setShowVideoForm(false);
   firestore.collection('section_items').doc(cityId).update({videos: updatedVideos});
-    
   });
+
 
   // validations for uploaded images
   const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
@@ -70,7 +84,7 @@ const TopVideos = ({ cityId }) => {
       <BlogHeader label="Top Videos to see"/>
       <div>
         {!loading ? (
-          <KeenSlider data={videos} editStyle={editStyle} getCurrentVideo={getCurrentVideo}/>
+          <KeenSlider data={videos} editStyle={editStyle} getCurrentVideo={getCurrentVideo} cityId={cityId} />
         ) : <div>loading...</div>}
       </div>
       { editMode && 

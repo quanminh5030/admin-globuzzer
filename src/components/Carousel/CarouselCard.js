@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './styles.css';
 import PlayVideo from './PlayVideo';
 import { IconContext } from "react-icons";
 import { AiOutlineCloseCircle, AiOutlinePlayCircle } from "react-icons/ai";
+import DeleteVideo from '../../pages/Section/TopVideos/DeleteVideo';
+import { EditContext } from '../../contexts/editContext';
 
-const CarouselCard = ({ item, currentSlide, slideIndex }) => {
+const CarouselCard = ({ item, currentSlide, slideIndex, videos, cityId }) => {
   const [playVideo, setPlayVideo] = useState(false);
-  const [selectedVideo, setSelectedVideo] = useState('');
   const videoFrameRef = useRef();
+  const { editMode } = useContext(EditContext);
 
   const initialState = {
     video: null,
@@ -39,6 +41,7 @@ const CarouselCard = ({ item, currentSlide, slideIndex }) => {
     <>
     <div className="slider center">
      <div className="slide" style={centerStyle()}>
+       {editMode && <DeleteVideo item={item} videos={videos} cityId={cityId} />}
         <p>{item.text}</p>
         <div 
         className="cl"

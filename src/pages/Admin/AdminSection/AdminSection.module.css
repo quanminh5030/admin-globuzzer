@@ -178,13 +178,13 @@ margin-right: 22px;
 }
 
 .released {
-  font-size: 30px;
+  /* font-size: 30px; */
   position: relative;
-  /* top: -40%; */
+  top: -45%;
   /* transform-origin: 0 20; */
-  transform: rotate(30deg);
+  /* transform: rotate(30deg); */
   /* color: #F26678 */
-  color: rgba(255, 255, 255, 0.5);
+  color: #f34c6bb0;
   font-weight: bolder;
 }
 /* section main */

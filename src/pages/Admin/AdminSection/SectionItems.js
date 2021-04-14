@@ -59,7 +59,7 @@ const SectionItems = ({ currentItems }) => {
             style={{backgroundImage: `url(${item.img || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat:'no-repeat'}}
           >
             <div className={styles.released}>
-            {released.includes(item.id) ? "RELEASED" : ""}
+            {released.includes(item.id) ? "released" : ""}
             </div>
             <div className={styles.options}>
               <Link to={`/section/${item.name}/${item.id}`}>
