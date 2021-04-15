@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import VideoForm from './AddVideoForm';
 
 
-const AddVideo = ({ cityId }) => {
+const AddVideo = ({ cityId, setRender }) => {
   const [show, setShow] = useState(false);
   const [imgUrl, setImgUrl] = useState(null);
   const [currentCity, setFetchedCurrentCity] = useState({});
@@ -73,6 +73,7 @@ const AddVideo = ({ cityId }) => {
         setShowMembersForm={setShow}
         updateMemberData={createVideo}
         onFileChange={onFileChange}
+        setRender={setRender}
       />
       }
     </div>

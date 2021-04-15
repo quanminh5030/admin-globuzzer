@@ -99,8 +99,8 @@ const handleChangeText = (e) => {
 
 const formTextStyle = !showTextForm ? { display: "none" }
             : {
-                // position:'absolute',
-                left: '30%',
+                position:'relative',
+                left: '20%',
                 // top: '10%'
               };
 

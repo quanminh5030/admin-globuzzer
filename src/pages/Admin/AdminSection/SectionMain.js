@@ -15,7 +15,7 @@ const SectionMain = () => {
       .name.toLowerCase()
       .includes(searchedCity.toLowerCase()))
   };
-  console.log(items)
+  
   return (
     <Fragment>
       {loading ? 'Loading...' : 

@@ -6,7 +6,7 @@ import { firestore, app } from '../../../utils/firebase.utils';
 import { sizeTransform } from '../../../utils/sizeTransform';
 import VideoForm from './VideoForm';
 
-const TopVideos = ({ cityId }) => {
+const TopVideos = ({ cityId, render }) => {
   const { editStyle, editMode} = useContext(EditContext);
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
@@ -15,6 +15,8 @@ const TopVideos = ({ cityId }) => {
   const [showVideoForm, setShowVideoForm] = useState(false);
   const [currentVideo, setCurrentVideo] = useState({});
   const [fileUrl, setFileUrl] = useState(null);
+  const [deleteForm, showDeleteForm] = useState(false);
+
 
   useEffect(() => {
     const getCurrentCity = async () => {
@@ -29,20 +31,7 @@ const TopVideos = ({ cityId }) => {
     };
     // console.log('martor')
     getCurrentCity();
-  }, [cityId, editMode]);
-
-//   useEffect(() => {
-//     const getVideos = firestore
-//       .collection("section_items")
-//       .onSnapshot((snapshot) => {
-//         const newVideos = snapshot.docs.map((doc) => ({
-//           id: doc.id,
-//           ...doc.data(),
-//         }));
-//         setVideos(newVideos);
-//       });
-//       return () => getVideos();
-// }, []);
+  }, [cityId, showVideoForm, deleteForm, render]);
 
   const getCurrentVideo = (id) => {
     const video = videos.filter((m) => {
@@ -84,7 +73,14 @@ const TopVideos = ({ cityId }) => {
       <BlogHeader label="Top Videos to see"/>
       <div>
         {!loading ? (
-          <KeenSlider data={videos} editStyle={editStyle} getCurrentVideo={getCurrentVideo} cityId={cityId} />
+          <KeenSlider
+            data={videos}
+            editStyle={editStyle}
+            getCurrentVideo={getCurrentVideo}
+            cityId={cityId}
+            showDeleteForm={showDeleteForm}
+            setShowVideoForm={setShowVideoForm}
+          />
         ) : <div>loading...</div>}
       </div>
       { editMode && 

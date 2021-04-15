@@ -6,7 +6,16 @@ import { AiOutlineCloseCircle, AiOutlinePlayCircle } from "react-icons/ai";
 import DeleteVideo from '../../pages/Section/TopVideos/DeleteVideo';
 import { EditContext } from '../../contexts/editContext';
 
-const CarouselCard = ({ item, currentSlide, slideIndex, videos, cityId }) => {
+const CarouselCard = (props) => {
+  const {
+    item,
+    currentSlide,
+    slideIndex,
+    videos,
+    cityId,
+    showDeleteForm,
+    setShowVideoForm
+  } = props;
   const [playVideo, setPlayVideo] = useState(false);
   const videoFrameRef = useRef();
   const { editMode } = useContext(EditContext);
@@ -41,7 +50,15 @@ const CarouselCard = ({ item, currentSlide, slideIndex, videos, cityId }) => {
     <>
     <div className="slider center">
      <div className="slide" style={centerStyle()}>
-       {editMode && <DeleteVideo item={item} videos={videos} cityId={cityId} />}
+       {editMode && 
+        <DeleteVideo
+          item={item}
+          videos={videos}
+          cityId={cityId}
+          showDeleteForm={showDeleteForm}
+          setShowVideoForm={setShowVideoForm}
+        />
+        }
         <p>{item.text}</p>
         <div 
         className="cl"

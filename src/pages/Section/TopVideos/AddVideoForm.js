@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 const VideoForm = (props) => {
-  const { setShowMembersForm, currentMember, updateMemberData, onFileSubmit, onFileChange } = props;
+  const { setShowMembersForm, currentMember, updateMemberData, onFileSubmit, onFileChange, setRender } = props;
   const [data, setData] = useState(currentMember);
   
   const editMemberStyle = {
@@ -17,9 +17,10 @@ const VideoForm = (props) => {
   };
   
   const submitMemberData = (e) => {
+    setRender(true);
     e.preventDefault();
     updateMemberData(data);
-    // onFileSubmit(data);
+    
   };
   useEffect(() => {
     setData(currentMember);

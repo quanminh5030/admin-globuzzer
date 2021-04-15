@@ -18,13 +18,13 @@ const SectionItems = ({ currentItems }) => {
 
   useEffect(() => {
     setReleased(items.map((i) => i.id))
-  },[items])
+  },[items]);
 
   // find the id of deleted item in live-db
   const filterDeleted = async (items, id) => {
     const docId = await readData('section_live', id);
     return docId
-  }
+  };
 
   // delete selected id from both places in db - live and edit
   const onDelete = async (data) => {
@@ -32,7 +32,12 @@ const SectionItems = ({ currentItems }) => {
     await deleteWithId('section_items', data.id)
     await deleteWithId('section_live', id);
     setShowWarning(false);
-  }
+  };
+
+  const unRelease = async (data) => {
+    const id = await filterDeleted(currentItems, data.id);
+    await deleteWithId('section_live', id);
+  };
   
   const warningForm = (data) => {
     return (
@@ -67,6 +72,8 @@ const SectionItems = ({ currentItems }) => {
               </Link>
               <p onClick={() => deleteWarning(item)}>Delete</p>
             </div>
+            {released.includes(item.id) &&
+            <div className={styles.optionsx}><p onClick={() => unRelease(item)}>NotRelease</p></div>}
             <div className={styles.name}>{item.name}</div>
             {showWarning && item.id === clickedCard.id ? warningForm(clickedCard) : null}
           </div>

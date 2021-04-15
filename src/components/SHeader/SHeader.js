@@ -80,9 +80,8 @@ const handleChangeText = (e) => {
 
 const formTextStyle = !showTextForm ? { display: "none" }
             : {
-                // position:'absolute',
-                left: '30%',
-                // top: '10%'
+              position:'relative',
+              left: '20%',
               };
 
 const handleSubmitText = async () => {

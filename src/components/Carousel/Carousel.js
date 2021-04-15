@@ -4,7 +4,15 @@ import { useKeenSlider } from 'keen-slider/react';
 import CarouselCard from './CarouselCard';
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
 
-const KeenSlider = ({ data, editStyle, getCurrentVideo, cityId}) => {
+const KeenSlider = (props) => {
+ const { 
+    data,
+    editStyle,
+    getCurrentVideo,
+    cityId,
+    showDeleteForm,
+    setShowVideoForm
+  } = props
   const { width } = GetWindowDimension();
   const [slides, setSlides] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -37,7 +45,15 @@ const KeenSlider = ({ data, editStyle, getCurrentVideo, cityId}) => {
                 onClick={() => getCurrentVideo(d.id)}
                 style={editStyle}
               >
-                <CarouselCard item={d} currentSlide={currentSlide} slideIndex={i} videos={data} cityId={cityId}/>
+                <CarouselCard 
+                  item={d}
+                  currentSlide={currentSlide}
+                  slideIndex={i}
+                  videos={data}
+                  cityId={cityId}
+                  showDeleteForm={showDeleteForm}
+                  setShowVideoForm={setShowVideoForm}
+                />
               </div>
             ))}
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Services from "./Services/Services";
 import AddService from "./Services/AddService";
 import Topics from "./Topics/Topics";
@@ -19,6 +19,7 @@ import AddVideo from "./TopVideos/AddVideo";
 
 const Main = ({ cityId }) => {
   const { editMode } = useContext(EditContext);
+  const [render, setRender] = useState(false);
 
   return (
     <div className={styles.section}>
@@ -53,9 +54,9 @@ const Main = ({ cityId }) => {
         </div>
         <div className={styles.relocate}>
         {editMode &&
-          <AddVideo cityId={cityId}/>
+          <AddVideo cityId={cityId} setRender={setRender} />
         }
-          <TopVideos cityId={cityId} />
+          <TopVideos cityId={cityId} render={render}/>
         </div>
       </div>
 
