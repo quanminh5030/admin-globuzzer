@@ -90,3 +90,8 @@ h1 {
   /* overflow: auto; */
 }
 /* end video player */
+
+.slide {
+  max-width: 700px;
+  margin: 0 auto;
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Home from "../../Home";
 import SideNav from "../SideNav/SideNav";
 import styles from "./AdminLanding.module.css";
@@ -13,7 +13,8 @@ import useFetch from "../../../hooks/useFetch";
 const AdminLanding = () => {
   const { editMode, handleEditMode, setEditMode } = useContext(EditContext);
   const [loading, setLoading] = useState(false);
-  const texts = useFetch('texts');
+  const texts = useFetch("texts");
+  // const [texts, setTexts] = useState()
   const places = useFetch('places');
   const articles = useFetch('articles');
   const banners = useFetch('banners');
@@ -22,8 +23,7 @@ const AdminLanding = () => {
   const features = useFetch('features');
   const services = useFetch('services');
   const video = useFetch('video');
-  
-
+ 
   const updateData = async () => {
       await firestore.collection('landing_live').doc('texts').update({...texts.items});
       await firestore.collection('landing_live').doc('places').update({...places.items});
@@ -35,8 +35,9 @@ const AdminLanding = () => {
       await firestore.collection('landing_live').doc('services').set({...services.items});
       await firestore.collection('landing_live').doc('video').update({...video.items});
       // updateToLive(documents);
-      (texts.loading || places.loading || articles.loading ||banners.loading || cities.loading || community.loading || features.loading || video.loading || services.loading) ? setLoading(true) : setLoading(false);
+      (texts.loading || places.loading || articles.loading || banners.loading || cities.loading || community.loading || features.loading || video.loading || services.loading) ? setLoading(true) : setLoading(false);
       alert("your changes are now live...");
+
   };
 
   return (
