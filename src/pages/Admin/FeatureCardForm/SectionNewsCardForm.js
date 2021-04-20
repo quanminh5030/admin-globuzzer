@@ -40,7 +40,7 @@ const submitFeatureCard = (e) => {
             <p>Link</p>
             <input
               type="text"
-              name="title"
+              name="link"
               className={styles.title_input}
               value={data.link}
               onChange={inputHandler}
