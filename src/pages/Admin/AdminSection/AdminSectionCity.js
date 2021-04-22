@@ -38,7 +38,7 @@ const releaseNewCity = async () => {
   await firestore.collection('section_live').add({...currentCity, id: cityId})
   alert("your changes are now live...");
 };
-
+// console.log({...currentCity})
   return (
     <div className={styles.wrapper}>
       <TopNav/>

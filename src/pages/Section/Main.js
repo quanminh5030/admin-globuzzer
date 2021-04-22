@@ -54,7 +54,7 @@ const Main = ({ cityId }) => {
         </div>
         <div className={styles.relocate}>
         {editMode &&
-          <AddVideo cityId={cityId} setRender={setRender} />
+          <AddVideo cityId={cityId} setRender={setRender} render={render} />
         }
           <TopVideos cityId={cityId} render={render}/>
         </div>

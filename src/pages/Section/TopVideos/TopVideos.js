@@ -11,12 +11,12 @@ const TopVideos = ({ cityId, render }) => {
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState([]);
-  const [videosNow, setVideosNow] = useState([]);
   const [showVideoForm, setShowVideoForm] = useState(false);
   const [currentVideo, setCurrentVideo] = useState({});
   const [fileUrl, setFileUrl] = useState(null);
   const [deleteForm, showDeleteForm] = useState(false);
-
+  const [showWarning, setShowWarning] = useState(false);
+  const [clickedCard, setClickedCard] = useState(null);
 
   useEffect(() => {
     const getCurrentCity = async () => {
@@ -31,7 +31,7 @@ const TopVideos = ({ cityId, render }) => {
     };
     // console.log('martor')
     getCurrentCity();
-  }, [cityId, showVideoForm, deleteForm, render]);
+  }, [cityId, showVideoForm, deleteForm, render, showWarning]);
 
   const getCurrentVideo = (id) => {
     const video = videos.filter((m) => {
@@ -47,7 +47,6 @@ const TopVideos = ({ cityId, render }) => {
     setShowVideoForm(false);
   firestore.collection('section_items').doc(cityId).update({videos: updatedVideos});
   });
-
 
   // validations for uploaded images
   const typeValidation = ["image/png",  "image/jpeg", "image/jpg"];
@@ -66,7 +65,29 @@ const TopVideos = ({ cityId, render }) => {
   } else {
     alert(message(file))
   }
-  }
+  };
+
+  // delete selected id from both places in db - live and edit
+  const onDelete = async (data) => {
+    setShowWarning(false);
+    const filter = await videos.filter((video) => video.id !== data.id)
+    firestore.collection('section_items').doc(cityId).update({videos: filter});
+  };
+
+  const warningForm = (data) => {
+    return (
+      <div className="warningBox" style={{ position:'absolute', left:'50%'}}>
+        <div className="warningHeader">Warning</div>
+        <div className="warningText">
+        {`Are you sure you want to DELETE "${data.text}" video?`}
+        </div>
+        <div className="warningActions">
+          <p onClick={() => onDelete(data)}>Yes</p>
+          <p onClick={() => setShowWarning(false)}>No</p>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -80,6 +101,7 @@ const TopVideos = ({ cityId, render }) => {
             cityId={cityId}
             showDeleteForm={showDeleteForm}
             setShowVideoForm={setShowVideoForm}
+            render={render}
           />
         ) : <div>loading...</div>}
       </div>
@@ -91,10 +113,16 @@ const TopVideos = ({ cityId, render }) => {
         setShowMembersForm={setShowVideoForm}
         updateMemberData={updateVideoData}
         onFileChange={onFileChange}
+        setShowVideoForm={setShowVideoForm}
+        videos={videos}
+        showWarning={showWarning}
+        setShowWarning={setShowWarning}
+        setClickedCard={setClickedCard}
       />
       }
     </>
     }
+    {showWarning  ? warningForm(clickedCard) : null}
     </div>
   );
 };

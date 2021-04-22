@@ -53,6 +53,7 @@ const KeenSlider = (props) => {
                   cityId={cityId}
                   showDeleteForm={showDeleteForm}
                   setShowVideoForm={setShowVideoForm}
+                  render={props.render}
                 />
               </div>
             ))}

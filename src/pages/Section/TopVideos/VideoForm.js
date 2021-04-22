@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 const VideoForm = (props) => {
-  const { setShowMembersForm, currentMember, updateMemberData, onFileSubmit, onFileChange} = props;
+  const { setShowMembersForm, currentMember, updateMemberData, setShowVideoForm, onFileChange, setShowWarning, setClickedCard} = props;
   const [data, setData] = useState(currentMember);
   
   const editMemberStyle = {
     left: '888px',
     zIndex: '100',
-    height: '395px'
+    height: '431px'
   };
 
   const inputHandler = (e) => {
@@ -24,6 +24,12 @@ const VideoForm = (props) => {
     setData(currentMember);
   }, [currentMember]);
 
+  const deleteWarning = (item) => {
+    setClickedCard(item);
+    setShowWarning(true);
+    setShowVideoForm(false);
+  };
+   
   return (
     <div>
       <div className={styles.feature_card} style={editMemberStyle}>
@@ -62,6 +68,12 @@ const VideoForm = (props) => {
               onChange={inputHandler}
             />
           </div>
+          <button
+            onClick={() => deleteWarning(data)} 
+            className={styles.editBtn}
+          >
+            Delete this video
+          </button> 
         </div>
       </div>
       <div className={styles.btn_container}>
