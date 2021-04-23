@@ -70,8 +70,8 @@ const TopVideos = ({ cityId, render }) => {
   // delete selected id from both places in db - live and edit
   const onDelete = async (data) => {
     setShowWarning(false);
-    const filter = await videos.filter((video) => video.id !== data.id)
-    firestore.collection('section_items').doc(cityId).update({videos: filter});
+    const filter = videos.filter((video) => video.id !== data.id)
+    await firestore.collection('section_items').doc(cityId).update({videos: filter});
   };
 
   const warningForm = (data) => {

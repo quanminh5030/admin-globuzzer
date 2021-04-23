@@ -8,7 +8,7 @@ const VideoForm = (props) => {
   const editMemberStyle = {
     left: '888px',
     zIndex: '100',
-    height: '431px'
+    height: '454px'
   };
 
   const inputHandler = (e) => {

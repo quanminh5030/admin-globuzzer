@@ -21,7 +21,7 @@ const JoinCitySection = () => {
     const unsubscribe=firestore
       .collection("section_items")
       .orderBy("name")
-      .limit(11)
+      // .limit(11)
       .onSnapshot((snapshot) => {
         const newCity = snapshot.docs.map((doc) => ({
           id: doc.id,
