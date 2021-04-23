@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import VideoForm from './AddVideoForm';
 
 
-const AddVideo = ({ cityId, setRender }) => {
+const AddVideo = ({ cityId, setRender, render }) => {
   const [show, setShow] = useState(false);
   const [imgUrl, setImgUrl] = useState(null);
   const [currentCity, setFetchedCurrentCity] = useState({});
@@ -37,6 +37,7 @@ const AddVideo = ({ cityId, setRender }) => {
   const createVideo = async (data)=> {
     setShow(false);
     await firestore.collection('section_items').doc(cityId).update({videos: [...videos, {...data, coverImg: imgUrl}]});
+    setRender(false)
   };
 
   //validations

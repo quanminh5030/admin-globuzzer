@@ -4,7 +4,6 @@ import { sizeTransform } from '../../../utils/sizeTransform';
 import { v4 as uuidv4 } from 'uuid';
 import CityForm from '../../Admin/CityForm/SectionAddTopicForm';
 
-
 const AddArticle = ({ cityId }) => {
   const [show, setShow] = useState(false);
   const [imgUrl, setImgUrl] = useState(null);

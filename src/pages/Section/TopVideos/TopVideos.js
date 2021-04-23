@@ -5,6 +5,7 @@ import { EditContext } from '../../../contexts/editContext';
 import { firestore, app } from '../../../utils/firebase.utils';
 import { sizeTransform } from '../../../utils/sizeTransform';
 import VideoForm from './VideoForm';
+import { readData } from '../../../utils/actions.firebase';
 
 const TopVideos = ({ cityId, render }) => {
   const { editStyle, editMode} = useContext(EditContext);
@@ -17,6 +18,7 @@ const TopVideos = ({ cityId, render }) => {
   const [deleteForm, showDeleteForm] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
+  const [varza, setVarza] = useState(false);
 
   useEffect(() => {
     const getCurrentCity = async () => {
@@ -31,7 +33,7 @@ const TopVideos = ({ cityId, render }) => {
     };
     // console.log('martor')
     getCurrentCity();
-  }, [cityId, showVideoForm, deleteForm, render, showWarning]);
+  }, [cityId, showVideoForm, deleteForm, varza, render]);
 
   const getCurrentVideo = (id) => {
     const video = videos.filter((m) => {
@@ -70,8 +72,11 @@ const TopVideos = ({ cityId, render }) => {
   // delete selected id from both places in db - live and edit
   const onDelete = async (data) => {
     setShowWarning(false);
+    // const id = await readData('section_live', cityId);
     const filter = videos.filter((video) => video.id !== data.id)
     await firestore.collection('section_items').doc(cityId).update({videos: filter});
+    // await firestore.collection('section_live').doc(id).update({videos: filter});
+    setVarza(!varza)
   };
 
   const warningForm = (data) => {
