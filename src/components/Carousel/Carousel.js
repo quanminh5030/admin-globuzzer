@@ -11,21 +11,23 @@ const KeenSlider = (props) => {
     getCurrentVideo,
     cityId,
     showDeleteForm,
-    setShowVideoForm
+    setShowVideoForm,
+    currentSlide,
+    setCurrentSlide
   } = props
   const { width } = GetWindowDimension();
   const [slides, setSlides] = useState(1);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider(
     { slidesPerView: slides, 
       loop: true,
       centered: true,
-      initial: 0,
+      initial: currentSlide,
       slideChanged(s) {
         setCurrentSlide(s.details().relativeSlide)
       },
     });
-
+console.log(currentSlide)
     const noSlides = () => {
       return width > 1100 ? 3 : 1;
     };

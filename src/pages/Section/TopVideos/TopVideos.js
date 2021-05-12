@@ -6,6 +6,9 @@ import { firestore, app } from '../../../utils/firebase.utils';
 import { sizeTransform } from '../../../utils/sizeTransform';
 import VideoForm from './VideoForm';
 import { readData } from '../../../utils/actions.firebase';
+import styles from './styles.module.css';
+import CarouselCard from '../../../components/Carousel/CarouselCard';
+import { BsCircle } from 'react-icons/bs';
 
 const TopVideos = ({ cityId, render }) => {
   const { editStyle, editMode} = useContext(EditContext);
@@ -19,6 +22,7 @@ const TopVideos = ({ cityId, render }) => {
   const [showWarning, setShowWarning] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
   const [varza, setVarza] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const getCurrentCity = async () => {
@@ -94,21 +98,38 @@ const TopVideos = ({ cityId, render }) => {
     );
   };
 
+const setCircle = (i, z) => {
+  setCurrentSlide(i);
+}
+
   return (
     <div>
       <BlogHeader label="Top Videos to see"/>
       <div>
-        {!loading ? (
-          <KeenSlider
-            data={videos}
-            editStyle={editStyle}
-            getCurrentVideo={getCurrentVideo}
-            cityId={cityId}
-            showDeleteForm={showDeleteForm}
-            setShowVideoForm={setShowVideoForm}
-            render={render}
-          />
-        ) : <div>loading...</div>}
+        {
+          !loading ? (
+            <KeenSlider
+              data={videos}
+              editStyle={editStyle}
+              getCurrentVideo={getCurrentVideo}
+              cityId={cityId}
+              showDeleteForm={showDeleteForm}
+              setShowVideoForm={setShowVideoForm}
+              render={render}
+              currentSlide={currentSlide}
+              setCurrentSlide={setCurrentSlide}
+            />
+          ) : <div>loading...</div>
+        }  
+        <div className={styles.circleBox}>
+          <div className={styles.circleItem}>
+            {videos.map((item, i) => (
+              <div key={item.id} onClick={() => setCircle(i, item)}>
+              <BsCircle style={{background: i === videos.indexOf(item) ? '#f24b6a' : 'white', borderRadius:'50%', cursor: 'pointer'}}/>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       { editMode && 
     <>

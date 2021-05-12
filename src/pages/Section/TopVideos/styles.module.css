@@ -109,3 +109,20 @@
   width: 70%;
   justify-self: center;
 }
+
+.scrollingWrapper {
+}
+
+.cardItem {
+}
+
+.circleItem {
+  color: #f24b6a;
+  display: flex;
+  justify-content: space-around;
+}
+
+.circleBox {
+  margin: 0 auto;
+  width: 200px;
+}

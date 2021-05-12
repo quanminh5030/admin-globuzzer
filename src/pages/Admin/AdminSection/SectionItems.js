@@ -53,7 +53,6 @@ const SectionItems = ({ currentItems }) => {
       </div>
     );
   };
-
   return (
     <Fragment>
         <div className={styles.sectionGrid}>

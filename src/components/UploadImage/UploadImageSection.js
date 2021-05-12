@@ -13,7 +13,7 @@ function UploadImage({ setShowPhotoForm, showPhotoForm, style, typeValidation, s
     e.preventDefault();
     const getCollection = firestore.collection(collection);
     await getCollection.doc(doc).update({
-      bannerImg: fileUrl
+      img: fileUrl
     })
     console.log("file saved:", fileUrl)
     setShowPhotoForm(false);
