@@ -41,7 +41,7 @@ const SHeader = ({ contentEditable, cityId }) => {
         setLoading(true);
       } else {
         setFetchedCurrentCity(doc.data());
-        setBanners([{img: doc.data().img }])
+        setBanners([{img: doc.data().img || doc.data().bannerImg }])
         setFetchedTexts([{id: 'title', content: doc.data().title.content, style: doc.data().title.style}, {id: 'subtitle', content: doc.data().subtitle.content, style: doc.data().subtitle.style}])
         setPlaces([{id: 'placeOne', color: doc.data().placeOne.color, link: doc.data().placeOne.link, text: doc.data().placeOne.text}, {id: 'placeTwo', color: doc.data().placeTwo.color, link: doc.data().placeTwo.link, text: doc.data().placeTwo.text}, {id: 'placeThree', color: doc.data().placeThree.color, link: doc.data().placeThree.link, text: doc.data().placeThree.text}])
         setLoading(false);

@@ -25,7 +25,7 @@ const VimeoForm = (props) => {
 
   return (
     <div>
-      <div className={styles.feature_card} style={{...editMemberStyle, height: "545px", width: "560px"}}>
+      <div className={styles.feature_card} style={{...editMemberStyle, height: "310px", width: "560px"}}>
       <div className={styles.feature_card_container}>
         <h4>Advertisements</h4>
         <div className={styles.icon_text}>
@@ -41,7 +41,7 @@ const VimeoForm = (props) => {
             />
             <button className={styles.btn}>Upload image</button>
           </div>
-          <div className={styles.authLikes}>
+          {/* <div className={styles.authLikes}>
             <p>Background color</p>
             <input
               type="color"
@@ -57,8 +57,8 @@ const VimeoForm = (props) => {
               value={data.bgColor}
               onChange={inputHandler}
             />
-            </div>
-            <div className={styles.authLikes}>
+            </div> */}
+            {/* <div className={styles.authLikes}>
             <p>Button color</p>
             <input
               type="color"
@@ -74,7 +74,7 @@ const VimeoForm = (props) => {
               value={data.btColor}
               onChange={inputHandler}
             />
-          </div>
+          </div> */}
           <div>
             <p>Link</p>
             <input
@@ -85,7 +85,7 @@ const VimeoForm = (props) => {
               onChange={inputHandler}
             />
           </div>
-          <div>
+          {/* <div>
             <p>Text1</p>
             <input
               type="text"
@@ -94,8 +94,8 @@ const VimeoForm = (props) => {
               value={data.text1}
               onChange={inputHandler}
             />
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <p>Text2</p>
             <input
               type="text"
@@ -104,7 +104,7 @@ const VimeoForm = (props) => {
               value={data.text2}
               onChange={inputHandler}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className={styles.btn_container}>

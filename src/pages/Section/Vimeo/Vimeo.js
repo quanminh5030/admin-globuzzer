@@ -114,10 +114,10 @@ const Vimeo = ({ cityId }) => {
 					<div className={styles.container}>
 							{/* <p className={styles.title}>Vimeo</p> */}
 							<img src={adv.logo} alt="logo"/>
-							<p className={styles.caption}>{adv.text1}</p>
-							<p className={styles.text}>{adv.text2}</p>
+							{/* <p className={styles.caption}>{adv.text1}</p>
+							<p className={styles.text}>{adv.text2}</p> */}
 					</div>
-					<button className={styles.btn} style={{background: adv.btColor}}>Learn more</button>
+					{/* <button className={styles.btn} style={{background: adv.btColor}}>Learn more</button> */}
 			</div>
 			</div>
 				))}

@@ -240,7 +240,7 @@ export const dataObj =
   ],
   advertisements: [
     {
-      logo: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fadvertisements%2Fvimeo.png?alt=media&token=b1b8c27f-8737-4531-909c-73c4fb5ab57c",
+      logo: "gs://admin-project-9c459.appspot.com/section/news/GB_ADD_page1.png",
       bgColor: "#5ebfbf",
       btColor: "#f2a413",
       link: "www.vimeo.com",
@@ -249,7 +249,7 @@ export const dataObj =
       id: uuidv4(),
     },
     {
-      logo: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fadvertisements%2Fvimeo.png?alt=media&token=b1b8c27f-8737-4531-909c-73c4fb5ab57c",
+      logo: "gs://admin-project-9c459.appspot.com/section/news/GB_ADD_page1.png",
       bgColor: "#5ebfbf",
       btColor: "#f2a413",
       link: "www.vimeo.com",
@@ -258,7 +258,7 @@ export const dataObj =
       id: uuidv4(),
     },
     {
-      logo: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fadvertisements%2Fvimeo.png?alt=media&token=b1b8c27f-8737-4531-909c-73c4fb5ab57c",
+      logo: "gs://admin-project-9c459.appspot.com/section/news/GB_ADD_page1.png",
       bgColor: "#5ebfbf",
       btColor: "#f2a413",
       link: "www.vimeo.com",
