@@ -261,7 +261,7 @@ export const dataObj =
       logo: "gs://admin-project-9c459.appspot.com/section/news/GB_ADD_page1.png",
       bgColor: "#5ebfbf",
       btColor: "#f2a413",
-      link: "www.vimeo.com",
+      link: "https://globuzzer.com/",
       text1: "Customizable Player",
       text2: "A Vimeo Feature",
       id: uuidv4(),
