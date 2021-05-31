@@ -1,12 +1,14 @@
 import React from "react";
 import SideNav from "../SideNav/SideNav";
-import styles from "./AdminSection.module.css";
+import styles from './AdminTopic.module.css';
 import { IoMdArrowDropright } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TopNav from "../TopNav/TopNav";
-import SectionMain from "./SectionMain"
+import AccomodationHelContent from "./AccomodationHelContent";
 
-const AdminSection = () => {
+const Accomodation = () => {
+
+  const {city, topic} = useParams();
 
   return (
     <div className={styles.wrapper}>
@@ -18,13 +20,27 @@ const AdminSection = () => {
             className={styles.dashboardLink}
           >
             Dashboard
+            </Link>
+          <IoMdArrowDropright color="#F26678" size="25px" />
+          <Link
+            to="/topic"
+            className={styles.countryLink}
+          >
+            Topic Page
           </Link>
           <IoMdArrowDropright color="#F26678" size="25px" />
           <Link
-            to="/section"
+            to="#"
+            className={styles.countryLink}
+          >
+            {city}
+          </Link>
+          <IoMdArrowDropright color="#F26678" size="25px" />
+          <Link
+            to={`/topic/${city}/accomodation`}
             className={styles.landingLink}
           >
-            Section Page
+            Accomodation
           </Link>
         </div>
       </div>
@@ -33,11 +49,11 @@ const AdminSection = () => {
           <SideNav />
         </section>
         <section className={styles.main}>
-          <SectionMain />
+          <AccomodationHelContent />
         </section>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminSection;
+export default Accomodation

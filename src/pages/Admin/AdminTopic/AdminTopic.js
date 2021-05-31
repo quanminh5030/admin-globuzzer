@@ -1,12 +1,11 @@
 import React from "react";
 import SideNav from "../SideNav/SideNav";
-import styles from "./AdminSection.module.css";
+import styles from '../AdminSection/AdminSection.module.css';
 import { IoMdArrowDropright } from "react-icons/io";
 import { Link } from "react-router-dom";
 import TopNav from "../TopNav/TopNav";
-import SectionMain from "./SectionMain"
 
-const AdminSection = () => {
+const AdminTopic = () => {
 
   return (
     <div className={styles.wrapper}>
@@ -18,13 +17,13 @@ const AdminSection = () => {
             className={styles.dashboardLink}
           >
             Dashboard
-          </Link>
+            </Link>
           <IoMdArrowDropright color="#F26678" size="25px" />
           <Link
-            to="/section"
+            to="/topic"
             className={styles.landingLink}
           >
-            Section Page
+            Topic Page
           </Link>
         </div>
       </div>
@@ -32,12 +31,9 @@ const AdminSection = () => {
         <section className={styles.sidenav}>
           <SideNav />
         </section>
-        <section className={styles.main}>
-          <SectionMain />
-        </section>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminSection;
+export default AdminTopic

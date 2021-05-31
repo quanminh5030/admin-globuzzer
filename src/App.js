@@ -12,6 +12,8 @@ import SignUp from "./pages/Admin/SignUp/SignUp";
 import AdminLanding from './pages/Admin/AdminLanding/AdminLanding';
 import AdminSection from "./pages/Admin/AdminSection/AdminSection";
 import AdminSectionCity from "./pages/Admin/AdminSection/AdminSectionCity";
+import AdminTopic from "./pages/Admin/AdminTopic/AdminTopic";
+import Accomodation from "./pages/Admin/AdminTopic/Accomodation";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -53,7 +55,11 @@ class App extends React.Component {
           <Route path="/landing" component={AdminLanding} />
           <Route exact path="/section" component={AdminSection} />
           <Route path="/section/:city/:cityId" component={AdminSectionCity} />
-          </Switch>
+          <Route exact path='/topic' component={AdminTopic} />
+
+          {/* hard code topics for the time being */}
+          <Route exact path='/topic/:city/accomodation' component={Accomodation} />
+        </Switch>
       </>
     );
   }
