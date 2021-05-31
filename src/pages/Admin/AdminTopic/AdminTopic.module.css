@@ -1,0 +1,51 @@
+.navLink {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 4rem;
+  padding-left: 10px;
+  width: 150%;
+}
+.navLink a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dashboardLink {
+  color: #808080;
+}
+
+.countryLink {
+  color: #b5b4b4;
+}
+
+.landingLink {
+  color: #f26678;
+}
+
+.main {
+  justify-self: center;
+  margin-left: 20px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 3rem;
+  gap: 50px;
+  width: min-content;
+}
+
+.editBtn {
+  padding: 0.5rem 3rem;
+  background: #898787;;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  border: none;
+  margin-bottom: 1rem;
+  margin-right: 22px;
+}
+
+

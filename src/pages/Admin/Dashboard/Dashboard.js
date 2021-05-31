@@ -5,7 +5,7 @@ import TopNav from '../TopNav/TopNav';
 const Dashboard = () => {
   return (
     <div className={styles.wrapper}>
-      <TopNav/>
+      <TopNav />
       <div className={styles.container}>
         <Link to="/landing">
           <p className={styles.landing}>Landing Page</p>
@@ -14,7 +14,9 @@ const Dashboard = () => {
           <p className={styles.section}>Section Page</p>
         </Link>
         <p className={styles.service}>Service Page</p>
-        <p className={styles.topic}>Topic Page</p>
+        <Link to='/topic'>
+          <p className={styles.topic}>Topic Page</p>
+        </Link>
         <p className={styles.other}>Other Page</p>
         <p className={styles.bottom}>Bottom Area</p>
         <p className={styles.request}>Request Section</p>
