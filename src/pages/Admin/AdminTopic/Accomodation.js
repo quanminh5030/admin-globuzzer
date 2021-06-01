@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import SideNav from "../SideNav/SideNav";
 import styles from './AdminTopic.module.css';
 import { IoMdArrowDropright } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 import TopNav from "../TopNav/TopNav";
-import AccomodationHelContent from "./AccomodationHelContent";
+import { EditContext } from "../../../contexts/editContext";
+import MainAccomodation from "./MainAccomodation";
 
 const Accomodation = () => {
 
-  const {city, topic} = useParams();
+  const { city, topic } = useParams();
+  const { editMode, handleEditMode, setEditMode } = useContext(EditContext);
 
   return (
     <div className={styles.wrapper}>
@@ -49,7 +51,11 @@ const Accomodation = () => {
           <SideNav />
         </section>
         <section className={styles.main}>
-          <AccomodationHelContent />
+          <button className={styles.editBtn} onClick={handleEditMode}>
+            Edit it
+          </button>
+
+          <MainAccomodation />
         </section>
       </div>
     </div>

@@ -98,7 +98,7 @@ export const Navigation = () => {
     <div style={{ display: "flex" }}>
       {isOpen && (
         <div
-          onKeyDown={() => {}}
+          onKeyDown={() => { }}
           tabIndex={0}
           role="button"
           style={{
@@ -173,5 +173,8 @@ export const Navigation = () => {
       <NavMobileMenu />
     </section>
   );
-  return <>{width > 1100 ? <Nav /> : <NavMobile />}</>;
+
+  return <>
+    {width > 1100 ? <Nav /> : <NavMobile />}
+  </>;
 };
