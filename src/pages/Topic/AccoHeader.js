@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Navigation } from '../../components/Navigation/Navigation';
 import { firestore } from '../../utils/firebase.utils';
+import AccomodationTest from '../Admin/AdminTopic/AccomodationPage/AccomodationTest';
 import BannerPhotoForm from '../Admin/BannerForm/SectionBannerPhotoForm'
 import styles from './Header.module.css'
 
@@ -30,13 +31,8 @@ const AccoHeader = () => {
           collection='topic_items'
         />
       </div>
-      <section
-        className={styles.header}
-        style={{ backgroundImage: `url(${banners})` }}
-      >
-        
-
-      </section>
+      
+      <AccomodationTest />
 
     </>
   )

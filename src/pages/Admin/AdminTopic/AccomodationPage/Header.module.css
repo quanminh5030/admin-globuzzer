@@ -10,3 +10,13 @@
   background-repeat: no-repeat;
   color: white;
 }
+
+.linkBtn {
+  background-color: #f24b6a;
+  color: '#ecf0f1';
+  border-radius: 10;
+  font-size: 20px;
+  height: 60px;
+  width: 150px;
+  font-weight: 700;
+}

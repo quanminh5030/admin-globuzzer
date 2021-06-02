@@ -13,8 +13,8 @@ import AdminLanding from './pages/Admin/AdminLanding/AdminLanding';
 import AdminSection from "./pages/Admin/AdminSection/AdminSection";
 import AdminSectionCity from "./pages/Admin/AdminSection/AdminSectionCity";
 import AdminTopic from "./pages/Admin/AdminTopic/AdminTopic";
-// import Accomodation from "./pages/Admin/AdminTopic/Accomodation";
-import Accomodation from "./pages/Admin/AdminTopic/AccomodationPage/Accomodation";
+import Accomodation from "./pages/Admin/AdminTopic/Accomodation";
+import AccomodationTest from "./pages/Admin/AdminTopic/AccomodationPage/AccomodationTest";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;

@@ -51,9 +51,15 @@ const Accomodation = () => {
           <SideNav />
         </section>
         <section className={styles.main}>
-          <button className={styles.editBtn} onClick={handleEditMode}>
-            Edit it
-          </button>
+          {!editMode ?
+            (<button className={styles.editBtn} onClick={handleEditMode}>Edit it</button>) :
+            (<div>
+              <button className={styles.svrBtn}>Save it</button>
+              <button className={styles.svrBtn} onClick={() => setEditMode(false)}>View it</button>
+              <button className={styles.svrBtn} onClick={() => console.log('release')}>Release it</button>
+            </div>
+            )
+          }
 
           <MainAccomodation />
         </section>
