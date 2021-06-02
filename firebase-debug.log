@@ -1,0 +1,94 @@
+[debug] [2021-06-01T12:51:11.850Z] ----------------------------------------------------------------------
+[debug] [2021-06-01T12:51:11.853Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-06-01T12:51:11.853Z] CLI Version:   9.12.0
+[debug] [2021-06-01T12:51:11.853Z] Platform:      win32
+[debug] [2021-06-01T12:51:11.853Z] Node Version:  v12.18.3
+[debug] [2021-06-01T12:51:11.855Z] Time:          Tue Jun 01 2021 15:51:11 GMT+0300 (Eastern European Summer Time)
+[debug] [2021-06-01T12:51:11.855Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-01T12:51:11.868Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-01T12:51:11.868Z] > authorizing via signed-in user (quan.dao912@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\quand\Desktop\Globuzzer\admin-project
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using admin-project-9c459. 
+[debug] [2021-06-01T12:51:37.251Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/admin-project-9c459 [none]
+[debug] [2021-06-01T12:51:37.715Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/admin-project-9c459 403
+[debug] [2021-06-01T12:51:37.715Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/admin-project-9c459 {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2021-06-01T12:51:37.715Z] HTTP Error: 403, The caller does not have permission
+[debug] [2021-06-01T12:51:37.877Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:23)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at async Client.request (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async Object.doSetup [as project] (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:77:27)
+    at async init (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:19:9)
+[error] 
+[error] Error: Failed to get Firebase project admin-project-9c459. Please make sure the project exists and your account has permission to access it.
+[debug] [2021-06-01T12:52:37.621Z] ----------------------------------------------------------------------
+[debug] [2021-06-01T12:52:37.623Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-06-01T12:52:37.624Z] CLI Version:   9.12.0
+[debug] [2021-06-01T12:52:37.624Z] Platform:      win32
+[debug] [2021-06-01T12:52:37.624Z] Node Version:  v12.18.3
+[debug] [2021-06-01T12:52:37.626Z] Time:          Tue Jun 01 2021 15:52:37 GMT+0300 (Eastern European Summer Time)
+[debug] [2021-06-01T12:52:37.626Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-01T12:52:37.635Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-01T12:52:37.635Z] > authorizing via signed-in user (quan.dao912@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\quand\Desktop\Globuzzer\admin-project
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using admin-project-9c459. 
+[debug] [2021-06-01T12:52:42.609Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/admin-project-9c459 [none]
+[debug] [2021-06-01T12:52:43.028Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/admin-project-9c459 403
+[debug] [2021-06-01T12:52:43.028Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/admin-project-9c459 {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2021-06-01T12:52:43.029Z] HTTP Error: 403, The caller does not have permission
+[debug] [2021-06-01T12:52:43.227Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:23)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at async Client.request (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async Object.doSetup [as project] (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:77:27)
+    at async init (C:\Users\quand\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:19:9)
+[error] 
+[error] Error: Failed to get Firebase project admin-project-9c459. Please make sure the project exists and your account has permission to access it.

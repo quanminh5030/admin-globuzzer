@@ -28,37 +28,37 @@ const AdminSectionCity = () => {
     };
     getCurrentCity();
   }, [cityId]);
-  
-const releaseNewCity = async () => {
- const check = await readData('section_live', cityId);
- check
-  ? 
-  await firestore.collection('section_live').doc(check).update(currentCity)
-  :
-  await firestore.collection('section_live').add({...currentCity, id: cityId})
-  alert("your changes are now live...");
-};
-// console.log({...currentCity})
+
+  const releaseNewCity = async () => {
+    const check = await readData('section_live', cityId);
+    check
+      ?
+      await firestore.collection('section_live').doc(check).update(currentCity)
+      :
+      await firestore.collection('section_live').add({ ...currentCity, id: cityId })
+    alert("your changes are now live...");
+  };
+  // console.log({...currentCity})
   return (
     <div className={styles.wrapper}>
-      <TopNav/>
+      <TopNav />
       <div>
         <div className={styles.navLink}>
-          <Link 
-            to="/dashboard" 
+          <Link
+            to="/dashboard"
             className={styles.dashboardLink}
           >
             Dashboard
           </Link>
-          <IoMdArrowDropright color="#F26678" size="25px"/>
-          <Link 
-            to="/section" 
+          <IoMdArrowDropright color="#F26678" size="25px" />
+          <Link
+            to="/section"
             className={styles.dashboardLink}
           >
             Section Page
           </Link>
-          <IoMdArrowDropright color="#F26678" size="25px"/>
-          <Link 
+          <IoMdArrowDropright color="#F26678" size="25px" />
+          <Link
             to={`/section/${city}/${cityId}`}
             className={styles.landingLink}
           >
@@ -68,19 +68,19 @@ const releaseNewCity = async () => {
       </div>
       <div className={styles.container}>
         <section className={styles.sidenav}>
-          <SideNav/>
+          <SideNav />
         </section>
         <section className={styles.main}>
-        {!editMode ?
+          {!editMode ?
             (<button className={styles.editBtn} onClick={handleEditMode}>Edit it</button>) :
             (<div>
               <button className={styles.svrBtn}>Save it</button>
               <button className={styles.svrBtn} onClick={() => setEditMode(false)}>View it</button>
               <button className={styles.svrBtn} onClick={releaseNewCity}>Release it</button>
-              </div>
+            </div>
             )
-            }
-            {  <Main cityId={cityId}/> }
+          }
+          {<Main cityId={cityId} />}
         </section>
       </div>
     </div>
