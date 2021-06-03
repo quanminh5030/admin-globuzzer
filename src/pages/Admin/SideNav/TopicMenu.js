@@ -17,7 +17,7 @@ const theme = createMuiTheme({
 })
 
 
-const TopicMenu = ({ anchorElCountries, setAnchorElCountries }) => {
+const TopicMenu = ({ anchorElCountries, setAnchorElCountries, setIconDisplay }) => {
   const topics = HelsinkiTopicData;
   const cities = useFetch('cities');
 
@@ -32,7 +32,8 @@ const TopicMenu = ({ anchorElCountries, setAnchorElCountries }) => {
   }
 
   const handleCloseCountry = () => {
-    setAnchorElCountries(null)
+    setAnchorElCountries(null);
+    setIconDisplay(false)
   }
 
   const handleCloseTopic = () => {

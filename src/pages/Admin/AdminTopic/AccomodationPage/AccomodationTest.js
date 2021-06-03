@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { firestore } from '../../../../utils/firebase.utils';
 import '../../../../css/Home.css'
 import { createMuiTheme, FormControl, Select, ThemeProvider } from '@material-ui/core'
 import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@material-ui/icons/KeyboardArrowUpOutlined';
+import { EditContext } from '../../../../contexts/editContext';
+import TextEdit from '../../../../components/TextEdit/TextEdit';
 
 const theme = createMuiTheme({
   overrides: {
@@ -15,41 +17,109 @@ const theme = createMuiTheme({
   }
 })
 
-const AccomodationTest = () => {
-  const [banners, setBanners] = useState([]);
+const AccomodationTest = ({ contentEditable }) => {
+  const { editStyle, editMode } = useContext(EditContext);
+
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [iconArrowDown, setIconArrowDown] = useState(true)
+  const [showTextForm, setShowTextForm] = useState(false)
+  //for the title and subtitle
+  const [fetchedTexts, setFetchedTexts] = useState([]);
+
+  const rawText = {
+    content: '',
+    style: {
+      color: '',
+      fontSize: '',
+      fontWeight: '',
+      textAlign: ''
+    }
+  };
+
+  const [currentText, setCurrentText] = useState(rawText);
 
   useEffect(() => {
-    getBanners();
-  }, [])
+    getData();
+  }, [currentText])
 
 
-  const getBanners = async () => {
+  const getData = async () => {
     const doc = await firestore.collection('topic_items').doc('accomodation').get(); //hard code for the time being
     if (!doc.exists) {
       setLoading(true);
     } else {
-      setBanners(doc.data().helsinki)
+      setData(doc.data().helsinki);
+      setFetchedTexts([
+        { id: 'title', content: doc.data().helsinki.title.content, style: doc.data().helsinki.title.style },
+        { id: 'subtitle', content: doc.data().helsinki.subtitle.content, style: doc.data().helsinki.subtitle.style },
+      ])
     }
   }
+
+  const getCurrentText = e => {
+
+  }
+
+  const handleChangeText = e => {
+    console.log(e.target.innerText)
+    setCurrentText({ ...currentText, content: e.target.innerText, id: e.target.id })
+  }
+
+  const onSelectedText = (text, currentText) => {
+    return (
+      editMode && showTextForm && text.id === currentText.id &&
+      <TextEdit
+        currentText={currentText}
+        setShowForm={setShowTextForm}
+        save={handleSubmitText}
+      />
+    )
+  }
+
+  const handleSubmitText = async () => {
+    switch (currentText.id) {
+      case 'title':
+        await firestore.collection('topic_items').doc('accomodation').update({ "helsinki.title.content": currentText.content });
+        break;
+      case 'subtitle':
+        await firestore.collection('topic_items').doc('accomodation').update({ "helsinki.subtitle.content": currentText.content });
+        break;
+      default:
+        break;
+    }
+  }
+
+  console.log(fetchedTexts)
 
   return (
     <div
       className='section_header'
-      style={{ backgroundImage: `url(${banners.banner})` }}
+      style={{ backgroundImage: `url(${data.banner})` }}
     >
       {/* texts part */}
       <div className='headers' style={{ textAlign: 'center' }}>
-        <p></p>
-        <p>
-          {banners.title}
-        </p>
-        <p></p>
-        <p>
-          {banners.subtitle}
-        </p>
 
+        {fetchedTexts.map(text =>
+          <Fragment key={text.id}>
+            <div>{onSelectedText(text, currentText)}</div>
+            <p
+              id={text.id}
+              name={text.id}
+              contentEditable={contentEditable}
+              suppressContentEditableWarning='true'
+              style={{ ...editStyle, ...text.style }}
+              onFocus={getCurrentText}
+              onBlur={handleChangeText}
+              onClick={() => {
+                setShowTextForm(true)
+              }}
+              name='title'
+            >
+              {text.content}
+            </p>
+          </Fragment>
+        )}
         <a className='link' href='#'>
           <button className='linkBtn' style={{ backgroundColor: '#f24b6a', color: '#ecf0f1', borderRadius: 10, fontSize: 20, height: 60, width: 150, fontWeight: 700, border: '0px' }}>
             Join us
@@ -71,7 +141,7 @@ const AccomodationTest = () => {
                 IconComponent={iconArrowDown ? KeyboardArrowDownOutlinedIcon : KeyboardArrowUpOutlinedIcon}
                 onClick={() => setIconArrowDown(!iconArrowDown)}
               >
-                {banners.options && banners.options.map(b => <option>{b}</option>)}
+                {data.options && data.options.map((b, index) => <option key={index}>{b}</option>)}
               </Select>
             </FormControl>
           </ThemeProvider>

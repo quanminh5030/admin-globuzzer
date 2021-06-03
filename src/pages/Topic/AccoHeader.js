@@ -6,7 +6,7 @@ import AccomodationTest from '../Admin/AdminTopic/AccomodationPage/AccomodationT
 import BannerPhotoForm from '../Admin/BannerForm/SectionBannerPhotoForm'
 import styles from './Header.module.css'
 
-const AccoHeader = () => {
+const AccoHeader = ({ contentEditable }) => {
   const [banners, setBanners] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -31,8 +31,8 @@ const AccoHeader = () => {
           collection='topic_items'
         />
       </div>
-      
-      <AccomodationTest />
+
+      <AccomodationTest contentEditable={contentEditable} />
 
     </>
   )

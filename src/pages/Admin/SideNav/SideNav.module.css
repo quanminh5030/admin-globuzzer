@@ -31,6 +31,9 @@
 
 .topic {
     background: #4BC4BE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .other {

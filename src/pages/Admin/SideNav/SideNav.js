@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import styles from './SideNav.module.css';
 import { Link } from 'react-router-dom';
 import TopicMenu from './TopicMenu';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 const SideNav = () => {
 
   const [anchorElCountries, setAnchorElCountries] = useState(null);
+  const [iconDisplay, setIconDisplay] = useState(false)
 
-	const showCountries = event => {
-		setAnchorElCountries(event.currentTarget)
-	}
+  const showCountries = event => {
+    setAnchorElCountries(event.currentTarget)
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -21,10 +23,22 @@ const SideNav = () => {
           <li className={styles.section}>Section page</li>
         </Link>
         <li className={styles.service}>Service page</li>
-        <Link to='/topic'>
-          <li onClick={showCountries} className={styles.topic}>Topic page
+        <Link
+          to='/topic'
+          onClick={() => setIconDisplay(true)}
+        >
+          <li onClick={showCountries} className={styles.topic}>
+            {iconDisplay ?
+              <ArrowRightIcon
+                fontSize='large'
+              />
+              : <div />}
+            <span style={iconDisplay ? { marginRight: 30 } : {}}>
+              Topic page
+            </span>
           </li>
-          <TopicMenu 
+          <TopicMenu
+            setIconDisplay={setIconDisplay}
             anchorElCountries={anchorElCountries}
             setAnchorElCountries={setAnchorElCountries}
           />
