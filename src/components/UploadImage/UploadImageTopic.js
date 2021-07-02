@@ -4,7 +4,7 @@ import { sizeTransform } from '../../utils/sizeTransform';
 import edit from './UploadImage.module.css';
 
 
-function UploadImage({ setShowPhotoForm, showPhotoForm, style, typeValidation, sizeValidation, collection, doc, message, title }) {
+function UploadImageTopic({ setShowPhotoForm, showPhotoForm, style, typeValidation, sizeValidation, collection, doc, message, title }) {
   const [fileUrl, setFileUrl] = useState(null);
   const photoFormStyle = !showPhotoForm ? { display: "none" } : {};
 
@@ -13,7 +13,7 @@ function UploadImage({ setShowPhotoForm, showPhotoForm, style, typeValidation, s
     e.preventDefault();
     const getCollection = firestore.collection(collection);
     await getCollection.doc(doc).update({
-      img: fileUrl
+      "helsinki.banner": fileUrl
     })
     console.log("file saved:", fileUrl)
     setShowPhotoForm(false);
@@ -27,7 +27,7 @@ function UploadImage({ setShowPhotoForm, showPhotoForm, style, typeValidation, s
       if (file.size > sizeValidation) {
         alert(`The size of the file should be maximum ${sizeTransform(sizeValidation)}, yours is ${sizeTransform(file.size)}`)
       } else {
-        const fileRef = storageRef.child(`section/${file.name}`);
+        const fileRef = storageRef.child(`topic/accomodation/${file.name}`);
         await fileRef.put(file);
         setFileUrl(await fileRef.getDownloadURL());
       }
@@ -58,4 +58,4 @@ function UploadImage({ setShowPhotoForm, showPhotoForm, style, typeValidation, s
   );
 }
 
-export default UploadImage;
+export default UploadImageTopic;

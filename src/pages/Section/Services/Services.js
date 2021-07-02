@@ -47,7 +47,7 @@ const Services = ({ cityId }) => {
     };
     getCurrentCity();
     console.log('martor')
-}, [cityId, show]);
+  }, [cityId, show]);
 
   const openEditForm = (data) => {
     setShow(true);
@@ -60,17 +60,18 @@ const Services = ({ cityId }) => {
     })
   };
 
-  const updateFeatureCard = (({currentFeatureCard}, updatedFeatureCard) => {
+  const updateFeatureCard = (({ currentFeatureCard }, updatedFeatureCard) => {
     setShow(false);
-   const updatedServices = serviceData.map((s) => s.id === updatedFeatureCard.id ? {...updatedFeatureCard, image: fileUrl || updatedFeatureCard.image} : s)
-   return firestore.collection('section_items').doc(cityId).update({services: updatedServices})
+    const updatedServices = serviceData.map((s) => s.id === updatedFeatureCard.id ? { ...updatedFeatureCard, image: fileUrl || updatedFeatureCard.image } : s)
+    
+    return firestore.collection('section_items').doc(cityId).update({ services: updatedServices })
   });
 
-  const typeValidation = ["image/png",  "image/jpeg", "image/jpg", "image/svg+xml"];
+  const typeValidation = ["image/png", "image/jpeg", "image/jpg", "image/svg+xml"];
   const sizeValidation = 200000;
   const message = (file) => {
     return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
-  } 
+  }
   // manage the upload file form + type and size validation
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -89,40 +90,40 @@ const Services = ({ cityId }) => {
       card.id === currentCard.id &&
       show && editMode &&
       <div>
-      <FeatureCardForm 
-        setShow={setShow} 
-        currentFeatureCard={currentFeatureCard} 
-        updateFeatureCard={updateFeatureCard} 
-        onFileChange={onFileChange}
-      />
-    </div>
+        <FeatureCardForm
+          setShow={setShow}
+          currentFeatureCard={currentFeatureCard}
+          updateFeatureCard={updateFeatureCard}
+          onFileChange={onFileChange}
+        />
+      </div>
     );
   };
-  
+
   return (
     <div className={styles.wrapper}>
       <BlogHeader label="Recommend Services" />
       <div className={styles.container}>
         {serviceData.slice(0, cardsToShow).map(card => (
           <div style={editStyle} key={card.id}>
-          <ServiceCard 
-            card={card} 
-            editFeatureCard={() => openEditForm(card)} 
-            editMode={editMode}
-          />
-          {onSelectedCard(card, currentFeatureCard)}
+            <ServiceCard
+              card={card}
+              editFeatureCard={() => openEditForm(card)}
+              editMode={editMode}
+            />
+            {onSelectedCard(card, currentFeatureCard)}
           </div>
         ))}
         <div className={styles.moreBtn} onClick={moreCards}>
-        <img src={more} alt='more-icon' className={styles.moreIcon}/>
-        <p
-          className={styles.moreText}
-        >
-          {moreOrLess().includes("less") ? "Less" : "More" }
-        </p>
+          <img src={more} alt='more-icon' className={styles.moreIcon} />
+          <p
+            className={styles.moreText}
+          >
+            {moreOrLess().includes("less") ? "Less" : "More"}
+          </p>
+        </div>
       </div>
-      </div>
-      
+
     </div>
   );
 };

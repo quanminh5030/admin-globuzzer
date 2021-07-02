@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { Fragment } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import { FiCamera } from 'react-icons/fi';
-import UploadImage from '../../../components/UploadImage/UploadImageSection';
+import UploadImageTopic from '../../../components/UploadImage/UploadImageTopic';
 import { EditContext } from '../../../contexts/editContext';
 import edit from './BannerForm.module.css';
 
-const BannerPhotoForm = ({ collection, doc }) => {
+const BannerTopicForm = ({ collection, doc }) => {
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const photoFormStyle = !showPhotoForm ? { display: "none" } : {};
   const { editMode } = useContext(EditContext);
@@ -27,12 +26,12 @@ const BannerPhotoForm = ({ collection, doc }) => {
       >
         <FiCamera id="camera" />
 
-        <UploadImage
+        <UploadImageTopic
           setShowPhotoForm={setShowPhotoForm}
           showPhotoForm={showPhotoForm}
           style={photoFormStyle}
           typeValidation={['image/jpg', 'image/jpeg', 'image/png']}
-          sizeValidation="500000"
+          sizeValidation="3200000"
           collection={collection}
           doc={doc}
           message="The size of the image should be maximum 500KB, and the format need to be PNG, JPG."
@@ -43,4 +42,4 @@ const BannerPhotoForm = ({ collection, doc }) => {
   );
 }
 
-export default BannerPhotoForm;
+export default BannerTopicForm;

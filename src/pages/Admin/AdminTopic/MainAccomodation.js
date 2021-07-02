@@ -3,6 +3,8 @@ import { EditContext } from '../../../contexts/editContext'
 import "../../../css/Home.css"
 import styles from '../../Section/index.module.css'
 import AccoHeader from '../../Topic/AccoHeader'
+import Footer from '../../Topic/Footer/Footer'
+import Body from '../../Topic/Main/Body'
 
 const MainAccomodation = () => {
 
@@ -10,18 +12,11 @@ const MainAccomodation = () => {
 
   return (
     <div className={styles.section}>
-      <div className={styles.header}>
-        <AccoHeader
-          contentEditable={editMode ? true : false}
-        />
-      </div>
-
-
-      {/* <section className="section_value">
-        <div>
-          <FeatureCardPage />
-        </div>
-      </section> */}
+      <AccoHeader
+        contentEditable={editMode ? true : false}
+      />
+      <Body />
+      <Footer />
     </div>
   )
 }

@@ -1,0 +1,313 @@
+.topMenu {
+  width: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: #ecf0f1;
+  position: absolute;
+  z-index: 1;
+  border-bottom: 1px solid #ecf0f1;
+  transition: 0.5s;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  cursor: pointer;
+}
+
+.mCenter,
+.mRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mList,
+.mRight li {
+  padding: 30px 12px;
+  margin: 0 5px;
+}
+
+.menuOwn:hover {
+  filter: brightness(120%);
+}
+
+.mRight li {
+  font-size: 14px;
+}
+
+.mRight img {
+  width: 18px;
+  height: 15px;
+}
+
+.mList {
+  position: relative;
+  font-size: 14px;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mList:last-child {
+  background: #f24b6a;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.mRight li:last-child {
+  border: 1px solid #ecf0f1;
+  padding: 0 17px;
+  border-radius: 5px;
+}
+
+.mList:not(:last-child):hover {
+  background: #272a32;
+}
+
+.mCenter i {
+  position: absolute;
+}
+
+.destination {
+  display: none;
+  position: absolute;
+  justify-content: space-between;
+  z-index: 1;
+  color: #ecf0f1;
+  top: 73px;
+  left: -150px;
+  background: #373c47;
+}
+
+.t {
+  left: -420px;
+}
+
+.d p {
+  width: 120px;
+}
+
+.s p {
+  width: 100px;
+}
+
+.t p {
+  width: 90px;
+}
+
+.recently {
+  padding: 35px 0 14px 0;
+}
+
+.s .recently {
+  padding-top: 12px;
+}
+
+.s input {
+  padding: 5px 30px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background: #c4c4c4;
+  color: #888888;
+  font-size: 11px;
+}
+
+.s div {
+  position: relative;
+  width: 200px;
+}
+
+.bs-search {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+}
+
+.s .bs-search {
+  color: #8888;
+}
+
+.destination ul:first-child {
+  padding-right: 80px;
+}
+
+.destination li {
+  padding: 5px 0;
+  width: 110px;
+}
+
+.destination li:hover {
+  border-bottom: 1px solid #f24b6a;
+}
+
+.destination ul {
+  padding: 20px 15px;
+}
+
+.dest:hover .d {
+  display: flex;
+}
+
+.service:hover .s {
+  display: flex;
+}
+
+.topic:hover .t {
+  display: flex;
+}
+
+.topMenuSmall {
+  display: none;
+}
+
+.sidebarSmall {
+  display: none;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media screen and (max-width: 1145px) {
+  .top-menu {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .topMenu {
+    display: none;
+  }
+
+  .topMenuSmall {
+    position: absolute;
+    color: #fff;
+    z-index: 2;
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #f9f9f9;
+    transition: all 1s;
+  }
+
+  .menuSmall {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 15px;
+  }
+
+  .logo {
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .bars {
+    font-size: 25px;
+  }
+
+  .sidebarSmall {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    right: 0;
+    background: #2a293a;
+    color: #fff;
+    width: 210px;
+    z-index: 3;
+    font-size: 14px;
+    font-weight: 600;
+    transform: translateX(500px);
+    transition: transform 0.5s;
+    padding: 10px 0;
+  }
+
+  .sidebarSmall li {
+    padding: 12px 15px;
+  }
+
+  .line {
+    border-bottom: 1px solid #5f5d73;
+  }
+
+  .sidebarTop {
+    flex-basis: 40%;
+  }
+
+  .sidebarTop li {
+    position: relative;
+  }
+
+  .sidebarTop li span:last-child {
+    margin-left: 25px;
+  }
+
+  .sidebarTop .icon {
+    left: 13px;
+  }
+
+  .sidebarBottom {
+    flex-basis: 60%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .sidebarBtn {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .ownSection {
+    width: 100%;
+    background: #f24b6a;
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+  }
+
+  .sidebarAuth {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+  }
+
+  .sidebarAuth li {
+    padding: 8px;
+  }
+
+  .sidebarAuth li:last-child {
+    border: 1px solid #f24b6a;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menuSmall li {
+    display: inline-block;
+  }
+
+  .logo {
+    text-align: right;
+    margin-left: 0%;
+    transform: translateX(0);
+    width: 78%;
+  }
+}

@@ -29,13 +29,13 @@ const Main = ({ cityId }) => {
       <div className={styles.main}>
         <div className={styles.center}>
           <div className={styles.services}>
-          {editMode &&
-          <AddService cityId={cityId}/>
-        }
+            {editMode &&
+              <AddService cityId={cityId} />
+            }
             <Services cityId={cityId} />
             {editMode &&
-          <AddTopic cityId={cityId}/>
-        }
+              <AddTopic cityId={cityId} />
+            }
             <Topics cityId={cityId} />
           </div>
           <div className={styles.slider}>
@@ -47,16 +47,16 @@ const Main = ({ cityId }) => {
           <Members cityId={cityId} />
         </div>
         <div className={styles.articles}>
-        {editMode &&
-          <AddArticle cityId={cityId}/>
-        }
+          {editMode &&
+            <AddArticle cityId={cityId} />
+          }
           <Articles cityId={cityId} />
         </div>
         <div className={styles.relocate}>
-        {editMode &&
-          <AddVideo cityId={cityId} setRender={setRender} render={render} />
-        }
-          <TopVideos cityId={cityId} render={render}/>
+          {editMode &&
+            <AddVideo cityId={cityId} setRender={setRender} render={render} />
+          }
+          <TopVideos cityId={cityId} render={render} />
         </div>
       </div>
 

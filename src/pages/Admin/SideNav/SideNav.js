@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import TopicMenu from './TopicMenu';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-const SideNav = () => {
+const SideNav = ({iconTopic}) => {
 
   const [anchorElCountries, setAnchorElCountries] = useState(null);
   const [iconDisplay, setIconDisplay] = useState(false)
@@ -28,12 +28,12 @@ const SideNav = () => {
           onClick={() => setIconDisplay(true)}
         >
           <li onClick={showCountries} className={styles.topic}>
-            {iconDisplay ?
+            {iconDisplay || iconTopic ?
               <ArrowRightIcon
                 fontSize='large'
               />
               : <div />}
-            <span style={iconDisplay ? { marginRight: 30 } : {}}>
+            <span style={iconDisplay || iconTopic ? { marginRight: 30 } : {}}>
               Topic page
             </span>
           </li>

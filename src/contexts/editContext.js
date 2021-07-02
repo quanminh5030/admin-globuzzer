@@ -16,6 +16,11 @@ const EditContextProvider = (props) => {
       padding: "8px"
     } : {};
 
+  const editStyle2 =
+    editMode ? {
+      background: 'rgba(244, 121, 137, 0.2)',  
+    } : {};
+
   //capture X Y coordinates of the click
   const getCoordinates = (e) => {
     setCoord({ X: e.clientX, Y: e.clientY });
@@ -42,7 +47,7 @@ const EditContextProvider = (props) => {
     <EditContext.Provider
       value={{
         handleSubmit,
-        handleEditMode, editMode, setEditMode, editStyle, fileUrl, setFileUrl, getCoordinates, coord
+        handleEditMode, editMode, setEditMode, editStyle, editStyle2, fileUrl, setFileUrl, getCoordinates, coord
       }}
     >
       {props.children}

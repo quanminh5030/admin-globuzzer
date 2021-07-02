@@ -1,0 +1,588 @@
+/* .banner {
+  height: 85vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/hotel.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  background-attachment: fixed;
+} */
+
+.nav {
+  color: #fff;
+  position: absolute;
+  left: 3%;
+  top: 100px;
+  width: 95%;
+}
+
+.nav li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 5px 15px;
+  font-size: 18px;
+  position: relative;
+  color: #d6d6d6;
+}
+
+.banner-arrow {
+  color: #f24b6a;
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ecf0f1;
+  text-align: center;
+  width: 100%;
+}
+
+.header p {
+  margin: 15px 0;
+}
+
+.bheader p:first-child {
+  font-size: 64px;
+  line-height: 64px;
+  font-weight: bold;
+  animation: accomodation 1s ease-in-out;
+}
+
+.bheader p:last-child {
+  font-size: 36px;
+  line-height: 24px;
+  animation: explore 1s ease-in-out;
+}
+
+.center button {
+  border: none;
+  margin-top: 25px;
+  color: #ecf0f1;
+  background: #f24b6a;
+  border-radius: 10px;
+  padding: 10px 30px;
+  font-weight: bold;
+  position: relative;
+  animation: join 1s ease-in-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+
+.center button:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.center button:active {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.center button::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #f24b6a;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: all 0.3s;
+  border-radius: 10px;
+}
+
+.center button:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.selectperson {
+  margin-top: 50px;
+  font-weight: 500;
+  font-size: 48px;
+  text-align: center;
+  animation: person 1s ease-in;
+}
+
+.selectperson span {
+  margin: 0 7px;
+}
+
+.selectperson span:last-child {
+  position: relative;
+}
+
+.selectperson input {
+  width: 480px;
+  vertical-align: middle;
+  border-radius: 10px;
+  padding: 10px 0 10px 30px;
+  color: #2f2f2f;
+  background: #fff;
+  font-size: 21px;
+}
+
+.arrowDown {
+  position: absolute;
+  right: 10%;
+  color: #2f2f2f;
+  font-size: 20px;
+  top: 44%;
+  transition: transform 0.5s;
+}
+
+.selectperson nav {
+  height: 0;
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  text-align: left;
+  left: 0;
+  transition: height 0.5s;
+  overflow: hidden;
+  top: 97%;
+  border-radius: 10px;
+}
+
+.selectperson li {
+  font-size: 18px;
+  color: #2f2f2f;
+  padding: 8px 0 8px 30px;
+}
+
+.selectperson li:hover {
+  background: #f24b6a;
+  color: #fff;
+}
+
+.video.bannervideo {
+  margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.list {
+  background: #f24b6a;
+  display: flex;
+  justify-content: space-around;
+}
+
+.listitem {
+  width: 100%;
+  max-width: 1395px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 10 20px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+.listitem > div {
+  display: inline-block;
+  flex-grow: 1;
+  flex-basis: calc(100% / 3);
+}
+
+.listflex {
+  text-align: center;
+  padding: 6px 20px;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listflex span {
+  margin: 5px 0;
+}
+
+.list-icon {
+  font-size: 50px;
+}
+
+.listleft {
+  position: relative;
+  flex-basis: 50%;
+}
+
+.listdesc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.listVid {
+  width: 57px;
+  height: 54px;
+  margin: 0 auto;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.listVid:hover {
+  background: #f24b6a;
+  border-top: 3px solid #f24b6a;
+  border-bottom: 1px solid #f24b6a;
+}
+
+#listVid {
+  width: 100%;
+  height: 100%;
+}
+
+.listdesc p {
+  color: #fff;
+  margin-top: 20px;
+}
+
+.listright {
+  text-align: left;
+  background: #ffecec;
+  position: relative;
+  padding: 20px 60px;
+  flex-basis: 40%;
+}
+
+.listright header {
+  font-weight: bold;
+  font-size: 24px;
+  color: #979797;
+  padding: 20px 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listright span {
+  cursor: pointer;
+}
+
+.listright .icon {
+  right: 0;
+}
+
+.listmore {
+  padding: 10px 0;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listmore p {
+  cursor: pointer;
+  position: relative;
+  color: #f24b6a;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: #ec7c90 2px solid;
+  padding-bottom: 5px;
+}
+
+.arrow-right {
+  top: 55%;
+}
+
+.share {
+  top: 55%;
+}
+
+.listpara p {
+  font-size: 14px;
+  color: #909090;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+#list {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  display: block;
+}
+
+@keyframes accomodation {
+  0% {
+    transform: translateX(-130px);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateX(10px);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes explore {
+  0% {
+    transform: translateX(130px);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateX(-10px);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes join {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateY(-10px);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes person {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateX(-10px);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .listright {
+    padding: 50px 60px;
+  }
+
+  .listmore {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .center {
+    width: 90%;
+  }
+
+  .selectperson {
+    font-size: 24px;
+  }
+
+  .selectperson input {
+    width: 350px;
+    font-size: 14px;
+  }
+
+  .arrowDown {
+    font-size: 15px;
+    top: 40%;
+  }
+
+  .selectperson nav {
+    top: 123%;
+  }
+
+  .selectperson li {
+    font-size: 14px;
+  }
+
+  .bheader p:first-child {
+    font-size: 36px;
+  }
+
+  .bheader p:last-child {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .listitem {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav li {
+    font-size: 12px;
+  }
+
+  #list {
+    height: 100%;
+    max-height: 350px;
+  }
+
+  .banner-arrow {
+    width: 18px;
+    height: 18px;
+  }
+
+  .selectperson input {
+    width: 232px;
+    border-radius: 2px;
+    padding: 10px 0 10px 20px;
+    font-size: 9px;
+  }
+
+  .arrowDown {
+    font-size: 10px;
+  }
+
+  .selectperson nav {
+    top: 100%;
+    border-radius: 2px;
+  }
+
+  .selectperson li {
+    font-size: 9px;
+    padding: 8px 0 8px 20px;
+  }
+
+  .listright {
+    padding: 20px 30px;
+  }
+
+  .arrowDown {
+    right: 12%;
+  }
+
+  .bheader p:first-child {
+    line-height: normal;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* input {
+    font-size: 16px !important;
+  } */
+}
+
+@media screen and (max-width: 500px) {
+  .list-icon {
+    font-size: 35px;
+  }
+
+  .listflex span:last-child {
+    font-size: 11px;
+  }
+
+  .listflex span {
+    margin: 0;
+  }
+
+  .listmore p:last-child {
+    margin-top: 10px;
+  }
+
+  .listpara p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .listmore {
+    display: block;
+  }
+
+  .nav li {
+    padding: 5px 10px;
+  }
+
+  .selectperson input {
+    width: 218px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .center {
+    top: 54%;
+  }
+
+  .center button {
+    margin-top: 10px;
+  }
+
+  .selectperson {
+    margin-top: 25px;
+  }
+
+  .listflex {
+    padding: 6px 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .nav {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 504px) {
+  .nav {
+    display: none;
+  }
+
+  .bheader p:first-child {
+    line-height: normal;
+  }
+
+  .center button {
+    margin-top: 5px;
+  }
+
+  .selectperson {
+    margin-top: 20px;
+  }
+
+  .center {
+    top: 57%;
+  }
+}
+
+@media screen and (max-height: 470px) {
+  .bheader p:last-child {
+    display: none;
+  }
+
+  .selectperson {
+    display: none;
+  }
+}

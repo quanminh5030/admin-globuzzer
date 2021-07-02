@@ -8,9 +8,9 @@ export const createNew = async (collection, doc) => {
 
 // update a doc in db
 export const updateData = async (collection, currentDoc, updatedDoc) => {
-  if(currentDoc.id) {
-  await firestore.collection(collection).doc(currentDoc.id).update({...currentDoc, ...updatedDoc})
-}
+  if (currentDoc.id) {
+    await firestore.collection(collection).doc(currentDoc.id).update({ ...currentDoc, ...updatedDoc })
+  }
 };
 
 // delete doc from db
@@ -26,33 +26,33 @@ export const readData = async (collection, id) => {
   const itemRef = firestore.collection(collection);
   const snapshot = await itemRef.where('id', '==', id).get();
   let docId = ""
-if (snapshot.empty) {
-  console.log('No matching documents.');
-  return;
-}  
-snapshot.forEach(doc => {
-  // console.log(doc.id, '=>', doc.data());
- docId = doc.id
-});
-return docId
+  if (snapshot.empty) {
+    console.log('No matching documents.');
+    return;
+  }
+  snapshot.forEach(doc => {
+    // console.log(doc.id, '=>', doc.data());
+    docId = doc.id
+  });
+  return docId
 };
 
 // update a certain key in an object -->>
 export const updateObject = (obj, key, value) => {
-   const updatedObj = {...obj, [key]: value};
-   return updatedObj;
+  const updatedObj = { ...obj, [key]: value };
+  return updatedObj;
 };
 // obj[key] = value
 
 // object update inside an object
 export const updObj = (obj, key, value) => {
-  const myObj = {...obj};
+  const myObj = { ...obj };
   myObj[key] = value;
   return myObj;
 };
 // array update inside an object
 export const updArr = (arr, index, value) => {
-// console.log(Array.isArray(a))
+  // console.log(Array.isArray(a))
   const myArr = [...arr];
   myArr[index] = value;
   return myArr;
