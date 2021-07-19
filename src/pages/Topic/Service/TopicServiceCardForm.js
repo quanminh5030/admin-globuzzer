@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './FeatureCardForm.module.css'
 
 const TopicServiceCardForm = ({
-  setShow, currentFeatureCard, onFileChange, updateFeatureCard, title, uploadLabel, textLabel, uploadDescription, deleteTopicCard
+  setShow, currentFeatureCard, onFileChange, updateFeatureCard, title, uploadLabel, textLabel, uploadDescription, deleteTopicCard, show, setLoading
 }) => {
 
   const [data, setData] = useState(currentFeatureCard);
@@ -23,7 +23,7 @@ const TopicServiceCardForm = ({
     updateFeatureCard(data)
   }
 
-  console.log('from service card', title, uploadLabel)
+  console.log('show', show)
 
   return (
     <div className={styles.feature_card}>
@@ -60,6 +60,17 @@ const TopicServiceCardForm = ({
               name="link"
               className={styles.title_input}
               value={data.link}
+              onChange={inputHandler}
+            />
+          </div>
+
+          <div className={styles.editBox}>
+            <p>Content</p>
+            <textarea
+              style={{width: '100%'}}
+              rows='4'
+              name='content'
+              value={data.content}
               onChange={inputHandler}
             />
           </div>
@@ -103,7 +114,10 @@ const TopicServiceCardForm = ({
         <span>
           <button
             className={styles.btn_cancel}
-            onClick={() => setShow(false)}
+            onClick={() => {
+              setShow(false)
+            }
+            }
           >
             Cancel
           </button>

@@ -6,8 +6,11 @@ import TopicServiceCardForm from '../../Service/TopicServiceCardForm';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddTopicCardForm from '../../Service/AddTopicCardForm';
+import { useParams } from 'react-router-dom';
 
 const OtherTopics = () => {
+  const { cityId } = useParams();
+
   const [topics, setTopics] = useState([]);
   const [currentTopic, setCurrentTopic] = useState({});
 
@@ -25,12 +28,12 @@ const OtherTopics = () => {
   }, [showEditForm])
 
   const getData = async () => {
-    const doc = await firestore.collection('topic_items').doc('accomodation').get();
+    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
 
     if (!doc.exists) {
       console.log('no exist');
     } else {
-      setTopics(doc.data().helsinki.otherTopics)
+      setTopics(doc.data().otherTopic)
     }
   }
 
@@ -62,7 +65,7 @@ const OtherTopics = () => {
             setShow={setShowEditForm}
           />
         </div>
-        : undefined
+        : <div></div>
     )
   }
 
@@ -71,8 +74,8 @@ const OtherTopics = () => {
 
     const updatedTopics = topics.filter(topic => topic.id !== id)
 
-    return firestore.collection('topic_items').doc('accomodation').update({
-      'helsinki.otherTopics': updatedTopics
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      otherTopic: updatedTopics
     })
 
   }
@@ -104,8 +107,8 @@ const OtherTopics = () => {
       return topic.id === updatedCard.id ? { ...updatedCard, img: fileUrl || updatedCard.img } : topic;
     })
 
-    return firestore.collection('topic_items').doc('accomodation').update({
-      'helsinki.otherTopics': updatedTopics
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      otherTopic: updatedTopics
     })
   }
 
@@ -125,7 +128,7 @@ const OtherTopics = () => {
             setShow={setShowAddTopicForm}
           />
         </div>
-        : undefined
+        : <div></div>
     )
   }
 
@@ -135,8 +138,8 @@ const OtherTopics = () => {
     const maxId = topics.reduce((acc, current) => Math.max(acc, current.id)
       , 0);
 
-    return firestore.collection('topic_items').doc('accomodation').update({
-      'helsinki.otherTopics': [...topics, { ...newCard, img: newImgUrl, id: maxId + 1 }]
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      otherTopic: [...topics, { ...newCard, img: newImgUrl, id: maxId + 1 }]
     })
   }
 
@@ -186,9 +189,12 @@ const OtherTopics = () => {
                 </div>
               </div>
             </a>
+
+
             <div className={others.editBox}>
               {onSelectedService()}
             </div>
+
 
           </Fragment>
         ))}

@@ -86,7 +86,7 @@ const VideoArticleServiceCard = ({
           </div>
 
           <div className={styles.editBox}>
-            <p>Author image</p>
+            <p style={{ width: '40%' }}>Author image</p>
             <div className={styles.upload_btn_wrapper}>
               <input
                 type="file"
@@ -136,18 +136,18 @@ const VideoArticleServiceCard = ({
 
               <div className={styles.editBox}>
                 <p style={{ width: '50%' }}>Content</p>
-                <input
-                  type="text"
+                <textarea
                   name="content"
-                  className={styles.heading_input}
+                  className={styles.textarea_input}
                   value={content}
                   onChange={inputHandler2}
+                  rows='5'
                 />
               </div>
 
 
               <div className={styles.editBox}>
-                <p>Sub image</p>
+                <p style={{width: '40%'}}>Sub image</p>
                 <div className={styles.upload_btn_wrapper}>
                   <input
                     type="file"

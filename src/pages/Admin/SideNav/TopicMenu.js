@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 const theme = createMuiTheme({
   overrides: {
-
     MuiMenu: {
       paper: {
         backgroundColor: '#716D6D',
@@ -17,24 +16,23 @@ const theme = createMuiTheme({
 })
 
 
-const TopicMenu = ({ anchorElCountries, setAnchorElCountries, setIconDisplay }) => {
+const TopicMenu = ({ anchorElCountries, setAnchorElCountries, setIconDisplay, anchorElTopics, setAnchorElTopics }) => {
   const topics = HelsinkiTopicData;
   const cities = useFetch('cities');
 
-  const [anchorElTopics, setAnchorElTopics] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedCountryIndex, setSelectedCountryIndex] = useState(-1);
   const [selectedTopicIndex, setSelectedTopicIndex] = useState(-1);
 
-  const showTopics = event => {
-    setAnchorElTopics(event.currentTarget)
-  }
+  // const showTopics = event => {
+  //   setAnchorElTopics(event.currentTarget)
+  // }
 
-  const handleCloseCountry = () => {
-    setAnchorElCountries(null);
-    setIconDisplay(false)
-  }
+  // const handleCloseCountry = () => {
+  //   setAnchorElCountries(null);
+  //   setIconDisplay(false)
+  // }
 
   const handleCloseTopic = () => {
     setAnchorElTopics(null)
@@ -42,30 +40,6 @@ const TopicMenu = ({ anchorElCountries, setAnchorElCountries, setIconDisplay }) 
 
   return (
     <ThemeProvider theme={theme}>
-      <Menu
-        id='simple-menu'
-        anchorEl={anchorElCountries}
-        anchorOrigin={{ vertical: 'center', horizontal: 'right' }}
-        getContentAnchorEl={null}
-        open={Boolean(anchorElCountries)}
-        onClose={handleCloseCountry}
-      >
-        {cities.items.length > 0 && cities.items.map((city, index) =>
-          <MenuItem
-            selected={selectedCountryIndex === index}
-            style={(selectedCountryIndex === index) ? { backgroundColor: '#4BC4BE' } : { backgroundColor: '#716D6D' }}
-            key={city.id}
-            onClick={event => {
-              setSelectedCountry(city.name)
-              setSelectedCountryIndex(index)
-              showTopics(event)
-            }}>
-            {city.name}
-          </MenuItem>
-        )}
-
-      </Menu>
-
       <Menu
         id='simple-menu'
         anchorEl={anchorElTopics}
@@ -76,7 +50,7 @@ const TopicMenu = ({ anchorElCountries, setAnchorElCountries, setIconDisplay }) 
       >
         {topics.length > 0 && topics.map((topic, index) =>
           <Link
-            to={`/topic/${selectedCountry}/accomodation`}
+            to={`/topic/${topic.title.toLowerCase()}/`}
             style={{ color: 'white' }}
             key={index}
           >

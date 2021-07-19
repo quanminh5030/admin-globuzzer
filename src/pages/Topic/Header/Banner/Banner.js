@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import playButton from '../../../assets/Topic/Menu/playButton.png';
+import playButton from '../../../../assets/Topic/Menu/playButton.png';
 import banner from './banner.module.css';
 import { IconContext } from 'react-icons/lib';
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -7,12 +7,14 @@ import {
   IoIosArrowForward,
 } from "react-icons/io";
 import YouTube from 'react-youtube';
-import { app, firestore } from '../../../utils/firebase.utils';
-import { EditContext } from '../../../contexts/editContext';
-import { sizeTransform } from '../../../utils/sizeTransform';
-import TopicServiceCardForm from '../Service/TopicServiceCardForm';
+import { app, firestore } from '../../../../utils/firebase.utils';
+import { EditContext } from '../../../../contexts/editContext';
+import { sizeTransform } from '../../../../utils/sizeTransform';
+import TopicServiceCardForm from '../../Service/TopicServiceCardForm';
+import { useParams } from 'react-router-dom';
 
 const Banner = () => {
+  const { cityId, city } = useParams();
   const [current, setCurrent] = useState('visa issue');
   const [video, setVideo] = useState({
     playVideo: false,
@@ -24,8 +26,8 @@ const Banner = () => {
 
   //edit stuff
   const { editStyle, editMode } = useContext(EditContext);
-  const [show, setShow] = useState(false);
   const [currentFeatureCard, setCurrentFeatureCard] = useState([]);
+  const [showEditForm, setShowEditForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [currentServiceCard, setCurrentServiceCard] = useState([])
 
@@ -43,22 +45,22 @@ const Banner = () => {
 
   useEffect(() => {
     getData();
-  }, [show])
+  }, [loading])
 
   const getData = async () => {
-    const doc = await firestore.collection('topic_items').doc('accomodation').get();
+    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
 
     if (!doc.exists) {
       setLoading(true);
     } else {
-      const init = doc.data().helsinki.videos.filter(d => d.id === 1)
+      const init = doc.data().banner.filter(b => b.id === 1)
       setData(init)
-      setList(doc.data().helsinki)
+      setList(doc.data())
     }
   }
 
   const changeList = currentList => {
-    const init = list.videos.filter(d => d.title.toLocaleLowerCase() === currentList)
+    const init = list.banner.filter(d => d.title.toLocaleLowerCase() === currentList)
     setData(init)
 
     setCurrent(currentList)
@@ -99,7 +101,7 @@ const Banner = () => {
   }
 
   const openVideosEditForm = item => {
-    setShow(true);
+    setShowEditForm(true);
     setCurrentFeatureCard({
       id: item.id,
       title: item.title,
@@ -127,13 +129,14 @@ const Banner = () => {
   }
 
   const updateServiceCard = (updatedFeatureCard) => {
+    setLoading(!loading);
     setShowServiceForm(false);
-    const updatedCard = list.videos.map(video => {
-      return video.id === updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, icon: iconUrl || updatedFeatureCard.icon } : video;
+    const updatedCard = list.banner.map(b => {
+      return b.id === updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, icon: iconUrl || updatedFeatureCard.icon } : b;
     })
 
-    return firestore.collection('topic_items').doc('accomodation').update({
-      'helsinki.videos': updatedCard
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      banner: updatedCard
     })
   }
 
@@ -153,14 +156,15 @@ const Banner = () => {
   const onSelectedCard = (item, currentCard) => {
     return (
       (item.id === currentCard.id &&
-        show && editMode) ?
+        showEditForm && editMode) ?
         <div>
           <TopicServiceCardForm
             title='Videos'
             uploadLabel='Cover image'
             textLabel='Title'
             uploadDescription='(The image has to be below 200 KB and PNG/JPG format)'
-            setShow={setShow}
+            show={showEditForm}
+            setShow={setShowEditForm}
             currentFeatureCard={currentFeatureCard}
             updateFeatureCard={updateFeatureCard}
             onFileChange={onFileChange}
@@ -180,7 +184,9 @@ const Banner = () => {
             uploadLabel='Icon'
             textLabel='Text'
             uploadDescription='The size of the image should be maximum 500kb, and the format need to be PNG, JPG'
+            show={showServiceForm}
             setShow={setShowServiceForm}
+            setLoading={setLoading}
             currentFeatureCard={currentServiceCard}
             updateFeatureCard={updateServiceCard}
             onFileChange={onFileChangeIcon}
@@ -213,27 +219,22 @@ const Banner = () => {
 
   //manage update
   const updateFeatureCard = (updatedFeatureCard) => {
-    console.log('1', show)
-    setShow(!show);
-
-    console.log('2', show)
-
-    const updatedVideos = list.videos.map(video => {
-      console.log(updatedFeatureCard.link.split('='))
+    setLoading(!loading);
+    const updatedVideos = list.banner.map(b => {
       const newVideoId = updatedFeatureCard.link.split('=')[1];
 
-      return video.id === updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, videoId: newVideoId } : video;
+      return b.id === updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, videoId: newVideoId } : b;
     })
 
-    return firestore.collection('topic_items').doc('accomodation').update({
-      'helsinki.videos': updatedVideos
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      banner: updatedVideos
     })
   }
 
   return (
     <section>
       <div className={banner.list}>
-        {list.videos && list.videos.map(item =>
+        {list.banner && list.banner.map(item =>
           <div
             key={item.id}
             onMouseOver={() => {
@@ -245,7 +246,7 @@ const Banner = () => {
             style={{ ...editStyle, ...listStyle(item.title.toLocaleLowerCase()) }}
           >
             <span>
-              <img src={item.icon} alt={item.id} style={{ width: 50 }} />
+              <img src={item.icon} alt={item.title} style={{ width: 50 }} />
             </span>
             <span>{item.title}</span>
 
@@ -278,12 +279,12 @@ const Banner = () => {
             style={{ ...editStyle }}
           >
             <div className={banner.listleft}>
-              <img style={{ width: '100%', height: '100%' }} src={d.img} alt="helsinki" id="list" />
+              <img style={{ width: '100%', height: '100%' }} src={d.img} alt={city} id="list" />
               <div className={banner.listdesc}>
                 <div className={banner.listVid} onClick={() => playVideo(d)}>
                   <img src={playButton} alt="playButton" id="listVid" style={{ height: 53 }} />
                 </div>
-                <p>Accomodation in Helsinki</p>
+                <p>Accomodation in {city}</p>
               </div>
             </div>
 
@@ -316,7 +317,7 @@ const Banner = () => {
             <div>
               {onSelectedCard(d, currentFeatureCard)}
             </div>
-            
+
           </div>
         ))
         )}

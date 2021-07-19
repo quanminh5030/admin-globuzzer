@@ -1,0 +1,288 @@
+.container {
+  margin: 80px auto;
+  width: 90%;
+}
+
+.header {
+  text-align: center;
+  color: #555555;
+  font-size: 36px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.mdetails {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+  padding: 5px 0;
+  align-items: center;
+  cursor: pointer;
+}
+
+.details header {
+  text-align: center;
+  color: #828282;
+  font-size: 24px;
+
+  margin-top: 5px;
+  padding: 5px 0;
+}
+
+.details p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details span {
+  color: #828282;
+  font-size: 14px;
+}
+
+.details img {
+  transition: all 0.3s;
+  width: 130px;
+}
+
+.details img:hover {
+  transform: scale(1.2);
+  filter: sepia(30%);
+}
+
+.bigcircle {
+  margin-top: -60px;
+  width: 110px;
+  height: 110px;
+  position: relative;
+  color: #fff;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
+
+.innercircle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: #f4627d;
+  border-radius: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.innercircle:hover {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+
+.bigcircle p {
+  position: absolute;
+}
+
+.front p {
+  font-size: 80px;
+  left: 29%;
+}
+
+.back p {
+  top: 38%;
+  left: 25%;
+  font-weight: bold;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  padding-bottom: 10px;
+}
+
+.underline {
+  border-bottom: 2px solid #f24b6a;
+  width: 30px;
+  margin: 10px auto;
+}
+
+.bigscreen .redcircle {
+  margin-top: -60px;
+}
+
+.smallscreen {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .bigscreen {
+    display: none;
+  }
+
+  .smallscreen {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details {
+    padding: 10px;
+  }
+
+  .details header {
+    font-size: 14px;
+  }
+
+  .details span {
+    font-size: 9px;
+  }
+
+  .details img {
+    width: 80px;
+  }
+
+  .redcircle {
+    font-size: 70px;
+    padding: 5px 27px;
+  }
+
+  .header {
+    font-size: 24px;
+  }
+
+  .detailsflex {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .detailsflex .details {
+    margin: 0 10px;
+  }
+
+  .redcircle {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+  }
+
+  .redcirclewrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  .redcirclefront,
+  .redcircleback {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #f4627d;
+    color: #fff;
+    border-radius: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+  }
+
+  .redcirclefront {
+    z-index: 2;
+  }
+
+  .redcircleback {
+    -webkit-transform: rotateY(180deg) translateZ(5px);
+    transform: rotateY(180deg) translateZ(5px);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .redcirclewrapper:hover {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(5px);
+  }
+
+  .redcircle p {
+    position: absolute;
+    transform: translateZ(20px);
+  }
+
+  .redcirclefront p {
+    left: 19px;
+    top: 19px;
+  }
+
+  .redcircleback p {
+    font-size: 16px;
+    font-weight: bold;
+    top: 30px;
+    left: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mdetails {
+    width: 100%;
+  }
+
+  .details {
+    padding: 0;
+    text-align: center;
+    width: 90px;
+  }
+
+  .detailsflex .details {
+    margin: 12px 10px;
+  }
+
+  .details img {
+    width: 70px;
+  }
+
+  .redcircle p {
+    transform: translateZ(10px);
+  }
+}
+
+@media screen and (max-width: 359px) {
+  .detailsflex {
+    width: 270px;
+  }
+
+  .detailsflex .details {
+    margin: 5px;
+  }
+
+  .redcircle {
+    width: 75px;
+    height: 75px;
+  }
+
+  .redcirclefront p {
+    left: 16px;
+    top: 16px;
+  }
+
+  .redcircleback p {
+    top: 28px;
+    left: 10px;
+  }
+}

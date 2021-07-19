@@ -8,8 +8,10 @@ import like from '../../../../assets/Topic/like.png'
 import { EditContext } from '../../../../contexts/editContext';
 import HotelServiceCard from '../../Service/HotelServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
+import { useParams } from 'react-router-dom';
 
 const Hotels = () => {
+  const { cityId } = useParams();
   //edit stuff
   const { editStyle, editMode } = useContext(EditContext);
   const [showServiceForm, setShowServiceForm] = useState(false);
@@ -28,13 +30,13 @@ const Hotels = () => {
   }, [showServiceForm])
 
   const getData = async () => {
-    const doc = await firestore.collection('topic_items').doc('accomodation').get();
+    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
 
     if (!doc.exists) {
       console.log('no exist');
     } else {
-      setData(doc.data().helsinki.hotels)
-      setAds(doc.data().helsinki.advertise)
+      setData(doc.data().hotel)
+      setAds(doc.data().advertise)
     }
   }
 
@@ -92,11 +94,11 @@ const Hotels = () => {
 
     const updatedAds = { ...updatedCard, logo: fileUrl || updatedCard.logo };
 
-    return firestore.collection('topic_items').doc('accomodation').update({
-      'helsinki.advertise': updatedAds
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      advertise: updatedAds
     })
 
-    
+
   }
 
   //image handling stuff

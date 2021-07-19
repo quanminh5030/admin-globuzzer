@@ -11,6 +11,8 @@ const SectionItems = ({ currentItems }) => {
   const [clickedCard, setClickedCard] = useState(null);
   const [released, setReleased] = useState([])
 
+  console.log(currentItems)
+
   const deleteWarning = (item) => {
     setClickedCard(item);
     setShowWarning(true);

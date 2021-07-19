@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { EditContext } from '../../../contexts/editContext'
 import "../../../css/Home.css"
 import styles from '../../Section/index.module.css'
-import AccoHeader from '../../Topic/AccoHeader'
+import Header from '../../Topic/Header/Header'
 import Footer from '../../Topic/Footer/Footer'
 import Body from '../../Topic/Main/Body'
 
@@ -12,7 +12,7 @@ const MainAccomodation = () => {
 
   return (
     <div className={styles.section}>
-      <AccoHeader
+      <Header
         contentEditable={editMode ? true : false}
       />
       <Body />

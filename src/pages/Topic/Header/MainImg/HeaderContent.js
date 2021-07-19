@@ -1,32 +1,27 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { firestore } from '../../../../utils/firebase.utils';
 import '../../../../css/Home.css'
-import { createMuiTheme, FormControl, Select, ThemeProvider } from '@material-ui/core'
-import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined';
-import KeyboardArrowUpOutlinedIcon from '@material-ui/icons/KeyboardArrowUpOutlined';
-import { EditContext } from '../../../../contexts/editContext';
+import { IconContext } from "react-icons";
 import TextEdit from '../../../../components/TextEdit/TextEdit';
-import BannerPhotoForm from '../../BannerForm/SectionBannerPhotoForm';
+import { EditContext } from '../../../../contexts/editContext';
+import { useParams } from 'react-router-dom';
+import { IoIosArrowDown } from 'react-icons/io';
+import styles from './headerContent.module.css';
 
-const theme = createMuiTheme({
-  overrides: {
-    MuiInputBase: {
-      input: {
-
-      }
-    }
-  }
-})
-
-const AccomodationTest = ({ contentEditable }) => {
+const HeaderContent = ({ contentEditable }) => {
   const { editStyle, editMode } = useContext(EditContext);
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [iconArrowDown, setIconArrowDown] = useState(true)
   const [showTextForm, setShowTextForm] = useState(false)
   //for the title and subtitle
   const [fetchedTexts, setFetchedTexts] = useState([]);
+  //for the select list
+  const [select, setSelect] = useState('');
+  const [showList, setShowList] = useState(false);
+  const [height, setHeight] = useState("125px");
+
+  const { cityId } = useParams();
 
   const rawText = {
     content: '',
@@ -51,14 +46,14 @@ const AccomodationTest = ({ contentEditable }) => {
 
 
   const getData = async () => {
-    const doc = await firestore.collection('topic_items').doc('accomodation').get(); //hard code for the time being
+    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
     if (!doc.exists) {
       setLoading(true);
     } else {
-      setData(doc.data().helsinki);
+      setData(doc.data());
       setFetchedTexts([
-        { id: 'title', content: doc.data().helsinki.title.content, style: doc.data().helsinki.title.style },
-        { id: 'subtitle', content: doc.data().helsinki.subtitle.content, style: doc.data().helsinki.subtitle.style },
+        { id: 'title', content: doc.data().title.content, style: doc.data().title.style },
+        { id: 'subtitle', content: doc.data().subtitle.content, style: doc.data().subtitle.style },
       ])
     }
   }
@@ -90,10 +85,10 @@ const AccomodationTest = ({ contentEditable }) => {
   const handleSubmitText = async () => {
     switch (currentText.id) {
       case 'title':
-        await firestore.collection('topic_items').doc('accomodation').update({ "helsinki.title.content": currentText.content, "helsinki.title.style": currentText.style });
+        await firestore.collection('accomodation_items').doc(cityId).update({ "title.content": currentText.content, "title.style": currentText.style });
         break;
       case 'subtitle':
-        await firestore.collection('topic_items').doc('accomodation').update({ "helsinki.subtitle.content": currentText.content, "helsinki.subtitle.style": currentText.style });
+        await firestore.collection('accomodation_items').doc(cityId).update({ "subtitle.content": currentText.content, "subtitle.style": currentText.style });
         break;
       default:
         break;
@@ -102,11 +97,22 @@ const AccomodationTest = ({ contentEditable }) => {
     setShowTextForm(false)
   }
 
+
+  //for the selected list
+  const handleSelect = () => {
+    setShowList(!showList);
+  };
+
+  const handleList = (e) => {
+    setSelect(e.target.innerText);
+    setShowList(false);
+  };
+
   return (
     <Fragment>
       <div
         className='section_header'
-        style={{ backgroundImage: `url(${data.banner})` }}
+        style={{ backgroundImage: `url(${data.mainImg || data.bannerImg})` }}
       >
         {/* texts part */}
         <div className='headers' style={{ textAlign: 'center' }}>
@@ -136,24 +142,39 @@ const AccomodationTest = ({ contentEditable }) => {
           </a>
         </div>
 
-        {/* select options */}
-        <div style={{ marginTop: 50 }}>
-          <span style={{ marginRight: 7, fontSize: 24 }}>I am a</span>
-
+        <div className={styles.selectperson}>
+          <span>I am a</span>
           <span>
-            <ThemeProvider theme={theme}>
-              <FormControl variant='outlined'>
-                <Select
-                  native
-                  variant='filled'
-                  style={{ color: '#2f2f2f', borderRadius: 10, borderColor: 'white', backgroundColor: 'white', height: 40, verticalAlign: 'center', paddingBottom: 17 }}
-                  IconComponent={iconArrowDown ? KeyboardArrowDownOutlinedIcon : KeyboardArrowUpOutlinedIcon}
-                  onClick={() => setIconArrowDown(!iconArrowDown)}
-                >
-                  {data.options && data.options.map((b, index) => <option key={index}>{b}</option>)}
-                </Select>
-              </FormControl>
-            </ThemeProvider>
+            <input
+              type="text"
+              placeholder="Person who will stay for a long term"
+              value={select}
+              readOnly={true}
+              onClick={handleSelect}
+            />
+
+            <IconContext.Provider
+              value={{
+                className: "arrowDown",
+                style: { transform: showList && "rotate(180deg)" },
+              }}
+            >
+              <IoIosArrowDown className={styles.arrowDown} />
+            </IconContext.Provider>
+
+            <nav style={{ height: showList && height }}>
+              <ul>
+                <li onClick={handleList}>
+                  Person who will stay for a long term
+                </li>
+                <li onClick={handleList}>
+                  Person who will stay for a short term
+                </li>
+                <li onClick={handleList}>
+                  Person who is a student
+                </li>
+              </ul>
+            </nav>
           </span>
         </div>
 
@@ -162,4 +183,4 @@ const AccomodationTest = ({ contentEditable }) => {
   )
 }
 
-export default AccomodationTest
+export default HeaderContent

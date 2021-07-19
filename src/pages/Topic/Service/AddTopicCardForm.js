@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './FeatureCardForm.module.css'
 
 const AddTopicCardForm = ({
@@ -88,7 +88,7 @@ const AddTopicCardForm = ({
         </span>
         <div className={styles.vertical} />
         <span>
-          <button
+        <button
             className={styles.btn_cancel}
             onClick={() => setShow(false)}
           >

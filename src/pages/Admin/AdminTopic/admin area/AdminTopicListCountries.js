@@ -1,11 +1,12 @@
-import React from "react";
-import SideNav from "../SideNav/SideNav";
-import styles from '../AdminSection/AdminSection.module.css';
-import { IoMdArrowDropright } from "react-icons/io";
-import { Link } from "react-router-dom";
-import TopNav from "../TopNav/TopNav";
+import React from 'react';
+import { IoMdArrowDropright } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import SideNav from '../../SideNav/SideNav';
+import TopNav from '../../TopNav/TopNav';
+import styles from './AdminTopic.module.css';
+import TopicMain from './TopicMain';
 
-const AdminTopic = () => {
+const AdminTopicListCountries = () => {
 
   return (
     <div className={styles.wrapper}>
@@ -17,7 +18,7 @@ const AdminTopic = () => {
             className={styles.dashboardLink}
           >
             Dashboard
-            </Link>
+          </Link>
           <IoMdArrowDropright color="#F26678" size="25px" />
           <Link
             to="/topic"
@@ -31,9 +32,13 @@ const AdminTopic = () => {
         <section className={styles.sidenav}>
           <SideNav />
         </section>
+        <section className={styles.main}>
+          <TopicMain />
+        </section>
       </div>
     </div>
+
   )
 }
 
-export default AdminTopic
+export default AdminTopicListCountries

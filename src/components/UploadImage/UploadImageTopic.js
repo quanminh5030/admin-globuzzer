@@ -5,6 +5,7 @@ import edit from './UploadImage.module.css';
 
 
 function UploadImageTopic({ setShowPhotoForm, showPhotoForm, style, typeValidation, sizeValidation, collection, doc, message, title }) {
+
   const [fileUrl, setFileUrl] = useState(null);
   const photoFormStyle = !showPhotoForm ? { display: "none" } : {};
 
@@ -13,7 +14,7 @@ function UploadImageTopic({ setShowPhotoForm, showPhotoForm, style, typeValidati
     e.preventDefault();
     const getCollection = firestore.collection(collection);
     await getCollection.doc(doc).update({
-      "helsinki.banner": fileUrl
+      mainImg: fileUrl
     })
     console.log("file saved:", fileUrl)
     setShowPhotoForm(false);

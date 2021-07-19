@@ -4,6 +4,7 @@ import { IconContext } from "react-icons";
 import { RiShareForwardBoxFill } from "react-icons/ri";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { EditContext } from "../../../../contexts/editContext";
+import { Fragment } from "react";
 
 const ArticleCard = ({
   render,
@@ -22,12 +23,12 @@ const ArticleCard = ({
   const { editMode, editStyle } = useContext(EditContext);
 
   return render.map((article, index) => (
-    <>
+    <Fragment key={index}>
       <div
         className={!editMode ? videos.articleCard : videos.articleCardEdit}
         key={article.id}
         onMouseOver={() => articleHover(article)}
-        style={{...editStyle}}
+        style={{ ...editStyle }}
       // ref={artRef}
 
       >
@@ -89,7 +90,7 @@ const ArticleCard = ({
         }
       </div>
 
-    </>
+    </Fragment>
   ));
 }
 

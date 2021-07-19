@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import TopicMenu from './TopicMenu';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-const SideNav = ({iconTopic}) => {
+const SideNav = ({ iconTopic }) => {
+  
+  const [anchorElTopics, setAnchorElTopics] = useState(null);
 
-  const [anchorElCountries, setAnchorElCountries] = useState(null);
   const [iconDisplay, setIconDisplay] = useState(false)
 
-  const showCountries = event => {
-    setAnchorElCountries(event.currentTarget)
+  const showTopics = event => {
+    setAnchorElTopics(event.currentTarget)
   }
 
   return (
@@ -27,7 +28,7 @@ const SideNav = ({iconTopic}) => {
           to='/topic'
           onClick={() => setIconDisplay(true)}
         >
-          <li onClick={showCountries} className={styles.topic}>
+          <li onClick={showTopics} className={styles.topic}>
             {iconDisplay || iconTopic ?
               <ArrowRightIcon
                 fontSize='large'
@@ -39,8 +40,8 @@ const SideNav = ({iconTopic}) => {
           </li>
           <TopicMenu
             setIconDisplay={setIconDisplay}
-            anchorElCountries={anchorElCountries}
-            setAnchorElCountries={setAnchorElCountries}
+            anchorElTopics={anchorElTopics}
+            setAnchorElTopics={setAnchorElTopics}
           />
         </Link>
         <li className={styles.other}>Other page</li>

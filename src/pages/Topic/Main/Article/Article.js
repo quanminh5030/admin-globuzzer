@@ -16,9 +16,12 @@ import Slider from 'react-slick';
 import { EditContext } from '../../../../contexts/editContext';
 import VideoArticleServiceCard from '../../Service/VideoArticleServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
+import { useParams } from 'react-router-dom';
 
 
 const Article = () => {
+  const { cityId } = useParams();
+
   //for edit stuff
   const { editStyle, editMode } = useContext(EditContext);
   const [showServiceForm, setShowServiceForm] = useState(false);
@@ -73,15 +76,15 @@ const Article = () => {
 
   //for the right slider article
   const settings = {
-    arrows: false,
     dots: true,
+    dotsClass: "slider-dots",
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    dotsClass: videos.slideDots
+    arrows: false,
   };
 
   useEffect(() => {
@@ -107,15 +110,15 @@ const Article = () => {
   }, []);
 
   const getData = async () => {
-    const doc = await firestore.collection('topic_items').doc('accomodation').get();
+    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
 
     if (!doc.exists) {
       console.log('no');
     } else {
-      setData(doc.data().helsinki.videoBodyData)
-      setVideoData(doc.data().helsinki.videoBodyData)
-      setArticleData(doc.data().helsinki.articleBodyData)
-      setSlideShow(doc.data().helsinki.slide)
+      setData(doc.data().videoData)
+      setVideoData(doc.data().videoData)
+      setArticleData(doc.data().articleData)
+      setSlideShow(doc.data().slide)
     }
   }
 
@@ -160,7 +163,7 @@ const Article = () => {
     newArticle.liked = !newArticle.liked;
     setData(allData)
 
-    // firestore.collection('topic_items').doc('accomodation').update({})
+    // firestore.collection('accomodation_items').doc('cityId').update({})
   }
 
   const showArticle = (art, index) => {
@@ -415,25 +418,25 @@ const Article = () => {
     const newVideoId = updatedCard.link.split('=')[1].split('&')[0];
 
     if (!updatedCard.article) {
-      console.log('QQQQQQQQQQQQQQQQQQ')
       const updatedVideos = videoData.map(video => {
 
         return video.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId } : video;
       })
 
-      return firestore.collection('topic_items').doc('accomodation').update({
-        'helsinki.videoBodyData': updatedVideos
+      return firestore.collection('accomodation_items').doc(cityId).update({
+        videoData: updatedVideos
       })
     }
 
     else {
       const updatedArticles = articleData.map(article => {
+        console.log(article)
 
-        return article.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId, [article.img.path]: subImg } : article;
+        return article.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId, [article.article.img.path]: subImg } : article;
       })
 
-      return firestore.collection('topic_items').doc('accomodation').update({
-        'helsinki.articleBodyData': updatedArticles
+      return firestore.collection('accomodation_items').doc(cityId).update({
+        articleData: updatedArticles
       })
     }
 

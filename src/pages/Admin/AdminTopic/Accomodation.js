@@ -1,39 +1,35 @@
 import React, { useContext, useEffect, useState } from "react";
 import SideNav from "../SideNav/SideNav";
-import styles from './AdminTopic.module.css';
+import styles from './admin area/AdminTopic.module.css';
 import { IoMdArrowDropright } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 import TopNav from "../TopNav/TopNav";
 import { EditContext } from "../../../contexts/editContext";
 import MainAccomodation from "./MainAccomodation";
 import { firestore } from "../../../utils/firebase.utils";
-import { readData } from "../../../utils/actions.firebase";
 
 const Accomodation = () => {
 
-  const { city, topic } = useParams();
-  const { editMode, handleEditMode, setEditMode } = useContext(EditContext);
+  const { city, cityId } = useParams();
+  const { editMode, handleEditMode, setEditMode } = useContext(EditContext)
 
   const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getCurrentCity = async () => {
-      const doc = await firestore.collection('topic_items').doc('accomodation').get();
+      const doc = await firestore.collection('accomodation_items').doc(cityId).get();
       if (!doc.exists) {
         setLoading(true);
       } else {
-        setFetchedCurrentCity(doc.data().helsinki);
+        setFetchedCurrentCity(doc.data());
         setLoading(false);
       }
     };
     getCurrentCity();
-  }, []);
+  }, [loading]);
 
   const releaseNewInfo = async () => {
-    // const check = await readData('accomodation_live', 'VkFL9pzz7BGkqjAYGhna');
-
-    // console.log(check)
 
     await firestore.collection('accomodation_live').doc('VkFL9pzz7BGkqjAYGhna').update(currentCity)
 
@@ -82,7 +78,7 @@ const Accomodation = () => {
           {!editMode ?
             (<button className={styles.editBtn} onClick={handleEditMode}>Edit it</button>) :
             (<div>
-              <button className={styles.svrBtn}>Save it</button>
+              <button className={styles.svrBtn} onClick={() => setEditMode(false)}>Save it</button>
               <button className={styles.svrBtn} onClick={() => setEditMode(false)}>View it</button>
               <button className={styles.svrBtn} onClick={releaseNewInfo}>Release it</button>
             </div>
