@@ -105,6 +105,138 @@ export const dataObj = {
       videoId: 'yawXq5TlgBU',
     },
 
+    {
+      article: {
+        articleId: uuidv4(),
+        articleLink: 'https://www.google.com/',
+        content: 'Lorem ipsum...',
+        title: 'Article  subtitle here',
+        img: {
+          path: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fcard_banner.png?alt=media&token=d50139b2-17b4-4d2a-bfab-13655d3d51d2',
+          title: 'Some text below image',
+        }
+      },
+      id: uuidv4(),
+      imgPath: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Farticle_bg.jpg?alt=media&token=0394596e-45fa-4a49-9a95-04970f3a6444',
+      liked: false,
+      likes: 0,
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      name: 'Username',
+      title: 'Article main title here',
+      userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FwomanBlack.png?alt=media&token=02af702c-c05e-4c5c-b888-96ff10863f7f',
+      videoId: 'yawXq5TlgBU',
+    },
+
+    {
+      article: {
+        articleId: uuidv4(),
+        articleLink: 'https://www.google.com/',
+        content: 'Lorem ipsum...',
+        title: 'Article  subtitle here',
+        img: {
+          path: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fcard_banner.png?alt=media&token=d50139b2-17b4-4d2a-bfab-13655d3d51d2',
+          title: 'Some text below image',
+        }
+      },
+      id: uuidv4(),
+      imgPath: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Farticle_bg.jpg?alt=media&token=0394596e-45fa-4a49-9a95-04970f3a6444',
+      liked: false,
+      likes: 0,
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      name: 'Username',
+      title: 'Article main title here',
+      userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FwomanBlack.png?alt=media&token=02af702c-c05e-4c5c-b888-96ff10863f7f',
+      videoId: 'yawXq5TlgBU',
+    },
+
+    {
+      article: {
+        articleId: uuidv4(),
+        articleLink: 'https://www.google.com/',
+        content: 'Lorem ipsum...',
+        title: 'Article  subtitle here',
+        img: {
+          path: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fcard_banner.png?alt=media&token=d50139b2-17b4-4d2a-bfab-13655d3d51d2',
+          title: 'Some text below image',
+        }
+      },
+      id: uuidv4(),
+      imgPath: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Farticle_bg.jpg?alt=media&token=0394596e-45fa-4a49-9a95-04970f3a6444',
+      liked: false,
+      likes: 0,
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      name: 'Username',
+      title: 'Article main title here',
+      userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FwomanBlack.png?alt=media&token=02af702c-c05e-4c5c-b888-96ff10863f7f',
+      videoId: 'yawXq5TlgBU',
+    },
+
+    {
+      article: {
+        articleId: uuidv4(),
+        articleLink: 'https://www.google.com/',
+        content: 'Lorem ipsum...',
+        title: 'Article  subtitle here',
+        img: {
+          path: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fcard_banner.png?alt=media&token=d50139b2-17b4-4d2a-bfab-13655d3d51d2',
+          title: 'Some text below image',
+        }
+      },
+      id: uuidv4(),
+      imgPath: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Farticle_bg.jpg?alt=media&token=0394596e-45fa-4a49-9a95-04970f3a6444',
+      liked: false,
+      likes: 0,
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      name: 'Username',
+      title: 'Article main title here',
+      userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FwomanBlack.png?alt=media&token=02af702c-c05e-4c5c-b888-96ff10863f7f',
+      videoId: 'yawXq5TlgBU',
+    },
+
+    {
+      article: {
+        articleId: uuidv4(),
+        articleLink: 'https://www.google.com/',
+        content: 'Lorem ipsum...',
+        title: 'Article  subtitle here',
+        img: {
+          path: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fcard_banner.png?alt=media&token=d50139b2-17b4-4d2a-bfab-13655d3d51d2',
+          title: 'Some text below image',
+        }
+      },
+      id: uuidv4(),
+      imgPath: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Farticle_bg.jpg?alt=media&token=0394596e-45fa-4a49-9a95-04970f3a6444',
+      liked: false,
+      likes: 0,
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      name: 'Username',
+      title: 'Article main title here',
+      userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FwomanBlack.png?alt=media&token=02af702c-c05e-4c5c-b888-96ff10863f7f',
+      videoId: 'yawXq5TlgBU',
+    },
+
+    {
+      article: {
+        articleId: uuidv4(),
+        articleLink: 'https://www.google.com/',
+        content: 'Lorem ipsum...',
+        title: 'Article  subtitle here',
+        img: {
+          path: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fcard_banner.png?alt=media&token=d50139b2-17b4-4d2a-bfab-13655d3d51d2',
+          title: 'Some text below image',
+        }
+      },
+      id: uuidv4(),
+      imgPath: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Farticle_bg.jpg?alt=media&token=0394596e-45fa-4a49-9a95-04970f3a6444',
+      liked: false,
+      likes: 0,
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      name: 'Username',
+      title: 'Article main title here',
+      userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FwomanBlack.png?alt=media&token=02af702c-c05e-4c5c-b888-96ff10863f7f',
+      videoId: 'yawXq5TlgBU',
+    },
+
   ],
 
   banner: [
@@ -147,6 +279,26 @@ export const dataObj = {
   ],
 
   hotel: [
+    {
+      distance: 0,
+      id: uuidv4(),
+      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+      link: '',
+      price: 0,
+      rating: 0,
+      recommended: 'Insert the recommendation here...',
+      title: 'Insert the title...',
+    },
+    {
+      distance: 0,
+      id: uuidv4(),
+      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+      link: '',
+      price: 0,
+      rating: 0,
+      recommended: 'Insert the recommendation here...',
+      title: 'Insert the title...',
+    },
     {
       distance: 0,
       id: uuidv4(),

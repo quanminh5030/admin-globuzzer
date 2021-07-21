@@ -9,12 +9,16 @@ import { EditContext } from '../../../../contexts/editContext';
 import HotelServiceCard from '../../Service/HotelServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import { useParams } from 'react-router-dom';
+import HotelServiceCard2 from '../../Service/HotelServiceCard2';
+import { Fragment } from 'react';
 
 const Hotels = () => {
   const { cityId } = useParams();
   //edit stuff
   const { editStyle, editMode } = useContext(EditContext);
-  const [showServiceForm, setShowServiceForm] = useState(false);
+  const [showAdsServiceForm, setShowAdsServiceForm] = useState(false);
+  const [showHotelServiceForm, setShowHotelServiceForm] = useState(false);
+
   const [currentServiceCard, setCurrentServiceCard] = useState([]);
   const [fileUrl, setFileUrl] = useState('');
 
@@ -23,11 +27,10 @@ const Hotels = () => {
 
   const [data, setData] = useState([]);
   const [ads, setAds] = useState({});
-  const [alertMsg, setAlertMsg] = useState('');
 
   useEffect(() => {
     getData()
-  }, [showServiceForm])
+  }, [showAdsServiceForm, showHotelServiceForm])
 
   const getData = async () => {
     const doc = await firestore.collection('accomodation_items').doc(cityId).get();
@@ -60,7 +63,7 @@ const Hotels = () => {
   }
 
   const openServiceEditForm = () => {
-    setShowServiceForm(true);
+    setShowAdsServiceForm(true);
 
     setCurrentServiceCard({
       link: ads.link,
@@ -73,13 +76,13 @@ const Hotels = () => {
 
   const onSelectedService = () => {
     return (
-      (showServiceForm && editMode) ?
+      (showAdsServiceForm && editMode) ?
         <div>
           <HotelServiceCard
             title='Advertisement'
             uploadLabel='Logo'
             uploadDescription=' (The image has to be below 200 KB and PNG/JPG format) '
-            setShow={setShowServiceForm}
+            setShow={setShowAdsServiceForm}
             currentFeatureCard={currentServiceCard}
             updateFeatureCard={updateServiceCard}
             onFileChange={onFileChange}
@@ -90,7 +93,7 @@ const Hotels = () => {
   }
 
   const updateServiceCard = updatedCard => {
-    setShowServiceForm(false);
+    setShowAdsServiceForm(false);
 
     const updatedAds = { ...updatedCard, logo: fileUrl || updatedCard.logo };
 
@@ -121,11 +124,59 @@ const Hotels = () => {
     }
   }
 
+  //for hotel handling
+  const openHotelEditForm = item => {
+    setShowHotelServiceForm(true);
+
+    setCurrentServiceCard({
+      id: item.id,
+      distance: item.distance,
+      img: item.img,
+      link: item.link,
+      price: item.price,
+      rating: item.rating,
+      recommended: item.recommended,
+      title: item.title
+    })
+  }
+
+  const onHotelService = () => {
+    return (
+      (showHotelServiceForm && editMode) ?
+        <div>
+          <HotelServiceCard2
+            title='Hotel'
+            uploadLabel='Image'
+            uploadDescription=' (The image has to be below 200 KB and PNG/JPG format) '
+            setShow={setShowHotelServiceForm}
+            currentFeatureCard={currentServiceCard}
+            updateFeatureCard={updateHotelCard}
+            onFileChange={onFileChange}
+          />
+        </div>
+        : <div></div>
+    )
+  }
+
+  const updateHotelCard = updatedCard => {
+    setShowHotelServiceForm(false);
+
+    const updatedHotels = data.map(hotel => {
+      return hotel.id === updatedCard.id ? { ...updatedCard, img: fileUrl || updatedCard.img } : hotel;
+    })
+
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      hotel: updatedHotels
+    })
+  }
+
   return (
     <section className={hotel.hotel}>
       <header className={hotel.header}>
         {window.innerWidth <= 515 ? 'Hotels & hostels' : 'Find suitable hotels'}
         <div className={hotel.underline}></div>
+
+        
       </header>
 
       <div className={hotel.check}>
@@ -172,32 +223,41 @@ const Hotels = () => {
       <div className={hotel.hotelflex}>
         <div
           className={hotel.hotelist}
-          style={!editMode ? { cursor: 'pointer' } : {}}
+          style={{ ...editStyle }}
         >
           {data.map(d => (
-            <div
-              className={!editMode ? hotel.hotelitems : hotel.hotelitemsEdit} key={d.id}
-            >
-              <div className={hotel.hoteleft}>
-                <img src={d.img} alt={d.title} />
-                {d.recommended && <p>{d.recommended}</p>}
-              </div>
+            <Fragment key={d.id}>
+              <div
+                className={!editMode ? hotel.hotelitems : hotel.hotelitemsEdit}
+                key={d.id}
+                onClick={editMode ? () => openHotelEditForm(d) : undefined}
+              >
+                <div className={hotel.hoteleft}>
+                  <img src={d.img} alt={d.title} />
+                  {d.recommended && <p>{d.recommended}</p>}
+                </div>
 
-              <div className={hotel.hotelright}>
-                <header>{d.title}</header>
+                <div className={hotel.hotelright}>
+                  <header>{d.title}</header>
 
-                <div className={hotel.rightp}>
-                  <p>{d.distance} km from city center</p>
-                  <p>Price: {hotelPrice(d.price)}</p>
-                  <p>
-                    {" "}
-                    {_.range(d.rating).map(r => (
-                      <img src={like} alt='like' key={r} />
-                    ))}
-                  </p>
+                  <div className={hotel.rightp}>
+                    <p>{d.distance} km from city center</p>
+                    <p>Price: {hotelPrice(d.price)}</p>
+                    <p>
+                      {" "}
+                      {_.range(d.rating).map(r => (
+                        <img src={like} alt='like' key={r} />
+                      ))}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+              {d.id === currentServiceCard.id &&
+                <div>
+                  {onHotelService()}
+                </div>
+              }
+            </Fragment>
           ))}
         </div>
 

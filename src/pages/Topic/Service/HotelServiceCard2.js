@@ -1,35 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import styles from './FeatureCardForm.module.css'
 
-const HotelServiceCard = ({
+const HotelServiceCard2 = ({
   setShow, currentFeatureCard, onFileChange, updateFeatureCard, uploadLabel, uploadDescription, title
 }) => {
 
   const [data, setData] = useState(currentFeatureCard);
-  const [currentStyle, setCurrentStyle] = useState({})
-
-
-  useEffect(() => {
-    setCurrentStyle(currentFeatureCard.style)
-    setCurrentStyle(currentFeatureCard.style)
-  }, [currentFeatureCard])
-
+  
   const inputHandler = e => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   }
-
-  const colorHandler = e => {
-    const { name, value } = e.target;
-    if (name === 'backgroundColor') {
-      currentFeatureCard.style.backgroundColor = value;
-      setCurrentStyle({ ...currentStyle, backgroundColor: value })
-    } else {
-      currentFeatureCard.style.buttonColor = value;
-      setCurrentStyle({ ...currentStyle, buttonColor: value })
-    }
-  }
-
 
   const submitFeatureCard = e => {
     console.log('submit card 2')
@@ -55,34 +36,17 @@ const HotelServiceCard = ({
             <button className={styles.btn} style={{ marginRight: 150 }}>Upload image</button>
           </div>
 
-          <div className={styles.editBox}>
-            <p style={{ width: '50%' }}>Background color</p>
-            <span>
-              <input
-                type="color"
-                name="backgroundColor"
-                className={styles.heading_input}
-                value={currentStyle.backgroundColor}
-                onChange={colorHandler}
-              />
-              <label>{data.style.backgroundColor}</label>
-            </span>
+          <div>
+            <p>Title</p>
+            <input
+              type="text"
+              name="title"
+              className={styles.heading_input}
+              value={data.title}
+              onChange={inputHandler}
+            />
           </div>
-
-          <div className={styles.editBox}>
-            <p style={{ width: '50%' }}>Button color</p>
-            <span>
-              <input
-                type="color"
-                name="buttonColor"
-                className={styles.heading_input}
-                value={currentStyle.buttonColor}
-                onChange={colorHandler}
-              />
-              <label>{data.style.buttonColor}</label>
-            </span>
-          </div>
-
+      
           <div>
             <p>Link</p>
             <input
@@ -95,23 +59,48 @@ const HotelServiceCard = ({
           </div>
 
           <div>
-            <p>Text 1</p>
+            <p>Distance</p>
             <input
-              type="text"
-              name="text1"
+              type="number"
+              min='0'
+              name="distance"
               className={styles.heading_input}
-              value={data.text1}
+              value={data.distance}
               onChange={inputHandler}
             />
           </div>
 
           <div>
-            <p>Text 2</p>
+            <p>Price</p>
+            <input
+              type="number"
+              min='0'
+              name="price"
+              className={styles.heading_input}
+              value={data.price}
+              onChange={inputHandler}
+            />
+          </div>
+
+          <div>
+            <p>Rating</p>
+            <input
+              type="number"
+              min='1' max='5'
+              name="rating"
+              className={styles.heading_input}
+              value={data.rating}
+              onChange={inputHandler}
+            />
+          </div>
+
+          <div>
+            <p>Recommended</p>
             <input
               type="text"
-              name="text2"
+              name="recommended"
               className={styles.heading_input}
-              value={data.text2}
+              value={data.recommended}
               onChange={inputHandler}
             />
           </div>
@@ -141,4 +130,4 @@ const HotelServiceCard = ({
   )
 }
 
-export default HotelServiceCard
+export default HotelServiceCard2

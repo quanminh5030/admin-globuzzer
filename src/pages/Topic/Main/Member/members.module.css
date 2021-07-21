@@ -286,3 +286,153 @@
     left: 10px;
   }
 }
+
+.wrapper {
+  display: grid;
+  align-items: center;
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 80px);
+  justify-content: center;
+  margin-top: 20px;
+
+}
+
+.empty {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.ava {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #828282;
+  text-align: center;
+  margin: 0;
+}
+
+.city {
+  font-size: 9px;
+  line-height: 12px;
+  color: #828282;
+  width: 90px;
+  height: 15px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.flipcard {
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
+  perspective: 1000px;
+}
+
+.flipcardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flipcard:hover .flipcardInner {
+  transform: rotateY(180deg);
+}
+
+.flipcardFront,
+.flipcardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flipcardFront {
+  background-color: #f4627d;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+}
+
+.flipcardBack {
+  background-color: #f4627d;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  transform: rotateY(180deg);
+}
+
+.joinIcon {
+  width: 35px;
+  height: 35px;
+  color: #ffffff;
+}
+
+.joinAnchor,
+.joinAnchor:visited {
+  text-decoration: none;
+  color: #ffffff;
+}
+@media (min-width: 1100px) {
+  .grid {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
+
+  .ava {
+    width: 140px;
+    height: 140px;
+  }
+
+  .flipcard {
+    width: 125px;
+    height: 125px;
+  }
+
+  .flipcardFront {
+    border-radius: 100px;
+  }
+
+  .flipcardBack {
+    font-size: 20px;
+    border-radius: 100px;
+  }
+
+  .joinIcon {
+    width: 53px;
+    height: 47px;
+  }
+
+  .city {
+    width: 100%;
+  }
+}
+
