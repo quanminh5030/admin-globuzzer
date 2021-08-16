@@ -6,6 +6,8 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { SiSkillshare } from "react-icons/si";
 import {
   IoIosArrowForward,
+  IoIosArrowDown,
+  IoIosArrowUp,
 } from "react-icons/io";
 import { TiArrowSortedDown } from "react-icons/ti";
 import ArticleCard from './ArticleCard';
@@ -17,6 +19,9 @@ import { EditContext } from '../../../../contexts/editContext';
 import VideoArticleServiceCard from '../../Service/VideoArticleServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import { useParams } from 'react-router-dom';
+import NewServiceCardForm from '../../Service/NewServiceCardForm';
+import { sliceData } from '../../../../utils/sliceData';
+
 
 
 const Article = () => {
@@ -43,6 +48,7 @@ const Article = () => {
   const [video, setVideo] = useState({
     playVideo: false,
     videoId: "",
+
   });
   const [videoSize, SetVideoSize] = useState(8);
   const [firstVideos, setFirstVideos] = useState([]);
@@ -63,6 +69,7 @@ const Article = () => {
 
   //slider state
   const [slideShow, setSlideShow] = useState([]);
+  const [showNewServiceForm, setShowNewServiceForm] = useState(false);
 
   //for youtube
   const opts = {
@@ -89,7 +96,7 @@ const Article = () => {
 
   useEffect(() => {
     getData()
-  }, [showServiceForm])
+  }, [showServiceForm, showNewServiceForm])
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -97,7 +104,7 @@ const Article = () => {
 
     if (width <= 768) {
       SetVideoSize(4);
-      // SetArticleSize(4);
+      SetArticleSize(4);
     }
 
     //setting rowSize on load
@@ -107,7 +114,7 @@ const Article = () => {
     if (width >= 900 && width < 1014) setRowSize(2);
     if (width >= 1014 && width < 1344) setRowSize(3);
     if (width >= 1344) setRowSize(4);
-  }, []);
+  }, [cityId]);
 
   const getData = async () => {
     const doc = await firestore.collection('accomodation_items').doc(cityId).get();
@@ -118,7 +125,7 @@ const Article = () => {
       setData(doc.data().videoData)
       setVideoData(doc.data().videoData)
       setArticleData(doc.data().articleData)
-      setSlideShow(doc.data().slide)
+      setSlideShow(doc.data().news)
     }
   }
 
@@ -134,13 +141,30 @@ const Article = () => {
 
     if (window.innerWidth <= 768) {
       SetVideoSize(4);
-      // SetArticleSize(4);
+      SetArticleSize(4);
       return;
     }
 
     SetVideoSize(8);
-    // SetArticleSize(8);
+    SetArticleSize(8);
   };
+
+  const slicedData = sliceData(
+    data,
+    0,
+    title === "videos" ? videoSize : articleSize
+  );
+
+  const render =
+    input.length > 2
+      ? data.filter(
+        (article) =>
+          article.title.toLocaleLowerCase().startsWith(input) ||
+          article.title.toLocaleLowerCase().endsWith(input) ||
+          article.title.toLocaleLowerCase().includes(input)
+      )
+      : slicedData;
+
 
   const articleLikes = ({ likes }) => {
     if (likes < 1) return "";
@@ -151,6 +175,36 @@ const Article = () => {
     }
     return likes;
   };
+
+  const moreArticle = () => {
+    if (title === "videos") {
+      let size = videoSize + 4;
+      if (videoSize >= data.length) {
+        if (window.innerWidth <= 900) size = 4;
+        else size = 8;
+      }
+      return SetVideoSize(size);
+    }
+
+    let size = articleSize + 4;
+
+    if (articleSize >= data.length) {
+      if (window.innerWidth <= 900) size = 4;
+      else size = 8;
+    }
+    SetArticleSize(size);
+  };
+
+  const moreOrLess = () => {
+    let render = "more";
+
+    if (title === "videos" && videoSize >= data.length) render = "less";
+
+    if (title === "articles" && articleSize >= data.length) render = "less";
+
+    return `${render} ${title}`;
+  };
+
 
   const heart = article => {
     const allData = [...data];
@@ -167,10 +221,8 @@ const Article = () => {
   }
 
   const showArticle = (art, index) => {
-    // console.log('show', art)
-    // console.log('data', data)
 
-    const arts = [...data];
+    const arts = [...render];
     let newArts, secondArts;
 
     let newIndex = index + 1;
@@ -238,7 +290,7 @@ const Article = () => {
   const originalData = () => {
     const renderData = (
       <ArticleCard
-        render={data}
+        render={render}
         title={title}
         playButton={playButton}
         articleLikes={articleLikes}
@@ -356,12 +408,6 @@ const Article = () => {
         link: item.link,
         article: item.article,
       })
-    } else if (item.description) {
-      setCurrentServiceCard({
-        id: item.id,
-        img: item.img,
-        title: item.title
-      })
     } else {
       setCurrentServiceCard({
         id: item.id,
@@ -375,18 +421,28 @@ const Article = () => {
     }
   }
 
-  const onSelectedNewService = item => {
+  const openNewServiceForm = item => {
+    setShowNewServiceForm(true);
+
+    setCurrentServiceCard({
+      id: item.id,
+      image: item.image,
+      link: item.link,
+      text: item.text
+    })
+  }
+
+  const onSelectedNewService = () => {
     return (
-      (showServiceForm && editMode) ?
+      (showNewServiceForm && editMode) ?
         <div>
-          <VideoArticleServiceCard
+          <NewServiceCardForm
             title='News'
             uploadLabel='Image'
             uploadDescription=' (Image has to be below 200 KB and PNG/JPG format) '
-            textLabel='Text'
-            setShow={setShowServiceForm}
-            currentFeatureCard={item}
-            updateFeatureCard={updateServiceCard}
+            setShow={setShowNewServiceForm}
+            currentFeatureCard={currentServiceCard}
+            updateFeatureCard={updateNewCard}
             onFileChange={onFileChange}
           />
         </div>
@@ -413,13 +469,21 @@ const Article = () => {
     )
   }
 
+  const updateNewCard = updatedCard => {
+    const updatedNews = slideShow.map(slide => slide.id === updatedCard.id ? { ...updatedCard, image: fileUrl || updatedCard.image } : slide)
+
+    return firestore.collection('accomodation_items').doc(cityId).update({
+      news: updatedNews
+    })
+  }
+
+
   const updateServiceCard = updatedCard => {
 
     const newVideoId = updatedCard.link.split('=')[1].split('&')[0];
 
     if (!updatedCard.article) {
       const updatedVideos = videoData.map(video => {
-
         return video.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId } : video;
       })
 
@@ -430,7 +494,6 @@ const Article = () => {
 
     else {
       const updatedArticles = articleData.map(article => {
-        console.log(article)
 
         return article.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId, [article.article.img.path]: subImg } : article;
       })
@@ -439,8 +502,6 @@ const Article = () => {
         articleData: updatedArticles
       })
     }
-
-
   }
 
 
@@ -643,11 +704,29 @@ const Article = () => {
                     articleLikes={articleLikes}
                   />
                 </div>
+
+                <div className={videos.moreArticles} onClick={moreArticle}>
+                  <p>
+                    <IconContext.Provider value={{ className: "arrow-down" }}>
+                      {moreOrLess().includes("less") ? (
+                        <IoIosArrowUp className={videos.arrowDown} />
+                      ) : (
+                        <IoIosArrowDown className={videos.arrowDown} />
+                      )}
+                    </IconContext.Provider>
+                    {moreOrLess()}
+                  </p>
+
+                  <p>
+                    see more{" "}
+                    <IconContext.Provider value={{ className: "arrow-down" }}>
+                      <IoIosArrowDown />
+                    </IconContext.Provider>
+                  </p>
+                </div>
               </div>
             </div>
           ))}
-
-
       </div>
 
 
@@ -663,26 +742,21 @@ const Article = () => {
             {slideShow.map((s) => (
               <div
                 className={videos.slide} key={s.id}
-                onClick={editMode ? () => openServiceEditForm(s) : undefined}
+                onClick={editMode ? () => openNewServiceForm(s) : () => window.open(s.link, '_blank')}
               >
-                <img src={s.img} alt="mask" />
+                <img src={s.image} alt="mask" />
                 <div className={videos.slideItems}>
-                  <p>{s.title}</p>
-                  {window.innerWidth <= 900 && <p>{s.description}</p>}
+                  <p>{s.text}</p>
+                  {window.innerWidth <= 900 && <p>{s.text}</p>}
                 </div>
-
-                {s.id == currentServiceCard.id ?
-                  <div>
-                    {onSelectedNewService(s)}
-                  </div>
-                  : undefined
-                }
               </div>
             ))}
           </Slider>
 
+          <div>
+            {onSelectedNewService()}
+          </div>
         </div>
-
 
         <div className={videos.articleRightBottom}>
           <header>What are you looking for ?</header>

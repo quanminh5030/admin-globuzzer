@@ -29,7 +29,7 @@ function Members() {
     if (!doc.exists) {
       console.log('no data')
     } else {
-      setMembers(doc.data().member)
+      setMembers(doc.data().topMembers)
     }
   }
 
@@ -66,7 +66,7 @@ function Members() {
     const updatedMembers = members.map((s) => s.id === updatedMember.id ? { ...updatedMember, image: fileUrl || updatedMember.image } : s)
     setShowMembersForm(false);
     firestore.collection('accomodation_items').doc(cityId).update({
-      member: updatedMembers
+      topMembers: updatedMembers
     });
 
   });

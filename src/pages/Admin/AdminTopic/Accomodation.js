@@ -7,10 +7,11 @@ import TopNav from "../TopNav/TopNav";
 import { EditContext } from "../../../contexts/editContext";
 import MainAccomodation from "./MainAccomodation";
 import { firestore } from "../../../utils/firebase.utils";
+import { readData } from "../../../utils/actions.firebase";
 
 const Accomodation = () => {
 
-  const { city, cityId } = useParams();
+  const { city, cityId, topic } = useParams();
   const { editMode, handleEditMode, setEditMode } = useContext(EditContext)
 
   const [currentCity, setFetchedCurrentCity] = useState({});
@@ -30,8 +31,12 @@ const Accomodation = () => {
   }, [loading]);
 
   const releaseNewInfo = async () => {
-
-    await firestore.collection('accomodation_live').doc('VkFL9pzz7BGkqjAYGhna').update(currentCity)
+    const check = await readData('accomodation_live', cityId);
+    check
+      ?
+      await firestore.collection('accomodation_live').doc(check).update(currentCity)
+      :
+      await firestore.collection('accomodation_live').add({ ...currentCity, id: cityId });
 
     alert('your changes are now live')
   }
@@ -50,23 +55,23 @@ const Accomodation = () => {
           <IoMdArrowDropright color="#F26678" size="25px" />
           <Link
             to="/topic"
-            className={styles.countryLink}
+            className={styles.dashboardLink}
           >
             Topic Page
           </Link>
           <IoMdArrowDropright color="#F26678" size="25px" />
           <Link
-            to="#"
-            className={styles.countryLink}
+            to={`/topic/${topic}`}
+            className={styles.dashboardLink}
           >
-            {city}
+            {topic.charAt(0).toUpperCase() + topic.slice(1)}
           </Link>
           <IoMdArrowDropright color="#F26678" size="25px" />
           <Link
-            to={`/topic/${city}/accomodation`}
+            to={`/topic/${topic}/${city}/${cityId}`}
             className={styles.landingLink}
           >
-            Accomodation
+            {city}
           </Link>
         </div>
       </div>

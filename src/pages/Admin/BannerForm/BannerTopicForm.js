@@ -8,7 +8,6 @@ const BannerTopicForm = ({ collection, doc }) => {
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const photoFormStyle = !showPhotoForm ? { display: "none" } : {};
   const { editMode } = useContext(EditContext);
-  // const editMode = true;
 
   const showEditPictureForm = (e) => {
     if (e.target.id === "camera") {

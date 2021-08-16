@@ -341,7 +341,7 @@ export const dataObj = {
     },
   ],
 
-  member: [
+  topMembers: [
     {
       name: "Asya",
       flags: "#cook #sport",
@@ -390,27 +390,27 @@ export const dataObj = {
       link: 'https://www.google.com/',
       title: 'Add a title...'
     },
-    
+
   ],
 
-  slide: [
+  news: [
     {
-      description: 'Add description...',
       id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fmask.png?alt=media&token=3b863fec-2b7a-4a82-b94e-4ee43225307b',
-      title: 'Add the title...'
+      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fmask.png?alt=media&token=3b863fec-2b7a-4a82-b94e-4ee43225307b',
+      link: 'https://globuzzer.com/',
+      text: 'Add the title...'
     },
     {
-      description: 'Add description...',
       id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fmask.png?alt=media&token=3b863fec-2b7a-4a82-b94e-4ee43225307b',
-      title: 'Add the title...'
+      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fmask.png?alt=media&token=3b863fec-2b7a-4a82-b94e-4ee43225307b',
+      link: 'https://globuzzer.com/',
+      text: 'Add the title...'
     },
     {
-      description: 'Add description...',
       id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fmask.png?alt=media&token=3b863fec-2b7a-4a82-b94e-4ee43225307b',
-      title: 'Add the title...'
+      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fmask.png?alt=media&token=3b863fec-2b7a-4a82-b94e-4ee43225307b',
+      link: 'https://globuzzer.com/',
+      text: 'Add the title...'
     },
   ],
 

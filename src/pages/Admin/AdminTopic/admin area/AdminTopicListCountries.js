@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoMdArrowDropright } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import SideNav from '../../SideNav/SideNav';
@@ -7,6 +7,7 @@ import styles from './AdminTopic.module.css';
 import TopicMain from './TopicMain';
 
 const AdminTopicListCountries = () => {
+  const [topicSelected, setTopicSelected] = useState({ isSelected: false, topicContent: '' });
 
   return (
     <div className={styles.wrapper}>
@@ -22,10 +23,22 @@ const AdminTopicListCountries = () => {
           <IoMdArrowDropright color="#F26678" size="25px" />
           <Link
             to="/topic"
-            className={styles.landingLink}
+            className={!topicSelected.isSelected ? styles.landingLink : styles.dashboardLink}
           >
             Topic Page
           </Link>
+
+          {topicSelected.isSelected &&
+            <>
+              <IoMdArrowDropright color="#F26678" size="25px" />
+              <Link
+                to={`/topic/${topicSelected.topicContent}`}
+                className={styles.landingLink}
+              >
+                {topicSelected.topicContent.charAt(0).toUpperCase() + topicSelected.topicContent.slice(1)}
+              </Link>
+            </>
+          }
         </div>
       </div>
       <div className={styles.container}>
@@ -33,7 +46,7 @@ const AdminTopicListCountries = () => {
           <SideNav />
         </section>
         <section className={styles.main}>
-          <TopicMain />
+          <TopicMain setTopicSelected={setTopicSelected} />
         </section>
       </div>
     </div>

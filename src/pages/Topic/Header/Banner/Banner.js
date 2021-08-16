@@ -223,7 +223,7 @@ const Banner = () => {
     const updatedVideos = list.banner.map(b => {
       const newVideoId = updatedFeatureCard.link.split('=')[1];
 
-      return b.id === updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, videoId: newVideoId } : b;
+      return b.id == updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, videoId: newVideoId || '' } : b;
     })
 
     return firestore.collection('accomodation_items').doc(cityId).update({

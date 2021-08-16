@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsSearch } from 'react-icons/bs';
 import useFetch from '../../../../hooks/useFetch'
 import styles from './AdminTopic.module.css';
 import TopicItems from './TopicItems';
 import { dataObj } from '../RawData';
 import { createNew } from '../../../../utils/actions.firebase';
+import { useParams } from 'react-router-dom';
 
-const TopicMain = () => {
+const TopicMain = ({ setTopicSelected }) => {
   const { loading, items } = useFetch('accomodation_items');
+  const {topic} = useParams();
+
+  console.log(topic)
+
+  useEffect(() => setTopicSelected({isSelected: true, topicContent: topic}), [])
 
   return (
     <>
