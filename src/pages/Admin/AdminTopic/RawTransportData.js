@@ -1,20 +1,38 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const dataObj = {
-  //id: '',
+export const transportObj = {
   city: "New topic soon...",
   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   mainImg: '',
-  advertise: {
-    link: 'https://globuzzer-topics.web.app/',
-    logo: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FvimeoLogo.png?alt=media&token=60a9d2f9-69b5-442d-87c5-58aa48cb53ab',
-    style: {
-      backgroundColor: '#4bbae2',
-      buttonColor: '#975326',
+  advertisements: [
+    {
+      link: 'https://globuzzer-topics.web.app/',
+      logo: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FvimeoLogo.png?alt=media&token=60a9d2f9-69b5-442d-87c5-58aa48cb53ab',
+      bgColor: '#5ebfbf',
+      btColor: '#f2a413',
+      text1: 'Add the title...',
+      text2: 'Add the subtitle...',
+      id: uuidv4(),
     },
-    text1: 'Add the title...',
-    text2: 'Add the subtitle...'
-  },
+    {
+      link: 'https://globuzzer-topics.web.app/',
+      logo: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fnews%2FGB_ADD_page1.png?alt=media&token=1d187b44-d764-4beb-90f6-9b458a88d0dd',
+      bgColor: '#5ebfbf',
+      btColor: '#f2a413',
+      text1: 'Add the title...',
+      text2: 'Add the subtitle...',
+      id: uuidv4(),
+    },
+    {
+      link: 'https://globuzzer-topics.web.app/',
+      logo: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fadvertisements%2Fvimeo.png?alt=media&token=b1b8c27f-8737-4531-909c-73c4fb5ab57c',
+      bgColor: '#5ebfbf',
+      btColor: '#f2a413',
+      text1: 'Add the title...',
+      text2: 'Add the subtitle...',
+      id: uuidv4(),
+    },
+  ],
 
   articleData: [
     {
@@ -242,102 +260,39 @@ export const dataObj = {
   banner: [
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FatmLogo.svg?alt=media&token=e8b42642-8031-4ba5-a8be-6a5c06bed81a',
-      id: 1,
-      img: '',
-      link: '',
-      title: 'Visa issue',
-      videoId: '',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fplane.png?alt=media&token=4b32c96e-11af-43c0-93bb-4b4d851682ab',
+      id: uuidv4(),
+      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      title: 'Flight',
+      videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FatmLogo.svg?alt=media&token=298df552-0315-4107-8dff-1affae7867a3',
-      id: 2,
-      img: '',
-      link: '',
-      title: 'Atm',
-      videoId: '',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Funderground.png?alt=media&token=cc4c6e6b-70c6-417b-80e8-80db99359727',
+      id: uuidv4(),
+      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      title: 'Train',
+      videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FhotelLogo.svg?alt=media&token=da9c9b05-34c2-4fa3-9f92-74c9452b55ff',
-      id: 3,
-      img: '',
-      link: '',
-      title: 'Top hotels',
-      videoId: '',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fcar.png?alt=media&token=b35a5f21-2aca-43f2-9ca2-61bb4759f952',
+      id: uuidv4(),
+      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      title: 'Car',
+      videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FsecurityLogo.svg?alt=media&token=c85b2736-39d5-4ab1-9bfb-57ae2fb149e9',
-      id: 4,
-      img: '',
-      link: '',
-      title: 'Security risk',
-      videoId: '',
-    },
-  ],
-
-  hotel: [
-    {
-      distance: 0,
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Ffront-of-bus.png?alt=media&token=bde4ae47-e803-4b56-b99d-fbbb6b2b1eaf',
       id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
+      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      title: 'Bus',
+      videoId: 'yawXq5TlgBU',
     },
   ],
 
@@ -534,6 +489,33 @@ export const dataObj = {
       title: 'Add the title here...',
       userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FcasualBoy.png?alt=media&token=4806da00-9d47-472f-8b8e-054faea967c1',
       videoId: 'yawXq5TlgBU'
+    }
+  ],
+
+  otherTransport: [
+    {
+      id: uuidv4(),
+      name: 'Subway & bus',
+      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.'
+    },
+    {
+      id: uuidv4(),
+      name: 'Subway & bus',
+      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.'
+    },
+    {
+      id: uuidv4(),
+      name: 'Subway & bus',
+      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.'
+    },
+    {
+      id: uuidv4(),
+      name: 'Subway & bus',
+      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.'
     }
   ]
 }

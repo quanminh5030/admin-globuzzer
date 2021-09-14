@@ -15,17 +15,16 @@ import { app, firestore } from '../../../../utils/firebase.utils';
 import playButton from '../../../../assets/Topic/Menu/playButton.png';
 import Youtube from 'react-youtube';
 import Slider from 'react-slick';
-import { EditContext } from '../../../../contexts/editContext';
+import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
 import VideoArticleServiceCard from '../../Service/VideoArticleServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import { useParams } from 'react-router-dom';
 import NewServiceCardForm from '../../Service/NewServiceCardForm';
 import { sliceData } from '../../../../utils/sliceData';
 
-
-
 const Article = () => {
   const { cityId } = useParams();
+  const topicName = useContext(TopicPathContext);
 
   //for edit stuff
   const { editStyle, editMode } = useContext(EditContext);
@@ -117,7 +116,7 @@ const Article = () => {
   }, [cityId]);
 
   const getData = async () => {
-    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
+    const doc = await firestore.collection(topicName.admin).doc(cityId).get();
 
     if (!doc.exists) {
       console.log('no');
@@ -217,7 +216,7 @@ const Article = () => {
     newArticle.liked = !newArticle.liked;
     setData(allData)
 
-    // firestore.collection('accomodation_items').doc('cityId').update({})
+    // firestore.collection(topicName.admin).doc('cityId').update({})
   }
 
   const showArticle = (art, index) => {
@@ -472,7 +471,7 @@ const Article = () => {
   const updateNewCard = updatedCard => {
     const updatedNews = slideShow.map(slide => slide.id === updatedCard.id ? { ...updatedCard, image: fileUrl || updatedCard.image } : slide)
 
-    return firestore.collection('accomodation_items').doc(cityId).update({
+    return firestore.collection(topicName.admin).doc(cityId).update({
       news: updatedNews
     })
   }
@@ -487,7 +486,7 @@ const Article = () => {
         return video.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId } : video;
       })
 
-      return firestore.collection('accomodation_items').doc(cityId).update({
+      return firestore.collection(topicName.admin).doc(cityId).update({
         videoData: updatedVideos
       })
     }
@@ -498,7 +497,7 @@ const Article = () => {
         return article.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId, [article.article.img.path]: subImg } : article;
       })
 
-      return firestore.collection('accomodation_items').doc(cityId).update({
+      return firestore.collection(topicName.admin).doc(cityId).update({
         articleData: updatedArticles
       })
     }

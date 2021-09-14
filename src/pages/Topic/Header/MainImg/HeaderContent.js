@@ -3,7 +3,7 @@ import { firestore } from '../../../../utils/firebase.utils';
 import '../../../../css/Home.css'
 import { IconContext } from "react-icons";
 import TextEdit from '../../../../components/TextEdit/TextEdit';
-import { EditContext } from '../../../../contexts/editContext';
+import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
 import { useParams } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 import styles from './headerContent.module.css';
@@ -22,6 +22,7 @@ const HeaderContent = ({ contentEditable }) => {
   const [height, setHeight] = useState("125px");
 
   const { cityId } = useParams();
+  const topicName = useContext(TopicPathContext);
 
   const rawText = {
     content: '',
@@ -46,7 +47,7 @@ const HeaderContent = ({ contentEditable }) => {
 
 
   const getData = async () => {
-    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
+    const doc = await firestore.collection(topicName.admin).doc(cityId).get();
     if (!doc.exists) {
       setLoading(true);
     } else {
@@ -85,10 +86,10 @@ const HeaderContent = ({ contentEditable }) => {
   const handleSubmitText = async () => {
     switch (currentText.id) {
       case 'title':
-        await firestore.collection('accomodation_items').doc(cityId).update({ "title.content": currentText.content, "title.style": currentText.style });
+        await firestore.collection(topicName.admin).doc(cityId).update({ "title.content": currentText.content, "title.style": currentText.style });
         break;
       case 'subtitle':
-        await firestore.collection('accomodation_items').doc(cityId).update({ "subtitle.content": currentText.content, "subtitle.style": currentText.style });
+        await firestore.collection(topicName.admin).doc(cityId).update({ "subtitle.content": currentText.content, "subtitle.style": currentText.style });
         break;
       default:
         break;
@@ -112,7 +113,7 @@ const HeaderContent = ({ contentEditable }) => {
     <Fragment>
       <div
         className='section_header'
-        style={{ backgroundImage: `url(${data.mainImg || data.bannerImg})` }}
+        style={{ backgroundImage: `url(${data.mainImg || data.bannerImg})`, }}
       >
         {/* texts part */}
         <div className='headers' style={{ textAlign: 'center' }}>
@@ -142,42 +143,43 @@ const HeaderContent = ({ contentEditable }) => {
           </a>
         </div>
 
-        <div className={styles.selectperson}>
-          <span>I am a</span>
-          <span>
-            <input
-              type="text"
-              placeholder="Person who will stay for a long term"
-              value={select}
-              readOnly={true}
-              onClick={handleSelect}
-            />
+        {topicName.name == 'accomodation' &&
+          <div className={styles.selectperson}>
+            <span>I am a</span>
+            <span>
+              <input
+                type="text"
+                placeholder="Person who will stay for a long term"
+                value={select}
+                readOnly={true}
+                onClick={handleSelect}
+              />
 
-            <IconContext.Provider
-              value={{
-                className: "arrowDown",
-                style: { transform: showList && "rotate(180deg)" },
-              }}
-            >
-              <IoIosArrowDown className={styles.arrowDown} />
-            </IconContext.Provider>
+              <IconContext.Provider
+                value={{
+                  className: "arrowDown",
+                  style: { transform: showList && "rotate(180deg)" },
+                }}
+              >
+                <IoIosArrowDown className={styles.arrowDown} />
+              </IconContext.Provider>
 
-            <nav style={{ height: showList && height }}>
-              <ul>
-                <li onClick={handleList}>
-                  Person who will stay for a long term
-                </li>
-                <li onClick={handleList}>
-                  Person who will stay for a short term
-                </li>
-                <li onClick={handleList}>
-                  Person who is a student
-                </li>
-              </ul>
-            </nav>
-          </span>
-        </div>
-
+              <nav style={{ height: showList && height }}>
+                <ul>
+                  <li onClick={handleList}>
+                    Person who will stay for a long term
+                  </li>
+                  <li onClick={handleList}>
+                    Person who will stay for a short term
+                  </li>
+                  <li onClick={handleList}>
+                    Person who is a student
+                  </li>
+                </ul>
+              </nav>
+            </span>
+          </div>
+        }
       </div>
     </Fragment>
   )

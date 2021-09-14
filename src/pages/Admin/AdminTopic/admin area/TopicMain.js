@@ -3,15 +3,13 @@ import { BsSearch } from 'react-icons/bs';
 import useFetch from '../../../../hooks/useFetch'
 import styles from './AdminTopic.module.css';
 import TopicItems from './TopicItems';
-import { dataObj } from '../RawData';
 import { createNew } from '../../../../utils/actions.firebase';
 import { useParams } from 'react-router-dom';
 
-const TopicMain = ({ setTopicSelected }) => {
-  const { loading, items } = useFetch('accomodation_items');
+const TopicMain = ({ setTopicSelected, path }) => {
+  
+  const { loading, items } = useFetch(path.admin);
   const {topic} = useParams();
-
-  console.log(topic)
 
   useEffect(() => setTopicSelected({isSelected: true, topicContent: topic}), [])
 
@@ -28,12 +26,12 @@ const TopicMain = ({ setTopicSelected }) => {
               />
             </span>
             <button
-              onClick={() => createNew('accomodation_items', dataObj)}
+              onClick={() => createNew(path.admin, path.dataObj)}
             >
               Add
             </button>
           </div>
-          <TopicItems currentItems={items} />
+          <TopicItems currentItems={items} path={path} />
         </div>
       }
     </>

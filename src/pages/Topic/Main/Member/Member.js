@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState, Fragment } from "react";
 import { FiPlus } from "react-icons/fi";
 import { Link, useParams } from "react-router-dom";
-import { EditContext } from "../../../../contexts/editContext";
+import { EditContext, TopicPathContext } from "../../../../contexts/editContext";
 import { app, firestore } from "../../../../utils/firebase.utils";
 import { sizeTransform } from "../../../../utils/sizeTransform";
 import { MemberCard } from "../../../Section/Members/MemberCard";
 import styles from "./members.module.css";
 
 import CommunityMembersForm from '../../../Admin/JoinCommunityForm/SectionMembersForm';
+import BlogHeader from "../../../../components/TravelBlog/sectionHeader/SectionHeader";
 
 function Members() {
   const { cityId } = useParams();
+  const topicName = useContext(TopicPathContext);
 
   const { editStyle, editMode } = useContext(EditContext);
   const [fileUrl, setFileUrl] = useState(null);
@@ -24,7 +26,7 @@ function Members() {
   }, [cityId, showMembersForm]);
 
   const getData = async () => {
-    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
+    const doc = await firestore.collection(topicName.admin).doc(cityId).get();
 
     if (!doc.exists) {
       console.log('no data')
@@ -65,7 +67,7 @@ function Members() {
     setShowMembersForm(false);
     const updatedMembers = members.map((s) => s.id === updatedMember.id ? { ...updatedMember, image: fileUrl || updatedMember.image } : s)
     setShowMembersForm(false);
-    firestore.collection('accomodation_items').doc(cityId).update({
+    firestore.collection(topicName.admin).doc(cityId).update({
       topMembers: updatedMembers
     });
 
@@ -73,9 +75,7 @@ function Members() {
 
   return (
     <section className={styles.wrapper}>
-      <header className={styles.header}>
-        Top members to meet<div className={styles.underline}></div>
-      </header>
+      <BlogHeader label='Top members to meet' />
 
       <div className={styles.grid} style={editStyle}>
         <div className={styles.empty}>

@@ -28,7 +28,7 @@ function UploadImageTopic({ setShowPhotoForm, showPhotoForm, style, typeValidati
       if (file.size > sizeValidation) {
         alert(`The size of the file should be maximum ${sizeTransform(sizeValidation)}, yours is ${sizeTransform(file.size)}`)
       } else {
-        const fileRef = storageRef.child(`topic/accomodation/${file.name}`);
+        const fileRef = storageRef.child(`topic/${file.name}`);
         await fileRef.put(file);
         setFileUrl(await fileRef.getDownloadURL());
       }

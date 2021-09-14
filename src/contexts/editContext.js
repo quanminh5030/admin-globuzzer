@@ -1,5 +1,8 @@
 import React, { createContext, useState } from 'react';
 import { firestore } from "../utils/firebase.utils";
+
+export const TopicPathContext = createContext();
+
 export const EditContext = createContext();
 
 const EditContextProvider = (props) => {

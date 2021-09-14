@@ -1,7 +1,7 @@
 import React from 'react'
 import Article from './Article/Article';
 import bodies from "./body.module.css";
-import Hotels from './Hotel/Hotels';
+import LandingTopic from './LandingTopic';
 import Members from './Member/Member';
 import OtherTopics from './Other/OtherTopics';
 
@@ -10,7 +10,9 @@ const Body = () => {
     <div className={bodies.container}>
       <Article />
       <Members />
-      <Hotels />
+
+      <LandingTopic />
+
       <OtherTopics />
     </div>
   )

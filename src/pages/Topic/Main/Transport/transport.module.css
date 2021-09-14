@@ -5,18 +5,11 @@
   width: 100%;
 }
 
-.header {
-  text-align: center;
-
-  font-weight: 300;
-  font-size: 36px;
-  color: #555555;
-  padding: 10px 0;
-}
-
 .check {
   margin: 15px 0 30px 0;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .check div {
@@ -29,8 +22,35 @@
   position: relative;
 }
 
+.check div input {
+  background-color: #878686;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+}
+
 .check input[type="text"] {
   padding: 11px 20px;
+}
+
+.cancelIcon {
+  font-size: 35px;
+  color: #f24b6a;
+  cursor: pointer;
+}
+
+.cancelIcon:hover {
+  opacity: 0.8;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 0.6;
+  filter: invert(1);
 }
 
 .check nav {
@@ -134,7 +154,7 @@
 
 .hotelist {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); */
   gap: 10px;
   flex-basis: 81%;
   margin-right: 15px;
@@ -145,7 +165,7 @@
   background: #f9f9f9;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  align-items: center;
   transition: transform 0.3s;
 }
 
@@ -159,7 +179,6 @@
 
 .hotelitems:hover {
   transform: scale(1.03);
-
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -285,5 +304,129 @@
   }
 }
 
+/* flght */
+.flghtleft {
+  flex-basis: 20%;
+}
 
+.flightcenter {
+  flex-basis: 60%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.time div:first-child {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 134.09%;
+  color: #777777;
+}
+
+.time div:last-child {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 134.09%;
+  color: #050505;
+}
+
+.flightright {
+  flex-basis: 20%;
+}
+
+.price {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 20px;
+  color: #f24b6a;
+  margin-left: 15px;
+}
+
+.duration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.duration div:first-child {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 134.09%;
+  color: #515151;
+}
+
+.duration div:last-child {
+  background: #f24b6a;
+  border-radius: 2px;
+  padding: 5px;
+  margin: 10px;
+  color: white;
+}
+
+.moreOrLess {
+  margin: auto;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 152.38%;
+  color: #f24b6a;
+}
+
+.flightAds {
+  background: #f24b6a;
+  flex-basis: 75%;
+  height: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.globuzzerLogo {
+  filter: brightness(500%);
+  width: 75%;
+}
+
+.moreFlights {
+  background: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s;
+  height: 114px;
+}
+
+.moreFlights:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.check button {
+  background-color: #f24b6a;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.placesBox {
+  display: flex;
+  flex-direction: column;
+  border: red;
+}
 

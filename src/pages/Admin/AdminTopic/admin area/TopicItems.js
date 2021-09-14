@@ -4,8 +4,10 @@ import useFetch from '../../../../hooks/useFetch';
 import { deleteWithId, readData } from '../../../../utils/actions.firebase';
 import styles from './AdminTopic.module.css';
 
-const TopicItems = ({ currentItems }) => {
-  const { items } = useFetch('accomodation_live');
+const TopicItems = ({ currentItems, path }) => {
+  const { admin, live } = path;
+
+  const { items } = useFetch(live);
   const { topic } = useParams();
   const [showWarning, setShowWarning] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
@@ -39,56 +41,61 @@ const TopicItems = ({ currentItems }) => {
   // delete selected id from both places in db - live and edit
   const onDelete = async (data) => {
     const id = await filterDeleted(currentItems, data.id);
-    await deleteWithId('accomodation_items', data.id)
-    await deleteWithId('accomodation_live', id);
+    await deleteWithId(admin, data.id)
+    await deleteWithId(live, id);
     setShowWarning(false);
   };
 
   // find the id of deleted item in live-db
   const filterDeleted = async (items, id) => {
-    console.log(id)
-    const docId = await readData('accomodation_live', id);
+    const docId = await readData(live, id);
     return docId
   };
 
-  
+
   const unRelease = async (data) => {
     const id = await filterDeleted(currentItems, data.id);
-    await deleteWithId('accomodation_live', id);
+    await deleteWithId(live, id);
 
     alert('Country was unreleased');
   };
 
   return (
     <>
-      <div className={styles.sectionGrid}>
-        {currentItems.map(item => (
-          <div
-            key={item.id}
-            className={styles.card}
-            style={{ backgroundImage: `url(${item.mainImg || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
-          >
-            <div className={styles.released}>
-              {released.includes(item.id) ? "released" : ""}
-            </div>
-
-            <div className={styles.options}>
-              <Link to={`/topic/${topic}/${item.city}/${item.id}`}>
-                <p>Edit</p>
-              </Link>
-              <p onClick={() => deleteWarning(item)}>Delete</p>
-            </div>
-            {released.includes(item.id) &&
-              <div className={styles.optionsx}>
-                <p onClick={() => unRelease(item)}>NotRelease</p>
+      {currentItems.length > 0 ?
+        <div className={styles.sectionGrid}>
+          {currentItems.map(item => (
+            <div
+              key={item.id}
+              className={styles.card}
+              style={{ backgroundImage: `url(${item.mainImg || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
+            >
+              <div className={styles.released}>
+                {released.includes(item.id) ? "released" : ""}
               </div>
-            }
-            <div className={styles.name}>{item.city}</div>
-            {showWarning && item.id === clickedCard.id
-              ? warningForm(clickedCard) : null}
-          </div>
-        ))}
-      </div>
+
+              <div className={styles.options}>
+                <Link to={{
+                  pathname: `/topic/${topic}/${item.city}/${item.id}`,
+                  state: { pathName: path }
+                }}>
+                  <p>Edit</p>
+                </Link>
+                <p onClick={() => deleteWarning(item)}>Delete</p>
+              </div>
+              {released.includes(item.id) &&
+                <div className={styles.optionsx}>
+                  <p onClick={() => unRelease(item)}>NotRelease</p>
+                </div>
+              }
+              <div className={styles.name}>{item.city}</div>
+              {showWarning && item.id === clickedCard.id
+                ? warningForm(clickedCard) : null}
+            </div>
+          ))}
+        </div>
+        : <h2>No topics yet</h2>
+      }
     </>
   )
 }

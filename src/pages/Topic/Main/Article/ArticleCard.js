@@ -30,7 +30,6 @@ const ArticleCard = ({
         onMouseOver={() => articleHover(article)}
         style={{ ...editStyle }}
       // ref={artRef}
-
       >
         <span
           onClick={() => {

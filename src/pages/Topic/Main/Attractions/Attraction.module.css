@@ -1,0 +1,156 @@
+.container {
+  margin: 80px 0;
+  width: 100%;
+}
+
+.attractionHeader {
+  padding: 40px 0;
+  font-weight: 300;
+  font-size: 36px;
+  color: #555555;
+}
+
+.attractionBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.attractionBtn button {
+  color: #737070;
+  margin: 20px;
+  padding: 0.7%;
+  background-color: white;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+}
+
+.attractionFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attractionList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 10px;
+  flex-basis: 75%;
+}
+
+.attractionItems {
+  background: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 20px; */
+  transition: transform 0.3s;
+}
+
+.attractionLeft {
+  flex-basis: 50%;
+}
+
+.attractionLeft img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.attractionRight {
+  flex-basis: 50%;
+  padding: 5px 25px;
+}
+
+.attractionRight header {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #000000;
+  margin: 5% 0;
+}
+
+.attractionRight p {
+  margin: 3% 0;
+  font-size: 9px;
+  line-height: 175%;
+  color: #909090;
+}
+
+.attractionRight button {
+  color: white;
+  font-size: 9px;
+  font-weight: 600;
+  background-color: #f24b6a;
+  border: 0px;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5% 0;
+}
+
+.attractionRight div:first-child {
+  display: flex;
+}
+
+.icon {
+  font-size: 10px;
+  padding: 2px;
+  border: 1px solid;
+  border-radius: 50%;
+  background-color: #f24b6a;
+  color: white;
+  margin: 13px 0;
+}
+
+.ads {
+  width: 15%;
+  height: 350px;
+  color: #fff;
+  padding: 20px;
+}
+
+.vimeo {
+  flex-basis: 19%;
+  margin-left: 15px;
+}
+
+.vimeohead {
+  font-family: "Candal", sans-serif;
+}
+
+.vimeop {
+  margin: 40px 0;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.vimeop p {
+  padding: 5px 0;
+}
+
+.vimeop p:first-child {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.vimeop p:last-child {
+  font-size: 14px;
+}
+
+.vimeobtn {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.vimeobtn button {
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid #909090;
+  /* background: #f2a413; */
+  padding: 8px 12px;
+  border-radius: 15px;
+}
+
+.editBox {
+  position: absolute;
+  top: 3300px;
+  left: 50%;
+}

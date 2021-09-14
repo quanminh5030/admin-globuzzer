@@ -8,17 +8,20 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { sizeTransform } from '../../../utils/sizeTransform';
 
-const Vimeo = ({ cityId }) => {
+const Vimeo = ({ cityId, collection }) => {
   const { editStyle, editMode } = useContext(EditContext);
   const [show, setShow] = useState(false);
-	const [fileUrl, setFileUrl] = useState(null);
-	const [currentCity, setFetchedCurrentCity] = useState({});
+  const [fileUrl, setFileUrl] = useState(null);
+  const [currentCity, setFetchedCurrentCity] = useState({});
   const [loading, setLoading] = useState(true);
   const [advertisements, setAdvertisements] = useState([]);
-	const [currentFeatureCard, setCurrentFeatureCard] = useState({});
-	const advRef = useRef(null);
+  const [currentFeatureCard, setCurrentFeatureCard] = useState({});
+  const advRef = useRef(null);
 
-	const settings = {
+  //hard code for the time being
+  const col = collection ? collection : 'section_items'
+
+  const settings = {
     dots: true,
     dotsClass: "slider-dots",
     infinite: true,
@@ -32,7 +35,7 @@ const Vimeo = ({ cityId }) => {
 
   useEffect(() => {
     const getCurrentCity = async () => {
-      const doc = await firestore.collection('section_items').doc(cityId).get();
+      const doc = await firestore.collection(col).doc(cityId).get();
       if (!doc.exists) {
         setLoading(true);
       } else {
@@ -44,39 +47,40 @@ const Vimeo = ({ cityId }) => {
     getCurrentCity();
   }, [cityId, show]);
 
-	// const handleClick = (item) => (e) => {
-	// 	if (editMode) {
-	// 		if (advRef.current.contains(e.target)) {
-	// 			setCurrentItem(item)
-	// 			}
-	// 		setShow(true)
-	// 	}
-	// };
 
-	const openEditForm = (data) => {
+  // const handleClick = (item) => (e) => {
+  // 	if (editMode) {
+  // 		if (advRef.current.contains(e.target)) {
+  // 			setCurrentItem(item)
+  // 			}
+  // 		setShow(true)
+  // 	}
+  // };
+
+  const openEditForm = (data) => {
     setShow(true);
     setCurrentFeatureCard({
       id: data.id,
       text1: data.text1,
-			text2: data.text2,
+      text2: data.text2,
       link: data.link,
       logo: data.logo,
-			bgColor: data.bgColor,
-			btColor: data.btColor,
+      bgColor: data.bgColor,
+      btColor: data.btColor,
     })
   };
 
-  const updateFeatureCard = (({currentFeatureCard}, updatedFeatureCard) => {
+  const updateFeatureCard = (({ currentFeatureCard }, updatedFeatureCard) => {
     setShow(false);
-   const updatedServices = advertisements.map((s) => s.id === updatedFeatureCard.id ? {...updatedFeatureCard, logo: fileUrl || updatedFeatureCard.logo} : s)
-   return firestore.collection('section_items').doc(cityId).update({advertisements: updatedServices})
+    const updatedServices = advertisements.map((s) => s.id === updatedFeatureCard.id ? { ...updatedFeatureCard, logo: fileUrl || updatedFeatureCard.logo } : s)
+    return firestore.collection(col).doc(cityId).update({ advertisements: updatedServices })
   });
 
-  const typeValidation = ["image/png",  "image/jpeg", "image/jpg", "image/svg+xml"];
+  const typeValidation = ["image/png", "image/jpeg", "image/jpg", "image/svg+xml"];
   const sizeValidation = 200000;
   const message = (file) => {
     return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
-  } 
+  }
   // manage the upload file form + type and size validation
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -94,40 +98,40 @@ const Vimeo = ({ cityId }) => {
     return (
       show && editMode &&
       <div>
-      <VimeoForm 
-        setShow={setShow} 
-        currentItem={currentFeatureCard} 
-        updateArticles={updateFeatureCard} 
-        onFileChange={onFileChange}
-      />
-    </div>
+        <VimeoForm
+          setShow={setShow}
+          currentItem={currentFeatureCard}
+          updateArticles={updateFeatureCard}
+          onFileChange={onFileChange}
+        />
+      </div>
     );
   };
 
-    return (
-			<>
+  return (
+    <>
       <div className={styles.mainContainer} style={editStyle}>
-				<Slider {...settings}>
-				{advertisements.map((adv) => (
-					<div key={adv.id}>
-					<div ref={advRef} className={styles.wrapper}  onClick={() => openEditForm(adv)} style={{background: adv.bgColor}}>
-					<div className={styles.container}>
-							{/* <p className={styles.title}>Vimeo</p> */}
-							<img src={adv.logo} alt="logo"/>
-							{/* <p className={styles.caption}>{adv.text1}</p>
+        <Slider {...settings}>
+          {advertisements.map((adv) => (
+            <div key={adv.id}>
+              <div ref={advRef} className={styles.wrapper} onClick={() => openEditForm(adv)} style={{ background: adv.bgColor }}>
+                <div className={styles.container}>
+                  {/* <p className={styles.title}>Vimeo</p> */}
+                  <img src={adv.logo} alt="logo" />
+                  {/* <p className={styles.caption}>{adv.text1}</p>
 							<p className={styles.text}>{adv.text2}</p> */}
-					</div>
-					{/* <button className={styles.btn} style={{background: adv.btColor}}>Learn more</button> */}
-			</div>
-			</div>
-				))}
-			</Slider>
-			</div>
-				{editMode && show &&
-					onSelectedCard(currentFeatureCard)
-				}
-      </>
-    );
+                </div>
+                {/* <button className={styles.btn} style={{background: adv.btColor}}>Learn more</button> */}
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+      {editMode && show &&
+        onSelectedCard(currentFeatureCard)
+      }
+    </>
+  );
 }
 
 export default Vimeo;

@@ -59,8 +59,16 @@ class App extends React.Component {
           <Route exact path='/topic' component={AdminTopic} />
 
           {/* hard code topics for the time being */}
-          <Route exact path='/topic/:topic' component={AdminTopicListCountries} />
-          <Route exact path='/topic/:topic/:city/:cityId' component={Accomodation} />
+          <Route exact path='/topic/:topic' render={props => (
+            <AdminTopicListCountries
+              props={props.location.state}
+            />
+          )} />
+          <Route exact path='/topic/:topic/:city/:cityId' render={props => (
+            <Accomodation 
+              props={props.location.state}
+            />
+          )} />
         </Switch>
       </>
     );

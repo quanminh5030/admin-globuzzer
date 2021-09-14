@@ -6,7 +6,7 @@ import TopNav from '../../TopNav/TopNav';
 import styles from './AdminTopic.module.css';
 import TopicMain from './TopicMain';
 
-const AdminTopicListCountries = () => {
+const AdminTopicListCountries = ({ props }) => {
   const [topicSelected, setTopicSelected] = useState({ isSelected: false, topicContent: '' });
 
   return (
@@ -46,7 +46,10 @@ const AdminTopicListCountries = () => {
           <SideNav />
         </section>
         <section className={styles.main}>
-          <TopicMain setTopicSelected={setTopicSelected} />
+          <TopicMain
+            setTopicSelected={setTopicSelected}
+            path = {props.path}
+          />
         </section>
       </div>
     </div>

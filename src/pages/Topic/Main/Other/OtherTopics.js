@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react'
-import { EditContext } from '../../../../contexts/editContext';
+import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
 import { app, firestore } from '../../../../utils/firebase.utils';
 import others from "./otherTopics.module.css";
 import TopicServiceCardForm from '../../Service/TopicServiceCardForm';
@@ -7,9 +7,12 @@ import { sizeTransform } from '../../../../utils/sizeTransform';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddTopicCardForm from '../../Service/AddTopicCardForm';
 import { useParams } from 'react-router-dom';
+import BlogHeader from '../../../../components/TravelBlog/sectionHeader/SectionHeader';
+import { v4 as uuidv4 } from 'uuid';
 
 const OtherTopics = () => {
   const { cityId } = useParams();
+  const topicName = useContext(TopicPathContext);
 
   const [topics, setTopics] = useState([]);
   const [currentTopic, setCurrentTopic] = useState({});
@@ -25,10 +28,10 @@ const OtherTopics = () => {
 
   useEffect(() => {
     getData();
-  }, [showEditForm])
+  }, [showEditForm, showAddTopicForm])
 
   const getData = async () => {
-    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
+    const doc = await firestore.collection(topicName.admin).doc(cityId).get();
 
     if (!doc.exists) {
       console.log('no exist');
@@ -74,7 +77,7 @@ const OtherTopics = () => {
 
     const updatedTopics = topics.filter(topic => topic.id !== id)
 
-    return firestore.collection('accomodation_items').doc(cityId).update({
+    return firestore.collection(topicName.admin).doc(cityId).update({
       otherTopic: updatedTopics
     })
 
@@ -107,7 +110,7 @@ const OtherTopics = () => {
       return topic.id === updatedCard.id ? { ...updatedCard, img: fileUrl || updatedCard.img } : topic;
     })
 
-    return firestore.collection('accomodation_items').doc(cityId).update({
+    return firestore.collection(topicName.admin).doc(cityId).update({
       otherTopic: updatedTopics
     })
   }
@@ -135,11 +138,8 @@ const OtherTopics = () => {
   const addTopicCard = newCard => {
     setShowAddTopicForm(false);
 
-    const maxId = topics.reduce((acc, current) => Math.max(acc, current.id)
-      , 0);
-
-    return firestore.collection('accomodation_items').doc(cityId).update({
-      otherTopic: [...topics, { ...newCard, img: newImgUrl, id: maxId + 1 }]
+    return firestore.collection(topicName.admin).doc(cityId).update({
+      otherTopic: [...topics, { ...newCard, img: newImgUrl, id: uuidv4() }]
     })
   }
 
@@ -149,9 +149,8 @@ const OtherTopics = () => {
         className={others.topicsheader}
         style={editMode ? { display: 'flex', justifyContent: 'flex-end' } : {}}
       >
-        <div style={editMode ? { marginRight: 550 } : {}}>
-          {window.innerWidth <= 500 ? "Related topics" : "Other topics"}
-          <div className={others.underline}></div>
+        <div style={editMode ? { marginRight: 500 } : {}}>
+          <BlogHeader label={window.innerWidth <= 500 ? "Related topics" : "Other topics"} />
         </div>
 
         {editMode &&
@@ -163,13 +162,13 @@ const OtherTopics = () => {
               className={others.addCirle}
               style={{ color: !showAddTopicForm ? '#C4C4C4' : '#F24B6A' }}
             />
-
-            <div>
-              {onAddService()}
-            </div>
+            {showAddTopicForm && 
+              <div>
+                {onAddService()}
+              </div>
+            }
           </div>
         }
-
       </header>
 
       <div className={others.cardcontainer}>

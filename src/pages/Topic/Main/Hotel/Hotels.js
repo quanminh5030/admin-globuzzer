@@ -1,19 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Fragment } from 'react';
 import hotel from "./hotels.module.css";
 import { IconContext } from "react-icons";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { app, firestore } from '../../../../utils/firebase.utils';
 import _ from "lodash";
 import like from '../../../../assets/Topic/like.png'
-import { EditContext } from '../../../../contexts/editContext';
+import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
 import HotelServiceCard from '../../Service/HotelServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import { useParams } from 'react-router-dom';
 import HotelServiceCard2 from '../../Service/HotelServiceCard2';
-import { Fragment } from 'react';
+import BlogHeader from '../../../../components/TravelBlog/sectionHeader/SectionHeader';
 
 const Hotels = () => {
   const { cityId } = useParams();
+  const topicName = useContext(TopicPathContext);
   //edit stuff
   const { editStyle, editMode } = useContext(EditContext);
   const [showAdsServiceForm, setShowAdsServiceForm] = useState(false);
@@ -33,7 +34,7 @@ const Hotels = () => {
   }, [showAdsServiceForm, showHotelServiceForm])
 
   const getData = async () => {
-    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
+    const doc = await firestore.collection(topicName.admin).doc(cityId).get();
 
     if (!doc.exists) {
       console.log('no exist');
@@ -97,7 +98,7 @@ const Hotels = () => {
 
     const updatedAds = { ...updatedCard, logo: fileUrl || updatedCard.logo };
 
-    return firestore.collection('accomodation_items').doc(cityId).update({
+    return firestore.collection(topicName.admin).doc(cityId).update({
       advertise: updatedAds
     })
 
@@ -165,19 +166,14 @@ const Hotels = () => {
       return hotel.id === updatedCard.id ? { ...updatedCard, img: fileUrl || updatedCard.img } : hotel;
     })
 
-    return firestore.collection('accomodation_items').doc(cityId).update({
+    return firestore.collection(topicName.admin).doc(cityId).update({
       hotel: updatedHotels
     })
   }
 
   return (
     <section className={hotel.hotel}>
-      <header className={hotel.header}>
-        {window.innerWidth <= 515 ? 'Hotels & hostels' : 'Find suitable hotels'}
-        <div className={hotel.underline}></div>
-
-        
-      </header>
+      <BlogHeader label='Find suitable hotels' />
 
       <div className={hotel.check}>
         <div>

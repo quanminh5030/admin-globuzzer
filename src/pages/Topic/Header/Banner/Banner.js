@@ -8,14 +8,21 @@ import {
 } from "react-icons/io";
 import YouTube from 'react-youtube';
 import { app, firestore } from '../../../../utils/firebase.utils';
-import { EditContext } from '../../../../contexts/editContext';
+import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import TopicServiceCardForm from '../../Service/TopicServiceCardForm';
 import { useParams } from 'react-router-dom';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faChurch, faDollarSign, faFlag, faRecycle, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faShoppingCart, faRecycle, faChurch, faFlag, faDollarSign)
+
 const Banner = () => {
   const { cityId, city } = useParams();
-  const [current, setCurrent] = useState('visa issue');
+  const topicName = useContext(TopicPathContext);
+
+  const [current, setCurrent] = useState(topicName.firstBanner);
   const [video, setVideo] = useState({
     playVideo: false,
     videoId: ''
@@ -48,7 +55,7 @@ const Banner = () => {
   }, [loading])
 
   const getData = async () => {
-    const doc = await firestore.collection('accomodation_items').doc(cityId).get();
+    const doc = await firestore.collection(topicName.admin).doc(cityId).get();
 
     if (!doc.exists) {
       setLoading(true);
@@ -135,7 +142,7 @@ const Banner = () => {
       return b.id === updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, icon: iconUrl || updatedFeatureCard.icon } : b;
     })
 
-    return firestore.collection('accomodation_items').doc(cityId).update({
+    return firestore.collection(topicName.admin).doc(cityId).update({
       banner: updatedCard
     })
   }
@@ -205,7 +212,6 @@ const Banner = () => {
 
   //manage the update image file
   const onFileChange = async (e) => {
-    console.log(e.target)
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
     if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
@@ -226,7 +232,7 @@ const Banner = () => {
       return b.id == updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, videoId: newVideoId || '' } : b;
     })
 
-    return firestore.collection('accomodation_items').doc(cityId).update({
+    return firestore.collection(topicName.admin).doc(cityId).update({
       banner: updatedVideos
     })
   }
@@ -235,6 +241,7 @@ const Banner = () => {
     <section>
       <div className={banner.list}>
         {list.banner && list.banner.map(item =>
+
           <div
             key={item.id}
             onMouseOver={() => {
@@ -248,6 +255,7 @@ const Banner = () => {
             <span>
               <img src={item.icon} alt={item.title} style={{ width: 50 }} />
             </span>
+            {/* <FontAwesomeIcon icon={item.icon} size='2x' /> */}
             <span>{item.title}</span>
 
             {item.title.toLocaleLowerCase() == current ?
@@ -257,6 +265,7 @@ const Banner = () => {
               : <></>
             }
           </div>
+
         )}
       </div>
 
