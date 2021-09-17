@@ -58,7 +58,6 @@ class App extends React.Component {
           <Route path="/section/:city/:cityId" component={AdminSectionCity} />
           <Route exact path='/topic' component={AdminTopic} />
 
-          {/* hard code topics for the time being */}
           <Route exact path='/topic/:topic' render={props => (
             <AdminTopicListCountries
               props={props.location.state}

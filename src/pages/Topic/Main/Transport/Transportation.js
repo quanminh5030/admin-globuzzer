@@ -1,16 +1,15 @@
-import React, { Suspense, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import BlogHeader from '../../../../components/TravelBlog/sectionHeader/SectionHeader';
 import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
 import styles from './transport.module.css';
 import { IconContext } from "react-icons";
 import { TiArrowSortedDown } from "react-icons/ti";
-import Amadeus from 'amadeus';
 import moment from 'moment';
 import Vimeo from '../../../Section/Vimeo/Vimeo';
 import { sliceData } from '../../../../utils/sliceData';
 import logo from '../../../../assets/GLOBUZZER.svg';
-import { firestore } from '../../../../utils/firebase.utils';
+import { app, firestore } from '../../../../utils/firebase.utils';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -18,19 +17,26 @@ import PlacesAutocomplete, {
 import axios from 'axios';
 import { VscLoading } from 'react-icons/vsc';
 import { MdCancel } from 'react-icons/md';
+import TransportService from '../../Service/transportation/TransportService';
+import { sizeTransform } from '../../../../utils/sizeTransform';
+
+import AmadeusService from '../../Service/amadeus/AmadeusService';
 
 const Transportation = () => {
   const { cityId } = useParams();
   const topicName = useContext(TopicPathContext);
   //edit stuff
   const { editStyle, editMode } = useContext(EditContext);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [currentCard, setCurrentCard] = useState({});
+  const [fileUrl, setFileUrl] = useState('')
 
   //states
   const [showList, setShowList] = useState(false);
 
   const [flights, setFlights] = useState([]);
   const [flightParams, setFlightParams] = useState({
-    originLocationCode: 'HEL',
+    originLocationCode: '',
     destinationLocationCode: '',
     departureDate: '',
     adults: ''
@@ -41,7 +47,7 @@ const Transportation = () => {
 
   const [otherTransports, setOtherTransports] = useState([]);
 
-  useEffect(() => getData(), []);
+  useEffect(() => getData(), [showEditForm]);
 
   const getData = async () => {
     const doc = await firestore.collection(topicName.admin).doc(cityId).get();
@@ -50,16 +56,11 @@ const Transportation = () => {
       console.log('no exist');
     } else {
       setOtherTransports(doc.data().otherTransport)
+      setFlightParams({ ...flightParams, originLocationCode: doc.data().IATA_code })
     }
   }
 
   const [flightSize, setFlightSize] = useState(4);
-
-  //test amadeus
-  const amadeus = new Amadeus({
-    clientId: 'J3wbowimCRDQf4bWzJ3xBPFibom1pyBH',
-    clientSecret: 'seM2Dd1Jvw3ZAk1d'
-  })
 
   const handleSelect = (e) => {
     setShowList(!showList);
@@ -67,8 +68,7 @@ const Transportation = () => {
 
   const handleList = e => {
     setShowList(false)
-
-    setFlightParams({...flightParams, adults: e.target.value})
+    setFlightParams({ ...flightParams, adults: e.target.value })
   }
 
   const handleChange = e => {
@@ -83,22 +83,11 @@ const Transportation = () => {
     setFlights([]);
 
     setFlightParams({
-      originLocationCode: 'HEL',
+      originLocationCode: '',
       destinationLocationCode: '',
       departureDate: '',
       adults: ''
     })
-  }
-
-  const searchFlights = () => {
-    setIsSearching(true);
-
-    amadeus.shopping.flightOffersSearch.get(flightParams)
-      .then(res => {
-        setFlights(res.data);
-      })
-      .catch(err => console.log(err))
-
   }
 
   const calculateDuration = (arrival, departure) => {
@@ -128,6 +117,72 @@ const Transportation = () => {
       .then(data => setFlightParams({ ...flightParams, destinationLocationCode: data.data.IATA }))
       .then(err => console.error('error', err))
   }
+
+  //serch flghts
+  const searchFlights = () => {
+    setIsSearching(true);
+    AmadeusService
+      .searchFlights(flightParams)
+      .then(res => setFlights(res.data))
+      .catch(err => console.error(err))
+  }
+
+  //edit functions
+  const openEditForm = item => {
+    setShowEditForm(true);
+    setCurrentCard({
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      image: item.image,
+      link: item.link
+    })
+  }
+
+  //image handling stuff
+  const typeValidation = ["image/png", "image/jpeg", "image/jpg", "image/svg+xml"];
+  const sizeValidation = 200000;
+  const message = (file) => {
+    return `The size of the image should be maximum ${sizeTransform(sizeValidation)}, and the format need to be PNG, JPG. You tried to upload a file format: ${file.type}, size: ${sizeTransform(file.size)}`;
+  }
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+
+    if (file && typeValidation.includes(file.type) && file.size <= sizeValidation) {
+      const fileRef = storageRef.child(`topic/${file.name}`);
+      await fileRef.put(file);
+      setFileUrl(await fileRef.getDownloadURL())
+    } else {
+      alert(message(file))
+    }
+  }
+
+  const updateCard = updatedItem => {
+    setShowEditForm(false);
+
+    const updatedTransports = otherTransports.map(other => {
+      return other.id === updatedItem.id ? { ...updatedItem, image: fileUrl || updatedItem.image } : other
+    }
+    )
+
+    return firestore.collection(topicName.admin).doc(cityId).update({
+      otherTransport: updatedTransports
+    })
+  }
+
+  const onEditService = () =>
+    (showEditForm && editMode) &&
+    <TransportService
+      title='Transport Service'
+      currentFeatureCard={currentCard}
+      uploadLabel='Cover image'
+      uploadDescription=' (Image has to be below 200 KB and PNG/JPG format)'
+      textLabel='Title'
+      onFileChange={onFileChange}
+      updateFeatureCard={updateCard}
+      setShow={setShowEditForm}
+    />
 
   return (
     <section className={styles.hotel}>
@@ -224,93 +279,102 @@ const Transportation = () => {
         }
       </div>
 
+      {isSearching &&
+        <div className={styles.hotelflex}>
+          {flights.length > 0 ?
+            <div className={styles.hotelist}>
+              {flights && slicedData.map(f => (
+                <div className={styles.hotelitems} style={{ padding: 20 }} key={f.id}>
+                  <div className={styles.flghtleft}>
+                    <img src={`https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=${f.validatingAirlineCodes}`} alt={f.validatingAirlineCodes} style={{ width: '100%' }} />
+                  </div>
 
-      <Suspense fallback={<div></div>}>
-        {isSearching &&
-          <div className={styles.hotelflex}>
-            {flights.length > 0 ?
-              <div className={styles.hotelist}>
-                {flights && slicedData.map(f => (
-                  <div className={styles.hotelitems} style={{ padding: 20 }} key={f.id}>
-                    <div className={styles.flghtleft}>
-                      <img src={`https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=${f.validatingAirlineCodes}`} alt={f.validatingAirlineCodes} style={{ width: '100%' }} />
+                  <div className={styles.flightcenter}>
+                    <div className={styles.time}>
+                      <p>Depart</p>
+                      <div>{moment(f.itineraries[0].segments[0].departure.at).format('MM/DD/YYYY')}</div>
+                      <div>{moment(f.itineraries[0].segments[0].departure.at).format('hh:mm a')}</div>
                     </div>
 
-                    <div className={styles.flightcenter}>
-                      <div className={styles.time}>
-                        <p>Depart</p>
-                        <div>{moment(f.itineraries[0].segments[0].departure.at).format('MM/DD/YYYY')}</div>
-                        <div>{moment(f.itineraries[0].segments[0].departure.at).format('hh:mm a')}</div>
-                      </div>
+                    <div className={styles.duration}>
+                      <div>{calculateDuration(f.itineraries[0].segments[0].arrival.at, f.itineraries[0].segments[0].departure.at)}</div>
 
-                      <div className={styles.duration}>
-                        <div>{calculateDuration(f.itineraries[0].segments[0].arrival.at, f.itineraries[0].segments[0].departure.at)}</div>
-
-                        <div>
-                          {f.itineraries[0].segments[0].numberOfStops} stops
-                        </div>
-                      </div>
-
-                      <div className={styles.time}>
-                        <p>Arrive</p>
-                        <div>{moment(f.itineraries[0].segments[0].arrival.at).format('MM/DD/YYYY')}</div>
-                        <div>{moment(f.itineraries[0].segments[0].arrival.at).format('hh:mm a')}</div>
+                      <div>
+                        {f.itineraries[0].segments[0].numberOfStops} stops
                       </div>
                     </div>
 
-                    <div className={styles.flightright}>
-                      <span>Price</span>
-                      <span className={styles.price}>{f.price.total} {f.price.currency}</span>
-                    </div>
-                  </div>
-                ))}
-                <div className={styles.moreFlights}>
-                  <div className={styles.flightAds}>
-                    <div style={{ margin: 30 }}>
-                      Want to find and explore
-                      <h3 style={{ marginTop: 15 }}>Different kinds of flights?</h3>
-                    </div>
-
-                    <div>
-                      <img src={logo} alt='globuzzer' className={styles.globuzzerLogo} />
+                    <div className={styles.time}>
+                      <p>Arrive</p>
+                      <div>{moment(f.itineraries[0].segments[0].arrival.at).format('MM/DD/YYYY')}</div>
+                      <div>{moment(f.itineraries[0].segments[0].arrival.at).format('hh:mm a')}</div>
                     </div>
                   </div>
 
-                  <div className={styles.moreOrLess} onClick={() => setFlightSize(flightSize + 4)}>
-                    Explore more
+                  <div className={styles.flightright}>
+                    <span>Price</span>
+                    <span className={styles.price}>{f.price.total} {f.price.currency}</span>
                   </div>
-                  {flightSize > 4 &&
-                    <div className={styles.moreOrLess} onClick={() => setFlightSize(flightSize - 4)}>
-                      Explore less
-                    </div>}
                 </div>
-              </div>
-              : <div style={{ display: 'flex', alignItems: 'center', margin: 'auto' }}>
-                <VscLoading style={{ fontSize: 80 }} />
-              </div>
-            }
+              ))}
+              <div className={styles.moreFlights}>
+                <div className={styles.flightAds}>
+                  <div style={{ margin: 30 }}>
+                    Want to find and explore
+                    <h3 style={{ marginTop: 15 }}>Different kinds of flights?</h3>
+                  </div>
 
+                  <div>
+                    <img src={logo} alt='globuzzer' className={styles.globuzzerLogo} />
+                  </div>
+                </div>
 
-            {/* for the ads */}
-            <div>
-              <Vimeo cityId={cityId} collection={topicName.admin} />
+                <div className={styles.moreOrLess} onClick={() => setFlightSize(flightSize + 4)}>
+                  Explore more
+                </div>
+                {flightSize > 4 &&
+                  <div className={styles.moreOrLess} onClick={() => setFlightSize(flightSize - 4)}>
+                    Explore less
+                  </div>}
+              </div>
             </div>
-          </div>
+            : <div style={{ display: 'flex', alignItems: 'center', margin: 'auto' }}>
+              <VscLoading style={{ fontSize: 80 }} />
+            </div>
+          }
 
-        }
-      </Suspense>
+
+          {/* for the ads */}
+          <div>
+            <Vimeo cityId={cityId} collection={topicName.admin} />
+          </div>
+        </div>
+
+      }
+
       {/* for other transport */}
 
       <div style={{ marginTop: 120 }}>
         <BlogHeader label='Other transportation services' />
 
-        <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+        <div className={styles.other}>
           {otherTransports.length > 0 && otherTransports.map(other =>
-            <div style={{ margin: 30 }}>
-              <img src={other.image} alt={other.name} style={{ width: '100%' }} />
-              <header style={{ textAlign: 'center', margin: 20 }}>{other.name}</header>
-              <p>{other.description}</p>
-            </div>
+            <Fragment key={other.id}>
+              <div
+                style={{ ...editStyle, margin: 30 }}
+                onClick={editMode ? () => openEditForm(other) : () => window.open(other.link, '_blank')}
+              >
+                <img src={other.image} alt={other.name} style={{ width: 300, height: 300 }} />
+                <header>{other.name}</header>
+                <p>{other.description}</p>
+              </div>
+
+              {showEditForm && currentCard.id == other.id &&
+                <div className={styles.editBox}>
+                  {onEditService()}
+                </div>
+              }
+            </Fragment>
           )
           }
         </div>

@@ -31,7 +31,7 @@ const TopicMenu = ({ anchorElTopics, setAnchorElTopics }) => {
             state: { path: selectedTopic }
           }}
 
-          style={{ color: 'white' }}
+          style={{ color: 'white', textDecoration: 'none' }}
           key={index}
         >
           <MenuItem

@@ -430,3 +430,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border: red;
 }
 
+.other {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.other header {
+  margin: 20px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #555555;
+}
+
+.other p {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 175%;
+  text-align: center;
+  color: #909090;
+}

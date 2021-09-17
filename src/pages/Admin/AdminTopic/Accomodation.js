@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SideNav from "../SideNav/SideNav";
 import styles from './admin area/AdminTopic.module.css';
 import { IoMdArrowDropright } from "react-icons/io";
@@ -8,6 +8,8 @@ import { EditContext, TopicPathContext } from "../../../contexts/editContext";
 import MainAccomodation from "./MainAccomodation";
 import { firestore } from "../../../utils/firebase.utils";
 import { readData } from "../../../utils/actions.firebase";
+import { upperCaseFirstLetter } from "../../../utils/upperCaseFirstLetter";
+import { dictionary } from "../../../Data/IATA_dictionary";
 
 const Accomodation = ({ props }) => {
   const { admin, live } = props.pathName;
@@ -26,10 +28,32 @@ const Accomodation = ({ props }) => {
       } else {
         setFetchedCurrentCity(doc.data());
         setLoading(false);
+        checkCityName(doc.data().city);
       }
     };
     getCurrentCity();
   }, [loading]);
+
+  const checkCityName = cityName => {
+    if (cityName == 'New topic soon...') {
+      const name = prompt('Please enter the city name');
+      if (name) {
+        const iata_code = getIATACode(name)
+
+        return firestore.collection(admin).doc(cityId).update({
+          city: upperCaseFirstLetter(name),
+          IATA_code: iata_code
+        })
+      }
+    } else {
+      return;
+    }
+  }
+
+  const getIATACode = name => {
+    const upperCaseName = upperCaseFirstLetter(name);
+    return Object.keys(dictionary).find(k => dictionary[k] === upperCaseName)
+  }
 
   const releaseNewInfo = async () => {
     const check = await readData(live, cityId);

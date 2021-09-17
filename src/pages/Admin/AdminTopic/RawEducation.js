@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const transportObj = {
+export const educationObj = {
   city: "New topic soon...",
-  IATA_code: '',
   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   mainImg: '',
   advertisements: [
@@ -261,38 +260,29 @@ export const transportObj = {
   banner: [
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fplane.png?alt=media&token=4b32c96e-11af-43c0-93bb-4b4d851682ab',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fresume.png?alt=media&token=7191f7e2-abf6-41f3-863e-bb114b7c3118',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Flight',
+      title: 'Application',
       videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Funderground.png?alt=media&token=cc4c6e6b-70c6-417b-80e8-80db99359727',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fgraduation-hat.png?alt=media&token=d02ca006-0a7d-4be4-a7ed-3ad8c46dcbcc',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Train',
+      title: 'School',
       videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fcar.png?alt=media&token=b35a5f21-2aca-43f2-9ca2-61bb4759f952',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fa.png?alt=media&token=04a429b3-7730-44e7-b316-453f0e17a3b6',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Car',
-      videoId: 'yawXq5TlgBU',
-    },
-    {
-      content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Ffront-of-bus.png?alt=media&token=bde4ae47-e803-4b56-b99d-fbbb6b2b1eaf',
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
-      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Bus',
+      title: 'Language',
       videoId: 'yawXq5TlgBU',
     },
   ],
@@ -493,34 +483,44 @@ export const transportObj = {
     }
   ],
 
-  otherTransport: [
-    {
-      id: uuidv4(),
-      name: 'Subway & bus',
-      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.',
-      link: 'https://globuzzer.com/'
-    },
-    {
-      id: uuidv4(),
-      name: 'Subway & bus',
-      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.',
-      link: 'https://globuzzer.com/'
-    },
-    {
-      id: uuidv4(),
-      name: 'Subway & bus',
-      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.',
-      link: 'https://globuzzer.com/'
-    },
-    {
-      id: uuidv4(),
-      name: 'Subway & bus',
-      image: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2FotherTransportDemo.svg?alt=media&token=3301f43d-133c-4a81-89cb-bf7c99e050f2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore.',
-      link: 'https://globuzzer.com/'
-    }
-  ]
+  selectHeaders: [
+    'find a nursery School',
+    'find a primary school',
+    'find a high school',
+    'find a university'
+  ],
+
+  educationData: {
+    university: [
+      { title: 'Aalto University', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Faalto.jpg?alt=media&token=b8c7a448-d71a-4f22-9640-db204482042d', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Aalto University', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Faalto.jpg?alt=media&token=b8c7a448-d71a-4f22-9640-db204482042d', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Aalto University', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Faalto.jpg?alt=media&token=b8c7a448-d71a-4f22-9640-db204482042d', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Aalto University', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Faalto.jpg?alt=media&token=b8c7a448-d71a-4f22-9640-db204482042d', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Aalto University', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Faalto.jpg?alt=media&token=b8c7a448-d71a-4f22-9640-db204482042d', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Aalto University', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Faalto.jpg?alt=media&token=b8c7a448-d71a-4f22-9640-db204482042d', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() }
+    ],
+
+    high_school: [
+      { title: 'Business College', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2FBusiness_College.jpg?alt=media&token=85ff9888-1d53-4abb-9ac1-69fc7ada9a56', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Business College', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2FBusiness_College.jpg?alt=media&token=85ff9888-1d53-4abb-9ac1-69fc7ada9a56', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Business College', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2FBusiness_College.jpg?alt=media&token=85ff9888-1d53-4abb-9ac1-69fc7ada9a56', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Business College', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2FBusiness_College.jpg?alt=media&token=85ff9888-1d53-4abb-9ac1-69fc7ada9a56', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+
+    ],
+
+    nursury_school: [
+      { title: 'Carousel Nursery School', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fnursery.jpg?alt=media&token=5393c905-3cd9-4430-a6e1-b8a12fdc22a4', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Carousel Nursery School', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fnursery.jpg?alt=media&token=5393c905-3cd9-4430-a6e1-b8a12fdc22a4', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Carousel Nursery School', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fnursery.jpg?alt=media&token=5393c905-3cd9-4430-a6e1-b8a12fdc22a4', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Carousel Nursery School', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fnursery.jpg?alt=media&token=5393c905-3cd9-4430-a6e1-b8a12fdc22a4', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+    ],
+
+    primary_school: [
+      { title: 'Helsinki Suomalainen Yhteiskoulu', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fprimary_school.jpg?alt=media&token=bdc842ca-5c20-4077-b47f-c5a5d9db47f2', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Helsinki Suomalainen Yhteiskoulu', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fprimary_school.jpg?alt=media&token=bdc842ca-5c20-4077-b47f-c5a5d9db47f2', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Helsinki Suomalainen Yhteiskoulu', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fprimary_school.jpg?alt=media&token=bdc842ca-5c20-4077-b47f-c5a5d9db47f2', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+      { title: 'Helsinki Suomalainen Yhteiskoulu', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fprimary_school.jpg?alt=media&token=bdc842ca-5c20-4077-b47f-c5a5d9db47f2', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },
+    ]
+  }
 }
+

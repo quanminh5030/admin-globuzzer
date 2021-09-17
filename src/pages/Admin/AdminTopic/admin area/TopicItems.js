@@ -23,7 +23,6 @@ const TopicItems = ({ currentItems, path }) => {
   }
 
   const warningForm = (data) => {
-
     return (
       <div className="warningBox" style={{ margin: '0 auto', position: 'absolute' }}>
         <div className="warningHeader">Warning</div>
@@ -75,10 +74,12 @@ const TopicItems = ({ currentItems, path }) => {
               </div>
 
               <div className={styles.options}>
-                <Link to={{
-                  pathname: `/topic/${topic}/${item.city}/${item.id}`,
-                  state: { pathName: path }
-                }}>
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  to={{
+                    pathname: `/topic/${topic}/${item.city}/${item.id}`,
+                    state: { pathName: path }
+                  }}>
                   <p>Edit</p>
                 </Link>
                 <p onClick={() => deleteWarning(item)}>Delete</p>

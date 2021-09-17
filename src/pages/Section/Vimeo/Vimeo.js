@@ -47,16 +47,6 @@ const Vimeo = ({ cityId, collection }) => {
     getCurrentCity();
   }, [cityId, show]);
 
-
-  // const handleClick = (item) => (e) => {
-  // 	if (editMode) {
-  // 		if (advRef.current.contains(e.target)) {
-  // 			setCurrentItem(item)
-  // 			}
-  // 		setShow(true)
-  // 	}
-  // };
-
   const openEditForm = (data) => {
     setShow(true);
     setCurrentFeatureCard({

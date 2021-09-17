@@ -1,63 +1,44 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import BlogHeader from '../../../../components/TravelBlog/sectionHeader/SectionHeader';
 import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
-import styles from './Culture.module.css';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { app, firestore } from '../../../../utils/firebase.utils';
+import styles from './Education.module.css';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { upperCaseFirstLetter } from '../../../../utils/upperCaseFirstLetter';
-import { FaHeart, FaShare } from 'react-icons/fa'
 import Vimeo from '../../../Section/Vimeo/Vimeo';
 import AttractionServiceCard from '../../Service/attraction/AttractionServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import AddAttractionCardForm from '../../Service/attraction/AddAttractionCardForm';
 import { v4 as uuidv4 } from 'uuid';
-import moment from 'moment';
+import AddTopicCardForm from '../../Service/AddTopicCardForm';
 
-import firebase from 'firebase/app'
+const Education = () => {
 
-const Culture = () => {
   //params
   const { cityId } = useParams();
   const topicName = useContext(TopicPathContext);
   const { editMode, editStyle } = useContext(EditContext);
+  const [fileUrl, setFileUrl] = useState('');
 
   //states
-  const [showAdd, setShowAdd] = useState(false);
+  const [schools, setSchools] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
-  const [fileUrl, setFileUrl] = useState('')
-
-  const [cultures, setCultures] = useState([]);
+  const [showAdd, setShowAdd] = useState(false);
+  const [current, setCurrent] = useState('university');
   const [currentCard, setCurrentCard] = useState({});
-  const [current, setCurrent] = useState('museum');
 
-
-  useEffect(() => getData(), [cityId, topicName, showEdit])
+  useEffect(() => getData(), [showEdit, cityId, topicName]);
 
   const getData = async () => {
     const doc = await firestore.collection(topicName.admin).doc(cityId).get();
 
     if (!doc.exists) {
-      console.log('no data')
+      console.log('no data');
     } else {
-      setCultures(doc.data().cultureData)
+      setSchools(doc.data().educationData)
     }
   }
-
-  const onAddService = () =>
-    (showAdd && editMode) ?
-      <div>
-        <AddAttractionCardForm
-          title='Cultures'
-          uploadLabel='Cover image'
-          uploadDescription=' (Image has to be below 200 KB and PNG/JPG format)'
-          textLabel='Title'
-          onFileChange={onFileChange}
-          addFeatureCard={addCultureCard}
-          setShow={setShowAdd}
-        />
-      </div>
-      : <div></div>
 
   const openEditForm = item => {
     setShowEdit(true);
@@ -67,15 +48,30 @@ const Culture = () => {
       img: item.img,
       link: item.link,
       title: item.title,
-      date: item.date
     })
+  }
+
+  const onAddService = () => {
+    return (showAdd && editMode) ?
+      <div>
+        <AddTopicCardForm
+          title='Education'
+          uploadLabel='Cover image'
+          uploadDescription=' (Image has to be below 200 KB and PNG/JPG format)'
+          textLabel='Title'
+          onFileChange={onFileChange}
+          addFeatureCard={addCard}
+          setShow={setShowAdd}
+        />
+      </div>
+      : <div></div>
   }
 
   const onEditService = () =>
     (showEdit & editMode) &&
     <div>
       <AttractionServiceCard
-        title='Cultures'
+        title='Education'
         currentFeatureCard={currentCard}
         uploadLabel='Cover image'
         uploadDescription=' (Image has to be below 200 KB and PNG/JPG format)'
@@ -110,56 +106,52 @@ const Culture = () => {
     alert('Are you sure you want to delete the card?')
     setShowEdit(false);
 
-    const updatedContent = cultures[current].filter(cul => cul.id !== id);
-    cultures[current] = updatedContent;
+    const updatedContent = schools[current].filter(s => s.id !== id);
+    schools[current] = updatedContent;
 
     return firestore.collection(topicName.admin).doc(cityId).update({
-      cultureData: cultures
+      educationData: schools
     })
   }
 
   const updateCard = updatedItem => {
-    const cultureObj = cultures;
+    const schoolObj = schools;
 
-    const dateToTimestamp = firebase.firestore.Timestamp.fromDate(updatedItem.date)
-
-    const updatedContent = cultures[current].map(item =>
+    const updatedContent = schools[current].map(item =>
       item.id === updatedItem.id ?
-        { ...updatedItem, date: dateToTimestamp, img: fileUrl || updatedItem.img }
+        { ...updatedItem, img: fileUrl || updatedItem.img }
         : item
     )
-    cultureObj[current] = updatedContent;
+    schoolObj[current] = updatedContent;
 
     return firestore.collection(topicName.admin).doc(cityId).update({
-      cultureData: cultureObj
+      educationData: schoolObj
     })
   }
 
-  //add card
-  const addCultureCard = newCard => {
+  //add school
+  const addCard = newCard => {
     setShowAdd(false);
-    const cultureObj = cultures;
+    const schoolObj = schools;
 
-    const dateToTimestamp = firebase.firestore.Timestamp.fromDate(newCard.date)
+    const newSchoolList = schoolObj[current];
+    newSchoolList.push({ ...newCard, id: uuidv4(), img: fileUrl || '' });
 
-    const newCultureList = cultureObj[current];
-    newCultureList.push({ ...newCard, id: uuidv4(), img: fileUrl || '', date: dateToTimestamp });
-
-    cultureObj[current] = newCultureList;
+    schoolObj[current] = newSchoolList;
 
     return firestore.collection(topicName.admin).doc(cityId).update({
-      cultureData: cultureObj
+      educationData: schoolObj
     })
   }
 
   return (
     <section className={styles.container}>
       <header
-        className={styles.attractionHeader}
+        className={styles.schoolHeader}
         style={editMode ? { display: 'flex', justifyContent: 'flex-end' } : {}}
       >
         <div style={editMode ? { marginRight: 370 } : {}}>
-          <BlogHeader label='Find suitable activities' />
+          <BlogHeader label='Find suitable universities' />
         </div>
 
         {editMode &&
@@ -168,7 +160,6 @@ const Culture = () => {
           >
             <AddCircleIcon
               fontSize='large'
-              className={styles.addCirle}
               style={{ color: !showAdd ? '#C4C4C4' : '#F24B6A' }}
             />
             {showAdd &&
@@ -180,59 +171,45 @@ const Culture = () => {
         }
       </header>
 
-      <div className={styles.attractionBtn}>
-        {cultures && Object.keys(cultures).map(culture =>
+      <div className={styles.schoolBtn}>
+        {schools && Object.keys(schools).map(school =>
           <button
-            key={culture}
-            onMouseOver={() => setCurrent(culture)}
-            style={culture === current ? { backgroundColor: '#F24B6A', color: 'white' } : {}}
+            key={school}
+            onMouseOver={!editMode ? () => setCurrent(school) : undefined}
+            style={school === current ? { backgroundColor: '#F24B6A', color: 'white' } : {}}
           >
-            {upperCaseFirstLetter(culture)}
+            {upperCaseFirstLetter(school.replace('_', ' '))}
           </button>
         )}
       </div>
 
-      <div className={styles.attractionFlex} >
-        <div className={styles.attractionList}>
-
-          {cultures[current] && cultures[current].map(culture =>
-            <Fragment key={culture.id}>
+      {/* school data */}
+      <div className={styles.schoolFlex}>
+        <div className={styles.schoolList}>
+          {schools[current] && schools[current].map(school =>
+            <Fragment key={school.id}>
               <div
-                className={styles.attractionItems}
+                className={styles.schoolItems}
                 style={editMode ? editStyle : {}}
-                onClick={editMode ? () => openEditForm(culture) : undefined}
+                onClick={editMode ? () => openEditForm(school) : () => window.open(school.link, '_blank')}
               >
-                <div className={styles.attractionLeft}>
-                  <img src={culture.img} alt={current} />
-                  <div>
-                    {culture && moment(culture.date.toDate()).format('MMMM Do')}
-                  </div>
+                <div className={styles.schoolImg}>
+                  <img src={school.img} alt={current} />
                 </div>
 
-                <div className={styles.attractionRight}>
-                  <div style={{ position: 'relative' }}>
-                    <header>{culture.title}</header>
-
-                    <div>
-                      <FaShare className={styles.icon} onClick={() => console.log('share')} />
-                      <FaHeart className={styles.icon} onClick={() => console.log('heart')} />
-                    </div>
+                <div className={styles.schoolInfo}>
+                  <div>
+                    <header>{school.title}</header>
                   </div>
-
-                  <p>{culture.content}</p>
-
-                  <button onClick={() => window.open(culture.link ? culture.link : '#')}>
-                    Explore more
-                  </button>
+                  <p>{school.content}</p>
                 </div>
               </div>
 
-              {showEdit && currentCard.id == culture.id &&
+              {showEdit && currentCard.id == school.id &&
                 <div className={styles.editBox}>
                   {onEditService()}
                 </div>
               }
-
             </Fragment>
           )}
         </div>
@@ -241,9 +218,8 @@ const Culture = () => {
           <Vimeo cityId={cityId} collection={topicName.admin} />
         </div>
       </div>
-
     </section>
   )
 }
 
-export default Culture
+export default Education

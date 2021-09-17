@@ -67,6 +67,19 @@
   padding: 8px 12px;
 }
 
+.check div input {
+  background-color: #878686;
+  color: white;
+}
+
+.check button {
+  background-color: #f24b6a;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
 .check input,
 .check select {
   width: 220px;
@@ -159,7 +172,6 @@
 
 .hotelitems:hover {
   transform: scale(1.03);
-
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -287,3 +299,10 @@
 
 
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 0.6;
+  filter: invert(1);
+}

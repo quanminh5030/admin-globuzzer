@@ -1,6 +1,7 @@
 import { accomodationObj } from "../pages/Admin/AdminTopic/RawAccomodationData";
 import { attractionObj } from "../pages/Admin/AdminTopic/RawAttractionData";
 import { cultureObj } from "../pages/Admin/AdminTopic/RawCultureData";
+import { educationObj } from "../pages/Admin/AdminTopic/RawEducation";
 import { transportObj } from "../pages/Admin/AdminTopic/RawTransportData";
 
 export default [
@@ -11,8 +12,10 @@ export default [
 
     { title: "Transportation", path: { admin: 'transport_items', live: 'transport_live', dataObj: transportObj, name: 'transportation', firstBanner: 'flight' } },
 
+    { title: "Education", path: { admin: 'education_items', live: 'education_live', dataObj: educationObj, name: 'education', firstBanner: 'application' } },
+
     { title: "Entertainment", path: { admin: 'attraction_items', live: 'attraction_live' } },
-    { title: "Education", path: { admin: 'attraction_items', live: 'attraction_live' } },
+
     { title: "Sports & Activities", path: { admin: 'attraction_items', live: 'attraction_live' } },
     { title: "Health & Emergency", path: { admin: 'attraction_items', live: 'attraction_live' } },
     { title: "Internet Service", path: { admin: 'attraction_items', live: 'attraction_live' } }

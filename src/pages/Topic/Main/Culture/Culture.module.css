@@ -33,14 +33,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 10px;
-  flex-basis: 75%;
+  flex-basis: 85%;
 }
 
 .attractionItems {
   background: #f9f9f9;
   display: flex;
   justify-content: space-between;
-  /* padding: 20px; */
   transition: transform 0.3s;
 }
 
@@ -62,7 +61,8 @@
   color: white;
   font-size: 15px;
   margin-left: 20px;
-  
+  padding: 5px;
+  border-radius: 6px;
 }
 
 .attractionRight {
@@ -172,3 +172,9 @@
   top: 3300px;
   left: 50%;
 }
+
+.pagBtn {
+  background-color: gray;
+  border: none;
+}
+

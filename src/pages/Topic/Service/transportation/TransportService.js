@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../FeatureCardForm.module.css'
-import "react-datepicker/dist/react-datepicker.css";
 
-const AttractionServiceCard = ({
-  setShow, currentFeatureCard, onFileChange, updateFeatureCard, title, uploadLabel, textLabel, uploadDescription, deleteTopicCard
+const TransportService = ({
+  setShow, currentFeatureCard, onFileChange, updateFeatureCard, title, uploadLabel, textLabel, uploadDescription, 
 }) => {
 
   const [data, setData] = useState(currentFeatureCard);
@@ -45,9 +44,9 @@ const AttractionServiceCard = ({
             <p>{textLabel}</p>
             <input
               type="text"
-              name="title"
+              name="name"
               className={styles.title_input}
-              value={data.title}
+              value={data.name}
               onChange={inputHandler}
             />
           </div>
@@ -68,20 +67,12 @@ const AttractionServiceCard = ({
             <textarea
               style={{ width: '100%' }}
               rows='4'
-              name='content'
-              value={data.content}
+              name='description'
+              value={data.description}
               onChange={inputHandler}
             />
           </div>
 
-
-          <div className={styles.editBox}>
-            <button
-              onClick={() => deleteTopicCard(data.id)}
-            >
-              Delete this card
-            </button>
-          </div>
         </div>
       </div>
       <div className={styles.btn_container}>
@@ -110,4 +101,4 @@ const AttractionServiceCard = ({
   )
 }
 
-export default AttractionServiceCard
+export default TransportService

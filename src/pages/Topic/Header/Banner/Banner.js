@@ -241,12 +241,10 @@ const Banner = () => {
     <section>
       <div className={banner.list}>
         {list.banner && list.banner.map(item =>
-
           <div
             key={item.id}
             onMouseOver={() => {
               changeList(item.title.toLocaleLowerCase());
-
             }}
             onClick={editMode ? () => openServiceEditForm(item) : undefined}
             className={banner.listflex}
@@ -265,7 +263,6 @@ const Banner = () => {
               : <></>
             }
           </div>
-
         )}
       </div>
 

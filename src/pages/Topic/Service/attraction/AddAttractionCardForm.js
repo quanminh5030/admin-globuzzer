@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styles from '../FeatureCardForm.module.css'
-import DatePicker from 'react-datepicker'
 
 const AddAttractionCardForm = ({
   setShow, onFileChange, title, uploadLabel, textLabel, uploadDescription, addFeatureCard
@@ -9,21 +8,20 @@ const AddAttractionCardForm = ({
   const [data, setData] = useState({
     title: '',
     link: '',
-    content: ''
+    description: ''
   });
-  const [updatedDate, setDate] = useState(new Date())
 
   const inputHandler = e => {
     const { name, value } = e.target;
+
     setData({ ...data, [name]: value })
   }
 
   const submitFeatureCard = e => {
-    const newCulture = { ...data, date: updatedDate }
     console.log('submit card 2');
     setShow(false);
     e.preventDefault();
-    addFeatureCard(newCulture);
+    addFeatureCard(data);
   }
 
 
@@ -66,24 +64,13 @@ const AddAttractionCardForm = ({
             />
           </div>
 
-          {title == 'Cultures' &&
-            <div>
-              <p>Date</p>
-              <DatePicker
-                selected={updatedDate}
-                onChange={date => setDate(date)}
-              />
-            </div>
-          }
-
           <div>
-            <p>Content</p>
-            <textarea
-              style={{ width: '100%', fontSize: 18 }}
-              rows='4'
-              name="content"
+            <p>Description</p>
+            <input
+              type="text"
+              name="description"
               className={styles.title_input}
-              value={data.content}
+              value={data.description}
               onChange={inputHandler}
             />
           </div>
@@ -101,7 +88,7 @@ const AddAttractionCardForm = ({
         </span>
         <div className={styles.vertical} />
         <span>
-          <button
+        <button
             className={styles.btn_cancel}
             onClick={() => setShow(false)}
           >

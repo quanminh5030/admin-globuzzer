@@ -12,9 +12,9 @@ const HeaderContent = ({ contentEditable }) => {
   const { editStyle, editMode } = useContext(EditContext);
 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [showTextForm, setShowTextForm] = useState(false)
   //for the title and subtitle
+  const [selectHeaders, setSelectHeaders] = useState([]);
   const [fetchedTexts, setFetchedTexts] = useState([]);
   //for the select list
   const [select, setSelect] = useState('');
@@ -49,9 +49,10 @@ const HeaderContent = ({ contentEditable }) => {
   const getData = async () => {
     const doc = await firestore.collection(topicName.admin).doc(cityId).get();
     if (!doc.exists) {
-      setLoading(true);
+      console.log('no data')
     } else {
       setData(doc.data());
+      setSelectHeaders(doc.data().selectHeaders)
       setFetchedTexts([
         { id: 'title', content: doc.data().title.content, style: doc.data().title.style },
         { id: 'subtitle', content: doc.data().subtitle.content, style: doc.data().subtitle.style },
@@ -102,6 +103,7 @@ const HeaderContent = ({ contentEditable }) => {
   //for the selected list
   const handleSelect = () => {
     setShowList(!showList);
+    setHeight(topicName.name === 'education' ? 180 : 138)
   };
 
   const handleList = (e) => {
@@ -143,7 +145,7 @@ const HeaderContent = ({ contentEditable }) => {
           </a>
         </div>
 
-        {topicName.name == 'accomodation' &&
+        {(topicName.name === 'education' || 'accomodation' ) &&
           <div className={styles.selectperson}>
             <span>I am a</span>
             <span>
@@ -166,15 +168,11 @@ const HeaderContent = ({ contentEditable }) => {
 
               <nav style={{ height: showList && height }}>
                 <ul>
-                  <li onClick={handleList}>
-                    Person who will stay for a long term
-                  </li>
-                  <li onClick={handleList}>
-                    Person who will stay for a short term
-                  </li>
-                  <li onClick={handleList}>
-                    Person who is a student
-                  </li>
+                  {selectHeaders && selectHeaders.map((s, index) =>
+                    <li key={index} onClick={handleList}>
+                      {s}
+                    </li>
+                  )}
                 </ul>
               </nav>
             </span>

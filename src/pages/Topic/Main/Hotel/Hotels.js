@@ -9,8 +9,10 @@ import { EditContext, TopicPathContext } from '../../../../contexts/editContext'
 import HotelServiceCard from '../../Service/HotelServiceCard';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 import { useParams } from 'react-router-dom';
-import HotelServiceCard2 from '../../Service/HotelServiceCard2';
 import BlogHeader from '../../../../components/TravelBlog/sectionHeader/SectionHeader';
+import AmadeusService from '../../Service/amadeus/AmadeusService';
+import { sliceData } from '../../../../utils/sliceData';
+import moment from 'moment';
 
 const Hotels = () => {
   const { cityId } = useParams();
@@ -18,20 +20,31 @@ const Hotels = () => {
   //edit stuff
   const { editStyle, editMode } = useContext(EditContext);
   const [showAdsServiceForm, setShowAdsServiceForm] = useState(false);
-  const [showHotelServiceForm, setShowHotelServiceForm] = useState(false);
 
   const [currentServiceCard, setCurrentServiceCard] = useState([]);
   const [fileUrl, setFileUrl] = useState('');
 
-  const [select, setSelect] = useState('');
   const [showList, setShowList] = useState(false);
 
   const [data, setData] = useState([]);
   const [ads, setAds] = useState({});
+  const [hotelParams, setHotelParams] = useState({
+    cityCode: '',
+    checkInDate: '',
+    checkOutDate: '',
+    adults: '',
+  })
 
   useEffect(() => {
     getData()
-  }, [showAdsServiceForm, showHotelServiceForm])
+  }, [showAdsServiceForm]);
+
+  useEffect(() => {
+    AmadeusService
+      .searchHotels(hotelParams.cityCode)
+      .then(res => setData(res.data))
+      .catch(err => console.error(err))
+  }, [hotelParams])
 
   const getData = async () => {
     const doc = await firestore.collection(topicName.admin).doc(cityId).get();
@@ -39,8 +52,8 @@ const Hotels = () => {
     if (!doc.exists) {
       console.log('no exist');
     } else {
-      setData(doc.data().hotel)
       setAds(doc.data().advertise)
+      setHotelParams({ ...hotelParams, cityCode: doc.data().IATA_code })
     }
   }
 
@@ -49,8 +62,8 @@ const Hotels = () => {
   }
 
   const handleList = e => {
-    setSelect(e.target.innerText);
     setShowList(false)
+    setHotelParams({ ...hotelParams, adults: e.target.value })
   }
 
   const hotelPrice = price => {
@@ -101,8 +114,6 @@ const Hotels = () => {
     return firestore.collection(topicName.admin).doc(cityId).update({
       advertise: updatedAds
     })
-
-
   }
 
   //image handling stuff
@@ -125,50 +136,22 @@ const Hotels = () => {
     }
   }
 
-  //for hotel handling
-  const openHotelEditForm = item => {
-    setShowHotelServiceForm(true);
+  const sliceHotel = data && sliceData(data, 0, 6)
 
-    setCurrentServiceCard({
-      id: item.id,
-      distance: item.distance,
-      img: item.img,
-      link: item.link,
-      price: item.price,
-      rating: item.rating,
-      recommended: item.recommended,
-      title: item.title
-    })
+  //
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setHotelParams({ ...hotelParams, [name]: value })
   }
 
-  const onHotelService = () => {
-    return (
-      (showHotelServiceForm && editMode) ?
-        <div>
-          <HotelServiceCard2
-            title='Hotel'
-            uploadLabel='Image'
-            uploadDescription=' (The image has to be below 200 KB and PNG/JPG format) '
-            setShow={setShowHotelServiceForm}
-            currentFeatureCard={currentServiceCard}
-            updateFeatureCard={updateHotelCard}
-            onFileChange={onFileChange}
-          />
-        </div>
-        : <div></div>
-    )
-  }
+  console.log('Params', hotelParams)
 
-  const updateHotelCard = updatedCard => {
-    setShowHotelServiceForm(false);
-
-    const updatedHotels = data.map(hotel => {
-      return hotel.id === updatedCard.id ? { ...updatedCard, img: fileUrl || updatedCard.img } : hotel;
-    })
-
-    return firestore.collection(topicName.admin).doc(cityId).update({
-      hotel: updatedHotels
-    })
+  const searchHotels = () => {
+    setData([]);
+    AmadeusService
+      .findHotels(hotelParams)
+      .then(res => setData(res.data))
+      .catch(err => console.error(err))
   }
 
   return (
@@ -177,11 +160,11 @@ const Hotels = () => {
 
       <div className={hotel.check}>
         <div>
-          <input type='date' placeholder='check-in' />
+          <input type='date' placeholder="Check-in" name='checkInDate' min={moment(new Date()).format('yyyy-MM-DD')} onChange={handleChange} />
         </div>
 
         <div>
-          <input type="date" placeholder="Check-out" />
+          <input type='date' placeholder="Check-out" name='checkOutDate' min={moment(new Date() + 1).format('yyyy-MM-DD')} onChange={handleChange} />
         </div>
 
         <div>
@@ -190,15 +173,17 @@ const Hotels = () => {
               type="text"
               placeholder="Number of guests"
               readOnly={true}
-              value={select}
+              value={hotelParams.adults}
               onClick={handleSelect}
+              name='adults'
+              onChange={handleChange}
             />
 
             <nav style={{ height: showList && "89px" }}>
               <ul>
-                <li onClick={handleList}>1</li>
-                <li onClick={handleList}>2</li>
-                <li onClick={handleList}>3+</li>
+                <li onClick={handleList} value={1}>1</li>
+                <li onClick={handleList} value={2}>2</li>
+                <li onClick={handleList} value={3}>3+</li>
               </ul>
             </nav>
           </span>
@@ -210,52 +195,45 @@ const Hotels = () => {
                 style: { transform: showList && "rotate(180deg)" },
               }}
             >
-              <TiArrowSortedDown />
+              <TiArrowSortedDown color='white' />
             </IconContext.Provider>
           </p>
+        </div>
+
+        <div>
+          <button onClick={searchHotels}>Search Hotels</button>
         </div>
       </div>
 
       <div className={hotel.hotelflex}>
-        <div
-          className={hotel.hotelist}
-          style={{ ...editStyle }}
-        >
-          {data.map(d => (
-            <Fragment key={d.id}>
-              <div
-                className={!editMode ? hotel.hotelitems : hotel.hotelitemsEdit}
-                key={d.id}
-                onClick={editMode ? () => openHotelEditForm(d) : undefined}
-              >
+
+        {data.length > 0 ?
+          <div className={hotel.hotelist}>
+            {sliceHotel && sliceHotel.map((d) => (
+              <div className={hotel.hotelitems} key={d.hotel.hotelId}>
                 <div className={hotel.hoteleft}>
-                  <img src={d.img} alt={d.title} />
+                  <img src={d.hotel.media ? d.hotel.media[0].uri : 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2'} alt={d.hotel.name} />
                   {d.recommended && <p>{d.recommended}</p>}
                 </div>
-
                 <div className={hotel.hotelright}>
-                  <header>{d.title}</header>
+                  <header>{d.hotel.name}</header>
 
                   <div className={hotel.rightp}>
-                    <p>{d.distance} km from city center</p>
-                    <p>Price: {hotelPrice(d.price)}</p>
+                    <p>{d.hotel.hotelDistance.distance} km from city center</p>
+                    <p>Price: {hotelPrice(d.offers[0].price.total)}</p>
                     <p>
                       {" "}
-                      {_.range(d.rating).map(r => (
-                        <img src={like} alt='like' key={r} />
+                      {_.range(d.hotel.rating).map((r) => (
+                        <img src={like} alt="like" key={r} />
                       ))}
                     </p>
                   </div>
                 </div>
               </div>
-              {d.id === currentServiceCard.id &&
-                <div>
-                  {onHotelService()}
-                </div>
-              }
-            </Fragment>
-          ))}
-        </div>
+            ))}
+          </div>
+          : 'Loading..................'
+        }
 
         {ads && (
           <div
