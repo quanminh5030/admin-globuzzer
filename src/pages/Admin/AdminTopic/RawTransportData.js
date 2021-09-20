@@ -261,7 +261,7 @@ export const transportObj = {
   banner: [
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fplane.png?alt=media&token=4b32c96e-11af-43c0-93bb-4b4d851682ab',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fflight.svg?alt=media&token=2bbae6c2-7b49-489f-8675-4fa4ed7ad77e',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -270,7 +270,7 @@ export const transportObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Funderground.png?alt=media&token=cc4c6e6b-70c6-417b-80e8-80db99359727',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Ftrain.svg?alt=media&token=def1c7c1-903d-40fb-bd85-65963af9fc07',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -279,7 +279,7 @@ export const transportObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fcar.png?alt=media&token=b35a5f21-2aca-43f2-9ca2-61bb4759f952',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fcar.svg?alt=media&token=b2d99e2b-39c9-42b6-aed5-d29277ef5f20',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -288,7 +288,7 @@ export const transportObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Ffront-of-bus.png?alt=media&token=bde4ae47-e803-4b56-b99d-fbbb6b2b1eaf',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fbus.svg?alt=media&token=338dcac5-b371-4473-a3f9-45264631dc61',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',

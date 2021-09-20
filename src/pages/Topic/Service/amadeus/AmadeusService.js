@@ -1,8 +1,8 @@
 import Amadeus from 'amadeus';
 
 const amadeus = new Amadeus({
-  clientId: 'J3wbowimCRDQf4bWzJ3xBPFibom1pyBH',
-  clientSecret: 'seM2Dd1Jvw3ZAk1d'
+  clientId: process.env.REACT_APP_AMADEUS_API_KEY,
+  clientSecret: process.env.REACT_APP_AMADEUS_SECRET_KEY
 })
 
 const searchFlights = flightParams => {

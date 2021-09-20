@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { TopicPathContext } from '../../../contexts/editContext'
 import Attraction from './Attractions/Attraction';
+import Career from './Career/Career';
 import Culture from './Culture/Culture';
 import CultureAPI from './Culture/CultureAPI';
 import Education from './Education/Education';
@@ -23,11 +24,14 @@ const LandingTopic = () => {
       // return <Culture />
       return <CultureAPI />
 
-    case 'transportation': 
+    case 'transportation':
       return <Transportation />
 
-    case 'education': 
-    return <Education />
+    case 'education':
+      return <Education />
+
+    case 'career':
+      return <Career />
 
     default:
       return;

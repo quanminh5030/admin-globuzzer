@@ -260,7 +260,7 @@ export const cultureObj = {
   banner: [
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fdollar.png?alt=media&token=821accca-696f-4cbe-ac7c-7dec9cf5c35b',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fculture%2Fcurrency.svg?alt=media&token=40773b19-3c12-463d-8f05-6905d6731d5d',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -269,7 +269,7 @@ export const cultureObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fflags.png?alt=media&token=21ddd501-1fc4-4d05-8ff8-260e0e6228bd',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fculture%2Ffestival.svg?alt=media&token=0b4edc42-8f6e-4351-b88e-53c155e11951',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -278,7 +278,7 @@ export const cultureObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Frecycle.png?alt=media&token=3090b9f1-6392-4bf7-b1af-3841becb4fd5',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fculture%2Frecycle.svg?alt=media&token=babece8c-6a3a-44f7-bbe5-484cda44e47f',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',

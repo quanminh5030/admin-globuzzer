@@ -250,10 +250,9 @@ const Banner = () => {
             className={banner.listflex}
             style={{ ...editStyle, ...listStyle(item.title.toLocaleLowerCase()) }}
           >
-            <span>
-              <img src={item.icon} alt={item.title} style={{ width: 50 }} />
+            <span style={{height: 60, display: 'flex', alignItems: 'center'}}>
+              <img src={item.icon} alt={item.title} />
             </span>
-            {/* <FontAwesomeIcon icon={item.icon} size='2x' /> */}
             <span>{item.title}</span>
 
             {item.title.toLocaleLowerCase() == current ?

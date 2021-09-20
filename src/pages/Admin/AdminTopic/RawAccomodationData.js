@@ -242,7 +242,7 @@ export const accomodationObj = {
   banner: [
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FatmLogo.svg?alt=media&token=e8b42642-8031-4ba5-a8be-6a5c06bed81a',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fvisa.svg?alt=media&token=75b860f0-8100-4c81-8146-19557f7a217d',
       id: 1,
       img: '',
       link: '',
@@ -251,7 +251,7 @@ export const accomodationObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FatmLogo.svg?alt=media&token=298df552-0315-4107-8dff-1affae7867a3',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fatm.svg?alt=media&token=56a57dee-1e5e-4f2e-b182-63b8f803cfa6',
       id: 2,
       img: '',
       link: '',
@@ -260,7 +260,7 @@ export const accomodationObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FhotelLogo.svg?alt=media&token=da9c9b05-34c2-4fa3-9f92-74c9452b55ff',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fhotel.svg?alt=media&token=df64fcb8-b70e-43a4-8846-b91b92d01118',
       id: 3,
       img: '',
       link: '',
@@ -269,7 +269,7 @@ export const accomodationObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FsecurityLogo.svg?alt=media&token=c85b2736-39d5-4ab1-9bfb-57ae2fb149e9',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fsecurity.svg?alt=media&token=ec9423e3-4a91-4773-98f1-8196fa021dea',
       id: 4,
       img: '',
       link: '',

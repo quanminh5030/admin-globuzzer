@@ -260,7 +260,7 @@ export const attractionObj = {
   banner: [
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fchurch.png?alt=media&token=68846320-5b35-4745-a61d-e5f9d0aec2c4',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fchurches.svg?alt=media&token=70d19976-816e-45eb-a6f5-1fc6363d076c',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -269,7 +269,7 @@ export const attractionObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fpark.png?alt=media&token=3434f5ca-0a87-4154-b286-be35777d84ff',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fpark.svg?alt=media&token=813b62e7-a369-42d5-a196-d556d9dfcbb3',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -278,7 +278,7 @@ export const attractionObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fmuseum.png?alt=media&token=1eea5aef-3778-4e84-8bb9-d6c868cf34a3',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fmuseum.svg?alt=media&token=08e06500-34bd-4570-90c3-181f7fc56d04',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
@@ -287,7 +287,7 @@ export const attractionObj = {
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fgallery.png?alt=media&token=5ce770e4-6fa6-4030-8dce-e37e454aafcb',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fgallery.svg?alt=media&token=06654eb5-6d81-47d2-ab50-7e8d2e682f14',
       id: uuidv4(),
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
