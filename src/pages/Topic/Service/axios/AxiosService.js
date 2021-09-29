@@ -23,14 +23,14 @@ const getRestaurants = (lat, lng) => {
 }
 
 const getHospitals = (lat, lng) => {
-  axios
-    .get('http://localhost:3001/api/hospitals', {
+  return axios
+    .get(process.env.REACT_APP_BE_SERVER_URL, {
       params: {
-        lat: lat, 
-        lng: lng
+        lat: lat,
+        lng: lng,
+        apiKey: process.env.REACT_APP_GOOGLEAPI_KEY
       }
     })
-    .then(res => console.log(res.data))
 }
 
 const AxiosService = {

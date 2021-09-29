@@ -19,7 +19,6 @@ const TopicMenu = ({ anchorElTopics, setAnchorElTopics }) => {
       id='simple-menu'
       anchorEl={anchorElTopics}
       anchorOrigin={{ vertical: 'center', horizontal: 'right' }}
-      getContentAnchorEl={null}
       open={Boolean(anchorElTopics)}
       onClose={handleCloseTopic}
       

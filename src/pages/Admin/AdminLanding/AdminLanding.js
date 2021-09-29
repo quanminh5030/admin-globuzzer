@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Home from "../../Home";
 import SideNav from "../SideNav/SideNav";
 import styles from "./AdminLanding.module.css";
