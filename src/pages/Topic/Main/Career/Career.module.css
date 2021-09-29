@@ -1,0 +1,220 @@
+.container {
+  margin: 80px 0;
+  width: 100%;
+}
+
+.careerHeader {
+  padding: 40px 0;
+  font-weight: 300;
+  font-size: 36px;
+  color: #555555;
+}
+
+.careerBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.careerBtn button {
+  color: #737070;
+  margin: 20px;
+  padding: 0.7%;
+  background-color: white;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+}
+
+.careerFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.careerList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+  flex-basis: 85%;
+}
+
+.careerItems {
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.careerUp {
+  position: relative;
+  flex-basis: 60%;
+  height: 250px;
+}
+
+.careerUp img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.careerUp div {
+  background-color: #49bdbb;
+  position: absolute;
+  top: 40px;
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+}
+
+.careerDown {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.careerDown button {
+  background: #f24b6a;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 11px;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  padding: 20px;
+  margin-left: 50px;
+}
+
+.basicInfo {
+  display: flex;
+  justify-content: space-around;
+}
+
+.basicInfo div {
+  margin: 10px;
+}
+
+.basicInfo div span {
+  margin: 7px;
+}
+
+.icon {
+  font-size: 10px;
+  padding: 2px;
+  border: 1px solid;
+  border-radius: 50%;
+  background-color: #f24b6a;
+  color: white;
+  margin: 13px 0;
+}
+
+.ads {
+  width: 15%;
+  height: 350px;
+  color: #fff;
+  padding: 20px;
+}
+
+.editBox {
+  position: absolute;
+  top: 3300px;
+  left: 50%;
+}
+
+.pagBtn {
+  background-color: gray;
+  border: none;
+}
+
+.check {
+  margin: 15px 0 30px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.check div {
+  display: inline;
+  padding: 20px;
+  position: relative;
+}
+
+.check span {
+  position: relative;
+}
+
+.check div input {
+  background-color: #878686;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+}
+
+.check input[type="text"] {
+  padding: 11px 20px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 0.6;
+  filter: invert(1);
+}
+
+.check nav {
+  background: #ededed;
+  position: absolute;
+  left: 0;
+  width: 219px;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s;
+  z-index: 5;
+  width: 100%;
+}
+
+.check li {
+  text-align: left;
+  padding: 5px 20px;
+  color: #969191;
+  font-size: 14px;
+}
+
+.check li:hover {
+  background: #f24b6a;
+  color: #fff;
+}
+
+.dropIcon {
+  transition: transform 0.3s;
+}
+
+.check ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.check p {
+  position: absolute;
+  right: 21px;
+  top: 13px;
+  padding: 8px 12px;
+}
+
+.check input,
+.check select {
+  width: 220px;
+  background: #ededed;
+  padding: 8px;
+  border: none;
+  color: #969191;
+  font-weight: 600px;
+  font-size: 13px;
+}

@@ -10,17 +10,14 @@ import Vimeo from '../../../Section/Vimeo/Vimeo';
 import { sliceData } from '../../../../utils/sliceData';
 import logo from '../../../../assets/GLOBUZZER.svg';
 import { app, firestore } from '../../../../utils/firebase.utils';
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
-import axios from 'axios';
+
 import { VscLoading } from 'react-icons/vsc';
 import { MdCancel } from 'react-icons/md';
 import TransportService from '../../Service/transportation/TransportService';
 import { sizeTransform } from '../../../../utils/sizeTransform';
 
 import AmadeusService from '../../Service/amadeus/AmadeusService';
+import PlaceAutoComplete from '../../../../components/AutoComplete/PlaceAutoComplete';
 
 const Transportation = () => {
   const { cityId } = useParams();
@@ -102,22 +99,6 @@ const Transportation = () => {
   //to limit the number of fligh displayed
   const slicedData = sliceData(flights, 0, flightSize)
 
-  //for places autocomple
-  const handleSelectPlaces = address => {
-    setPlace(address)
-
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => getIATAcode(latLng.lat, latLng.lng))
-      .catch(err => console.error('error', err))
-  }
-
-  const getIATAcode = (lat, lng) => {
-    axios(`https://iatageo.com/getCode/${lat}/${lng}`)
-      .then(data => setFlightParams({ ...flightParams, destinationLocationCode: data.data.IATA }))
-      .then(err => console.error('error', err))
-  }
-
   //serch flghts
   const searchFlights = () => {
     setIsSearching(true);
@@ -184,55 +165,31 @@ const Transportation = () => {
       setShow={setShowEditForm}
     />
 
+    console.log('Q', flightParams)
+
   return (
     <section className={styles.hotel}>
       <BlogHeader label='Find suitable fight' />
 
       <div className={styles.check}>
         <div>
-          <PlacesAutocomplete
-            value={place}
-            onChange={text => setPlace(text)}
-            onSelect={handleSelectPlaces}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-              <div>
-                <input
-                  {...getInputProps({
-                    placeholder: 'Location',
-                    className: 'location-search-input',
-                  })}
-                />
-                <div className="autocomplete-dropdown-container" style={{ display: 'flex', flexDirection: 'column', width: 250 }}>
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map((suggestion, index) => {
-                    const className = suggestion.active
-                      ? 'suggestion-item--active'
-                      : 'suggestion-item';
-                    // inline style for demonstration purpose
-                    const style = suggestion.active
-                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                    return (
-                      <div
-                        key={index}
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style,
-                        })}
-                      >
-                        <span>{suggestion.description}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
+          <PlaceAutoComplete
+            place={place}
+            setPlace={setPlace}
+            flightParams={flightParams}
+            setFlightParams={setFlightParams}
+            styles={{ display: 'flex', flexDirection: 'column', width: 250 }}
+          />
         </div>
 
         <div>
-          <input type='date' placeholder='Date' value={flightParams.departureDate} name='departureDate' min={moment(new Date()).format('yyyy-MM-DD')} onChange={handleChange} />
+          <input
+            type='date' placeholder='Date'
+            value={flightParams.departureDate}
+            name='departureDate'
+            min={moment(new Date()).format('yyyy-MM-DD')}
+            onChange={handleChange}
+          />
         </div>
 
         <div>
@@ -247,7 +204,7 @@ const Transportation = () => {
               onChange={handleChange}
             />
 
-            <nav style={{ height: showList && "89px" }}>
+            <nav style={{ height: showList && "100px" }}>
               <ul>
                 <li onClick={handleList} value={1}>1</li>
                 <li onClick={handleList} value={2}>2</li>
@@ -342,7 +299,6 @@ const Transportation = () => {
               <VscLoading style={{ fontSize: 80 }} />
             </div>
           }
-
 
           {/* for the ads */}
           <div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './SideNav.module.css';
 import { Link } from 'react-router-dom';
 import TopicMenu from './TopicMenu';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const SideNav = ({ iconTopic }) => {
   

@@ -493,10 +493,44 @@ export const careerObj = {
   ],
 
   selectHeaders: [
-   'find a permanent job',
-   'find a temporary job',
-   'find an internship'
+    'find a permanent job',
+    'find a temporary job',
+    'find an internship'
   ],
+
+  careerData: {
+    Business_Development: {
+      id: uuidv4(),
+      category: 'Business',
+      city: 'Helsinki',
+      companyName: 'Epicor Software',
+      title: 'Product Manager - ERP Software',
+      link: 'https://jobs.epicor.com/job/finland/product-manager-erp-software/432/9906484080',
+      image: 'https://firebasestorage.googleapis.com/v0/b/skillscanner-73181.appspot.com/o/admin%40skillscanner.com%2FBusiness%20Development-1626180004431?alt=media&token=ee173e4d-0cf3-4194-8065-f541d438c899',
+      deadline: '08/22/2021'
+    },
+    Design: {
+      id: uuidv4(),
+      category: 'Design',
+      city: 'Helsinki',
+      companyName: 'Globuzzer',
+      title: 'Web Designer Intern',
+      link: 'https://globuzzer.com/',
+      image: 'https://firebasestorage.googleapis.com/v0/b/skillscanner-73181.appspot.com/o/admin1%40skillscanner.com%2FDesign-1618577256879?alt=media&token=9f1afa7e-5ddb-48fa-8496-85bf84f24a02',
+      deadline: '07/31/2021'
+    },
+    Sales: {
+      id: uuidv4(),
+      category: 'Sales',
+      city: 'Helsinki',
+      companyName: 'RELEX',
+      title: 'Sales Operations Analyst',
+      link: 'https://www.relexsolutions.com/careers/jobs/sales-operations-analyst/?gh_jid=4647460003&gh_src=1bf4e7b33',
+      image: 'https://firebasestorage.googleapis.com/v0/b/skillscanner-73181.appspot.com/o/admin%40skillscanner.com%2FSales-1628680383756?alt=media&token=4066e356-a04e-47bf-828a-7619af32790c',
+      deadline: '08/31/2021'
+
+    },
+  }
 
 }
 

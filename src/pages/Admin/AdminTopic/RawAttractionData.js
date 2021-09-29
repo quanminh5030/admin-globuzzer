@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const attractionObj = {
-  city: "New topic soon...",
+  city: "",
   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   mainImg: '',
   advertisements: [

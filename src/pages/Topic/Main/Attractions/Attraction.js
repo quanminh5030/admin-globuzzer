@@ -6,7 +6,7 @@ import { app, firestore } from '../../../../utils/firebase.utils'
 import styles from './Attraction.module.css'
 import { FaHeart, FaShare } from 'react-icons/fa'
 import Vimeo from '../../../Section/Vimeo/Vimeo'
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AttractionServiceCard from '../../Service/attraction/AttractionServiceCard'
 import { sizeTransform } from '../../../../utils/sizeTransform'
 import AddAttractionCardForm from '../../Service/attraction/AddAttractionCardForm'

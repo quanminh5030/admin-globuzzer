@@ -3,36 +3,40 @@
   display: grid;
   grid-gap: 2.5px;
   gap: 2.5px;
-  grid-template-columns: repeat(2,200px);
+  grid-template-columns: repeat(2, 200px);
   grid-auto-rows: 280px;
   justify-content: center;
   margin-top: 36px;
   margin-bottom: 50px;
-  
 }
 
 .card {
-  /* background: rgba(0, 0, 0, 0.3); */
-  /* background-image: linear-gradient rgba(0, 0, 0, 0.3); */
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* overflow: hidden;
-  width: 100%;
-  padding-top: 56.25%; */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .name {
   position: absolute;
-  bottom: -20px;
+  bottom: -30px;
   /* transform: translate(-50%, -50%); */
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 15px;
-  color: #6A6A6A;
+  color: #6a6a6a;
 }
+
+.name input {
+  width: 100%;
+  top: 20px;
+  background-color: #878686;
+  color: white;
+}
+
 
 .options {
   display: flex;
@@ -45,7 +49,7 @@
   margin: 8px 16px;
   width: 62px;
   height: 20px;
-  background: #F34C6A;
+  background: #f34c6a;
   border-radius: 5px;
   text-align: center;
   font-family: Montserrat;
@@ -57,7 +61,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .optionsx {
@@ -71,7 +74,7 @@
   margin: 8px 16px;
   width: 62px;
   height: 20px;
-  background: #F34C6A;
+  background: #f34c6a;
   border-radius: 5px;
   text-align: center;
   font-family: Montserrat;
@@ -86,7 +89,6 @@
   align-items: center;
 }
 
-
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -97,52 +99,42 @@
   justify-content: space-between;
 }
 
-/* .actions input {
-  width: 220px;
-  height: 30px;
-  background: #FFFFFF;
-  border: 1px solid #9E9E9E;
-  box-sizing: border-box;
-  border-radius: 10px;
-  color: #9E9E9E;
-} */
-
 .inputForm {
-  display:flex;
-  border: 1px solid #9E9E9E;
-  background:white;
+  display: flex;
+  border: 1px solid #9e9e9e;
+  background: white;
   width: 220px;
   height: 30px;
-  align-items:center;
-  padding-left:10px;
+  align-items: center;
+  padding-left: 10px;
   border-radius: 10px;
-  color: #9E9E9E;
+  color: #9e9e9e;
 }
 
 .inputForm input {
-  border: 0px transparent ;
+  border: 0px transparent;
   height: 90%;
-  outline:none;
-  color: #9E9E9E;
+  outline: none;
+  color: #9e9e9e;
 }
 
 .inputForm svg {
-  font-size:18px;
- margin-right: 8px;
-  color: #9E9E9E;
+  font-size: 18px;
+  margin-right: 8px;
+  color: #9e9e9e;
 }
 
 .actions button {
   width: 89px;
   height: 30px;
-  background: #F34C6A;
+  background: #f34c6a;
   border-radius: 8px;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
 }
 
@@ -173,23 +165,23 @@
 }
 
 .landingLink {
-  color: #F26678;
+  color: #f26678;
 }
 
 .svrBtn {
-padding: 0.5rem 1.5rem;
-background: #F35270;
-border-radius: 3px;
-color: #ffffff;
-font-size: 18px;
-text-align: center;
-border: none;
-margin-bottom: 1rem;
-margin-right: 22px;
+  padding: 0.5rem 1.5rem;
+  background: #f35270;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  border: none;
+  margin-bottom: 1rem;
+  margin-right: 22px;
 }
 .editBtn {
   padding: 0.5rem 3rem;
-  background: #898787;;
+  background: #898787;
   border-radius: 3px;
   color: #ffffff;
   font-size: 18px;
@@ -205,23 +197,18 @@ margin-right: 22px;
 }
 
 .released {
-  /* font-size: 30px; */
   position: relative;
   top: -45%;
-  /* transform-origin: 0 20; */
-  /* transform: rotate(30deg); */
-  /* color: #F26678 */
   color: #f34c6bb0;
   font-weight: bolder;
 }
 /* section main */
-@media (min-width: 1100px)
-{
+@media (min-width: 1100px) {
   .sectionGrid {
     display: grid;
     /* grid-gap: 14px; */
     gap: 30px;
-    grid-template-columns: repeat(4,200px);
+    grid-template-columns: repeat(4, 200px);
     grid-auto-rows: 280px;
     /* justify-content: center; */
     margin: 100px;
@@ -238,11 +225,9 @@ margin-right: 22px;
     width: 391px;
     height: 35px;
   }
-  
+
   .actions button {
     width: 89px;
     height: 35px;
   }
-  
 }
-

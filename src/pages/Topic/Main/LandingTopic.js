@@ -2,16 +2,15 @@ import React, { useContext } from 'react'
 import { TopicPathContext } from '../../../contexts/editContext'
 import Attraction from './Attractions/Attraction';
 import Career from './Career/Career';
-import Culture from './Culture/Culture';
 import CultureAPI from './Culture/CultureAPI';
 import Education from './Education/Education';
+import Food from './Food/Food';
+import Health from './Health/Health';
 import Hotels from './Hotel/Hotels';
 import Transportation from './Transport/Transportation';
 
 const LandingTopic = () => {
   const topicName = useContext(TopicPathContext);
-
-  console.log('landing', topicName)
 
   switch (topicName.name) {
     case 'accomodation':
@@ -21,7 +20,6 @@ const LandingTopic = () => {
       return <Attraction />
 
     case 'culture':
-      // return <Culture />
       return <CultureAPI />
 
     case 'transportation':
@@ -32,6 +30,12 @@ const LandingTopic = () => {
 
     case 'career':
       return <Career />
+
+    case 'food':
+      return <Food />
+
+    case 'health': 
+    return <Health />
 
     default:
       return;

@@ -7,6 +7,7 @@ import Vimeo from '../../../Section/Vimeo/Vimeo';
 import AmadeusService from '../../Service/amadeus/AmadeusService';
 import { sliceData } from '../../../../utils/sliceData';
 import { ButtonGroup, Button } from 'react-bootstrap';
+import { firestore } from '../../../../utils/firebase.utils';
 
 
 const CultureAPI = () => {
@@ -22,12 +23,17 @@ const CultureAPI = () => {
     endIndex: 6
   })
 
+  //coordinate
+  const [coordinate, setCoordinate] = useState({ lat: '', lng: '' })
+
+  useEffect(() => getCoordinate(), [cityId, topicName]);
+
   useEffect(() => {
-    AmadeusService
-      .searchActivities(60.1699, 24.9384)
+    coordinate.lat && AmadeusService
+      .searchActivities(coordinate.lat, coordinate.lng)
       .then(res => setActivities(res.data))
       .catch(err => console.error(err))
-  }, [actSize])
+  }, [coordinate, actSize])
 
   useEffect(() => {
     const slicedData = activities.length > 0 && sliceData(activities, actSize.startIndex, actSize.endIndex);
@@ -36,6 +42,15 @@ const CultureAPI = () => {
   }, [activities])
 
   const length = activities.length > 0 && Math.ceil(activities.length / 6)
+
+  const getCoordinate = async () => {
+    const doc = await firestore.collection(topicName.admin).doc(cityId).get();
+    if (!doc.exists) {
+      console.log('no data')
+    } else {
+      setCoordinate({ lat: doc.data().lat, lng: doc.data().lng })
+    }
+  }
 
   const btnList = () => {
     let paginationArr = [];
@@ -54,12 +69,10 @@ const CultureAPI = () => {
   }
 
   const changeActivities = index => {
-    console.log(index)
     const newSize = ({
       startIndex: index * 6,
       endIndex: index * 6 + 6
     })
-
     setActSize(newSize)
   }
 

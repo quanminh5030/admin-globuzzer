@@ -124,49 +124,6 @@
   padding: 20px;
 }
 
-.vimeo {
-  flex-basis: 19%;
-  margin-left: 15px;
-}
-
-.vimeohead {
-  font-family: "Candal", sans-serif;
-}
-
-.vimeop {
-  margin: 40px 0;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.vimeop p {
-  padding: 5px 0;
-}
-
-.vimeop p:first-child {
-  font-weight: 600;
-  font-size: 24px;
-}
-
-.vimeop p:last-child {
-  font-size: 14px;
-}
-
-.vimeobtn {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.vimeobtn button {
-  color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  border: 1px solid #909090;
-  /* background: #f2a413; */
-  padding: 8px 12px;
-  border-radius: 15px;
-}
-
 .editBox {
   position: absolute;
   top: 3300px;

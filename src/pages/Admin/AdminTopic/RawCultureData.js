@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const cultureObj = {
-  city: "New topic soon...",
+  city: "",
   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   mainImg: '',
   advertisements: [
@@ -483,36 +483,4 @@ export const cultureObj = {
     }
   ],
 
-  cultureData: {
-    museum: [
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fmuseum.jpg?alt=media&token=194cc0f5-759f-4530-8d29-4a110ab4b582', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fmuseum.jpg?alt=media&token=194cc0f5-759f-4530-8d29-4a110ab4b582', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fmuseum.jpg?alt=media&token=194cc0f5-759f-4530-8d29-4a110ab4b582', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fmuseum.jpg?alt=media&token=194cc0f5-759f-4530-8d29-4a110ab4b582', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fmuseum.jpg?alt=media&token=194cc0f5-759f-4530-8d29-4a110ab4b582', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fmuseum.jpg?alt=media&token=194cc0f5-759f-4530-8d29-4a110ab4b582', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() }
-    ],
-
-    gallery: [
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fgallery.jpg?alt=media&token=8a8ac0d7-27d6-4d12-908c-56b2b98debc5', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fgallery.jpg?alt=media&token=8a8ac0d7-27d6-4d12-908c-56b2b98debc5', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fgallery.jpg?alt=media&token=8a8ac0d7-27d6-4d12-908c-56b2b98debc5', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fgallery.jpg?alt=media&token=8a8ac0d7-27d6-4d12-908c-56b2b98debc5', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-
-    ],
-
-    festival: [
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ffestival.jpg?alt=media&token=9e8f12ed-a18f-4f7b-88d8-f18ab5737512', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ffestival.jpg?alt=media&token=9e8f12ed-a18f-4f7b-88d8-f18ab5737512', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ffestival.jpg?alt=media&token=9e8f12ed-a18f-4f7b-88d8-f18ab5737512', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ffestival.jpg?alt=media&token=9e8f12ed-a18f-4f7b-88d8-f18ab5737512', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-    ],
-
-    exhibition: [
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fexhibition.jpg?alt=media&token=109d69a2-4f4a-49e0-a75b-6fdcce376f81', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fexhibition.jpg?alt=media&token=109d69a2-4f4a-49e0-a75b-6fdcce376f81', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fexhibition.jpg?alt=media&token=109d69a2-4f4a-49e0-a75b-6fdcce376f81', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-      { title: 'Scandic Hotel Helsinki Central station', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fexhibition.jpg?alt=media&token=109d69a2-4f4a-49e0-a75b-6fdcce376f81', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4(), date: new Date() },
-    ]
-  }
 }

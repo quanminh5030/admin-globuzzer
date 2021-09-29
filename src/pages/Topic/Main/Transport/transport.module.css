@@ -35,6 +35,10 @@
   padding: 11px 20px;
 }
 
+.check input[type='date'] {
+  padding: 10px 20px;
+}
+
 .cancelIcon {
   font-size: 35px;
   color: #f24b6a;
@@ -96,6 +100,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #969191;
   font-weight: 600px;
   font-size: 12px;
+}
+
+.check ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .hotelflex {
@@ -385,6 +394,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 18px;
   line-height: 152.38%;
   color: #f24b6a;
+  cursor: pointer;
 }
 
 .flightAds {

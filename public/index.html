@@ -69,10 +69,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div id="modal"></div>
-    <!-- <script
-      async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyddX6wQCk9PY-jxHnZj_8X3M3RbzuJy4&libraries=places"
-    ></script> -->
+   
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-101951063-1"
@@ -80,6 +77,20 @@
 
     <!-- google map JS API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjJs2hbIhLaaO5mOt43DwhbVwUvgP1avs&libraries=places"></script>
+
+    <!-- <script type="text/javascript">
+      gapi.load('auth2', function() {
+        const restRequest = gapi.client.request({
+          'path': 'https://maps.googleapis.com/maps/api/place/nearbysearch/json',
+          'params': {
+            'location': '60.1699%2C24.945831',
+            'type': 'hospital',
+            'radius': 1500,
+            'key': 'AIzaSyBjJs2hbIhLaaO5mOt43DwhbVwUvgP1avs'
+          }
+        })
+      })
+    </script> -->
 
 
     <script>

@@ -4,7 +4,7 @@ import BlogHeader from '../../../../components/TravelBlog/sectionHeader/SectionH
 import { EditContext, TopicPathContext } from '../../../../contexts/editContext';
 import { app, firestore } from '../../../../utils/firebase.utils';
 import styles from './Education.module.css';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { upperCaseFirstLetter } from '../../../../utils/upperCaseFirstLetter';
 import Vimeo from '../../../Section/Vimeo/Vimeo';
 import AttractionServiceCard from '../../Service/attraction/AttractionServiceCard';

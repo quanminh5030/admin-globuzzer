@@ -4,7 +4,7 @@ import { app, firestore } from '../../../../utils/firebase.utils';
 import others from "./otherTopics.module.css";
 import TopicServiceCardForm from '../../Service/TopicServiceCardForm';
 import { sizeTransform } from '../../../../utils/sizeTransform';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddTopicCardForm from '../../Service/AddTopicCardForm';
 import { useParams } from 'react-router-dom';
 import BlogHeader from '../../../../components/TravelBlog/sectionHeader/SectionHeader';

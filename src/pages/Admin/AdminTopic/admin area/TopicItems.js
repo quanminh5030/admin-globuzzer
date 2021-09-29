@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import PlaceAutoComplete from '../../../../components/AutoComplete/PlaceAutoComplete';
 import useFetch from '../../../../hooks/useFetch';
 import { deleteWithId, readData } from '../../../../utils/actions.firebase';
 import styles from './AdminTopic.module.css';
@@ -11,7 +12,7 @@ const TopicItems = ({ currentItems, path }) => {
   const { topic } = useParams();
   const [showWarning, setShowWarning] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
-  const [released, setReleased] = useState([]);
+  const [released, setReleased] = useState([])
 
   useEffect(() => {
     setReleased(items.map((i) => i.id))
@@ -59,6 +60,9 @@ const TopicItems = ({ currentItems, path }) => {
     alert('Country was unreleased');
   };
 
+  //set city name
+
+
   return (
     <>
       {currentItems.length > 0 ?
@@ -67,29 +71,44 @@ const TopicItems = ({ currentItems, path }) => {
             <div
               key={item.id}
               className={styles.card}
-              style={{ backgroundImage: `url(${item.mainImg || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
+              style={{ backgroundImage: `url(${item.mainImg || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, }}
             >
               <div className={styles.released}>
                 {released.includes(item.id) ? "released" : ""}
               </div>
 
-              <div className={styles.options}>
-                <Link
-                  style={{ textDecoration: 'none' }}
-                  to={{
-                    pathname: `/topic/${topic}/${item.city}/${item.id}`,
-                    state: { pathName: path }
-                  }}>
-                  <p>Edit</p>
-                </Link>
-                <p onClick={() => deleteWarning(item)}>Delete</p>
-              </div>
+              {item.city &&
+                <div className={styles.options}>
+                  <Link
+                    style={{ textDecoration: 'none' }}
+                    to={{
+                      pathname: `/topic/${topic}/${item.city}/${item.id}`,
+                      state: { pathName: path }
+                    }}>
+                    <p>Edit</p>
+                  </Link>
+                  <p onClick={() => deleteWarning(item)}>Delete</p>
+                </div>
+              }
+
               {released.includes(item.id) &&
                 <div className={styles.optionsx}>
                   <p onClick={() => unRelease(item)}>NotRelease</p>
                 </div>
               }
-              <div className={styles.name}>{item.city}</div>
+
+              {item.city
+                ?
+                <div className={styles.name}>{item.city}</div>
+                :
+                <div className={styles.name} style={{ bottom: -40 }}>
+                  <PlaceAutoComplete
+                    styles={{ position: 'absolute', width: '100%', top: '40px', }}
+                    doc={item.id}
+                    col={admin}
+                  />
+                </div>
+              }
               {showWarning && item.id === clickedCard.id
                 ? warningForm(clickedCard) : null}
             </div>

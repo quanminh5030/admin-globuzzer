@@ -145,7 +145,7 @@ const HeaderContent = ({ contentEditable }) => {
           </a>
         </div>
 
-        {(topicName.name === 'education' || 'accomodation' ) &&
+        {((topicName.name === 'accomodation') || (topicName.name === 'education')) &&
           <div className={styles.selectperson}>
             <span>I am a</span>
             <span>

@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const accomodationObj = {
   //id: '',
-  city: "New topic soon...",
+  city: "",
   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   mainImg: '',
   advertise: {
@@ -278,68 +278,68 @@ export const accomodationObj = {
     },
   ],
 
-  hotel: [
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-    {
-      distance: 0,
-      id: uuidv4(),
-      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
-      link: '',
-      price: 0,
-      rating: 0,
-      recommended: 'Insert the recommendation here...',
-      title: 'Insert the title...',
-    },
-  ],
+  // hotel: [
+  //   {
+  //     distance: 0,
+  //     id: uuidv4(),
+  //     img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+  //     link: '',
+  //     price: 0,
+  //     rating: 0,
+  //     recommended: 'Insert the recommendation here...',
+  //     title: 'Insert the title...',
+  //   },
+  //   {
+  //     distance: 0,
+  //     id: uuidv4(),
+  //     img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+  //     link: '',
+  //     price: 0,
+  //     rating: 0,
+  //     recommended: 'Insert the recommendation here...',
+  //     title: 'Insert the title...',
+  //   },
+  //   {
+  //     distance: 0,
+  //     id: uuidv4(),
+  //     img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+  //     link: '',
+  //     price: 0,
+  //     rating: 0,
+  //     recommended: 'Insert the recommendation here...',
+  //     title: 'Insert the title...',
+  //   },
+  //   {
+  //     distance: 0,
+  //     id: uuidv4(),
+  //     img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+  //     link: '',
+  //     price: 0,
+  //     rating: 0,
+  //     recommended: 'Insert the recommendation here...',
+  //     title: 'Insert the title...',
+  //   },
+  //   {
+  //     distance: 0,
+  //     id: uuidv4(),
+  //     img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+  //     link: '',
+  //     price: 0,
+  //     rating: 0,
+  //     recommended: 'Insert the recommendation here...',
+  //     title: 'Insert the title...',
+  //   },
+  //   {
+  //     distance: 0,
+  //     id: uuidv4(),
+  //     img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fscandic.png?alt=media&token=c8c3febc-26eb-423e-994e-1d032cb32bc2',
+  //     link: '',
+  //     price: 0,
+  //     rating: 0,
+  //     recommended: 'Insert the recommendation here...',
+  //     title: 'Insert the title...',
+  //   },
+  // ],
 
   topMembers: [
     {
@@ -535,5 +535,11 @@ export const accomodationObj = {
       userImg: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2FcasualBoy.png?alt=media&token=4806da00-9d47-472f-8b8e-054faea967c1',
       videoId: 'yawXq5TlgBU'
     }
-  ]
+  ],
+
+  selectHeaders: [
+    'Person who will stay for a long term',
+    'Person who will stay for a short term',
+    'Person who is a student'
+  ],
 }
