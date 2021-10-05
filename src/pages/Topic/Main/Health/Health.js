@@ -53,9 +53,11 @@ const Health = () => {
     const newArr = hospitalList.length > 0 && hospitalList.map(hospital => (
       {
         name: hospital.name,
-        address: hospital.address,
+        address: hospital.vicinity,
         coordinates: [hospital.geometry.location.lng, hospital.geometry.location.lat],
-        photoRef: hospital.photos && hospital.photos[0].photo_reference
+        photos: hospital.photos && hospital.photos[0],
+
+        place: hospital
       })
     )
 
@@ -70,17 +72,19 @@ const Health = () => {
         </div>
       </header>
 
-      {hospitals.length > 0 &&
-        <MapChart
-          hospitals={hospitals}
-          cityCoordinates={[coordinates.lng, coordinates.lat]}
-          city={cityName}
-          cities={cities}
-        />
-      }
+      <div className={styles.healthFlex}>
+        {hospitals.length > 0 &&
+          <MapChart
+            hospitals={hospitals}
+            // cityCoordinates={[coordinates.lng, coordinates.lat]}
+            city={cityName}
+            cities={cities}
+          />
+        }
 
-      <div>
-        <Vimeo cityId={cityId} collection={topicName.admin} />
+        <div>
+          <Vimeo cityId={cityId} collection={topicName.admin} />
+        </div>
       </div>
     </section>
   )

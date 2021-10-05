@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const baseUrl = process.env.REACT_APP_BE_SERVER_URL;
+
 const getRestaurants = (lat, lng) => {
   const options = {
     method: 'GET',
@@ -24,7 +26,7 @@ const getRestaurants = (lat, lng) => {
 
 const getHospitals = (lat, lng) => {
   return axios
-    .get(process.env.REACT_APP_BE_SERVER_URL, {
+    .get(baseUrl + '/api/hospitals', {
       params: {
         lat: lat,
         lng: lng,
@@ -33,9 +35,20 @@ const getHospitals = (lat, lng) => {
     })
 }
 
+const getHospitalPhoto = photoRef => {
+  return axios
+    .get(baseUrl + '/api/hospitals/getPhotos', {
+      params: {
+        photoRef: photoRef,
+        apiKey: process.env.REACT_APP_GOOGLEAPI_KEY
+      }
+    })
+}
+
 const AxiosService = {
   getRestaurants,
-  getHospitals
+  getHospitals,
+  getHospitalPhoto
 }
 
 export default AxiosService;

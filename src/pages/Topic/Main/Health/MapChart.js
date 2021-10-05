@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
 } from "react-simple-maps";
+import styles from './Health.module.css'
+import Hospitals from './Hospitals';
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const MapChart = ({ hospitals, cityCoordinates, city, cities }) => {
+const MapChart = ({ hospitals, city, cities }) => {
+
+  const [showHospitals, setShowHospitals] = useState(false);
+
+  const openHospitalsList = item => {
+    setShowHospitals(true);
+  }
 
   return (
-    <ComposableMap
-    // projection='geoAzimuthalEqualArea'
-    // projectionConfig={{
-    //   rotate: [170, 250, 300],
-    //   scale: 2500
-    // }}  .filter(d => d.properties.REGION_UN === 'Europe')
-    >
+    <ComposableMap>
       <Geographies geography={geoUrl}>
         {
           ({ geographies }) =>
@@ -39,11 +41,11 @@ const MapChart = ({ hospitals, cityCoordinates, city, cities }) => {
 
         return <Marker key={c.name} coordinates={c.cityCoor}>
           <circle
-            r={isCurrentCity ? 7 : 2}
+            r={isCurrentCity ? 5 : 2}
             fill="#F24B6A"
             stroke="#fff"
-            strokeWidth={isCurrentCity ? 3 : 1}
-            onClick={() => console.log(c.cityCoor)}
+            onClick={isCurrentCity ? () => openHospitalsList(c) : undefined}
+            className={isCurrentCity ? styles.pulse : undefined}
           />
           <text
             textAnchor="middle"
@@ -52,10 +54,18 @@ const MapChart = ({ hospitals, cityCoordinates, city, cities }) => {
           >
             {isCurrentCity && c.name}
           </text>
+
+          {(showHospitals && isCurrentCity) &&
+            <Hospitals
+              hospitals={hospitals}
+              open={showHospitals}
+              setOpen={setShowHospitals}
+              city={city}
+            />
+          }
         </Marker>
       }
       )}
-
     </ComposableMap>
   )
 }
