@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const careerObj = {
-  city: "New topic soon...",
+  city: "",
   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   mainImg: '',
   advertisements: [
@@ -261,7 +261,7 @@ export const careerObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fcareer%2Fcv.svg?alt=media&token=5627cea8-5d79-4b13-bf90-bcbe0228480e',
-      id: uuidv4(),
+      id: 1,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Writing your cv',
@@ -270,7 +270,7 @@ export const careerObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fcareer%2Fplatform.svg?alt=media&token=1e96525b-6374-4bef-af6c-b9b12e7ba763',
-      id: uuidv4(),
+      id: 2,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Online platforms',
@@ -279,7 +279,7 @@ export const careerObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fcareer%2Fjob.svg?alt=media&token=c38512f3-1b3e-4194-b0db-98a2f71f853d',
-      id: uuidv4(),
+      id: 3,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Student job',
@@ -288,7 +288,7 @@ export const careerObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fcareer%2Fsalary.svg?alt=media&token=1dac7301-accf-4744-92af-7cc0007677ed',
-      id: uuidv4(),
+      id: 4,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Average Salary',

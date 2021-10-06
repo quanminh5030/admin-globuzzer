@@ -264,7 +264,7 @@ export const transportObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fflight.svg?alt=media&token=2bbae6c2-7b49-489f-8675-4fa4ed7ad77e',
-      id: uuidv4(),
+      id: 1,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Flight',
@@ -273,7 +273,7 @@ export const transportObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Ftrain.svg?alt=media&token=def1c7c1-903d-40fb-bd85-65963af9fc07',
-      id: uuidv4(),
+      id: 2,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Train',
@@ -282,7 +282,7 @@ export const transportObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fcar.svg?alt=media&token=b2d99e2b-39c9-42b6-aed5-d29277ef5f20',
-      id: uuidv4(),
+      id: 3,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Car',
@@ -291,7 +291,7 @@ export const transportObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ftransport%2Fbus.svg?alt=media&token=338dcac5-b371-4473-a3f9-45264631dc61',
-      id: uuidv4(),
+      id: 4,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Bus',

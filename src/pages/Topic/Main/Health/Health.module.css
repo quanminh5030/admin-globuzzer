@@ -3,8 +3,6 @@
 }
 
 /* for the map */
-circle {
-}
 
 .pulse {
   animation: pulseMarker 2s infinite;
@@ -38,13 +36,14 @@ circle {
 .title {
   font-weight: bold;
   text-align: center;
+  margin: 20px;
   font-size: x-large;
 }
 
 .hospital img {
   height: 200px;
   width: 400px;
-  filter: brightness(70%);
+  filter: brightness(55%);
 }
 
 .hospital .info {
@@ -69,4 +68,20 @@ circle {
   font-weight: normal;
   font-size: 12px;
   line-height: 175%;
+}
+
+
+.MuiCircularProgress-indeterminate {
+  animation: circular-rotate 1.4s linear infinite;
+}
+
+@keyframes circular-rotate {
+  0% {
+    transform: rotate(0deg);
+    /* Fix IE11 wobbly */
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

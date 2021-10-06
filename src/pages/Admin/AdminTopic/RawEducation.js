@@ -261,7 +261,7 @@ export const educationObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fapplication.svg?alt=media&token=17e0a320-0a49-4305-9ae6-3210dd1529f3',
-      id: uuidv4(),
+      id: 1,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Application',
@@ -270,7 +270,7 @@ export const educationObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Fschool.svg?alt=media&token=5b6c192c-b94c-416b-8f1c-3a631c7d684c',
-      id: uuidv4(),
+      id: 2,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'School',
@@ -279,7 +279,7 @@ export const educationObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Flanguage.svg?alt=media&token=88ebd69f-4028-4cc4-9341-f1884c5abd1f',
-      id: uuidv4(),
+      id: 3,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Language',

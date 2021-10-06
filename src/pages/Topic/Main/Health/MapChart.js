@@ -15,7 +15,7 @@ const MapChart = ({ hospitals, city, cities }) => {
 
   const [showHospitals, setShowHospitals] = useState(false);
 
-  const openHospitalsList = item => {
+  const openHospitalsList = () => {
     setShowHospitals(true);
   }
 
@@ -44,7 +44,7 @@ const MapChart = ({ hospitals, city, cities }) => {
             r={isCurrentCity ? 5 : 2}
             fill="#F24B6A"
             stroke="#fff"
-            onClick={isCurrentCity ? () => openHospitalsList(c) : undefined}
+            onClick={isCurrentCity ? () => openHospitalsList() : undefined}
             className={isCurrentCity ? styles.pulse : undefined}
           />
           <text

@@ -261,7 +261,7 @@ export const foodObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ffood%2Frestaurant.svg?alt=media&token=f93e4ad9-aa69-4dba-b2d3-5fbd49b6d8f6',
-      id: uuidv4(),
+      id: 1,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Restaurant',
@@ -270,7 +270,7 @@ export const foodObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ffood%2Fcafe.svg?alt=media&token=f5cce60c-cecc-46c1-a16c-f1f1096583ec',
-      id: uuidv4(),
+      id: 2,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Cafe',
@@ -279,7 +279,7 @@ export const foodObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Ffood%2Ftraditional_food.svg?alt=media&token=cef9677d-0bc3-4816-ae02-c7119e0b6b04',
-      id: uuidv4(),
+      id: 3,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Traditional Food',

@@ -41,12 +41,6 @@ const LandingTopic = () => {
       return;
 
   }
-
-  // return (
-  //   <div>
-
-  //   </div>
-  // )
 }
 
 export default LandingTopic

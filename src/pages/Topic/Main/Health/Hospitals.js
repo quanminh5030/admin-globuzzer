@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, List, ListItem, ListItemText } from '@mui/material';
+import { CircularProgress, Dialog, List, ListItem, ListItemText, Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import AxiosService from '../../Service/axios/AxiosService';
 import styles from './Health.module.css';
@@ -28,51 +28,68 @@ const Hospitals = ({ hospitals, open, setOpen, city }) => {
     setData(hospitalsNewArr);
   }, [])
 
-  return (
-    <Dialog
-      onClose={handleClose} open={open}
-    >
-      <DialogTitle
-        className={styles.title}
-      >Hospitals in {city}</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {data
-          .map((h) => {
-            return (
-              <ListItem
-                button
-                key={h.name}
-                divider={true}
-                className={styles.hospital}
-              >
-                <div>
-                  <img src={h.imgUrl} alt={h.name} />
-                </div>
-                <div className={styles.info} >
-                  <ListItemText
-                    primary={h.name}
-                    primaryTypographyProps={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      
-                    }}
-                    secondary={h.address}
-                    secondaryTypographyProps={{
-                      color: 'white',
-                      className: styles.name
-                    }}
-                  />
+  if (data.length > 0) {
+    return (
+      <Dialog
+        onClose={handleClose} open={open}
+      >
+        <h2 className={styles.title}>
+          Hospitals in {city}
+        </h2>
+        <List sx={{ pt: 0 }}>
+          {data
+            .map((h) => {
+              const htmlLink = h.photos.html_attributions[0];
 
-                  <button>Explore more</button>
+              const linkUrl = htmlLink.slice((htmlLink.indexOf('"') + 1), (htmlLink.indexOf('>') - 1))
 
-                </div>
-              </ListItem>
-            )
+              return (
+                <ListItem
+                  button
+                  key={h.name}
+                  divider={true}
+                  className={styles.hospital}
+                >
+                  <div>
+                    <img src={h.imgUrl} alt={h.name} />
+                  </div>
+                  <div className={styles.info} >
+                    <ListItemText
+                      primary={h.name}
+                      primaryTypographyProps={{
+                        color: 'white',
+                        fontWeight: 'bold',
 
-          })}
-      </List>
-    </Dialog>
-  )
+                      }}
+                      secondary={h.address}
+                      secondaryTypographyProps={{
+                        color: 'white',
+                        className: styles.name
+                      }}
+                    />
+
+                    <button onClick={() => window.open(linkUrl, '_blank')}>Explore more
+                    </button>
+
+                  </div>
+                </ListItem>
+              )
+
+            })}
+        </List>
+      </Dialog>
+    )
+  } else {
+    console.log('Loading...')
+    return (
+      <Dialog
+        onClose={handleClose}
+        open={open}
+      >
+        <CircularProgress color='error' sx={{ margin: 1,}} />
+      </Dialog>
+    )
+  }
 }
 
 export default Hospitals

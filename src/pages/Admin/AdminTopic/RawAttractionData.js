@@ -261,7 +261,7 @@ export const attractionObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fchurches.svg?alt=media&token=70d19976-816e-45eb-a6f5-1fc6363d076c',
-      id: uuidv4(),
+      id: 1,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Churches',
@@ -270,7 +270,7 @@ export const attractionObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fpark.svg?alt=media&token=813b62e7-a369-42d5-a196-d556d9dfcbb3',
-      id: uuidv4(),
+      id: 2,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Natural parks',
@@ -279,7 +279,7 @@ export const attractionObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fmuseum.svg?alt=media&token=08e06500-34bd-4570-90c3-181f7fc56d04',
-      id: uuidv4(),
+      id: 3,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Museums',
@@ -288,7 +288,7 @@ export const attractionObj = {
     {
       content: 'Insert the content here...',
       icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fattraction%2Fgallery.svg?alt=media&token=06654eb5-6d81-47d2-ab50-7e8d2e682f14',
-      id: uuidv4(),
+      id: 4,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
       title: 'Galleries',

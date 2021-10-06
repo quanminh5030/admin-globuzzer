@@ -76,6 +76,8 @@ const CultureAPI = () => {
     setActSize(newSize)
   }
 
+  console.log(slicedActivities.length > 0 && slicedActivities[0].bookingLink)
+
   return (
     <section className={styles.container}>
       <header
