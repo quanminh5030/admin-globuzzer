@@ -3,6 +3,7 @@ import { TopicPathContext } from '../../../contexts/editContext'
 import Attraction from './Attractions/Attraction';
 import Career from './Career/Career';
 import CultureAPI from './Culture/CultureAPI';
+import Documentation from './Documentation/Documentation';
 import Education from './Education/Education';
 import Food from './Food/Food';
 import Health from './Health/Health';
@@ -34,8 +35,11 @@ const LandingTopic = () => {
     case 'food':
       return <Food />
 
-    case 'health': 
-    return <Health />
+    case 'health':
+      return <Health />
+
+    case 'documentation':
+      return <Documentation />
 
     default:
       return;

@@ -24,12 +24,13 @@ const getRestaurants = (lat, lng) => {
   return axios.request(options);
 }
 
-const getHospitals = (lat, lng) => {
+const getPlaces = (lat, lng, type) => {
   return axios
-    .get(baseUrl + '/api/hospitals', {
+    .get(baseUrl + '/api/getGoogleApiData', {
       params: {
         lat: lat,
         lng: lng,
+        type: type,
         apiKey: process.env.REACT_APP_GOOGLEAPI_KEY
       }
     })
@@ -47,7 +48,7 @@ const getHospitalPhoto = photoRef => {
 
 const AxiosService = {
   getRestaurants,
-  getHospitals,
+  getPlaces,
   getHospitalPhoto
 }
 

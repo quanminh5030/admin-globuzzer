@@ -34,6 +34,10 @@ const HeaderContent = ({ contentEditable }) => {
     }
   };
 
+  //booleans
+  const isAccomodation = topicName.name === 'accomodation';
+  const isEducation = topicName.name === 'education';
+
   const [currentText, setCurrentText] = useState(rawText);
 
   const formTextStyle = !showTextForm ? { display: 'none' } : {
@@ -145,13 +149,13 @@ const HeaderContent = ({ contentEditable }) => {
           </a>
         </div>
 
-        {((topicName.name === 'accomodation') || (topicName.name === 'education')) &&
+        {(isAccomodation || isEducation) &&
           <div className={styles.selectperson}>
             <span>I am a</span>
             <span>
               <input
                 type="text"
-                placeholder="Person who will stay for a long term"
+                placeholder={selectHeaders ? selectHeaders[0] : ''}
                 value={select}
                 readOnly={true}
                 onClick={handleSelect}

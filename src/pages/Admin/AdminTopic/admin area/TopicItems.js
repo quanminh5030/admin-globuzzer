@@ -61,58 +61,71 @@ const TopicItems = ({ currentItems, path }) => {
   };
 
   //set city name
-
+  const sortCities = cities => cities.sort((a, b) => {
+    if (a.city === b.city) {
+      return 0;
+    }
+    else if (a.city === null) {
+      return 1;
+    }
+    else if (b.city === null) {
+      return -1;
+    } else {
+      return a.city < b.city ? 1 : -1;
+    }
+  })
 
   return (
     <>
       {currentItems.length > 0 ?
         <div className={styles.sectionGrid}>
-          {currentItems.map(item => (
-            <div
-              key={item.id}
-              className={styles.card}
-              style={{ backgroundImage: `url(${item.mainImg || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, }}
-            >
-              <div className={styles.released}>
-                {released.includes(item.id) ? "released" : ""}
+          {sortCities(currentItems)
+            .map(item => (
+              <div
+                key={item.id}
+                className={styles.card}
+                style={{ backgroundImage: `url(${item.mainImg || item.bannerImg}), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`, }}
+              >
+                <div className={styles.released}>
+                  {released.includes(item.id) ? "released" : ""}
+                </div>
+
+                {item.city &&
+                  <div className={styles.options}>
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={{
+                        pathname: `/topic/${topic}/${item.city}/${item.id}`,
+                        state: { pathName: path }
+                      }}>
+                      <p>Edit</p>
+                    </Link>
+                    <p onClick={() => deleteWarning(item)}>Delete</p>
+                  </div>
+                }
+
+                {released.includes(item.id) &&
+                  <div className={styles.optionsx}>
+                    <p onClick={() => unRelease(item)}>NotRelease</p>
+                  </div>
+                }
+
+                {item.city
+                  ?
+                  <div className={styles.name}>{item.city}</div>
+                  :
+                  <div className={styles.name} style={{ bottom: -40 }}>
+                    <PlaceAutoComplete
+                      styles={{ position: 'absolute', width: '100%', top: '40px', }}
+                      doc={item.id}
+                      col={admin}
+                    />
+                  </div>
+                }
+                {showWarning && item.id === clickedCard.id
+                  ? warningForm(clickedCard) : null}
               </div>
-
-              {item.city &&
-                <div className={styles.options}>
-                  <Link
-                    style={{ textDecoration: 'none' }}
-                    to={{
-                      pathname: `/topic/${topic}/${item.city}/${item.id}`,
-                      state: { pathName: path }
-                    }}>
-                    <p>Edit</p>
-                  </Link>
-                  <p onClick={() => deleteWarning(item)}>Delete</p>
-                </div>
-              }
-
-              {released.includes(item.id) &&
-                <div className={styles.optionsx}>
-                  <p onClick={() => unRelease(item)}>NotRelease</p>
-                </div>
-              }
-
-              {item.city
-                ?
-                <div className={styles.name}>{item.city}</div>
-                :
-                <div className={styles.name} style={{ bottom: -40 }}>
-                  <PlaceAutoComplete
-                    styles={{ position: 'absolute', width: '100%', top: '40px', }}
-                    doc={item.id}
-                    col={admin}
-                  />
-                </div>
-              }
-              {showWarning && item.id === clickedCard.id
-                ? warningForm(clickedCard) : null}
-            </div>
-          ))}
+            ))}
         </div>
         : <h2>No topics yet</h2>
       }

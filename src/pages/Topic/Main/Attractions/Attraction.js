@@ -21,7 +21,7 @@ const Attraction = () => {
   const { editMode, editStyle } = useContext(EditContext);
 
   //states
-  const [attractions, setAttractions] = useState([])
+  const [attractions, setAttractions] = useState([]);
   const [currentAttr, setCurrentAttr] = useState('sea');
   const [currentCard, setCurrentCard] = useState({});
 
@@ -128,6 +128,8 @@ const Attraction = () => {
           updatedObject[key] = data : undefined
       )
     })
+
+    setFileUrl('');
 
     return firestore.collection(topicName.admin).doc(cityId).update({
       attractionData: updatedObject
@@ -247,7 +249,6 @@ const Attraction = () => {
                   {onEditService()}
                 </div>
               }
-
             </Fragment>
           )}
         </div>

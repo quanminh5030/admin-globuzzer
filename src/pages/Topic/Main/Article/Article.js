@@ -471,6 +471,9 @@ const Article = () => {
   const updateNewCard = updatedCard => {
     const updatedNews = slideShow.map(slide => slide.id === updatedCard.id ? { ...updatedCard, image: fileUrl || updatedCard.image } : slide)
 
+    setUserImgUrl('');
+    setFileUrl('');
+
     return firestore.collection(topicName.admin).doc(cityId).update({
       news: updatedNews
     })
@@ -478,13 +481,14 @@ const Article = () => {
 
 
   const updateServiceCard = updatedCard => {
-
     const newVideoId = updatedCard.link.split('=')[1].split('&')[0];
 
     if (!updatedCard.article) {
-      const updatedVideos = videoData.map(video => {
-        return video.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId } : video;
-      })
+      const updatedVideos = videoData.map(video =>
+        video.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId } : video
+      );
+      setUserImgUrl('');
+      setFileUrl('');
 
       return firestore.collection(topicName.admin).doc(cityId).update({
         videoData: updatedVideos
@@ -492,10 +496,11 @@ const Article = () => {
     }
 
     else {
-      const updatedArticles = articleData.map(article => {
-
-        return article.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId, [article.article.img.path]: subImg } : article;
-      })
+      const updatedArticles = articleData.map(article =>
+        article.id === updatedCard.id ? { ...updatedCard, imgPath: fileUrl || updatedCard.imgPath, userImg: userImgUrl || updatedCard.userImg, videoId: newVideoId, [article.article.img.path]: subImg } : article
+      );
+      setUserImgUrl('');
+      setFileUrl('');
 
       return firestore.collection(topicName.admin).doc(cityId).update({
         articleData: updatedArticles
@@ -512,7 +517,6 @@ const Article = () => {
   }
 
   const onFileChange = async (e) => {
-
     const imgName = e.target.name;
 
     const file = e.target.files[0];

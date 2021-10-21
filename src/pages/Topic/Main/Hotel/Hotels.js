@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, Fragment } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import hotel from "./hotels.module.css";
 import { IconContext } from "react-icons";
 import { TiArrowSortedDown } from "react-icons/ti";

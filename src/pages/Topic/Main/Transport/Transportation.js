@@ -168,7 +168,7 @@ const Transportation = () => {
     console.log('Q', flightParams)
 
   return (
-    <section className={styles.hotel}>
+    <section className={styles.container}>
       <BlogHeader label='Find suitable fight' />
 
       <div className={styles.check}>
@@ -305,11 +305,9 @@ const Transportation = () => {
             <Vimeo cityId={cityId} collection={topicName.admin} />
           </div>
         </div>
-
       }
 
       {/* for other transport */}
-
       <div style={{ marginTop: 120 }}>
         <BlogHeader label='Other transportation services' />
 

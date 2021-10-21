@@ -66,8 +66,9 @@ function Members() {
   const updateMemberData = (({ currentMember }, updatedMember) => {
     setShowMembersForm(false);
     const updatedMembers = members.map((s) => s.id === updatedMember.id ? { ...updatedMember, image: fileUrl || updatedMember.image } : s)
-    setShowMembersForm(false);
-    firestore.collection(topicName.admin).doc(cityId).update({
+    setFileUrl('');
+
+    return firestore.collection(topicName.admin).doc(cityId).update({
       topMembers: updatedMembers
     });
 

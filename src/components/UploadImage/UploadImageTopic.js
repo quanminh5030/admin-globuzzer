@@ -18,6 +18,7 @@ function UploadImageTopic({ setShowPhotoForm, showPhotoForm, style, typeValidati
     })
     console.log("file saved:", fileUrl)
     setShowPhotoForm(false);
+    setFileUrl(null)
   }
 
   // manage the upload file form + type and size validation

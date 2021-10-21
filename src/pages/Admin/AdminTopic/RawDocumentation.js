@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const accomodationObj = {
-  //id: '',
+export const docObj = {
   city: "",
   bannerImg: "https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/section%2Fbackground.jpg?alt=media&token=116823b4-8224-4268-9ace-b62dfc71e18f",
   mainImg: '',
@@ -261,42 +260,50 @@ export const accomodationObj = {
   banner: [
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fvisa.svg?alt=media&token=75b860f0-8100-4c81-8146-19557f7a217d',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fdocumentation%2FjobApp.svg?alt=media&token=14772cde-a30c-41cc-90b9-f05643905997',
       id: 1,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Visa issue',
+      title: 'Job application',
       videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fatm.svg?alt=media&token=56a57dee-1e5e-4f2e-b182-63b8f803cfa6',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fdocumentation%2FbankCard.svg?alt=media&token=0b84b297-eb3f-4dad-b9cf-2743eaae1937',
       id: 2,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Atm',
+      title: 'Bank card',
       videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fhotel.svg?alt=media&token=df64fcb8-b70e-43a4-8846-b91b92d01118',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fdocumentation%2FvisaD.svg?alt=media&token=c35d5ec5-a7de-4c8c-83ac-47a775142692',
       id: 3,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Top hotels',
+      title: 'Visa',
       videoId: 'yawXq5TlgBU',
     },
     {
       content: 'Insert the content here...',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Flogo%2Fsecurity.svg?alt=media&token=ec9423e3-4a91-4773-98f1-8196fa021dea',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fdocumentation%2Fimmi.svg?alt=media&token=28b934ab-e0be-4abe-b7ed-64a2a9fddb34',
       id: 4,
       img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
       link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
-      title: 'Security risk',
+      title: 'Immigration',
+      videoId: 'yawXq5TlgBU',
+    },
+    {
+      content: 'Insert the content here...',
+      icon: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Fdocumentation%2FinsuranceD.svg?alt=media&token=a5b8801d-e067-4d68-8bdd-90349c9153f9',
+      id: 5,
+      img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Faccomodation%2Fother-1.png?alt=media&token=7f2b7994-e6f0-4452-bf4e-fbc6653a3672',
+      link: 'https://www.youtube.com/watch?v=yawXq5TlgBU',
+      title: 'Insurance',
       videoId: 'yawXq5TlgBU',
     },
   ],
-
 
   topMembers: [
     {
@@ -494,12 +501,6 @@ export const accomodationObj = {
     }
   ],
 
-  selectHeaders: [
-    'Person who will stay for a long term',
-    'Person who will stay for a short term',
-    'Person who is a student'
-  ],
-
   options: {
     height: {
       bigScreen: 130,
@@ -509,7 +510,9 @@ export const accomodationObj = {
     selectedData: [
       'person who will stay for a long term',
       'person who will stay for a short term',
-      'person who is a student'
+      'person who have already stayed here'
     ]
   }
+
 }
+

@@ -125,8 +125,8 @@ const CultureAPI = () => {
               {btnList()}
             </ButtonGroup>
           </div>
-
         </div>
+        
         <div>
           <Vimeo cityId={cityId} collection={topicName.admin} />
         </div>

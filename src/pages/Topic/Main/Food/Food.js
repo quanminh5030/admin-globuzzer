@@ -46,8 +46,6 @@ const Food = () => {
     }
   }
 
-  console.log(restaurants)
-
   //To limit the number of restaurants displayed
   const slicedData = sliceData(restaurants, 0, resSize);
 
@@ -116,7 +114,7 @@ const Food = () => {
           </div>
         }
         {/* for the ads */}
-        <div>
+        <div className={styles.vimeo}>
           <Vimeo cityId={cityId} collection={topicName.admin} />
         </div>
 

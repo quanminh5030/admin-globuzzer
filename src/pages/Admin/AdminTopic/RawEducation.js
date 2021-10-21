@@ -490,6 +490,20 @@ export const educationObj = {
     'find a university'
   ],
 
+  options: {
+    height: {
+      bigScreen: 170,
+      mediumScreen: 150,
+      smallScreen: 110
+    },
+    selectedData: [
+      'find a nursery school',
+      'find a primary school',
+      'find a high school',
+      'find a university'
+    ]
+  },
+
   educationData: {
     university: [
       { title: 'Aalto University', img: 'https://firebasestorage.googleapis.com/v0/b/admin-project-9c459.appspot.com/o/topic%2Feducation%2Faalto.jpg?alt=media&token=b8c7a448-d71a-4f22-9640-db204482042d', link: 'https://globuzzer.com/', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore', id: uuidv4() },

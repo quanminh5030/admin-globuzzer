@@ -120,8 +120,6 @@ const Banner = () => {
     })
   }
 
-
-
   const openServiceEditForm = item => {
     setShowServiceForm(true);
     setCurrentServiceCard({
@@ -141,6 +139,9 @@ const Banner = () => {
     const updatedCard = list.banner.map(b => {
       return b.id === updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, icon: iconUrl || updatedFeatureCard.icon } : b;
     })
+
+    setFileUrl(null);
+    setIconUrl(null);
 
     return firestore.collection(topicName.admin).doc(cityId).update({
       banner: updatedCard
@@ -232,6 +233,9 @@ const Banner = () => {
       return b.id == updatedFeatureCard.id ? { ...updatedFeatureCard, img: fileUrl || updatedFeatureCard.img, videoId: newVideoId || '' } : b;
     })
 
+    setFileUrl(null);
+    setIconUrl(null);
+
     return firestore.collection(topicName.admin).doc(cityId).update({
       banner: updatedVideos
     })
@@ -250,7 +254,7 @@ const Banner = () => {
             className={banner.listflex}
             style={{ ...editStyle, ...listStyle(item.title.toLocaleLowerCase()) }}
           >
-            <span style={{height: 60, display: 'flex', alignItems: 'center'}}>
+            <span style={{ height: 60, display: 'flex', alignItems: 'center' }}>
               <img src={item.icon} alt={item.title} />
             </span>
             <span>{item.title}</span>
