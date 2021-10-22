@@ -3,16 +3,17 @@ import GoogleMapReact from 'google-map-react';
 import styles from './Document.module.css';
 import AxiosService from '../../Service/axios/AxiosService';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { MdStar } from "react-icons/md";
+import { Rating } from '@mui/material';
 
-const Map = ({ center, museums, churches, stadiums, category }) => {
+const Map = ({ center, museums, churches, cemeteries, category }) => {
   const componentRef = useRef();
 
-  console.log('Q', stadiums)
-
   const [data, setData] = useState([]);
+
   const [museWithPhoto, setMuseWithPhoto] = useState([]);
   const [churWithPhoto, setChurWithPhoto] = useState([]);
-  const [stadWithPhoto, setStadWithPhoto] = useState([]);
+  const [cemeWithPhoto, setCemeWithPhoto] = useState([]);
   const [openInfo, setOpenInfo] = useState(false);
   const [current, setCurrent] = useState({});
 
@@ -34,22 +35,18 @@ const Map = ({ center, museums, churches, stadiums, category }) => {
 
   //get places with their photos
   useEffect(() => {
-    const musePhotos = getImgUrl(museums, setMuseWithPhoto);
-    const churPhotos = getImgUrl(churches, setChurWithPhoto);
-    const stadPhotos = getImgUrl(stadiums, setStadWithPhoto);
-
-    setMuseWithPhoto(musePhotos);
-    setChurWithPhoto(churPhotos);
-    setStadWithPhoto(stadPhotos)
-  }, [museums, churches, stadiums])
+    getImgUrl(museums, setMuseWithPhoto);
+    getImgUrl(churches, setChurWithPhoto);
+    getImgUrl(cemeteries, setCemeWithPhoto);
+  }, [museums, churches, cemeteries])
 
   //get list of final data
   useEffect(() => {
     if (museWithPhoto.length > 0 && churWithPhoto.length > 0) {
-      const documentationList = museWithPhoto.concat(churWithPhoto, stadWithPhoto);
+      const documentationList = museWithPhoto.concat(churWithPhoto, cemeWithPhoto);
       setData(documentationList)
     }
-  }, [museWithPhoto, churWithPhoto, stadWithPhoto])
+  }, [museWithPhoto, churWithPhoto, cemeWithPhoto])
 
   const getImgUrl = async (places, setPlacesWithPhotos) => {
     const placeNewArr = [];
@@ -89,7 +86,18 @@ const Map = ({ center, museums, churches, stadiums, category }) => {
             <FaMapMarkerAlt style={{ marginRight: 5 }} />
             {place.vicinity}
           </p>
-          <button>Explore more</button>
+
+          <div className={styles.rating}>
+            <Rating
+              name='read-only'
+              readOnly
+              precision={0.5}
+              value={Number(place.rating)}
+              color=''
+            />
+          </div>
+
+          {/* <button>Explore more</button> */}
         </div> :
         undefined
       }

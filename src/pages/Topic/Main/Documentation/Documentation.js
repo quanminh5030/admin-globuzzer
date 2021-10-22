@@ -8,6 +8,10 @@ import styles from './Document.module.css';
 import Map from './Map';
 import { upperCaseFirstLetter } from '../../../../utils/upperCaseFirstLetter';
 
+
+// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=60.192059%2C24.945831&radius=50000&type=painter&key=AIzaSyBjJs2hbIhLaaO5mOt43DwhbVwUvgP1avs
+
+
 const Documentation = () => {
   //params
   const { cityId } = useParams();
@@ -16,14 +20,20 @@ const Documentation = () => {
   const [coordinates, setCoordinates] = useState({ lat: '', lng: '' });
   const [museums, setMuseums] = useState([]);
   const [churches, setChurches] = useState([]);
-  const [stadiums, setStadiums] = useState([]);
+  const [cemeteries, setCemeteries] = useState([]);
+
+  // const [places, setPlaces] = useState(
+  //   'museum': [],
+  //   'church': [],
+  //   'stadium': []
+  // })
 
   const [currentType, setCurrentType] = useState('museum');
 
   const types = [
     { id: 1, name: 'museum' },
     { id: 2, name: 'church' },
-    { id: 3, name: 'stadium' }
+    { id: 3, name: 'cemetery' }
   ]
 
   // get coordinates of current city
@@ -48,15 +58,28 @@ const Documentation = () => {
         .catch(err => console.error(err));
 
       AxiosService
-        .getPlaces(coordinates.lat, coordinates.lng, 'stadium')
-        .then(res => setStadiums(getGoodData(res.data)))
+        .getPlaces(coordinates.lat, coordinates.lng, 'cemetery')
+        .then(res => setCemeteries(getGoodData(res.data)))
         .catch(err => console.error(err));
+
+      // const obj = { ...places }
+
+      // //test
+      // Object.keys(places).map(key => {
+      //   AxiosService
+      //     .getPlaces(coordinates.lat, coordinates.lng, key)
+      //     .then(res => {
+      //       obj[key] = getGoodData(res.data);
+      //     })
+      //     .catch(err => console.error(err));
+      // }
+      // )
+
+      // setPlaces(obj)
     }
   }, [coordinates])
 
-  const getGoodData = data => {
-    return data.filter(d => d.business_status === "OPERATIONAL" && d.rating > 4 && d.photos && d.types.length > 0)
-  }
+  const getGoodData = data => data.filter(d => d.business_status === "OPERATIONAL" && d.photos && d.types.length > 0)
 
   return (
     <section className={styles.container}>
@@ -76,9 +99,10 @@ const Documentation = () => {
 
       <Map
         center={coordinates}
+        // places={places}
         museums={museums}
         churches={churches}
-        stadiums={stadiums}
+        cemeteries={cemeteries}
         category={currentType}
       />
     </section>

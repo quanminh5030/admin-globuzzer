@@ -10,8 +10,6 @@ const Header = ({ contentEditable }) => {
 
   const topicName = useContext(TopicPathContext);
 
-  console.log(topicName)
-
   return (
     <div>
       <div style={{ position: 'relative', bottom: "-40px" }}>

@@ -39,7 +39,7 @@ const AdminLanding = () => {
       alert("your changes are now live...");
 
   };
-console.log(banners.items)
+  
   return (
     <div className={styles.wrapper}>
       <TopNav/>
