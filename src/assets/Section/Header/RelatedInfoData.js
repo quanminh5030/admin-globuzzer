@@ -1,4 +1,4 @@
-export default [
+const RelatedInfoData = [
     {
         id:1,
         text:"Eduacation"
@@ -60,3 +60,5 @@ export default [
         text:"Attraction"
     }
 ]
+
+export default RelatedInfoData;

@@ -3,7 +3,6 @@ import GoogleMapReact from 'google-map-react';
 import styles from './Document.module.css';
 import AxiosService from '../../Service/axios/AxiosService';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import { MdStar } from "react-icons/md";
 import { Rating } from '@mui/material';
 
 const Map = ({ center, museums, churches, cemeteries, category }) => {
@@ -112,6 +111,7 @@ const Map = ({ center, museums, churches, cemeteries, category }) => {
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLEAPI_KEY }}
         defaultZoom={14}
         center={center}
       >

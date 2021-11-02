@@ -8,7 +8,7 @@ import { foodObj } from "../pages/Admin/AdminTopic/RawFoodData";
 import { healthObj } from "../pages/Admin/AdminTopic/RawHealthData";
 import { docObj } from "../pages/Admin/AdminTopic/RawDocumentation";
 
-export default [
+const topicObj = [
     { title: "Accomodation", path: { admin: 'accomodation_admin', live: 'accomodations', dataObj: accomodationObj, name: 'accomodation', firstBanner: 'visa issue' } },
 
     { title: "Attractions", path: { admin: 'attraction_admin', live: 'attractions', dataObj: attractionObj, name: 'attraction', firstBanner: 'churches' } },
@@ -33,3 +33,5 @@ export default [
 
     // { title: "Internet Service", path: { admin: 'attraction_items', live: 'attraction_live' } }
 ];
+
+export default topicObj;

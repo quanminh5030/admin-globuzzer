@@ -9,15 +9,12 @@ import Map from './Map';
 import { upperCaseFirstLetter } from '../../../../utils/upperCaseFirstLetter';
 
 
-// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=60.192059%2C24.945831&radius=50000&type=painter&key=AIzaSyBjJs2hbIhLaaO5mOt43DwhbVwUvgP1avs
-
-
 const Documentation = () => {
   //params
   const { cityId } = useParams();
   const topicName = useContext(TopicPathContext);
   //states
-  const [coordinates, setCoordinates] = useState({ lat: '', lng: '' });
+  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
   const [museums, setMuseums] = useState([]);
   const [churches, setChurches] = useState([]);
   const [cemeteries, setCemeteries] = useState([]);
@@ -85,6 +82,7 @@ const Documentation = () => {
     <section className={styles.container}>
       <div className={styles.docHeader}>
         <BlogHeader label='Institution to go' />
+
       </div>
 
       <div className={styles.btnGroup}>

@@ -7,11 +7,11 @@ import { createNew } from '../../../../utils/actions.firebase';
 import { useParams } from 'react-router-dom';
 
 const TopicMain = ({ setTopicSelected, path }) => {
-  
-  const { loading, items } = useFetch(path.admin);
-  const {topic} = useParams();
 
-  useEffect(() => setTopicSelected({isSelected: true, topicContent: topic}), [])
+  const { loading, items } = useFetch(path.admin);
+  const { topic } = useParams();
+
+  useEffect(() => setTopicSelected({ isSelected: true, topicContent: topic }), [])
 
   return (
     <>
